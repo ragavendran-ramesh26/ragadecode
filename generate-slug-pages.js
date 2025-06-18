@@ -3,10 +3,10 @@ const path = require('path');
 const marked = require('marked');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
-const API_URL = 'http://localhost:1337/api/news-articles?populate[coverimage][populate]=*';
+const API_URL = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate[coverimage][populate]=*';
 const TEMPLATE_PATH = './template.html';
 const OUTPUT_DIR = './news-article';
-const BASE_IMAGE_URL = 'http://localhost:1337';
+const BASE_IMAGE_URL = '';
 
 (async () => {
   try {
@@ -25,8 +25,7 @@ const BASE_IMAGE_URL = 'http://localhost:1337';
       const markdown = attrs.Description_in_detail || '*No content available*';
       const tags = attrs.Tags || '';
 
-
-
+ 
       let coverImageBlock = '';
       let coverImageUrl = null;
 
@@ -61,7 +60,7 @@ const BASE_IMAGE_URL = 'http://localhost:1337';
         .split(',')
         .map(tag => tag.trim())
         .filter(Boolean)
-        .map(tag => `<a href="/tags/${tag}">#${tag}</a>`)
+        .map(tag => `<a href="#">#${tag}</a>`)
         .join(' ');
 
       // Replace all placeholders in template

@@ -112,7 +112,7 @@
 
   <script>
     $(document).ready(function () {
-      const apiUrl = "http://localhost:1337/api/news-articles?populate=coverimage";
+      const apiUrl = "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=coverimage";
 
       $.get(apiUrl, function (response) {
         const articles = response.data;
@@ -137,7 +137,7 @@
                 <div class="article-description">${summary}</div>
                 <div class="article-meta">Published on ${published}</div>
               </div>
-              ${cover ? `<img src="http://localhost:1337${cover}" class="article-thumb" alt="${title}">` : ''}
+              ${cover ? `<img src="${cover}" class="article-thumb" alt="${title}">` : ''}
             </div>
           `;
         }).join("");
