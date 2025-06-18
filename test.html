@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>News Article Preview</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.8;
+    }
+
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    li {
+      margin-bottom: 0.6rem;
+    }
+
+    blockquote {
+      border-left: 4px solid #ccc;
+      padding-left: 16px;
+      margin: 1.5em 0;
+      font-style: italic;
+      color: #666;
+      background-color: #f2f2f2;
+    }
+
+    pre {
+      background: #eee;
+      padding: 10px;
+      overflow-x: auto;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 24px 0;
+    }
+
+    .content p {
+      margin-bottom: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="title">Loading...</h1>
+  <p><strong>Author:</strong> <span id="author">Ragavendran Ramesh | Decoded by Raga</span></p>
+  <hr />
+  <div id="content" class="content"></div>
+
+  <script>
+    $(document).ready(function () {
+      const documentId = "dr0pvoxd7bsk14opar6nhw38"; // Your documentId here
+      const apiUrl = `http://localhost:1337/api/news-articles/${documentId}`;
+
+      $.get(apiUrl, function (response) {
+        const data = response.data;
+        const title = data.Title || data.attributes?.Title;
+        const markdown = data.Description_in_detail || data.attributes?.Description_in_detail || data.attributes?.description;
+
+        $("#title").text(title);
+        const htmlContent = marked.parse(markdown || "*No content available*");
+        $("#content").html(htmlContent);
+      }).fail(function (xhr) {
+        $("#title").text("Failed to load article");
+        $("#content").html(`<p>Error ${xhr.status}: ${xhr.responseJSON?.error?.message || "Unknown Error"}</p>`);
+      });
+    });
+  </script>
+
+</body>
+</html>

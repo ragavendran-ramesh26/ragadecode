@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{TITLE}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="{{DESCRIPTION}}" />
+  <meta name="author" content="Ragavendran Ramesh" />
+  <link rel="canonical" href="https://www.ragadecode.com/news-article/{{SLUG}}" />
+
+  <!-- Social Tags -->
+  <meta property="og:title" content="{{TITLE}}" />
+  <meta property="og:description" content="{{DESCRIPTION}}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.ragadecode.com/news-article/{{SLUG}}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{TITLE}}" />
+  <meta name="twitter:description" content="{{DESCRIPTION}}" />
+
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    header, footer {
+      background-color: #1e2a38;
+      color: #fff;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    header h1 img {
+      width: 32px;
+      height: 32px;
+    }
+
+    header p {
+      font-size: 1rem;
+      margin-top: 10px;
+      color: #ccc;
+    }
+
+    main {
+      display: flex;
+      gap: 40px;
+      padding: 40px;
+      max-width: 1100px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+
+    .content {
+      flex: 3;
+      min-width: 0;
+    }
+
+    .sidebar {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+
+    blockquote {
+      border-left: 4px solid #ccc;
+      padding-left: 16px;
+      background-color: #f2f2f2;
+      color: #666;
+      margin-top: 20px;
+    }
+
+    .tags a {
+      display: inline-block;
+      margin: 6px 8px 0 0;
+      text-decoration: none;
+      color: #007acc;
+      font-weight: bold;
+      background-color: #eaf4ff;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .tags a:hover {
+      text-decoration: underline;
+      background-color: #d3eaff;
+    }
+
+    .back-link {
+      margin-top: 30px;
+      display: inline-block;
+      color: #2c3e50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        order: 2;
+        margin-top: 40px;
+      }
+
+      .content {
+        order: 1;
+      }
+
+      .tags {
+        margin-top: 10px;
+      }
+    }
+    .cover-image {
+  margin: 20px 0;
+  max-width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>
+      <img src="/assets/news-icon.png" alt="News Icon" onerror="this.style.display='none'" />
+      RagaDecode
+    </h1>
+    <p>News decoded by Raga</p>
+  </header>
+
+  <main>
+    <div class="content">
+      <h1>{{TITLE}}</h1>
+       {{COVER_IMAGE_BLOCK}}
+      <hr />
+      <div class="content-body">
+        {{CONTENT}}
+      </div>
+      <a href="/ragadecode/index.html" class="back-link">← Back to Home</a>
+    </div>
+
+    <aside class="sidebar">
+      <h3>Tags</h3>
+      <div class="tags">
+        {{TAGS}}
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <p>© 2025 RagaDecode. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
