@@ -13,6 +13,19 @@ const BASE_IMAGE_URL = '';
     const res = await fetch(API_URL);
     const { data } = await res.json();
 
+    // Google Analytics snippet
+const analyticsScript = `
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QEL34RBXBH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QEL34RBXBH');
+</script>
+`;
+ 
+
     const template = await fs.readFile(TEMPLATE_PATH, 'utf8');
     await fs.ensureDir(OUTPUT_DIR);
 
@@ -71,7 +84,8 @@ const BASE_IMAGE_URL = '';
         .replace(/{{CONTENT}}/g, contentHTML)
         .replace(/{{TAGS}}/g, tagHtml)
         .replace(/{{SLUG}}/g, slug)
-        .replace(/{{DOC_ID}}/g, documentId);
+        .replace(/{{DOC_ID}}/g, documentId)
+        .replace(/{{GA_SCRIPT}}/g, analyticsScript);
 
       const outputPath = path.join(OUTPUT_DIR, `${slug}.html`);
       await fs.writeFile(outputPath, pageHTML);

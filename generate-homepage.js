@@ -5,6 +5,18 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 const API_URL = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=coverimage&sort[0]=id:desc';
 const OUTPUT_PATH = path.join(__dirname, 'index.html');
 
+const gaScript = `
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QEL34RBXBH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QEL34RBXBH');
+</script>
+`;
+
+
 (async () => {
   try {
     const res = await fetch(API_URL);
@@ -54,6 +66,7 @@ else sections.trending.push(html);
 <head>
   <meta charset="UTF-8" />
   <title>RagaDecode | Latest News Articles decoded</title>
+    ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Latest news and articles from RagaDecode — decoded by Raga" />
   <style>
