@@ -81,6 +81,7 @@ const analyticsScript = `
         .replace(/{{TITLE}}/g, title)
         .replace(/{{DESCRIPTION}}/g, description)
         .replace(/{{COVER_IMAGE_BLOCK}}/g, coverImageBlock)
+        .replace(/{{COVER_IMAGE_URL}}/g, coverImageUrl || '')
         .replace(/{{CONTENT}}/g, contentHTML)
         .replace(/{{TAGS}}/g, tagHtml)
         .replace(/{{SLUG}}/g, slug)
