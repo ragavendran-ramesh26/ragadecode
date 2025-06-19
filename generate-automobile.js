@@ -65,6 +65,19 @@ const gaScript = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+<link rel="shortcut icon" href="favicon_io/favicon.ico">
+
+<!-- Apple Touch Icon -->
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+
+<!-- Android Chrome -->
+<link rel="icon" type="image/png" sizes="192x192" href="favicon_io/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon_io/android-chrome-512x512.png">
+
+<!-- Web Manifest (Optional but good for PWA support) -->
+<link rel="manifest" href="favicon_io/site.webmanifest">
   <meta charset="UTF-8" />
   <title>RagaDecode | Automobile talks decoded</title>
     ${gaScript}
