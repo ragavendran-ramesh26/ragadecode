@@ -3,70 +3,243 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>RagaDecode | Latest News</title>
+  <title>RagaDecode | Latest News Articles decoded</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Latest news from RagaDecode — decoded by Raga" />
+  <meta name="description" content="Latest news and articles from RagaDecode — decoded by Raga" />
   <style>
     body { font-family: "Segoe UI", sans-serif; margin: 0; background: #f9f9f9; color: #333; }
-    header, footer { background-color: #1e2a38; color: white; text-align: center; padding: 24px 20px; }
-    header h1 { margin: 0; font-size: 1.8rem; }
-    main { max-width: 900px; margin: auto; padding: 40px 20px; }
-    .article-item { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 24px 0; gap: 24px; }
+    
+      header {
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  padding: 16px 20px 8px 20px; /* Less bottom padding */
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header p {
+  margin: 6px 0 16px; /* Add bottom margin to separate from nav */
+  font-size: 1rem;
+  color: #857e7e;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+
+
+
+    nav a {
+  display: inline-block;
+  margin: 6px 6px;
+  padding: 6px 12px;
+  background-color: #0660c9;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+nav a:hover {
+  background-color: #ffffff;
+  color: #0660c9;
+  text-decoration: none;
+}
+
+     main {
+  padding: 40px 20px;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+    section { margin-bottom: 48px; }
+    section h2 {
+      font-size: 1.5rem;
+      color: #1e2a38;
+      margin-bottom: 16px;
+      border-left: 4px solid #1e2a38;
+      padding-left: 12px;
+    }
+
+    .article-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      padding: 24px 0;
+      gap: 24px;
+    }
     .article-text { flex: 1.5; }
     .article-text a { text-decoration: none; font-weight: bold; font-size: 1.3rem; color: #2c3e50; }
     .article-text a:hover { text-decoration: underline; }
-    .article-description { font-size: 1rem; margin: 10px 0; color: #444; }
+.article-description {
+  font-size: 1rem;
+  margin: 10px 0;
+  color: #444;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;             /* Show up to ~2.5-3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 4.8em;                 /* Fallback for older browsers */
+}
     .article-meta { font-size: 0.8rem; color: #777; }
     .article-thumb { width: 140px; height: 100px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
-    footer p { font-size: 0.85rem; color: #ccc; }
+
+    footer {
+      background-color: transparent;
+      color: #000;
+      text-align: center;
+      padding: 24px 20px;
+      border-top: 1px solid #e7e7e7;
+    }
+
+    footer a {
+      color: #000;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+    }
+    footer a:hover { text-decoration: underline; }
+
     @media (max-width: 768px) {
       .article-item { flex-direction: column; }
       .article-thumb { width: 100%; height: auto; margin-top: 16px; }
+      nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+      nav a { margin: 0; }
     }
+
+
+
+.main-content {
+  flex: 1 1 65%;
+}
+
+.sidebar {
+  flex: 1 1 30%;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.sidebar h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 6px;
+}
+
+.tag-box span {
+  display: inline-block;
+  background: #eef2f5;
+  padding: 6px 12px;
+  margin: 4px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #1e2a38;
+}
+
+.ad-box {
+  margin-top: 16px;
+  padding: 40px 20px;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px dashed #bbb;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+  .main-content, .sidebar {
+    flex: 1 1 100%;
+  }
+}
+.more-link {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 12px;
+  background-color: #1e2a38;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.more-link:hover {
+  background-color: #000;
+  text-decoration: none;
+  color: #fff;
+}
+
+
   </style>
 </head>
 <body>
   <header>
-    <h1>📰 RagaDecode</h1>
+    <h1>Raga Decode</h1>
     <p>Decoded News. Clear. Bold. Unfiltered.</p>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#trending">Trending News</a>
+      <a href="#technology">Technology</a>
+      <a href="#finance">Finance</a>
+      <a href="#automobile">Automobile</a>
+    </nav>
   </header>
+
   <main>
-    <div id="articles">
-      
+  <div class="content-wrapper">
+    <div class="main-content">
+      <section id="trending">
+  <h2>Trending News</h2>
+  
         <div class="article-item">
           <div class="article-text">
-            <a href="news-article/air-india-171-understanding-the-tragedy-and-the-possibility-of-vapor-lock.html">Air India 171: Understanding the Tragedy and the Possibility of Vapor Lock  </a>
-            <div class="article-description"> 📰 Overview...</div>
+            <a href="news-article/iran-vs-israel-is-the-middle-east-on-the-brink-of-a-new-war.html">Iran vs Israel: Is the Middle East on the Brink of a New War?</a>
+            <div class="article-description">The clouds of war are thickening over the Middle East, as Iran and Israel stand face to face on the brink of a large-scale conflict. From aerial restrictions and missile barrages to digital sabotage and international diplomatic failures, the situation is more volatile than ever. </div>
             <div class="article-meta">Published on 6/19/2025</div>
           </div>
-          <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/small_air_india_plane_crash_video_a87831218c.webp" class="article-thumb" alt="Air India 171: Understanding the Tragedy and the Possibility of Vapor Lock  ">
+          <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/small_china_us_iran_flags_getty_c75a06b83a.jpg" class="article-thumb" alt="Iran vs Israel: Is the Middle East on the Brink of a New War?">
         </div>
       
 
         <div class="article-item">
           <div class="article-text">
-            <a href="news-article/why-the-israel-iran-war-of-2025-affects-you-more-than-you-think.html">Why the Israel-Iran War of 2025 Affects You More Than You Think</a>
-            <div class="article-description"> 🔥 The Reality Check: What’s Happening?...</div>
+            <a href="news-article/india-s-strategic-diplomacy-amid-west-asia-tensions-operation-sindhu-and-global-talks-decoded.html">India’s Strategic Diplomacy Amid West Asia Tensions: Operation Sindhu and Global Talks Decoded</a>
+            <div class="article-description">🇮🇳 Operation Sindhu: India's Evacuation Mission from Iran  In response to escalating hostilities between Iran and Israel, the Government of India initiated Operation Sindhu to safely evacuate its nationals from high-risk zones. The first phase of the mission successfully transp</div>
             <div class="article-meta">Published on 6/19/2025</div>
           </div>
-          <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/small_Israel_Iran_1200x800_322c8580ca.jpg" class="article-thumb" alt="Why the Israel-Iran War of 2025 Affects You More Than You Think">
-        </div>
-      
-
-        <div class="article-item">
-          <div class="article-text">
-            <a href="news-article/3000-for-200-toll-trips-india-s-bold-step-toward-seamless-road-travel.html">₹3,000 for 200 Toll Trips: India’s Bold Step Toward Seamless Road Travel  </a>
-            <div class="article-description">In a landmark announcement by the Ministry of Road Transport and Highways, the government has introduced a new annual toll pass priced at ₹3,000 for 2...</div>
-            <div class="article-meta">Published on 6/19/2025</div>
-          </div>
-          <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/small_684a6949d1377_toll_plaza_124438272_16x9_1078195cf1.webp" class="article-thumb" alt="₹3,000 for 200 Toll Trips: India’s Bold Step Toward Seamless Road Travel  ">
+          <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/small_israel_pm_netanyahu_indian_pm_narendra_modi_and_irani_supreme_leader_khamenei_162939171_16x9_4f07fa8b5f.webp" class="article-thumb" alt="India’s Strategic Diplomacy Amid West Asia Tensions: Operation Sindhu and Global Talks Decoded">
         </div>
       
 
         <div class="article-item">
           <div class="article-text">
             <a href="news-article/100-indians-stranded-in-iran-amid-israel-iran-tensions-alipur-families-await-safe-return.html">100+ Indians Stranded in Iran Amid Israel-Iran Tensions: Alipur Families Await Safe Return</a>
-            <div class="article-description">As tensions escalate between Israel and Iran, over 100 Indian nationals remain stranded in Iran — many of whom are from Alipur, a predominantly Shia M...</div>
+            <div class="article-description">As tensions escalate between Israel and Iran, over 100 Indian nationals remain stranded in Iran — many of whom are from Alipur, a predominantly Shia Muslim village in Karnataka’s Chikkaballapur district.   🔍 Who Are the Stranded?  Among the stranded are: - Students pursuing MBBS</div>
             <div class="article-meta">Published on 6/19/2025</div>
           </div>
           
@@ -75,17 +248,72 @@
 
         <div class="article-item">
           <div class="article-text">
-            <a href="news-article/india-s-strategic-diplomacy-amid-west-asia-tensions-operation-sindhu-and-global-talks-decoded.html">India’s Strategic Diplomacy Amid West Asia Tensions: Operation Sindhu and Global Talks Decoded</a>
-            <div class="article-description"> 🇮🇳 Operation Sindhu: India's Evacuation Mission from Iran...</div>
+            <a href="news-article/3000-for-200-toll-trips-india-s-bold-step-toward-seamless-road-travel.html">₹3,000 for 200 Toll Trips: India’s Bold Step Toward Seamless Road Travel  </a>
+            <div class="article-description">In a landmark announcement by the Ministry of Road Transport and Highways, the government has introduced a new annual toll pass priced at ₹3,000 for 200 trips. This fixed-price model is aimed at reducing traffic congestion, especially at toll plazas, and improving the overall com</div>
             <div class="article-meta">Published on 6/19/2025</div>
           </div>
-          <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/small_israel_pm_netanyahu_indian_pm_narendra_modi_and_irani_supreme_leader_khamenei_162939171_16x9_4f07fa8b5f.webp" class="article-thumb" alt="India’s Strategic Diplomacy Amid West Asia Tensions: Operation Sindhu and Global Talks Decoded">
+          <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/small_684a6949d1377_toll_plaza_124438272_16x9_1078195cf1.webp" class="article-thumb" alt="₹3,000 for 200 Toll Trips: India’s Bold Step Toward Seamless Road Travel  ">
         </div>
       
+
+        <div class="article-item">
+          <div class="article-text">
+            <a href="news-article/why-the-israel-iran-war-of-2025-affects-you-more-than-you-think.html">Why the Israel-Iran War of 2025 Affects You More Than You Think</a>
+            <div class="article-description">🔥 The Reality Check: What’s Happening?  The Israel-Iran conflict, now in its 11th wave of escalation, has gone from cold war to full-blown retaliation.  - Israel has launched precision air strikes deep into Iran using over 50 fighter jets, targeting nuclear facilities, military </div>
+            <div class="article-meta">Published on 6/19/2025</div>
+          </div>
+          <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/small_Israel_Iran_1200x800_322c8580ca.jpg" class="article-thumb" alt="Why the Israel-Iran War of 2025 Affects You More Than You Think">
+        </div>
+      
+
+        <div class="article-item">
+          <div class="article-text">
+            <a href="news-article/air-india-171-understanding-the-tragedy-and-the-possibility-of-vapor-lock.html">Air India 171: Understanding the Tragedy and the Possibility of Vapor Lock  </a>
+            <div class="article-description">📰 Overview  The crash of Air India Flight 171 has raised serious questions in the aviation world. Initial theories ranged from mechanical failure to human error — but what really caused the aircraft to lose lift moments after takeoff?  This decode explores the verified facts, te</div>
+            <div class="article-meta">Published on 6/19/2025</div>
+          </div>
+          <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/small_air_india_plane_crash_video_a87831218c.webp" class="article-thumb" alt="Air India 171: Understanding the Tragedy and the Possibility of Vapor Lock  ">
+        </div>
+      
+  
+</section>
+
+<section id="technology">
+  <h2>Technology</h2>
+  <p>No articles available.</p>
+  
+</section>
+
+<section id="finance">
+  <h2>Finance</h2>
+  <p>No articles available.</p>
+  
+</section>
+
+<section id="automobile">
+  <h2>Automobile</h2>
+  <p>No articles available.</p>
+  
+</section>
     </div>
-  </main>
+
+    <aside class="sidebar">
+      <h3>Tags</h3>
+      <div class="tag-box">
+        <span>#Breaking</span>
+        <span>#Tech</span>
+        <span>#Markets</span>
+        <span>#India</span>
+      </div>
+
+      <!-- <h3 style="margin-top: 24px;">Sponsored</h3>
+       <div class="ad-box">Your Ad Here</div> -->
+    </aside>
+  </div>
+</main>
+
   <footer>
-    <p>© 2025 RagaDecode. All rights reserved.</p>
+    <a href="#">About Us</a> | <a href="#">Contact Us</a>
   </footer>
 </body>
 </html>
