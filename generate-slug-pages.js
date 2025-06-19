@@ -18,9 +18,6 @@ const BASE_URL = `https://${BASE_DOMAIN}`;
 const BASE_IMAGE_URL = ''; // Set to CDN base if needed
 const TEMPLATE_PATH = './template.html';
 
-console.log(`🧾 BASE_DOMAIN: ${BASE_DOMAIN}`);
-console.log(`📡 GA Injected: ${IS_PRODUCTION}`);
-
 // ✅ List of APIs to process
 const API_CONFIGS = [
   {
@@ -41,7 +38,7 @@ const API_CONFIGS = [
   try {
     const template = await fs.readFile(TEMPLATE_PATH, 'utf8');
 
-    const analyticsScript = IS_PRODUCTION ? `
+    const analyticsScript = `
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEL34RBXBH"></script>
 <script>
@@ -50,7 +47,7 @@ const API_CONFIGS = [
   gtag('js', new Date());
   gtag('config', 'G-QEL34RBXBH');
 </script>
-` : '';
+`;
 
     for (const config of API_CONFIGS) {
       console.log(`🔄 Fetching articles for ${config.name}...`);
