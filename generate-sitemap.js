@@ -5,8 +5,14 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 const baseUrl = 'https://ragadecode.com';
 
 const endpoints = [
-  { api: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=id:desc', section: 'news-article' },
-  // Add more sections here as needed
+  { 
+    api: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=id:desc',
+    section: 'news-article'
+  },
+  { 
+    api: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?sort[0]=id:desc',
+    section: 'automobile'
+  },
 ];
 
 (async () => {
@@ -24,7 +30,7 @@ const endpoints = [
       for (const article of data) {
         const attr = article.attributes || article;
         const slug = attr.slug || '';
-        const date = new Date(attr.publishedAt).toISOString().split('T')[0];
+        const date = new Date(attr.publishedAt || attr.updatedAt || new Date()).toISOString().split('T')[0];
 
         xml += `  <url>\n`;
         xml += `    <loc>${baseUrl}/${section}/${slug}</loc>\n`;

@@ -1,11 +1,10 @@
-const fs = require('fs-extra');
-const path = require('path');
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
-const API_URL = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=coverimage&sort[0]=id:desc';
-const OUTPUT_PATH = path.join(__dirname, 'index.html');
-
-const gaScript = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>RagaDecode | Automobile talks decoded</title>
+    
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEL34RBXBH"></script>
 <script>
@@ -14,61 +13,9 @@ const gaScript = `
   gtag('js', new Date());
   gtag('config', 'G-QEL34RBXBH');
 </script>
-`;
 
-
-(async () => {
-  try {
-    const res = await fetch(API_URL);
-    const { data } = await res.json();
-
-    const sections = {
-      trending: [],
-      technology: [],
-      finance: [],
-       automobile: [],
-    };
-
-    for (const article of data) {
-      const attr = article.attributes || article;
-      const title = attr.Title || 'Untitled';
-      const slug = attr.slug || '';
-      const category = attr.Category?.toLowerCase() || 'trending'; // fallback to trending if missing
-      const cover = attr.coverimage?.formats.small.url || '';
-      const coverUrl = cover || '';
-      const published = new Date(attr.publishedAt || '').toLocaleDateString();
-      const summary = (attr.Description_in_detail || '')
-        .replace(/[#*_`>]/g, '')
-        .replace(/\n/g, ' ')
-        .trim()
-        .slice(0, 280); // conservative limit (not cutting mid-word)
-
-      const html = `
-        <div class="article-item">
-          <div class="article-text">
-            <a href="news-article/${slug}.html">${title}</a>
-            <div class="article-description">${summary}</div>
-            <div class="article-meta">Published on ${published}</div>
-          </div>
-          ${coverUrl ? `<img src="${coverUrl}" class="article-thumb" alt="${title}">` : ''}
-        </div>
-      `;
-
-      if (category.includes('tech')) sections.technology.push(html);
-else if (category.includes('finance')) sections.finance.push(html);
-else if (category.includes('auto')) sections.automobile.push(html); // ✅ Add this
-else sections.trending.push(html);
-    }
-
-    const pageHtml = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>RagaDecode | Latest News Articles decoded</title>
-    ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Latest news and articles from RagaDecode — decoded by Raga" />
+  <meta name="description" content="Automobile Talks | Cars | Comparison | Best Cars India | What to purchase — decoded by Raga" />
   <style>
     body { font-family: "Segoe UI", sans-serif; margin: 0; background: #f9f9f9; color: #333; }
     
@@ -276,28 +223,20 @@ nav a:hover {
   <main>
   <div class="content-wrapper">
     <div class="main-content">
-      <section id="trending">
-  <h2>Trending News</h2>
-  ${sections.trending.slice(0, 30).join('\n') || '<p>No articles available.</p>'}
-  ${sections.trending.length > 30 ? `<div style="text-align:right; margin-top:10px;"><a href="/#" class="more-link">More &gt;&gt;</a></div>` : ''}
-</section>
-
-<section id="technology">
-  <h2>Technology</h2>
-  ${sections.technology.slice(0, 3).join('\n') || '<p>No articles available.</p>'}
-  ${sections.technology.length > 3 ? `<div style="text-align:right; margin-top:10px;"><a href="/technology.html" class="more-link">More &gt;&gt;</a></div>` : ''}
-</section>
-
-<section id="finance">
-  <h2>Finance</h2>
-  ${sections.finance.slice(0, 3).join('\n') || '<p>No articles available.</p>'}
-  ${sections.finance.length > 3 ? `<div style="text-align:right; margin-top:10px;"><a href="/finance.html" class="more-link">More &gt;&gt;</a></div>` : ''}
-</section>
 
 <section id="automobile">
   <h2>Automobile</h2>
-  ${sections.automobile.slice(0, 3).join('\n') || '<p>No articles available.</p>'}
-  ${sections.automobile.length > 3 ? `<div style="text-align:right; margin-top:10px;"><a href="/automobile.html" class="more-link">More &gt;&gt;</a></div>` : ''}
+  
+        <div class="article-item">
+          <div class="article-text">
+            <a href="automobile/are-hybrid-cars-worth-it-in-india-a-complete-cost-benefit-breakdown.html">Are Hybrid Cars Worth It in India? A Complete Cost-Benefit Breakdown</a>
+            <div class="article-description">Hybrid cars are becoming a hot topic in India’s automobile industry. But there's one critical question that buyers are asking: "Do hybrid cars really save money in the long run, or is it just a marketing gimmick?"  This decoded report explores the technology behind hybrid cars, c</div>
+            <div class="article-meta">Published on 6/19/2025</div>
+          </div>
+          <img src="/uploads/small_petrol_vs_hybrid_engines_4_6efdbd6dcf_325ed6c7bc.jpg" class="article-thumb" alt="Are Hybrid Cars Worth It in India? A Complete Cost-Benefit Breakdown">
+        </div>
+      
+  
 </section>
     </div>
 
@@ -321,12 +260,3 @@ nav a:hover {
   </footer>
 </body>
 </html>
-`;
-
-    await fs.writeFile(OUTPUT_PATH, pageHtml);
-    console.log(`✅ index.html generated with ${data.length} articles`);
-
-  } catch (err) {
-    console.error('❌ Failed to generate homepage:', err.message);
-  }
-})();

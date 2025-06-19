@@ -2,8 +2,9 @@ const fs = require('fs-extra');
 const path = require('path');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
-const API_URL = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=coverimage&sort[0]=id:desc';
-const OUTPUT_PATH = path.join(__dirname, 'index.html');
+const API_URL = 'http://localhost:1337/api/automobiles/?populate=*&sort[0]=id:desc';
+
+const OUTPUT_PATH = path.join(__dirname, 'decode-automobile-talks.html');
 
 const gaScript = `
 <!-- Google tag (gtag.js) -->
@@ -26,15 +27,15 @@ const gaScript = `
       trending: [],
       technology: [],
       finance: [],
-       automobile: [],
+      automobile: [],
     };
 
     for (const article of data) {
       const attr = article.attributes || article;
       const title = attr.Title || 'Untitled';
       const slug = attr.slug || '';
-      const category = attr.Category?.toLowerCase() || 'trending'; // fallback to trending if missing
-      const cover = attr.coverimage?.formats.small.url || '';
+      const category = attr.Category?.toLowerCase() || 'auto'; // fallback to auto if missing
+      const cover = attr.coverimage?.[0]?.formats?.small?.url || '';
       const coverUrl = cover || '';
       const published = new Date(attr.publishedAt || '').toLocaleDateString();
       const summary = (attr.Description_in_detail || '')
@@ -46,7 +47,7 @@ const gaScript = `
       const html = `
         <div class="article-item">
           <div class="article-text">
-            <a href="news-article/${slug}.html">${title}</a>
+            <a href="automobile/${slug}.html">${title}</a>
             <div class="article-description">${summary}</div>
             <div class="article-meta">Published on ${published}</div>
           </div>
@@ -65,10 +66,10 @@ else sections.trending.push(html);
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>RagaDecode | Latest News Articles decoded</title>
+  <title>RagaDecode | Automobile talks decoded</title>
     ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Latest news and articles from RagaDecode — decoded by Raga" />
+  <meta name="description" content="Automobile Talks | Cars | Comparison | Best Cars India | What to purchase — decoded by Raga" />
   <style>
     body { font-family: "Segoe UI", sans-serif; margin: 0; background: #f9f9f9; color: #333; }
     
@@ -276,28 +277,11 @@ nav a:hover {
   <main>
   <div class="content-wrapper">
     <div class="main-content">
-      <section id="trending">
-  <h2>Trending News</h2>
-  ${sections.trending.slice(0, 30).join('\n') || '<p>No articles available.</p>'}
-  ${sections.trending.length > 30 ? `<div style="text-align:right; margin-top:10px;"><a href="/#" class="more-link">More &gt;&gt;</a></div>` : ''}
-</section>
-
-<section id="technology">
-  <h2>Technology</h2>
-  ${sections.technology.slice(0, 3).join('\n') || '<p>No articles available.</p>'}
-  ${sections.technology.length > 3 ? `<div style="text-align:right; margin-top:10px;"><a href="/technology.html" class="more-link">More &gt;&gt;</a></div>` : ''}
-</section>
-
-<section id="finance">
-  <h2>Finance</h2>
-  ${sections.finance.slice(0, 3).join('\n') || '<p>No articles available.</p>'}
-  ${sections.finance.length > 3 ? `<div style="text-align:right; margin-top:10px;"><a href="/finance.html" class="more-link">More &gt;&gt;</a></div>` : ''}
-</section>
 
 <section id="automobile">
   <h2>Automobile</h2>
-  ${sections.automobile.slice(0, 3).join('\n') || '<p>No articles available.</p>'}
-  ${sections.automobile.length > 3 ? `<div style="text-align:right; margin-top:10px;"><a href="/automobile.html" class="more-link">More &gt;&gt;</a></div>` : ''}
+  ${sections.automobile.slice(0, 30).join('\n') || '<p>No articles available.</p>'}
+  ${sections.automobile.length > 30 ? `<div style="text-align:right; margin-top:10px;"><a href="/decode-automobile-talks.html" class="more-link">More &gt;&gt;</a></div>` : ''}
 </section>
     </div>
 
@@ -324,9 +308,9 @@ nav a:hover {
 `;
 
     await fs.writeFile(OUTPUT_PATH, pageHtml);
-    console.log(`✅ index.html generated with ${data.length} articles`);
+    console.log(`✅ decode-automobile-talks.html generated with ${data.length} articles`);
 
   } catch (err) {
-    console.error('❌ Failed to generate homepage:', err.message);
+    console.error('❌ Failed to generate automobile page:', err.message);
   }
 })();

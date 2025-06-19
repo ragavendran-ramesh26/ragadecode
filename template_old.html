@@ -6,21 +6,20 @@
     <title>{{TITLE}}</title>
     {{GA_SCRIPT}}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="{{TITLE}} | ragadecode | content is decode by raga " />
+    <meta name="description" content="{{DESCRIPTION}}" />
     <meta name="author" content="Ragavendran Ramesh" />
-    
-    <!-- Canonical & Open Graph with dynamic domain + slug -->
-    <link rel="canonical" href="{{BASE_DOMAIN}}/{{SLUG_PREFIX}}/{{SLUG}}" />
-    <meta property="og:title" content="{{TITLE}}" />
-    <meta property="og:description" content="{{TITLE}} | ragadecode | content is decode by raga " />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="{{BASE_DOMAIN}}/{{SLUG_PREFIX}}/{{SLUG}}" />
-    <meta property="og:image" content="{{COVER_IMAGE_URL}}" />
-    <meta name="twitter:card" content="{{COVER_IMAGE_URL}}" />
-    <meta name="twitter:title" content="{{TITLE}}" />
-    <meta name="twitter:description" content="{{TITLE}} | ragadecode | content is decode by raga" />
+    <link rel="canonical" href="https://www.ragadecode.com/news-article/{{SLUG}}" />
 
-    <!-- Styles -->
+    <!-- Social Tags -->
+    <meta property="og:title" content="{{TITLE}}" />
+    <meta property="og:description" content="{{DESCRIPTION}}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.ragadecode.com/news-article/{{SLUG}}" />
+    <meta property="og:image" content="{{COVER_IMAGE_URL}}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{TITLE}}" />
+    <meta name="twitter:description" content="{{DESCRIPTION}}" />
+
     <style>
         body {
             font-family: "Segoe UI", sans-serif;
@@ -34,6 +33,7 @@
             color: black;
             text-align: center;
             padding: 16px 20px 8px 20px;
+            /* Less bottom padding */
         }
 
         header h1 {
@@ -43,11 +43,15 @@
 
         header p {
             margin: 6px 0 16px;
+            /* Add bottom margin to separate from nav */
             font-size: 1rem;
             color: #857e7e;
             border-bottom: 1px solid #ccc;
             padding-bottom: 20px;
         }
+
+
+
 
         nav a {
             display: inline-block;
@@ -130,6 +134,15 @@
             text-decoration: underline;
         }
 
+
+
+        .sidebar h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 6px;
+        }
+
         .tags a {
             display: inline-block;
             background: #eef2f5;
@@ -200,7 +213,7 @@
             <a href="/#trending">Trending News</a>
             <a href="/#technology">Technology</a>
             <a href="/#finance">Finance</a>
-            <a href="/decode-automobile-talks.html">Automobile</a>
+            <a href="/#automobile">Automobile</a>
         </nav>
     </header>
 
