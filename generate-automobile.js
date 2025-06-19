@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
-const API_URL = 'http://localhost:1337/api/automobiles/?populate=*&sort[0]=id:desc';
+const API_URL = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=coverimage&sort[0]=id:desc';
 
 const OUTPUT_PATH = path.join(__dirname, 'decode-automobile-talks.html');
 
@@ -35,7 +35,7 @@ const gaScript = `
       const title = attr.Title || 'Untitled';
       const slug = attr.slug || '';
       const category = attr.Category?.toLowerCase() || 'auto'; // fallback to auto if missing
-      const cover = attr.coverimage?.[0]?.formats?.small?.url || '';
+      const cover = attr.coverimage?.[0]?.formats?.small?.url || ''; 
       const coverUrl = cover || '';
       const published = new Date(attr.publishedAt || '').toLocaleDateString();
       const summary = (attr.Description_in_detail || '')
