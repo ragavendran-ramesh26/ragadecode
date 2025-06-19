@@ -28,7 +28,7 @@ const API_CONFIGS = [
   },
   {
     name: 'automobiles',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles/??populate[coverimage][populate]=*',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate[coverimage][populate]=*',
     outputDir: './automobile',
     slugPrefix: 'automobile',
   }
@@ -61,29 +61,30 @@ const API_CONFIGS = [
         const title = attrs.Title || 'Untitled';
         const slug = attrs.slug;
         const documentId = attrs.documentId || article.id;
-        const description = attrs.Description || 'Latest news from RagaDecode — decoded by Raga';
+        const description = attrs.Description || `Latest ${config.name} articles from RagaDecode — decoded by Raga`;
         const markdown = attrs.Description_in_detail || '*No content available*';
         const tags = attrs.Tags || '';
 
-        // Handle coverimage array or object
-        const coverObj = Array.isArray(attrs.coverimage)
-          ? attrs.coverimage[0]
-          : attrs.coverimage;
 
-        let coverImageUrl = '';
         let coverImageBlock = '';
+        let coverImageUrl = null;
 
-        if (coverObj && (coverObj.formats || coverObj.url)) {
-          const mediumUrl = coverObj.formats?.medium?.url || coverObj.url || '';
-          coverImageUrl = `${BASE_IMAGE_URL}${mediumUrl}`;
-          coverImageBlock = `<img class="cover-image" src="${coverImageUrl}" alt="${title}" loading="lazy" />`;
+        if (attrs.coverimage && attrs.coverimage.url) {
+          const imageData = attrs.coverimage;
+          const mediumFormatUrl = imageData.formats?.medium?.url;
+
+
+          const originalUrl = imageData.url;
+
+          const relativeUrl = mediumFormatUrl || originalUrl;
+          coverImageUrl = relativeUrl ? `${BASE_IMAGE_URL}${relativeUrl}` : null;
+
+          if (coverImageUrl) {
+            coverImageBlock = `<img class="cover-image" src="${coverImageUrl}" alt="${title}" loading="lazy" />`;
+          }
+
         } else {
           console.log(`→ No cover image for: ${title}`);
-        }
-
-        if (!slug || !documentId) {
-          console.warn(`⚠️ Skipping: Missing slug or documentId for ID ${article.id}`);
-          continue;
         }
 
         const contentHTML = marked.parse(markdown);

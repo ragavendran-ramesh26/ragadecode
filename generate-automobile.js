@@ -35,7 +35,7 @@ const gaScript = `
       const title = attr.Title || 'Untitled';
       const slug = attr.slug || '';
       const category = attr.Category?.toLowerCase() || 'auto'; // fallback to auto if missing
-      const cover = attr.coverimage?.[0]?.formats?.small?.url || ''; 
+      const cover = attr.coverimage?.formats.small.url || '';
       const coverUrl = cover || '';
       const published = new Date(attr.publishedAt || '').toLocaleDateString();
       const summary = (attr.Description_in_detail || '')
@@ -56,9 +56,9 @@ const gaScript = `
       `;
 
       if (category.includes('tech')) sections.technology.push(html);
-else if (category.includes('finance')) sections.finance.push(html);
-else if (category.includes('auto')) sections.automobile.push(html); // ✅ Add this
-else sections.trending.push(html);
+      else if (category.includes('finance')) sections.finance.push(html);
+      else if (category.includes('auto')) sections.automobile.push(html); // ✅ Add this
+      else sections.trending.push(html);
     }
 
     const pageHtml = `
