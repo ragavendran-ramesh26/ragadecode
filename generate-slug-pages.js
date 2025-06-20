@@ -8,10 +8,8 @@ const path = require('path');
 const marked = require('marked');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
-// ✅ Global Config
-const isLocal = process.env.NODE_ENV === 'development' || process.env.BASE_DOMAIN === 'localhost';
-const BASE_DOMAIN = (process.env.BASE_DOMAIN || 'localhost').replace(/^https?:\/\//, '');
-const IS_PRODUCTION = BASE_DOMAIN === 'ragadecode.com' && !isLocal;
+
+const BASE_DOMAIN = 'ragadecode.com';
 
 const BASE_URL = `https://${BASE_DOMAIN}`;
 
