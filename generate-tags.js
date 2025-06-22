@@ -235,7 +235,7 @@ nav a:hover {
     <h1>Raga Decode</h1>
     <p>Decoded News. Clear. Bold. Unfiltered.</p>
     <nav>
-      <a href="/index.html">Home</a>
+      <a href="https://ragadecode.com">Home</a>
       <a href="#trending">Trending News</a>
       <a href="#technology">Technology</a>
       <a href="#finance">Finance</a>
@@ -260,7 +260,7 @@ nav a:hover {
                 .slice(0, 280); // conservative limit (not cutting mid-word)
 
               const published = new Date(
-                article.publishedAt || ""
+                article.publishedat || ""
               ).toLocaleDateString("en-IN", {
                 year: "numeric",
                 month: "short",
@@ -274,7 +274,7 @@ nav a:hover {
                   <div class="article-description">${summary}</div>
                   <div class="article-meta">Published on ${published}</div>
                 </div>
-                
+               
               </div>`;
             })
             .join("")}

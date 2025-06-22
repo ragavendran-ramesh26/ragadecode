@@ -5,11 +5,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ragadecode.com/news-article/iran-s-secret-nuclear-mountain-why-the-u-s-and-israel-may-be-planning-a-major-strike</loc>
-    <lastmod>2025-06-22</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://ragadecode.com/news-article/air-india-crash-fallout-dgca-fires-senior-officials-amid-probe-and-black-box-damage-concerns</loc>
     <lastmod>2025-06-22</lastmod>
     <priority>0.8</priority>
@@ -21,6 +16,11 @@
   </url>
   <url>
     <loc>https://ragadecode.com/news-article/rockets-light-up-kuwait-skies-eyewitnesses-report-launches-near-al-shuaiba</loc>
+    <lastmod>2025-06-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/news-article/iran-s-secret-nuclear-mountain-why-the-u-s-and-israel-may-be-planning-a-major-strike</loc>
     <lastmod>2025-06-22</lastmod>
     <priority>0.8</priority>
   </url>
