@@ -110,19 +110,19 @@
 
         .sidebar {
             flex: 1 1 30%;
-            background: #fff;
+            /* background: #fff; */
             padding: 20px;
-            border: 1px solid #ddd;
+            /* border: 1px solid #ddd; */
             border-radius: 10px;
             height: fit-content;
         }
 
-        .sidebar h3 {
+        /* .sidebar h3 {
             font-size: 1.2rem;
             margin-bottom: 10px;
-            border-bottom: 1px solid #ccc;
+             border-bottom: 1px solid #ccc; 
             padding-bottom: 6px;
-        }
+        } */
 
         .cover-image {
             max-width: 480px;
@@ -210,6 +210,57 @@
                 margin: 0;
             }
         }
+
+        .related-box {
+  border: 1px solid #eee;
+  padding: 16px;
+  margin-top: 32px;
+  background-color: #fafafa;
+  border-radius: 8px;
+}
+
+.tag-section {
+  margin-bottom: 20px;
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 4px 6px 4px 0;
+  background-color: #e0f0ff;
+  color: #0074cc;
+  border-radius: 20px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.tag-pill:hover {
+  background-color: #d0e8ff;
+}
+
+.related-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.related-section li {
+  margin-bottom: 12px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+.related-link {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.related-link:hover {
+  color: #0074cc;
+}
     </style>
 </head>
 
@@ -302,22 +353,11 @@
                 <a href="/index.html" class="back-link">← Back to Home</a>
             </div>
 
-            <aside class="sidebar">
-                <h3>Tags</h3>
-                <div class="tags">
-                    <a href="/tags/us-strike-on-iran.html">#US-Strike-on-Iran</a>
-                </div> 
+            <aside class="sidebar"> 
                  
-    <h3>Related Articles</h3>
-    <div class="related-articles">
-      
-          <div class="related-article" style="margin-bottom:16px;">
-            <a href="/news-article/iran-vs-israel-is-the-middle-east-on-the-brink-of-a-new-war" style="text-decoration:none;color:inherit;">
-               
-              <h4 style="font-size:1rem;margin:0;">Iran vs Israel: Is the Middle East on the Brink of a New War?</h4>
-            </a>
-          </div>
-        
+    <div class="related-box">
+      <div class="tag-section"><h4>Tags</h4><a href="/tags/us-strike-on-iran.html" class="tag-pill">#US-Strike-on-Iran</a></div>
+      <div class="related-section"><h4>Related Articles</h4><ul><li><a href="/news-article/iran-vs-israel-is-the-middle-east-on-the-brink-of-a-new-war" class="related-link">Iran vs Israel: Is the Middle East on the Brink of a New War?</a></li></ul></div>
     </div>
   
             </aside>

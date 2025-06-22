@@ -110,19 +110,19 @@
 
         .sidebar {
             flex: 1 1 30%;
-            background: #fff;
+            /* background: #fff; */
             padding: 20px;
-            border: 1px solid #ddd;
+            /* border: 1px solid #ddd; */
             border-radius: 10px;
             height: fit-content;
         }
 
-        .sidebar h3 {
+        /* .sidebar h3 {
             font-size: 1.2rem;
             margin-bottom: 10px;
-            border-bottom: 1px solid #ccc;
+             border-bottom: 1px solid #ccc; 
             padding-bottom: 6px;
-        }
+        } */
 
         .cover-image {
             max-width: 480px;
@@ -210,6 +210,57 @@
                 margin: 0;
             }
         }
+
+        .related-box {
+  border: 1px solid #eee;
+  padding: 16px;
+  margin-top: 32px;
+  background-color: #fafafa;
+  border-radius: 8px;
+}
+
+.tag-section {
+  margin-bottom: 20px;
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 4px 6px 4px 0;
+  background-color: #e0f0ff;
+  color: #0074cc;
+  border-radius: 20px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.tag-pill:hover {
+  background-color: #d0e8ff;
+}
+
+.related-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.related-section li {
+  margin-bottom: 12px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+.related-link {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.related-link:hover {
+  color: #0074cc;
+}
     </style>
 </head>
 
@@ -299,11 +350,7 @@
                 <a href="/index.html" class="back-link">← Back to Home</a>
             </div>
 
-            <aside class="sidebar">
-                <h3>Tags</h3>
-                <div class="tags">
-                    
-                </div> 
+            <aside class="sidebar"> 
                  
             </aside>
 

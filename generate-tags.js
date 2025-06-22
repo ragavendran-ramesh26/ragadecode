@@ -274,7 +274,7 @@ nav a:hover {
                   <div class="article-description">${summary}</div>
                   <div class="article-meta">Published on ${published}</div>
                 </div>
-                
+               
               </div>`;
             })
             .join("")}
