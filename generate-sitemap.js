@@ -1,17 +1,22 @@
-const fs = require('fs-extra');
-const path = require('path');
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const fs = require("fs-extra");
+const path = require("path");
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-const baseUrl = 'https://ragadecode.com';
+const baseUrl = "https://ragadecode.com";
 
 const endpoints = [
-  { 
-    api: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=id:desc',
-    section: 'news-article'
+  {
+    api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=id:desc",
+    section: "news-article",
   },
-  { 
-    api: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?sort[0]=id:desc',
-    section: 'automobile'
+  {
+    api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?sort[0]=id:desc",
+    section: "automobile",
+  },
+  {
+    api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags?sort[0]=id:desc",
+    section: "tags",
   },
 ];
 
@@ -29,8 +34,20 @@ const endpoints = [
 
       for (const article of data) {
         const attr = article.attributes || article;
-        const slug = attr.slug || '';
-        const date = new Date(attr.publishedAt || attr.updatedAt || new Date()).toISOString().split('T')[0];
+
+        let slug;
+        if (section === "tags") {
+          // For tags, use `name` directly
+          slug = attr.name || "";
+        } else {
+          slug = attr.slug || "";
+        }
+
+        if (!slug) continue;
+
+        const date = new Date(attr.publishedAt || attr.updatedAt || new Date())
+          .toISOString()
+          .split("T")[0];
 
         xml += `  <url>\n`;
         xml += `    <loc>${baseUrl}/${section}/${slug}</loc>\n`;
@@ -42,9 +59,9 @@ const endpoints = [
 
     xml += `</urlset>`;
 
-    await fs.outputFile(path.join(__dirname, 'sitemap.xml'), xml);
-    console.log('✅ sitemap.xml generated with all sections');
+    await fs.outputFile(path.join(__dirname, "sitemap.xml"), xml);
+    console.log("✅ sitemap.xml generated with all sections");
   } catch (err) {
-    console.error('❌ Error generating sitemap:', err);
+    console.error("❌ Error generating sitemap:", err);
   }
 })();
