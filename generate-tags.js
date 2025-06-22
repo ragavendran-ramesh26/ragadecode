@@ -260,7 +260,7 @@ nav a:hover {
                 .slice(0, 280); // conservative limit (not cutting mid-word)
 
               const published = new Date(
-                article.publishedAt || ""
+                article.publishedat || ""
               ).toLocaleDateString("en-IN", {
                 year: "numeric",
                 month: "short",
