@@ -45,7 +45,7 @@ const endpoints = [
 
         if (!slug) continue;
 
-        const date = new Date(attr.publishedAt || attr.updatedAt || new Date())
+        const date = new Date(attr.publishedat || attr.updatedat || new Date())
           .toISOString()
           .split("T")[0];
 
