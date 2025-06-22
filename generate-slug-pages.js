@@ -20,7 +20,8 @@ const TEMPLATE_PATH = './template.html';
 const API_CONFIGS = [
   {
     name: 'news-articles',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate[coverimage][populate]=*',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*',
+
     outputDir: './news-article',
     slugPrefix: 'news-article',
   },
@@ -31,6 +32,53 @@ const API_CONFIGS = [
     slugPrefix: 'automobile',
   }
 ];
+
+
+// 🔁 Builds HTML for related articles
+function buildRelatedArticlesHtml(attrs) {
+  const related = [...(attrs.similar_articles || []), ...(attrs.news_articles || [])];
+
+
+  
+
+  if (!related.length) return '';
+
+  return `
+    <h3>Related Articles</h3>
+    <div class="related-articles">
+      ${related.map(item => {
+
+        
+
+        const relatedTitle = item.Title || 'Untitled';
+        const relatedSlug = item.slug || '';
+
+        
+
+        // ✅ Dynamically determine prefix based on category
+        const itemCategory = (item.category || '').toLowerCase().trim().replace(/\s+/g, '-');
+
+     
+
+        // ❗ If Category is missing, skip rendering the related link (to prevent 404)
+        if (!itemCategory || !relatedSlug) return '';
+
+        
+
+         
+
+        return `
+          <div class="related-article" style="margin-bottom:16px;">
+            <a href="/${itemCategory}/${relatedSlug}" style="text-decoration:none;color:inherit;">
+               
+              <h4 style="font-size:1rem;margin:0;">${relatedTitle}</h4>
+            </a>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
 
 (async () => {
   try {
@@ -61,7 +109,8 @@ const API_CONFIGS = [
         const documentId = attrs.documentId || article.id;
         const description = attrs.Description || `Latest ${config.name} articles from RagaDecode — decoded by Raga`;
         const markdown = attrs.Description_in_detail || '*No content available*';
-        const tags = attrs.Tags || '';
+        // const tags = attrs.Tags || '';
+       
 
 
         let coverImageBlock = '';
@@ -87,13 +136,17 @@ const API_CONFIGS = [
 
         const contentHTML = marked.parse(markdown);
 
-        const tagHtml = tags
-          .split(',')
-          .map(tag => tag.trim())
-          .filter(Boolean)
-          .map(tag => `<a href="#">#${tag}</a>`)
-          .join(' ');
+         const tagHtml = (attrs.hashtags || [])
+        .map(tag => {
+          const name = tag.name || '';
+          const slug = name.toLowerCase().replace(/\s+/g, '-');
+          return `<a href="/tags/${slug}.html">#${name}</a>`;
+        })
+        .join(' ');
 
+         
+        const relatedArticlesHtml = buildRelatedArticlesHtml(attrs);
+        
         const pageHTML = template
           .replace(/{{TITLE}}/g, title)
           .replace(/{{DESCRIPTION}}/g, description)
@@ -105,7 +158,9 @@ const API_CONFIGS = [
           .replace(/{{DOC_ID}}/g, documentId)
           .replace(/{{SLUG_PREFIX}}/g, config.slugPrefix)
           .replace(/{{BASE_DOMAIN}}/g, BASE_URL)
-          .replace(/{{GA_SCRIPT}}/g, analyticsScript);
+          .replace(/{{GA_SCRIPT}}/g, analyticsScript)
+      
+          .replace(/{{RELATED_ARTICLES_HTML}}/g, relatedArticlesHtml);
 
         const outputPath = path.join(config.outputDir, `${slug}.html`);
         await fs.writeFile(outputPath, pageHTML);

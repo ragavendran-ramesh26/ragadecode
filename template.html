@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>{{TITLE}}</title>
+    <title>{{TITLE}} | RagaDecode</title>
     {{GA_SCRIPT}}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="{{TITLE}} | ragadecode | content is decode by raga " />
@@ -26,13 +26,13 @@
     <!-- Canonical & Open Graph with dynamic domain + slug -->
     <link rel="canonical" href="{{BASE_DOMAIN}}/{{SLUG_PREFIX}}/{{SLUG}}" />
     <meta property="og:title" content="{{TITLE}}" />
-    <meta property="og:description" content="{{TITLE}} | ragadecode | content is decode by raga " />
+    <meta property="og:description" content="{{TITLE}} | RagaDecode | Content is decode by raga " />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{BASE_DOMAIN}}/{{SLUG_PREFIX}}/{{SLUG}}" />
     <meta property="og:image" content="{{COVER_IMAGE_URL}}" />
-    <meta name="twitter:card" content="{{COVER_IMAGE_URL}}" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{TITLE}}" />
-    <meta name="twitter:description" content="{{TITLE}} | ragadecode | content is decode by raga" />
+    <meta name="twitter:description" content="{{TITLE}} | RagaDecode | Content is decode by raga" />
 
     <!-- Styles -->
     <style>
@@ -234,8 +234,12 @@
                 <h3>Tags</h3>
                 <div class="tags">
                     {{TAGS}}
-                </div>
+                </div> 
+                 {{RELATED_ARTICLES_HTML}}
             </aside>
+
+           
+
         </div>
     </main>
 
