@@ -1,9 +1,14 @@
-const fs = require('fs-extra');
-const path = require('path');
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const fs = require("fs-extra");
+const path = require("path");
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-const API_URL = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=coverimage&sort[0]=id:desc';
-const OUTPUT_PATH = path.join(__dirname, 'index.html');
+const API_URL =
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=coverimage&sort[0]=id:desc";
+const TAGS_API =
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags";
+
+const OUTPUT_PATH = path.join(__dirname, "index.html");
 
 const gaScript = `
 <!-- Google tag (gtag.js) -->
@@ -16,9 +21,11 @@ const gaScript = `
 </script>
 `;
 
-
 (async () => {
   try {
+    const tagRes = await fetch(TAGS_API);
+    const { data: tagData } = await tagRes.json();
+
     const res = await fetch(API_URL);
     const { data } = await res.json();
 
@@ -26,20 +33,20 @@ const gaScript = `
       trending: [],
       technology: [],
       finance: [],
-       automobile: [],
+      automobile: [],
     };
 
     for (const article of data) {
       const attr = article.attributes || article;
-      const title = attr.Title || 'Untitled';
-      const slug = attr.slug || '';
-      const category = attr.Category?.toLowerCase() || 'trending'; // fallback to trending if missing
-      const cover = attr.coverimage?.formats.small.url || '';
-      const coverUrl = cover || '';
-      const published = new Date(attr.publishedat || '').toLocaleDateString();
-      const summary = (attr.Description_in_detail || '')
-        .replace(/[#*_`>]/g, '')
-        .replace(/\n/g, ' ')
+      const title = attr.Title || "Untitled";
+      const slug = attr.slug || "";
+      const category = attr.Category?.toLowerCase() || "trending"; // fallback to trending if missing
+      const cover = attr.coverimage?.formats.small.url || "";
+      const coverUrl = cover || "";
+      const published = new Date(attr.publishedat || "").toLocaleDateString();
+      const summary = (attr.Description_in_detail || "")
+        .replace(/[#*_`>]/g, "")
+        .replace(/\n/g, " ")
         .trim()
         .slice(0, 280); // conservative limit (not cutting mid-word)
 
@@ -50,15 +57,30 @@ const gaScript = `
             <div class="article-description">${summary}</div>
             <div class="article-meta">Published on ${published}</div>
           </div>
-          ${coverUrl ? `<img src="${coverUrl}" class="article-thumb" alt="${title}">` : ''}
+          ${
+            coverUrl
+              ? `<img src="${coverUrl}" class="article-thumb" alt="${title}">`
+              : ""
+          }
         </div>
       `;
 
-      if (category.includes('tech')) sections.technology.push(html);
-else if (category.includes('finance')) sections.finance.push(html);
-else if (category.includes('auto')) sections.automobile.push(html); // ✅ Add this
-else sections.trending.push(html);
+      
+
+      if (category.includes("tech")) sections.technology.push(html);
+      else if (category.includes("finance")) sections.finance.push(html);
+      else if (category.includes("auto"))
+        sections.automobile.push(html); // ✅ Add this
+      else sections.trending.push(html);
     }
+
+    const tagBoxHtml = tagData
+        .map((tag) => {
+          const name = tag.name || "";
+          const slug = name.toLowerCase().replace(/\s+/g, "-");
+          return `<span><a href="/tags/${slug}.html" style="text-decoration:none;color:inherit;">#${name}</a></span>`;
+        })
+        .join("\n");
 
     const pageHtml = `
 <!DOCTYPE html>
@@ -291,36 +313,57 @@ nav a:hover {
     <div class="main-content">
       <section id="trending">
   <h2>Trending News</h2>
-  ${sections.trending.slice(0, 30).join('\n') || '<p>No articles available.</p>'}
-  ${sections.trending.length > 30 ? `<div style="text-align:right; margin-top:10px;"><a href="/#" class="more-link">More &gt;&gt;</a></div>` : ''}
+  ${
+    sections.trending.slice(0, 30).join("\n") || "<p>No articles available.</p>"
+  }
+  ${
+    sections.trending.length > 30
+      ? `<div style="text-align:right; margin-top:10px;"><a href="/#" class="more-link">More &gt;&gt;</a></div>`
+      : ""
+  }
 </section>
 
 <section id="technology">
   <h2>Technology</h2>
-  ${sections.technology.slice(0, 3).join('\n') || '<p>No articles available.</p>'}
-  ${sections.technology.length > 3 ? `<div style="text-align:right; margin-top:10px;"><a href="/technology.html" class="more-link">More &gt;&gt;</a></div>` : ''}
+  ${
+    sections.technology.slice(0, 3).join("\n") ||
+    "<p>No articles available.</p>"
+  }
+  ${
+    sections.technology.length > 3
+      ? `<div style="text-align:right; margin-top:10px;"><a href="/technology.html" class="more-link">More &gt;&gt;</a></div>`
+      : ""
+  }
 </section>
 
 <section id="finance">
   <h2>Finance</h2>
-  ${sections.finance.slice(0, 3).join('\n') || '<p>No articles available.</p>'}
-  ${sections.finance.length > 3 ? `<div style="text-align:right; margin-top:10px;"><a href="/finance.html" class="more-link">More &gt;&gt;</a></div>` : ''}
+  ${sections.finance.slice(0, 3).join("\n") || "<p>No articles available.</p>"}
+  ${
+    sections.finance.length > 3
+      ? `<div style="text-align:right; margin-top:10px;"><a href="/finance.html" class="more-link">More &gt;&gt;</a></div>`
+      : ""
+  }
 </section>
 
 <section id="automobile">
   <h2>Automobile</h2>
-  ${sections.automobile.slice(0, 3).join('\n') || '<p>No articles available.</p>'}
-  ${sections.automobile.length > 3 ? `<div style="text-align:right; margin-top:10px;"><a href="/automobile.html" class="more-link">More &gt;&gt;</a></div>` : ''}
+  ${
+    sections.automobile.slice(0, 3).join("\n") ||
+    "<p>No articles available.</p>"
+  }
+  ${
+    sections.automobile.length > 3
+      ? `<div style="text-align:right; margin-top:10px;"><a href="/automobile.html" class="more-link">More &gt;&gt;</a></div>`
+      : ""
+  }
 </section>
     </div>
 
     <aside class="sidebar">
       <h3>Tags</h3>
       <div class="tag-box">
-        <span>#Breaking</span>
-        <span>#Tech</span>
-        <span>#Markets</span>
-        <span>#India</span>
+       ${tagBoxHtml}
       </div>
 
       <!-- <h3 style="margin-top: 24px;">Sponsored</h3>
@@ -338,8 +381,7 @@ nav a:hover {
 
     await fs.writeFile(OUTPUT_PATH, pageHtml);
     console.log(`✅ index.html generated with ${data.length} articles`);
-
   } catch (err) {
-    console.error('❌ Failed to generate homepage:', err.message);
+    console.error("❌ Failed to generate homepage:", err.message);
   }
 })();
