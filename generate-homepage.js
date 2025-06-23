@@ -36,7 +36,7 @@ const gaScript = `
       const category = attr.Category?.toLowerCase() || 'trending'; // fallback to trending if missing
       const cover = attr.coverimage?.formats.small.url || '';
       const coverUrl = cover || '';
-      const published = new Date(attr.publishedAt || '').toLocaleDateString();
+      const published = new Date(attr.publishedat || '').toLocaleDateString();
       const summary = (attr.Description_in_detail || '')
         .replace(/[#*_`>]/g, '')
         .replace(/\n/g, ' ')
