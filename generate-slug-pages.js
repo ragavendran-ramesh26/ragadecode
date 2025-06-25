@@ -30,6 +30,12 @@ const API_CONFIGS = [
     apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate[coverimage][populate]=*',
     outputDir: './automobile',
     slugPrefix: 'automobile',
+  },
+  {
+    name: 'travels',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*',
+    outputDir: './tourism-travel-trips',
+    slugPrefix: 'tourism-travel-trips',
   }
 ];
 
