@@ -253,7 +253,7 @@ nav a:hover {
             .map((article) => {
               const title = article.Title || "Untitled";
               const slug = article.slug || "#";
-              const category = article.category || "";
+              const category = article.category || ""; // Assuming category is a string like "news-article" or "automobile"
 
               const summary = (article.Description_in_detail || "")
                 .replace(/[#*_`>]/g, "")
