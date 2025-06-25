@@ -240,6 +240,7 @@ nav a:hover {
       <a href="#technology">Technology</a>
       <a href="#finance">Finance</a>
       <a href="/decode-automobile-talks.html">Automobile</a>
+      <a href="/tourism-travel-trips.html">Travel Trips</a>
     </nav>
   </header>
 
@@ -252,6 +253,7 @@ nav a:hover {
             .map((article) => {
               const title = article.Title || "Untitled";
               const slug = article.slug || "#";
+              const category = article.category || "";
 
               const summary = (article.Description_in_detail || "")
                 .replace(/[#*_`>]/g, "")
@@ -270,7 +272,7 @@ nav a:hover {
               return `
               <div class="article-item">
                 <div class="article-text">
-                  <a href="/news-article/${slug}.html">${title}</a>
+                  <a href="/${category}/${slug}.html">${title}</a>
                   <div class="article-description">${summary}</div>
                   <div class="article-meta">Published on ${published}</div>
                 </div>
@@ -316,10 +318,17 @@ nav a:hover {
       const tagSlug = tagName.replace(/[^a-zA-Z0-9\-]/g, "-");
 
       const tagDetailRes = await fetch(`${TAGS_API}/${tagId}?populate=*`);
-
       const tagDetailJson = await tagDetailRes.json();
 
-      const articles = tagDetailJson.data?.tags || [];
+      const tagData = tagDetailJson.data || {};
+
+      let articles = tagData.tags;
+      if (!articles || articles.length === 0) {
+        articles = tagData.triptags;
+      }
+      if (!articles || articles.length === 0) {
+        articles = tagData.tags;
+      }
 
       const htmlContent = buildTagPageHTML(tagName, articles, allTags);
       const filePath = path.join(OUTPUT_DIR, `${tagSlug}.html`);
