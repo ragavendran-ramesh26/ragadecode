@@ -284,6 +284,7 @@ nav a:hover {
       <a href="#technology">Technology</a>
       <a href="#finance">Finance</a>
       <a href="decode-automobile-talks.html">Automobile</a>
+      <a href="/tourism-travel-trips.html">Travel Trips</a>
     </nav>
   </header>
 
