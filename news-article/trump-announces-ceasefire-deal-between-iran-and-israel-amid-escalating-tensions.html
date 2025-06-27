@@ -29,6 +29,11 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon_io/android-chrome-512x512.png">
 
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/listpage.css">
+    <link rel="stylesheet" href="/assets/articles.css">
+
+
     <!-- Web Manifest (Optional but good for PWA support) -->
     <link rel="manifest" href="/favicon_io/site.webmanifest">
 
@@ -43,238 +48,7 @@
     <meta name="twitter:title" content="Trump Announces Ceasefire Deal Between Iran and Israel Amid Escalating Tensions" />
     <meta name="twitter:description" content="Trump Announces Ceasefire Deal Between Iran and Israel Amid Escalating Tensions | RagaDecode | Content is decode by raga" />
 
-    <!-- Styles -->
-    <style>
-        body {
-            font-family: "Segoe UI", sans-serif;
-            margin: 0;
-            background: #f9f9f9;
-            color: #333;
-        }
 
-        header {
-            background-color: transparent;
-            color: black;
-            text-align: center;
-            padding: 16px 20px 8px 20px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        header p {
-            margin: 6px 0 16px;
-            font-size: 1rem;
-            color: #857e7e;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 20px;
-        }
-
-        nav a {
-            display: inline-block;
-            margin: 6px 6px;
-            padding: 6px 12px;
-            background-color: #0660c9;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: background-color 0.2s ease;
-        }
-
-        nav a:hover {
-            background-color: #ffffff;
-            color: #0660c9;
-            text-decoration: none;
-        }
-
-        main {
-            padding: 40px 20px;
-        }
-
-        .content-wrapper {
-            display: flex;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: flex-start;
-            flex-wrap: nowrap;
-        }
-
-        .main-content {
-            flex: 1 1 65%;
-        }
-
-        .sidebar {
-            flex: 1 1 30%;
-            /* background: #fff; */
-            padding: 20px;
-            /* border: 1px solid #ddd; */
-            border-radius: 10px;
-            height: fit-content;
-        }
-
-        /* .sidebar h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-             border-bottom: 1px solid #ccc; 
-            padding-bottom: 6px;
-        } */
-
-        .cover-image {
-            max-width: 480px;
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 20px auto;
-            border-radius: 8px;
-            object-fit: contain;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .content-body {
-            font-size: 1rem;
-            color: #444;
-            line-height: 1.8;
-        }
-
-        .back-link {
-            margin-top: 30px;
-            display: inline-block;
-            color: #2c3e50;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .tags a {
-            display: inline-block;
-            background: #eef2f5;
-            padding: 6px 12px;
-            margin: 4px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #1e2a38;
-            text-decoration: none;
-        }
-
-        .tags a:hover {
-            background-color: #d3eaff;
-            text-decoration: underline;
-        }
-
-        footer {
-            background-color: transparent;
-            color: #000;
-            text-align: center;
-            padding: 24px 20px;
-            border-top: 1px solid #e7e7e7;
-        }
-
-        footer a {
-            color: #000;
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: 500;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .content-wrapper {
-                flex-direction: column;
-            }
-
-            .main-content,
-            .sidebar {
-                flex: 1 1 100%;
-            }
-
-            nav {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin-top: 12px;
-            }
-
-            nav a {
-                margin: 0;
-            }
-        }
-
-        .related-box {
-  border: 1px solid #eee;
-  padding: 16px;
-  margin-top: 32px;
-  background-color: #fafafa;
-  border-radius: 8px;
-}
-
-.tag-section {
-  margin-bottom: 20px;
-}
-
-.tag-pill {
-  display: inline-block;
-  padding: 6px 12px;
-  margin: 4px 6px 4px 0;
-  background-color: #e0f0ff;
-  color: #0074cc;
-  border-radius: 20px;
-  font-size: 14px;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-
-.tag-pill:hover {
-  background-color: #d0e8ff;
-}
-
-.related-section ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.related-section li {
-  margin-bottom: 12px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 8px;
-}
-
-.related-link {
-  text-decoration: none;
-  color: #222;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 1.4;
-}
-
-.related-link:hover {
-  color: #0074cc;
-}
-
-
-.content-wrapper .main-content p > img {
-  width : 85%;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 1rem auto;
-
-}
-
-
-
-    </style>
 </head>
 
 <body>
@@ -293,13 +67,15 @@
     </header>
 
     <main>
-        <div class="content-wrapper">
+        <div class="layout-wrapper">
             <div class="main-content">
-                <h1>Trump Announces Ceasefire Deal Between Iran and Israel Amid Escalating Tensions</h1>
-                <img class="cover-image" src="https://genuine-compassion-eb21be0109.media.strapiapp.com/Trump_Announces_Ceasefire_Deal_Between_Iran_and_Israel_Amid_Escalating_Tensions_9f0cb3dc71.avif" alt="Trump Announces Ceasefire Deal Between Iran and Israel Amid Escalating Tensions" loading="lazy" />
+                <div class="content-wrapper">
+                    <article>
+                        <h1>Trump Announces Ceasefire Deal Between Iran and Israel Amid Escalating Tensions</h1>
+                        <img class="cover-image" src="https://genuine-compassion-eb21be0109.media.strapiapp.com/Trump_Announces_Ceasefire_Deal_Between_Iran_and_Israel_Amid_Escalating_Tensions_9f0cb3dc71.avif" alt="Trump Announces Ceasefire Deal Between Iran and Israel Amid Escalating Tensions" loading="lazy" />
 
-                <div class="content-body">
-                    <p>In a surprising development, former U.S. President Donald Trump has announced a <strong>complete ceasefire</strong> agreement between Iran and Israel. The declaration comes amid intense escalation in the Middle East, following nearly <strong>12 days of open conflict</strong> between the two regional rivals.</p>
+                        <div class="content-body">
+                            <p>In a surprising development, former U.S. President Donald Trump has announced a <strong>complete ceasefire</strong> agreement between Iran and Israel. The declaration comes amid intense escalation in the Middle East, following nearly <strong>12 days of open conflict</strong> between the two regional rivals.</p>
 <p><img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/ceasefire_178ebf2db8.png" alt="trump-ceasefire-iran"></p>
 <hr>
 <h3>🕊️ Ceasefire Terms and Timeline</h3>
@@ -346,26 +122,44 @@
 <p>--
 <strong>Decoded by Raga ✋</strong></p>
 
+                        </div>
+                    </article>
+                    <a href="/" class="back-link">← Back to Home</a>
                 </div>
-                <a href="/" class="back-link">← Back to Home</a>
             </div>
 
-            <aside class="sidebar"> 
-                 
-    <div class="related-box">
-      <div class="tag-section"><h4>Tags</h4><a href="/tags/israel-vs-iran" class="tag-pill">#israel-vs-iran</a> <a href="/tags/us-strike-on-iran" class="tag-pill">#US-Strike-on-Iran</a> <a href="/tags/iran-us-military-base-attack" class="tag-pill">#iran-us-military-base-attack</a> <a href="/tags/ceasefire" class="tag-pill">#Ceasefire</a></div>
-      <div class="related-section"><h4>Related Articles</h4><ul><li><a href="/news-article/iran-israel-ceasefire-announcement-overshadowed-by-renewed-missile-strikes" class="related-link">Iran-Israel Ceasefire Announcement Overshadowed by Renewed Missile Strikes</a></li><li><a href="/news-article/us-strikes-iran-s-nuclear-sites-a-trigger-for-global-nuclear-fallout" class="related-link">US Strikes Iran's Nuclear Sites: A Trigger for Global Nuclear Fallout?</a></li><li><a href="/news-article/qatar-warns-of-retaliation-after-iranian-missile-strikes-on-u-s-base" class="related-link">Qatar Warns of Retaliation After Iranian Missile Strikes on U.S. Base</a></li></ul></div>
-    </div>
-  
-            </aside>
+            <!-- sidebar-->
 
-           
-
+            <div class="sidebar">
+                <div class="sidebar-box">
+                    <div class="tag-section">
+                        <h3>Tags</h3>
+                        <div class="tag-box">
+                            <span><a href="/tags/israel-vs-iran">#israel-vs-iran</a></span> <span><a href="/tags/us-strike-on-iran">#US-Strike-on-Iran</a></span> <span><a href="/tags/iran-us-military-base-attack">#iran-us-military-base-attack</a></span> <span><a href="/tags/ceasefire">#Ceasefire</a></span>
+                        </div>
+                    </div>
+                    
+                    <div class="related-articles">
+              <h3>Related Articles</h3>
+              <div class="related-box">
+                <ul>
+                  <li><a href="/news-article/iran-israel-ceasefire-announcement-overshadowed-by-renewed-missile-strikes" class="related-link">Iran-Israel Ceasefire Announcement Overshadowed by Renewed Missile Strikes</a></li><li><a href="/news-article/us-strikes-iran-s-nuclear-sites-a-trigger-for-global-nuclear-fallout" class="related-link">US Strikes Iran's Nuclear Sites: A Trigger for Global Nuclear Fallout?</a></li><li><a href="/news-article/qatar-warns-of-retaliation-after-iranian-missile-strikes-on-u-s-base" class="related-link">Qatar Warns of Retaliation After Iranian Missile Strikes on U.S. Base</a></li>
+                </ul>
+              </div>
+          </div>
+                </div>
+            </div>
         </div>
     </main>
 
     <footer>
-        <a href="/#">About Us</a> | <a href="/#">Contact Us</a>
+        <p>
+            <a href="/about-us">About Us</a> | <a href="#">Privacy Policy </a> | <a href="#">Contact Us </a>
+        </p>
+
+        <p>&copy; 2025 RagaDecode. All rights reserved.</p>
+
+
     </footer>
 </body>
 

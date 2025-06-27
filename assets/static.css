@@ -1,0 +1,72 @@
+/* =========================== */
+/* static.css - For Pages like About, Terms, Contact */
+/* =========================== */
+
+.content-wrapper {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.04);
+  font-size: 1rem;
+  color: #222;
+  line-height: 1.7;
+}
+
+.content-wrapper section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #0e2545;
+  border-left: 5px solid #0660c9;
+  padding-left: 12px;
+}
+
+.content-wrapper h3 {
+  font-size: 1.3rem;
+  margin-top: 1.6rem;
+  margin-bottom: 0.8rem;
+  color: #1e2a38;
+  position: relative;
+  padding-left: 0.4rem;
+  border-left: 3px solid #004bb5;
+}
+
+.content-wrapper p {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1rem;
+}
+
+.content-wrapper ul {
+  padding-left: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.content-wrapper li {
+  margin-bottom: 0.6rem;
+  color: #444;
+}
+
+.content-wrapper strong {
+  color: #111;
+  font-weight: 600;
+}
+
+.content-wrapper em {
+  color: #555;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .content-wrapper section h2 {
+    font-size: 1.4rem;
+  }
+
+  .content-wrapper h3 {
+    font-size: 1.15rem;
+  }
+}

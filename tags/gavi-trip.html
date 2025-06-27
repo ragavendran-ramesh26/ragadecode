@@ -9,7 +9,8 @@
   <link rel="icon" type="image/png" sizes="192x192" href="favicon_io/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="favicon_io/android-chrome-512x512.png">
   <link rel="manifest" href="favicon_io/site.webmanifest">
-
+<link rel="stylesheet" href="/assets/main.css">
+<link rel="stylesheet" href="/assets/listpage.css">
   <meta charset="UTF-8" />
   <title>Articles about gavi-trip | RagaDecode</title>
    
@@ -25,203 +26,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Here is the list of articles about gavi-trip from RagaDecode." />
 
-<style>
-    body { font-family: "Segoe UI", sans-serif; margin: 0; background: #f9f9f9; color: #333; }
-    
-      header {
-  background-color: transparent;
-  color: black;
-  text-align: center;
-  padding: 16px 20px 8px 20px; /* Less bottom padding */
-}
-
-header h1 {
-  margin: 0;
-  font-size: 2rem;
-}
-
-header p {
-  margin: 6px 0 16px; /* Add bottom margin to separate from nav */
-  font-size: 1rem;
-  color: #857e7e;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 20px;
-}
-
-
-
-
-    nav a {
-  display: inline-block;
-  margin: 6px 6px;
-  padding: 6px 12px;
-  background-color: #0660c9;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
-}
-
-nav a:hover {
-  background-color: #ffffff;
-  color: #0660c9;
-  text-decoration: none;
-}
-
-     main {
-  padding: 40px 20px;
-}
-
-.content-wrapper {
-  display: flex;
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-    section { margin-bottom: 48px; }
-    section h2 {
-      font-size: 1.5rem;
-      color: #1e2a38;
-      margin-bottom: 16px;
-      border-left: 4px solid #1e2a38;
-      padding-left: 12px;
-    }
-
-    .article-item {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #eee;
-      padding: 24px 0;
-      gap: 24px;
-    }
-    .article-text { flex: 1.5; }
-    .article-text a { text-decoration: none; font-weight: bold; font-size: 1.3rem; color: #2c3e50; }
-    .article-text a:hover { text-decoration: underline; }
-.article-description {
-  font-size: 1rem;
-  margin: 10px 0;
-  color: #444;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;             /* Show up to ~2.5-3 lines */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-height: 4.8em;                 /* Fallback for older browsers */
-}
-    .article-meta { font-size: 0.8rem; color: #777; }
-    .article-thumb { width: 140px; height: 100px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
-
-    footer {
-      background-color: transparent;
-      color: #000;
-      text-align: center;
-      padding: 24px 20px;
-      border-top: 1px solid #e7e7e7;
-    }
-
-    footer a {
-      color: #000;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: 500;
-    }
-    footer a:hover { text-decoration: underline; }
-
-    @media (max-width: 768px) {
-      .article-item { flex-direction: column; }
-      .article-thumb { width: 100%; height: auto; margin-top: 16px; }
-      nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 12px;
-}
-      nav a { margin: 0; }
-    }
-
-
-
-.main-content {
-  flex: 1 1 65%;
-}
-
-.sidebar {
-  flex: 1 1 30%;
-  background: #fff;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  height: fit-content;
-}
-
-.sidebar h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 6px;
-}
-
-.tag-box span {
-  display: inline-block;
-  background: #eef2f5;
-  padding: 6px 12px;
-  margin: 4px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  color: #1e2a38;
-}
-
-.ad-box {
-  margin-top: 16px;
-  padding: 40px 20px;
-  background-color: #f1f1f1;
-  text-align: center;
-  border: 1px dashed #bbb;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  color: #333;
-}
-
-@media (max-width: 768px) {
-  .content-wrapper {
-    flex-direction: column;
-  }
-  .main-content, .sidebar {
-    flex: 1 1 100%;
-  }
-}
-.more-link {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 6px 12px;
-  background-color: #1e2a38;
-  color: #fff;
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
-}
-
-.more-link:hover {
-  background-color: #000;
-  text-decoration: none;
-  color: #fff;
-}
-
-
-  </style>
 </head>
 <body>
   <header>
     <h1>Raga Decode</h1>
     <p>Decoded News. Clear. Bold. Unfiltered.</p>
     <nav>
-      <a href="https://ragadecode.com">Home</a>
+      <a href="/">Home</a>
       <a href="#trending">Trending News</a>
       <a href="#technology">Technology</a>
       <a href="#finance">Finance</a>
@@ -230,10 +41,11 @@ nav a:hover {
     </nav>
   </header>
 
-  <main>
-    <div class="content-wrapper">
-      <div class="main-content">
-        <section id="trending">
+   <main>
+      <div class="layout-wrapper">
+        <div class="main-content">
+          <div class="content-wrapper">
+        <section>
           <h2>gavi-trip</h2>
           
               <div class="article-item">
@@ -246,18 +58,28 @@ nav a:hover {
               </div>
         </section>
       </div>
+      </div>
 
-      <aside class="sidebar">
+      <div class="sidebar">
+      <div class="tag-section">
         <h3>All Tags</h3>
         <div class="tag-box">
-          <a href="kerala-tourism"><span>#kerala-tourism</span></a><a href="kerala-gavi"><span>#kerala-gavi</span></a><a href="gavi-trip"><span>#gavi-trip</span></a><a href="ooty"><span>#ooty</span></a><a href="ooty-to-kinnakorai"><span>#ooty-to-kinnakorai</span></a><a href="kinnakorai"><span>#kinnakorai</span></a><a href="cbse-board-exam"><span>#cbse-board-exam</span></a><a href="cbse-10th"><span>#cbse-10th</span></a><a href="valparai-road-trip"><span>#valparai-road-trip</span></a><a href="pollachi-valparai-high-forest"><span>#pollachi-valparai-high-forest</span></a><a href="valparai-high-point"><span>#valparai-high-point</span></a><a href="Ceasefire"><span>#Ceasefire</span></a><a href="iran-us-military-base-attack"><span>#iran-us-military-base-attack</span></a><a href="f35landingIndia"><span>#f35landingIndia</span></a><a href="air-india-171"><span>#air-india-171</span></a><a href="US-Strike-on-Iran"><span>#US-Strike-on-Iran</span></a><a href="ModiMiddleEastDiplomacy"><span>#ModiMiddleEastDiplomacy</span></a><a href="israel-vs-iran"><span>#israel-vs-iran</span></a>
+        
+          <span><a href="kerala-tourism">#kerala-tourism</a></span><span><a href="kerala-gavi">#kerala-gavi</a></span><span><a href="gavi-trip">#gavi-trip</a></span><span><a href="ooty">#ooty</a></span><span><a href="ooty-to-kinnakorai">#ooty-to-kinnakorai</a></span><span><a href="kinnakorai">#kinnakorai</a></span><span><a href="cbse-board-exam">#cbse-board-exam</a></span><span><a href="cbse-10th">#cbse-10th</a></span><span><a href="valparai-road-trip">#valparai-road-trip</a></span><span><a href="pollachi-valparai-high-forest">#pollachi-valparai-high-forest</a></span><span><a href="valparai-high-point">#valparai-high-point</a></span><span><a href="Ceasefire">#Ceasefire</a></span><span><a href="iran-us-military-base-attack">#iran-us-military-base-attack</a></span><span><a href="f35landingIndia">#f35landingIndia</a></span><span><a href="air-india-171">#air-india-171</a></span><span><a href="US-Strike-on-Iran">#US-Strike-on-Iran</a></span><span><a href="ModiMiddleEastDiplomacy">#ModiMiddleEastDiplomacy</a></span><span><a href="israel-vs-iran">#israel-vs-iran</a></span>
         </div>
-      </aside>
-    </div>
+      </div>
+      </div>
+   
   </main>
 
-  <footer>
-    <a href="#">About Us</a> | <a href="#">Contact Us</a>
-  </footer>
+ <footer>
+        <p>
+        <a href="/about-us">About Us</a> | <a href="#">Privacy Policy </a> | <a href="#">Contact Us </a> 
+        </p>
+        
+        <p>&copy; 2025 RagaDecode. All rights reserved.</p>
+      
+
+    </footer>
 </body>
 </html>

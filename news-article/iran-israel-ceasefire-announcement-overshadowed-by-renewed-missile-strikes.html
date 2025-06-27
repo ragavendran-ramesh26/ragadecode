@@ -29,6 +29,11 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon_io/android-chrome-512x512.png">
 
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="/assets/listpage.css">
+    <link rel="stylesheet" href="/assets/articles.css">
+
+
     <!-- Web Manifest (Optional but good for PWA support) -->
     <link rel="manifest" href="/favicon_io/site.webmanifest">
 
@@ -43,238 +48,7 @@
     <meta name="twitter:title" content="Iran-Israel Ceasefire Announcement Overshadowed by Renewed Missile Strikes" />
     <meta name="twitter:description" content="Iran-Israel Ceasefire Announcement Overshadowed by Renewed Missile Strikes | RagaDecode | Content is decode by raga" />
 
-    <!-- Styles -->
-    <style>
-        body {
-            font-family: "Segoe UI", sans-serif;
-            margin: 0;
-            background: #f9f9f9;
-            color: #333;
-        }
 
-        header {
-            background-color: transparent;
-            color: black;
-            text-align: center;
-            padding: 16px 20px 8px 20px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        header p {
-            margin: 6px 0 16px;
-            font-size: 1rem;
-            color: #857e7e;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 20px;
-        }
-
-        nav a {
-            display: inline-block;
-            margin: 6px 6px;
-            padding: 6px 12px;
-            background-color: #0660c9;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: background-color 0.2s ease;
-        }
-
-        nav a:hover {
-            background-color: #ffffff;
-            color: #0660c9;
-            text-decoration: none;
-        }
-
-        main {
-            padding: 40px 20px;
-        }
-
-        .content-wrapper {
-            display: flex;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: flex-start;
-            flex-wrap: nowrap;
-        }
-
-        .main-content {
-            flex: 1 1 65%;
-        }
-
-        .sidebar {
-            flex: 1 1 30%;
-            /* background: #fff; */
-            padding: 20px;
-            /* border: 1px solid #ddd; */
-            border-radius: 10px;
-            height: fit-content;
-        }
-
-        /* .sidebar h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-             border-bottom: 1px solid #ccc; 
-            padding-bottom: 6px;
-        } */
-
-        .cover-image {
-            max-width: 480px;
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 20px auto;
-            border-radius: 8px;
-            object-fit: contain;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .content-body {
-            font-size: 1rem;
-            color: #444;
-            line-height: 1.8;
-        }
-
-        .back-link {
-            margin-top: 30px;
-            display: inline-block;
-            color: #2c3e50;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .tags a {
-            display: inline-block;
-            background: #eef2f5;
-            padding: 6px 12px;
-            margin: 4px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #1e2a38;
-            text-decoration: none;
-        }
-
-        .tags a:hover {
-            background-color: #d3eaff;
-            text-decoration: underline;
-        }
-
-        footer {
-            background-color: transparent;
-            color: #000;
-            text-align: center;
-            padding: 24px 20px;
-            border-top: 1px solid #e7e7e7;
-        }
-
-        footer a {
-            color: #000;
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: 500;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .content-wrapper {
-                flex-direction: column;
-            }
-
-            .main-content,
-            .sidebar {
-                flex: 1 1 100%;
-            }
-
-            nav {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin-top: 12px;
-            }
-
-            nav a {
-                margin: 0;
-            }
-        }
-
-        .related-box {
-  border: 1px solid #eee;
-  padding: 16px;
-  margin-top: 32px;
-  background-color: #fafafa;
-  border-radius: 8px;
-}
-
-.tag-section {
-  margin-bottom: 20px;
-}
-
-.tag-pill {
-  display: inline-block;
-  padding: 6px 12px;
-  margin: 4px 6px 4px 0;
-  background-color: #e0f0ff;
-  color: #0074cc;
-  border-radius: 20px;
-  font-size: 14px;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-
-.tag-pill:hover {
-  background-color: #d0e8ff;
-}
-
-.related-section ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.related-section li {
-  margin-bottom: 12px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 8px;
-}
-
-.related-link {
-  text-decoration: none;
-  color: #222;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 1.4;
-}
-
-.related-link:hover {
-  color: #0074cc;
-}
-
-
-.content-wrapper .main-content p > img {
-  width : 85%;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 1rem auto;
-
-}
-
-
-
-    </style>
 </head>
 
 <body>
@@ -293,13 +67,15 @@
     </header>
 
     <main>
-        <div class="content-wrapper">
+        <div class="layout-wrapper">
             <div class="main-content">
-                <h1>Iran-Israel Ceasefire Announcement Overshadowed by Renewed Missile Strikes</h1>
-                <img class="cover-image" src="https://genuine-compassion-eb21be0109.media.strapiapp.com/Iran_Israel_Ceasefire_Announcement_Overshadowed_by_Renewed_Missile_Strikes_9606527c27.webp" alt="Iran-Israel Ceasefire Announcement Overshadowed by Renewed Missile Strikes" loading="lazy" />
+                <div class="content-wrapper">
+                    <article>
+                        <h1>Iran-Israel Ceasefire Announcement Overshadowed by Renewed Missile Strikes</h1>
+                        <img class="cover-image" src="https://genuine-compassion-eb21be0109.media.strapiapp.com/Iran_Israel_Ceasefire_Announcement_Overshadowed_by_Renewed_Missile_Strikes_9606527c27.webp" alt="Iran-Israel Ceasefire Announcement Overshadowed by Renewed Missile Strikes" loading="lazy" />
 
-                <div class="content-body">
-                    <p>In a dramatic turn of events following a ceasefire announcement between Iran and Israel, tensions continue to escalate, raising doubts about the truce&#39;s effectiveness and longevity.</p>
+                        <div class="content-body">
+                            <p>In a dramatic turn of events following a ceasefire announcement between Iran and Israel, tensions continue to escalate, raising doubts about the truce&#39;s effectiveness and longevity.</p>
 <h2>Trump Announces Ceasefire</h2>
 <p>Earlier today, former U.S. President Donald Trump declared that a complete ceasefire had been agreed upon between Israel and Iran. In his statement, Trump mentioned that Iran would begin observing the ceasefire immediately, with Israel to follow 12 hours later. A complete halt to hostilities was expected within 24 hours, marking the official end to a 12-day war. Trump congratulated both sides for their cooperation and urged mutual respect during the cooling-off period.</p>
 <hr>
@@ -328,26 +104,44 @@
 <hr>
 <p><strong>Decoded by Raga ✋</strong></p>
 
+                        </div>
+                    </article>
+                    <a href="/" class="back-link">← Back to Home</a>
                 </div>
-                <a href="/" class="back-link">← Back to Home</a>
             </div>
 
-            <aside class="sidebar"> 
-                 
-    <div class="related-box">
-      <div class="tag-section"><h4>Tags</h4><a href="/tags/ceasefire" class="tag-pill">#Ceasefire</a></div>
-      <div class="related-section"><h4>Related Articles</h4><ul><li><a href="/news-article/trump-announces-ceasefire-deal-between-iran-and-israel-amid-escalating-tensions" class="related-link">Trump Announces Ceasefire Deal Between Iran and Israel Amid Escalating Tensions</a></li></ul></div>
-    </div>
-  
-            </aside>
+            <!-- sidebar-->
 
-           
-
+            <div class="sidebar">
+                <div class="sidebar-box">
+                    <div class="tag-section">
+                        <h3>Tags</h3>
+                        <div class="tag-box">
+                            <span><a href="/tags/ceasefire">#Ceasefire</a></span>
+                        </div>
+                    </div>
+                    
+                    <div class="related-articles">
+              <h3>Related Articles</h3>
+              <div class="related-box">
+                <ul>
+                  <li><a href="/news-article/trump-announces-ceasefire-deal-between-iran-and-israel-amid-escalating-tensions" class="related-link">Trump Announces Ceasefire Deal Between Iran and Israel Amid Escalating Tensions</a></li>
+                </ul>
+              </div>
+          </div>
+                </div>
+            </div>
         </div>
     </main>
 
     <footer>
-        <a href="/#">About Us</a> | <a href="/#">Contact Us</a>
+        <p>
+            <a href="/about-us">About Us</a> | <a href="#">Privacy Policy </a> | <a href="#">Contact Us </a>
+        </p>
+
+        <p>&copy; 2025 RagaDecode. All rights reserved.</p>
+
+
     </footer>
 </body>
 

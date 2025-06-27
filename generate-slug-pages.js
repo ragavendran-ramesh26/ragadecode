@@ -39,36 +39,18 @@ const API_CONFIGS = [
   }
 ];
 
-
-// 🔁 Builds HTML for related articles
 function buildRelatedArticlesHtml(attrs) {
   const related = [...(attrs.similar_articles || []), ...(attrs.news_articles || [])];
-  const hasTags = attrs.hashtags && attrs.hashtags.length > 0;
 
-  if (!related.length && !hasTags) return '';
+  if (!related.length) return '';
 
-  const tagHtml = (attrs.hashtags || [])
-    .map(tag => {
-      const name = tag.name || '';
-      const slug = name.toLowerCase().replace(/\s+/g, '-');
-      return `<a href="/tags/${slug}" class="tag-pill">#${name}</a>`;
-    })
-    .join(' ');
-
-  const relatedHtml = related.map(item => {
+  return related.map(item => {
     const relatedTitle = item.Title || 'Untitled';
     const relatedSlug = item.slug || '';
     const itemCategory = (item.category || '').toLowerCase().trim().replace(/\s+/g, '-');
     if (!itemCategory || !relatedSlug) return '';
     return `<li><a href="/${itemCategory}/${relatedSlug}" class="related-link">${relatedTitle}</a></li>`;
   }).join('');
-
-  return `
-    <div class="related-box">
-      ${hasTags ? `<div class="tag-section"><h4>Tags</h4>${tagHtml}</div>` : ''}
-      ${related.length ? `<div class="related-section"><h4>Related Articles</h4><ul>${relatedHtml}</ul></div>` : ''}
-    </div>
-  `;
 }
 
 (async () => {
@@ -131,12 +113,23 @@ function buildRelatedArticlesHtml(attrs) {
         .map(tag => {
           const name = tag.name || '';
           const slug = name.toLowerCase().replace(/\s+/g, '-');
-          return `<a href="/tags/${slug}">#${name}</a>`;
+          return `<span><a href="/tags/${slug}">#${name}</a></span>`;
         })
         .join(' ');
 
          
         const relatedArticlesHtml = buildRelatedArticlesHtml(attrs);
+
+        const relatedArticlesSection = relatedArticlesHtml
+        ? `<div class="related-articles">
+              <h3>Related Articles</h3>
+              <div class="related-box">
+                <ul>
+                  ${relatedArticlesHtml}
+                </ul>
+              </div>
+          </div>`
+        : '';
         
         const pageHTML = template
           .replace(/{{TITLE}}/g, title)
@@ -144,14 +137,15 @@ function buildRelatedArticlesHtml(attrs) {
           .replace(/{{COVER_IMAGE_BLOCK}}/g, coverImageBlock)
           .replace(/{{COVER_IMAGE_URL}}/g, coverImageUrl)
           .replace(/{{CONTENT}}/g, contentHTML)
-          // .replace(/{{TAGS}}/g, tagHtml)
+          .replace(/{{TAGS}}/g, tagHtml) // ✅ Insert tags
           .replace(/{{SLUG}}/g, slug)
           .replace(/{{DOC_ID}}/g, documentId)
           .replace(/{{SLUG_PREFIX}}/g, config.slugPrefix)
           .replace(/{{BASE_DOMAIN}}/g, BASE_URL)
           .replace(/{{GA_SCRIPT}}/g, analyticsScript)
+          .replace(/{{RELATED_ARTICLES_SECTION}}/g, relatedArticlesSection);
       
-          .replace(/{{RELATED_ARTICLES_HTML}}/g, relatedArticlesHtml);
+          // .replace(/{{RELATED_ARTICLES_HTML}}/g, relatedArticlesHtml);
 
         const outputPath = path.join(config.outputDir, `${slug}.html`);
         await fs.writeFile(outputPath, pageHTML);
