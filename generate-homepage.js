@@ -156,12 +156,12 @@ const gaScript = `
 </main>
 
   <footer>
-       <p>
+      <p>
             <a href="/static-pages/about-us">About Us</a> |
             <a href="/static-pages/editorial-policy">Editorial Policy </a> | 
             <a href="/static-pages/privacy-policy">Privacy Policy </a> |
             <a href="/static-pages/terms-and-conditions">Privacy Policy </a> |
-            <a href="#">Contact Us </a>
+            <a href="/static-pages/contact-us">Contact Us </a>
         </p>
         <p>&copy; 2025 RagaDecode. All rights reserved.</p>
       
