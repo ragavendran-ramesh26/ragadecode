@@ -157,9 +157,8 @@ const gaScript = `
 
   <footer>
         <p>
-        <a href="/about-us">About Us</a> | <a href="#">Privacy Policy </a> | <a href="#">Contact Us </a> 
+            <a href="/about-us">About Us</a> | <a href="#">Privacy Policy </a> |  <a href="/static-pages/editorial-policy">Editorial Policy </a> | <a href="#">Contact Us </a>
         </p>
-        
         <p>&copy; 2025 RagaDecode. All rights reserved.</p>
       
 
