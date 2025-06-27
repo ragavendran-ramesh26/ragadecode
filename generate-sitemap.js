@@ -15,6 +15,10 @@ const endpoints = [
     section: "automobile",
   },
   {
+    api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?sort[0]=id:desc",
+    section: "tourism-travel-trips",
+  },
+  {
     api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags?sort[0]=id:desc",
     section: "tags",
   },

@@ -51,7 +51,7 @@ function buildRelatedArticlesHtml(attrs) {
     .map(tag => {
       const name = tag.name || '';
       const slug = name.toLowerCase().replace(/\s+/g, '-');
-      return `<a href="/tags/${slug}.html" class="tag-pill">#${name}</a>`;
+      return `<a href="/tags/${slug}" class="tag-pill">#${name}</a>`;
     })
     .join(' ');
 
@@ -131,7 +131,7 @@ function buildRelatedArticlesHtml(attrs) {
         .map(tag => {
           const name = tag.name || '';
           const slug = name.toLowerCase().replace(/\s+/g, '-');
-          return `<a href="/tags/${slug}.html">#${name}</a>`;
+          return `<a href="/tags/${slug}">#${name}</a>`;
         })
         .join(' ');
 

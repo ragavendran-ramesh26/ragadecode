@@ -52,7 +52,7 @@ const gaScript = `
       const html = `
         <div class="article-item">
           <div class="article-text">
-            <a href="tourism-travel-trips/${slug}.html">${title}</a>
+            <a href="tourism-travel-trips/${slug}">${title}</a>
             <div class="article-description">${summary}</div>
             <div class="article-meta">Published on ${published}</div>
           </div>
@@ -287,12 +287,12 @@ nav a:hover {
     <h1>Raga Decode</h1>
     <p>Decoded News. Clear. Bold. Unfiltered.</p>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="index">Home</a>
       <a href="#trending">Trending News</a>
       <a href="#technology">Technology</a>
       <a href="#finance">Finance</a>
-      <a href="decode-automobile-talks.html">Automobile</a>
-      <a href="tourism-travel-trips.html">Travel Trips</a>
+      <a href="decode-automobile-talks">Automobile</a>
+      <a href="tourism-travel-trips">Travel Trips</a>
     </nav>
   </header>
 
@@ -303,7 +303,7 @@ nav a:hover {
 <section id="travel">
   <h2>Tourism Travel Trips</h2>
   ${sections.travel.slice(0, 30).join('\n') || '<p>No articles available.</p>'}
-  ${sections.travel.length > 30 ? `<div style="text-align:right; margin-top:10px;"><a href="/tourism-travel-trips.html" class="more-link">More &gt;&gt;</a></div>` : ''}
+  ${sections.travel.length > 30 ? `<div style="text-align:right; margin-top:10px;"><a href="/tourism-travel-trips" class="more-link">More &gt;&gt;</a></div>` : ''}
 </section>
     </div>
 

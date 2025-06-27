@@ -239,8 +239,8 @@ nav a:hover {
       <a href="#trending">Trending News</a>
       <a href="#technology">Technology</a>
       <a href="#finance">Finance</a>
-      <a href="/decode-automobile-talks.html">Automobile</a>
-      <a href="/tourism-travel-trips.html">Travel Trips</a>
+      <a href="/decode-automobile-talks">Automobile</a>
+      <a href="/tourism-travel-trips">Travel Trips</a>
     </nav>
   </header>
 
@@ -272,7 +272,7 @@ nav a:hover {
               return `
               <div class="article-item">
                 <div class="article-text">
-                  <a href="/${category}/${slug}.html">${title}</a>
+                  <a href="/${category}/${slug}">${title}</a>
                   <div class="article-description">${summary}</div>
                   <div class="article-meta">Published on ${published}</div>
                 </div>
@@ -290,7 +290,7 @@ nav a:hover {
             .map((tag) => {
               const name = tag.name || "untitled-tag";
               const tagSlug = name.replace(/[^a-zA-Z0-9\-]/g, "-");
-              return `<a href="${tagSlug}.html"><span>#${name}</span></a>`;
+              return `<a href="${tagSlug}"><span>#${name}</span></a>`;
             })
             .join("")}
         </div>
@@ -335,7 +335,7 @@ nav a:hover {
 
       await fs.ensureDir(OUTPUT_DIR);
       await fs.writeFile(filePath, htmlContent, "utf8");
-      console.log(`✅ Generated: tags/${tagSlug}.html`);
+      console.log(`✅ Generated: tags/${tagSlug}`);
     }
   } catch (error) {
     console.error("❌ Error generating tag pages:", error);

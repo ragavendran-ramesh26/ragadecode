@@ -41,7 +41,8 @@ const gaScript = `
       const title = attr.Title || "Untitled";
       const slug = attr.slug || "";
       const category = attr.Category?.toLowerCase() || "trending"; // fallback to trending if missing
-      const cover = attr.coverimage?.formats?.small?.url || attr.coverimage?.url || "";
+      const cover =
+        attr.coverimage?.formats?.small?.url || attr.coverimage?.url || "";
       const coverUrl = cover || "";
       const published = new Date(attr.publishedat || "").toLocaleDateString();
       const summary = (attr.Description_in_detail || "")
@@ -53,7 +54,7 @@ const gaScript = `
       const html = `
         <div class="article-item">
           <div class="article-text">
-            <a href="news-article/${slug}.html">${title}</a>
+            <a href="news-article/${slug}">${title}</a>
             <div class="article-description">${summary}</div>
             <div class="article-meta">Published on ${published}</div>
           </div>
@@ -65,8 +66,6 @@ const gaScript = `
         </div>
       `;
 
-      
-
       if (category.includes("tech")) sections.technology.push(html);
       else if (category.includes("finance")) sections.finance.push(html);
       else if (category.includes("auto"))
@@ -75,12 +74,12 @@ const gaScript = `
     }
 
     const tagBoxHtml = tagData
-        .map((tag) => {
-          const name = tag.name || "";
-          const slug = name.toLowerCase().replace(/\s+/g, "-");
-          return `<span><a href="/tags/${slug}.html" style="text-decoration:none;color:inherit;">#${name}</a></span>`;
-        })
-        .join("\n");
+      .map((tag) => {
+        const name = tag.name || "";
+        const slug = name.toLowerCase().replace(/\s+/g, "-");
+        return `<span><a href="/tags/${slug}" style="text-decoration:none;color:inherit;">#${name}</a></span>`;
+      })
+      .join("\n");
 
     const pageHtml = `
 <!DOCTYPE html>
@@ -300,12 +299,12 @@ nav a:hover {
     <h1>Raga Decode</h1>
     <p>Decoded News. Clear. Bold. Unfiltered.</p>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="/">Home</a>
       <a href="#trending">Trending News</a>
       <a href="#technology">Technology</a>
       <a href="#finance">Finance</a>
-      <a href="decode-automobile-talks.html">Automobile</a>
-      <a href="tourism-travel-trips.html">Travel Trips</a>
+      <a href="decode-automobile-talks">Automobile</a>
+      <a href="tourism-travel-trips">Travel Trips</a>
     </nav>
   </header>
 
@@ -324,41 +323,8 @@ nav a:hover {
   }
 </section>
 
-<section id="technology">
-  <h2>Technology</h2>
-  ${
-    sections.technology.slice(0, 3).join("\n") ||
-    "<p>No articles available.</p>"
-  }
-  ${
-    sections.technology.length > 3
-      ? `<div style="text-align:right; margin-top:10px;"><a href="/technology.html" class="more-link">More &gt;&gt;</a></div>`
-      : ""
-  }
-</section>
 
-<section id="finance">
-  <h2>Finance</h2>
-  ${sections.finance.slice(0, 3).join("\n") || "<p>No articles available.</p>"}
-  ${
-    sections.finance.length > 3
-      ? `<div style="text-align:right; margin-top:10px;"><a href="/finance.html" class="more-link">More &gt;&gt;</a></div>`
-      : ""
-  }
-</section>
-
-<section id="automobile">
-  <h2>Automobile</h2>
-  ${
-    sections.automobile.slice(0, 3).join("\n") ||
-    "<p>No articles available.</p>"
-  }
-  ${
-    sections.automobile.length > 3
-      ? `<div style="text-align:right; margin-top:10px;"><a href="/automobile.html" class="more-link">More &gt;&gt;</a></div>`
-      : ""
-  }
-</section>
+ 
     </div>
 
     <aside class="sidebar">
