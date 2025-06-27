@@ -116,7 +116,7 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
 
  <footer>
        <p>
-            <a href="/about-us">About Us</a> |
+            <a href="/static-pages/about-us">About Us</a> |
             <a href="/static-pages/editorial-policy">Editorial Policy </a> | 
             <a href="/static-pages/privacy-policy">Privacy Policy </a> |
             <a href="/static-pages/terms-and-conditions">Privacy Policy </a> |

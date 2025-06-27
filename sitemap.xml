@@ -275,6 +275,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://ragadecode.com/static-pages/about-us</loc>
+    <lastmod>2025-06-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ragadecode.com/static-pages/terms-and-conditions</loc>
     <lastmod>2025-06-27</lastmod>
     <priority>0.8</priority>
