@@ -20,7 +20,7 @@ const TEMPLATE_PATH = './template.html';
 const API_CONFIGS = [
   {
     name: 'news-articles',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=id:desc',
 
     outputDir: './news-article',
     slugPrefix: 'news-article',
