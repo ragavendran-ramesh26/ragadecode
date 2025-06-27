@@ -22,6 +22,10 @@ const endpoints = [
     api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags?sort[0]=id:desc",
     section: "tags",
   },
+  {
+    api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/static-pages?sort[0]=id:desc",
+    section: "static-pages",
+  },
 ];
 
 (async () => {
