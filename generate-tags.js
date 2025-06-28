@@ -47,7 +47,7 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
     <p>Decoded News. Clear. Bold. Unfiltered.</p>
     <nav>
       <a href="/">Home</a>
-      <a href="#trending">Trending News</a>
+      <a href="/news-article">Trending News</a>
       <a href="#technology">Technology</a>
       <a href="#finance">Finance</a>
       <a href="/decode-automobile-talks">Automobile</a>
@@ -81,12 +81,14 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
                 day: "numeric",
               });
 
+             
               return `
               <div class="article-item">
                 <div class="article-text">
                   <a href="/${category}/${slug}">${title}</a>
                   <div class="article-description">${summary}</div>
                   <div class="article-meta">Published on ${published}</div>
+                  
                 </div>
                
               </div>`;
@@ -134,7 +136,7 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
 
 (async () => {
   try {
-    const allTagsRes = await fetch(`${TAGS_API}?sort[0]=id:desc`);
+    const allTagsRes = await fetch(`${TAGS_API}?pouplate=*&sort[0]=id:desc`);
     const allTagsJson = await allTagsRes.json();
     const allTags = allTagsJson.data;
 
@@ -142,6 +144,8 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
       const tagId = tag.documentId;
       const tagName = tag.name || "untitled-tag";
       const tagSlug = tagName.replace(/[^a-zA-Z0-9\-]/g, "-");
+
+       
 
       const tagDetailRes = await fetch(`${TAGS_API}/${tagId}?populate=*`);
       const tagDetailJson = await tagDetailRes.json();
@@ -155,6 +159,7 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
       if (!articles || articles.length === 0) {
         articles = tagData.tags;
       }
+ 
 
       const htmlContent = buildTagPageHTML(tagName, articles, allTags);
       const filePath = path.join(OUTPUT_DIR, `${tagSlug}.html`);

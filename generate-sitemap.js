@@ -5,6 +5,11 @@ const fetch = (...args) =>
 
 const baseUrl = "https://ragadecode.com";
 
+const manualPages = [
+  "decode-automobile-talks",
+  "news-article",
+];
+
 const endpoints = [
   {
     api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=id:desc",
@@ -36,6 +41,15 @@ const endpoints = [
     // Add homepage
     xml += `  <url>\n    <loc>${baseUrl}/</loc>\n    <priority>1.0</priority>\n  </url>\n`;
 
+    for (const pagePath of manualPages) {
+      const cleaned = pagePath.replace(/^\/+/, ""); // Remove leading slashes
+      const fullUrl = `${baseUrl}/${cleaned}`.replace(/\/+$/, ""); // Remove trailing slash
+
+      xml += `  <url>\n`;
+      xml += `    <loc>${fullUrl}</loc>\n`;
+      xml += `    <priority>0.8</priority>\n`;
+      xml += `  </url>\n`;
+    }
     for (const { api, section } of endpoints) {
       const res = await fetch(api);
       const { data } = await res.json();

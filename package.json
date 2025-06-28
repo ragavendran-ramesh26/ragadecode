@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "generate": "node generate-homepage.js && node generate-automobile.js && node generate-travel.js && node generate-slug-pages.js && node generate-tags.js",
+    "generate": "node generate-homepage.js && node generate-automobile.js && node generate-travel.js && node generate-slug-pages.js && node generate-news-article.js && node generate-tags.js",
     "build": "npm run generate",
     "dev": "chokidar '*.js' -c 'npm run generate'"
   },

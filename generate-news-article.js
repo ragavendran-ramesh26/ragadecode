@@ -4,9 +4,11 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const API_URL =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=id:desc";
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=id:desc";
+const TAGS_API =
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags";
 
-const OUTPUT_PATH = path.join(__dirname, "decode-automobile-talks.html");
+const OUTPUT_PATH = path.join(__dirname, "news-article.html");
 
 const gaScript = `
 <!-- Google tag (gtag.js) -->
@@ -21,6 +23,9 @@ const gaScript = `
 
 (async () => {
   try {
+    const tagRes = await fetch(TAGS_API);
+    const { data: tagData } = await tagRes.json();
+
     const res = await fetch(API_URL);
     const { data } = await res.json();
 
@@ -31,26 +36,50 @@ const gaScript = `
       automobile: [],
     };
 
+    const uniqueTagMap = new Map();
+
+    for (const article of data) {
+      const attr = article.attributes || article;
+      const hashtags = attr.hashtags || [];
+
+      for (const tag of hashtags) {
+        if (tag && tag.name && !uniqueTagMap.has(tag.name)) {
+          uniqueTagMap.set(tag.name, tag);
+        }
+      }
+    }
+
+
     for (const article of data) {
       const attr = article.attributes || article;
       const title = attr.Title || "Untitled";
       const slug = attr.slug || "";
-      const category = attr.Category?.toLowerCase() || "auto"; // fallback to auto if missing
-      const cover = attr.coverimage?.formats.small.url || "";
+      const category = attr.Category?.toLowerCase() || "trending"; // fallback to trending if missing
+      const cover =
+        attr.coverimage?.formats?.small?.url || attr.coverimage?.url || "";
       const coverUrl = cover || "";
-      const published = new Date(attr.publishedAt || "").toLocaleDateString();
+      const published = new Date(attr.publishedat || "").toLocaleDateString();
       const summary = (attr.Description_in_detail || "")
         .replace(/[#*_`>]/g, "")
         .replace(/\n/g, " ")
         .trim()
         .slice(0, 280); // conservative limit (not cutting mid-word)
 
+      const tags = (attr.hashtags || [])
+        .map((tag) => tag.name || "")
+        .filter(Boolean)
+        .map((name) => `<a href="/tags/${name.toLowerCase().replace(/\s+/g, "-")}">#${name}</a>`)
+        .join(" ");
+
       const html = `
         <div class="article-item">
           <div class="article-text">
-            <a href="automobile/${slug}.html">${title}</a>
+            <a href="news-article/${slug}">${title}</a>
             <div class="article-description">${summary}</div>
             <div class="article-meta">Published on ${published}</div>
+            <div class="article-tags">
+              ${tags}
+            </div>
           </div>
           ${
             coverUrl
@@ -66,6 +95,14 @@ const gaScript = `
         sections.automobile.push(html); // ✅ Add this
       else sections.trending.push(html);
     }
+
+    const tagBoxHtml = Array.from(uniqueTagMap.values())
+  .map((tag) => {
+    const name = tag.name || "";
+    const slug = name.toLowerCase().replace(/\s+/g, "-");
+    return `<span><a href="/tags/${slug}">#${name}</a></span>`;
+  })
+  .join("\n");
 
     const pageHtml = `
 <!DOCTYPE html>
@@ -84,20 +121,21 @@ const gaScript = `
 
 <!-- Web Manifest (Optional but good for PWA support) -->
 <link rel="manifest" href="favicon_io/site.webmanifest">
-  <meta charset="UTF-8" />
-  <title>RagaDecode | Automobile talks decoded</title>
-    ${gaScript}
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Automobile Talks | Cars | Comparison | Best Cars India | What to purchase — decoded by Raga" />
 <link rel="stylesheet" href="assets/main.css">
 <link rel="stylesheet" href="assets/listpage.css">
+  <meta charset="UTF-8" />
+  <title>RagaDecode | Trending News, Technology Updates, Financial Insights & Automobile Reports</title>
+    ${gaScript}
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Stay ahead with RagaDecode — your trusted source for decoded trending news, expert technology insights, financial analysis, and the latest automobile updates. Explore editorial-grade articles that break down complex topics into sharp, readable insights." />
+
 </head>
 <body>
   <header>
     <h1>Raga Decode</h1>
     <p>Decoded News. Clear. Bold. Unfiltered.</p>
     <nav>
-      <a href="index">Home</a>
+      <a href="/">Home</a>
       <a href="/news-article">Trending News</a>
       <a href="#technology">Technology</a>
       <a href="#finance">Finance</a>
@@ -106,34 +144,36 @@ const gaScript = `
     </nav>
   </header>
 
-  <main>
+ 
+ <main>
       <div class="layout-wrapper">
         <div class="main-content">
           <div class="content-wrapper">
-
-<section>
-  <h2>Automobile</h2>
+          <section>
+  <h2>Trending News</h2>
   ${
-    sections.automobile.slice(0, 30).join("\n") ||
-    "<p>No articles available.</p>"
+    sections.trending.slice(0, 30).join("\n") || "<p>No articles available.</p>"
   }
   ${
-    sections.automobile.length > 30
-      ? `<div style="text-align:right; margin-top:10px;"><a href="/decode-automobile-talks.html" class="more-link">More &gt;&gt;</a></div>`
+    sections.trending.length > 30
+      ? `<div style="text-align:right; margin-top:10px;"><a href="/#" class="more-link">More &gt;&gt;</a></div>`
       : ""
   }
 </section>
+ 
     </div>
     </div>
 
-     <div class="sidebar">
+    <div class="sidebar">
     <div class="tag-section">
       <h3>Tags</h3>
       <div class="tag-box">
-         
-      </div> 
-    
- </div>
+       ${tagBoxHtml}
+      </div>
+
+      <!-- <h3 style="margin-top: 24px;">Sponsored</h3>
+       <div class="ad-box">Your Ad Here</div> -->
+    </div>
     </div>
   </div>
 </main>
@@ -155,10 +195,8 @@ const gaScript = `
 `;
 
     await fs.writeFile(OUTPUT_PATH, pageHtml);
-    console.log(
-      `✅ decode-automobile-talks.html generated with ${data.length} articles`
-    );
+    console.log(`✅ news-article.html generated with ${data.length} articles`);
   } catch (err) {
-    console.error("❌ Failed to generate automobile page:", err.message);
+    console.error("❌ Failed to generate news artilce:", err.message);
   }
 })();

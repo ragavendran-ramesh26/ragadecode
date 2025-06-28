@@ -3,8 +3,30 @@ const path = require("path");
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-const API_URL =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=coverimage&sort[0]=id:desc";
+const API_CONFIGS = [
+  {
+    name: "Trending News",
+    apiUrl:
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=id:desc",
+
+    outputDir: "./news-article",
+    slugPrefix: "news-article",
+  },
+  {
+    name: "Automobiles",
+    apiUrl:
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate[coverimage][populate]=*",
+    outputDir: "./automobile",
+    slugPrefix: "automobile",
+  },
+  {
+    name: "Tourism Travel Trips",
+    apiUrl:
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*",
+    outputDir: "./tourism-travel-trips",
+    slugPrefix: "tourism-travel-trips",
+  },
+];
 const TAGS_API =
   "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags";
 
@@ -26,53 +48,6 @@ const gaScript = `
     const tagRes = await fetch(TAGS_API);
     const { data: tagData } = await tagRes.json();
 
-    const res = await fetch(API_URL);
-    const { data } = await res.json();
-
-    const sections = {
-      trending: [],
-      technology: [],
-      finance: [],
-      automobile: [],
-    };
-
-    for (const article of data) {
-      const attr = article.attributes || article;
-      const title = attr.Title || "Untitled";
-      const slug = attr.slug || "";
-      const category = attr.Category?.toLowerCase() || "trending"; // fallback to trending if missing
-      const cover =
-        attr.coverimage?.formats?.small?.url || attr.coverimage?.url || "";
-      const coverUrl = cover || "";
-      const published = new Date(attr.publishedat || "").toLocaleDateString();
-      const summary = (attr.Description_in_detail || "")
-        .replace(/[#*_`>]/g, "")
-        .replace(/\n/g, " ")
-        .trim()
-        .slice(0, 280); // conservative limit (not cutting mid-word)
-
-      const html = `
-        <div class="article-item">
-          <div class="article-text">
-            <a href="news-article/${slug}">${title}</a>
-            <div class="article-description">${summary}</div>
-            <div class="article-meta">Published on ${published}</div>
-          </div>
-          ${
-            coverUrl
-              ? `<img src="${coverUrl}" class="article-thumb" alt="${title}">`
-              : ""
-          }
-        </div>
-      `;
-
-      if (category.includes("tech")) sections.technology.push(html);
-      else if (category.includes("finance")) sections.finance.push(html);
-      else if (category.includes("auto"))
-        sections.automobile.push(html); // ✅ Add this
-      else sections.trending.push(html);
-    }
-
     const tagBoxHtml = tagData
       .map((tag) => {
         const name = tag.name || "";
@@ -80,6 +55,55 @@ const gaScript = `
         return `<span><a href="/tags/${slug}">#${name}</a></span>`;
       })
       .join("\n");
+
+    const categoryBlocks = await Promise.all(
+      API_CONFIGS.map(async (config) => {
+        const res = await fetch(config.apiUrl);
+        const json = await res.json();
+        const articles = json.data || [];
+
+        const featured = articles[0];
+
+        const title = featured?.Title || `Sample Headline for ${config.name}`;
+        const image = featured?.coverimage?.url || "assets/default-cover.jpg";
+        const slug = featured?.slug || "#";
+
+        const items = articles.slice(1, 7).map((a) => {
+          const shortTitle = a?.Title?.slice(0, 70) || "Untitled article";
+          const articleSlug = a?.slug || "#";
+          const slugPrefix = config.slugPrefix;
+          return `<li><a href="/${slugPrefix}/${articleSlug}">${shortTitle}</a></li>`;
+        });
+
+        return `
+      <div class="category-block">
+        <div class="section-header">
+          <h2>${config.name}</h2>
+          <a href="/${config.slugPrefix}" class="view-all">View All</a>
+        </div>
+        <div class="section-body">
+          <div class="left-featured">
+            <a href="/${config.slugPrefix}/${slug}">
+              <img src="${image}" alt="${title}">
+              <h3>${title}</h3>
+            </a>
+          </div>
+          <div class="right-list">
+            <ul>
+              ${items.join("\n")}
+            </ul>
+          </div>
+        </div>
+      </div>
+    `;
+      })
+    );
+
+    const homepageSectionHtml = `
+<section class="homepage-section">
+  ${categoryBlocks.join("\n")}
+</section>
+`;
 
     const pageHtml = `
 <!DOCTYPE html>
@@ -100,6 +124,7 @@ const gaScript = `
 <link rel="manifest" href="favicon_io/site.webmanifest">
 <link rel="stylesheet" href="assets/main.css">
 <link rel="stylesheet" href="assets/listpage.css">
+<link rel="stylesheet" href="assets/home.css">
   <meta charset="UTF-8" />
   <title>RagaDecode | Trending News, Technology Updates, Financial Insights & Automobile Reports</title>
     ${gaScript}
@@ -113,11 +138,11 @@ const gaScript = `
     <p>Decoded News. Clear. Bold. Unfiltered.</p>
     <nav>
       <a href="/">Home</a>
-      <a href="#trending">Trending News</a>
+      <a href="/news-article">Trending News</a>
       <a href="#technology">Technology</a>
       <a href="#finance">Finance</a>
-      <a href="decode-automobile-talks">Automobile</a>
-      <a href="tourism-travel-trips">Travel Trips</a>
+      <a href="/decode-automobile-talks">Automobile</a>
+      <a href="/tourism-travel-trips">Travel Trips</a>
     </nav>
   </header>
 
@@ -126,32 +151,42 @@ const gaScript = `
       <div class="layout-wrapper">
         <div class="main-content">
           <div class="content-wrapper">
-          <section>
-  <h2>Trending News</h2>
-  ${
-    sections.trending.slice(0, 30).join("\n") || "<p>No articles available.</p>"
-  }
-  ${
-    sections.trending.length > 30
-      ? `<div style="text-align:right; margin-top:10px;"><a href="/#" class="more-link">More &gt;&gt;</a></div>`
-      : ""
-  }
+
+          <section class="intro-wrapper">
+  <div class="intro-box">
+    <h2>Welcome to RagaDecode</h2>
+    <p class="tagline"><strong>Decoded News. Bold. Clear. Unbiased.</strong></p>
+    <p><strong>RagaDecode</strong> is a content platform dedicated to simplifying the world’s most important and complex topics — from trending stories and emerging technologies to finance insights, automotive updates, travel tips, and global developments.</p>
+
+    <p>We take the overwhelming and break it down into well-structured, easy-to-understand content designed for modern, curious readers. Whether it’s decoding a financial shift, explaining a tech breakthrough, or offering practical knowledge in lifestyle and global affairs, our goal is to make information clear, relevant, and accessible.</p>
+    <p>
+With a focus on clarity, reliability, and depth, RagaDecode helps you stay informed and empowered — without distractions. It’s your one-stop destination for insightful explainers, fact-based analysis, and smart content that matters.
+    </p>
+  </div>
+
+   
 </section>
+
+   
+
+   ${homepageSectionHtml}
+
+
+   
+
+
  
     </div>
-    </div>
-
-    <div class="sidebar">
-    <div class="tag-section">
-      <h3>Tags</h3>
-      <div class="tag-box">
+    </div> 
+    <div class="tag-box">
        ${tagBoxHtml}
       </div>
 
-      <!-- <h3 style="margin-top: 24px;">Sponsored</h3>
-       <div class="ad-box">Your Ad Here</div> -->
+      
     </div>
     </div>
+
+    
   </div>
 </main>
 
@@ -163,6 +198,9 @@ const gaScript = `
             <a href="/static-pages/terms-and-conditions">Terms and Conditions </a> |
             <a href="/static-pages/contact-us">Contact Us </a>
         </p>
+          <div class="disclaimer">
+    <strong>Transparency Notice:</strong> RagaDecode.com is a digital media publication. We do not sell products or services. If our domain name has ever been misused elsewhere, please report it by<a href="/static-pages/contact-us">contacting us</a>.
+  </div>
         <p>&copy; 2025 RagaDecode. All rights reserved.</p>
       
 
@@ -172,7 +210,7 @@ const gaScript = `
 `;
 
     await fs.writeFile(OUTPUT_PATH, pageHtml);
-    console.log(`✅ index.html generated with ${data.length} articles`);
+    // console.log(`✅ index.html generated with ${data.length} articles`);
   } catch (err) {
     console.error("❌ Failed to generate homepage:", err.message);
   }

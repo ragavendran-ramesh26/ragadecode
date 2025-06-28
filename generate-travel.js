@@ -4,7 +4,7 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const API_URL =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=coverimage&sort[0]=id:desc";
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*&sort[0]=id:desc";
 
 const OUTPUT_PATH = path.join(__dirname, "tourism-travel-trips.html");
 
@@ -32,6 +32,20 @@ const gaScript = `
       travel: [],
     };
 
+    const uniqueTagMap = new Map();
+
+    for (const article of data) {
+      const attr = article.attributes || article;
+
+      const hashtags = attr.hashtags || [];
+
+      for (const tag of hashtags) {
+        if (tag && tag.name && !uniqueTagMap.has(tag.name)) {
+          uniqueTagMap.set(tag.name, tag);
+        }
+      }
+    }
+
     for (const article of data) {
       const attr = article.attributes || article;
       const title = attr.Title || "Untitled";
@@ -47,19 +61,30 @@ const gaScript = `
         .trim()
         .slice(0, 280); // conservative limit (not cutting mid-word)
 
+      const tags = (attr.hashtags || [])
+        .map((tag) => tag.name || "")
+        .filter(Boolean)
+        .map((name) => `<a href="/tags/${name.toLowerCase().replace(/\s+/g, "-")}">#${name}</a>`)
+        .join(" ");
+
       const html = `
         <div class="article-item">
           <div class="article-text">
             <a href="tourism-travel-trips/${slug}">${title}</a>
             <div class="article-description">${summary}</div>
             <div class="article-meta">Published on ${published}</div>
+            <div class="article-tags">
+              ${tags }
+            </div>
           </div>
           ${
             coverUrl
               ? `<img src="${coverUrl}" class="article-thumb" alt="${title}">`
               : ""
-          }
+          } 
+       
         </div>
+        
       `;
 
       if (category.includes("tech")) sections.technology.push(html);
@@ -70,6 +95,14 @@ const gaScript = `
         sections.travel.push(html); // ✅ Add this
       else sections.trending.push(html);
     }
+
+    const tagBoxHtml = Array.from(uniqueTagMap.values())
+  .map((tag) => {
+    const name = tag.name || "";
+    const slug = name.toLowerCase().replace(/\s+/g, "-");
+    return `<span><a href="/tags/${slug}">#${name}</a></span>`;
+  })
+  .join("\n");
 
     const pageHtml = `
 <!DOCTYPE html>
@@ -101,12 +134,12 @@ const gaScript = `
     <h1>Raga Decode</h1>
     <p>Decoded News. Clear. Bold. Unfiltered.</p>
     <nav>
-      <a href="index">Home</a>
-      <a href="#trending">Trending News</a>
+      <a href="/">Home</a>
+      <a href="/news-article">Trending News</a>
       <a href="#technology">Technology</a>
       <a href="#finance">Finance</a>
-      <a href="decode-automobile-talks">Automobile</a>
-      <a href="tourism-travel-trips">Travel Trips</a>
+      <a href="/decode-automobile-talks">Automobile</a>
+      <a href="/tourism-travel-trips">Travel Trips</a>
     </nav>
   </header>
 
@@ -131,7 +164,7 @@ const gaScript = `
     <div class="tag-section">
       <h3>Tags</h3>
       <div class="tag-box">
-        
+        ${tagBoxHtml}
       </div>
 
       <!-- <h3 style="margin-top: 24px;">Sponsored</h3>

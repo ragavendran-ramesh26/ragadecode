@@ -170,3 +170,26 @@ section h2 {
     font-size: 1.3rem;
   }
 }
+
+
+.article-tags {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.article-tags a {
+  font-size: 0.75rem;
+  background-color: #f2f6ff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  color: #004bb5;
+  text-decoration: none;
+  box-shadow: 0 0 0 1px #e2e8f0;
+  transition: background-color 0.2s ease;
+}
+
+.article-tags a:hover {
+  background-color: #d9e9ff;
+}
