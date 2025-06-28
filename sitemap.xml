@@ -13,6 +13,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://ragadecode.com/technologies</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/tourism-travel-trips</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ragadecode.com/news-article/the-tragic-fall-of-an-instagram-star-into-an-indonesian-volcano</loc>
     <lastmod>2025-06-28</lastmod>
     <priority>0.8</priority>
@@ -193,6 +201,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://ragadecode.com/tags/6g</loc>
+    <lastmod>2025-06-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ragadecode.com/tags/indonesian volcano</loc>
     <lastmod>2025-06-28</lastmod>
     <priority>0.8</priority>
@@ -304,6 +317,16 @@
   </url>
   <url>
     <loc>https://ragadecode.com/tags/israel-vs-iran</loc>
+    <lastmod>2025-06-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/technologies/6g-the-next-leap-in-global-connectivity-and-innovation</loc>
+    <lastmod>2025-06-28</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/technologies/internet-s-largest-password-leak-16-billion-credentials-exposed</loc>
     <lastmod>2025-06-28</lastmod>
     <priority>0.8</priority>
   </url>

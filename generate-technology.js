@@ -4,11 +4,11 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const API_URL =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=id:desc";
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=id:desc";
 const TAGS_API =
   "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags";
 
-const OUTPUT_PATH = path.join(__dirname, "news-article.html");
+const OUTPUT_PATH = path.join(__dirname, "technologies.html");
 
 const gaScript = `
 <!-- Google tag (gtag.js) -->
@@ -51,10 +51,15 @@ const gaScript = `
 
 
     for (const article of data) {
+
+
+      
+
       const attr = article.attributes || article;
       const title = attr.Title || "Untitled";
       const slug = attr.slug || "";
-      const category = attr.Category?.toLowerCase() || "trending"; // fallback to trending if missing
+      const category = attr.category?.toLowerCase(); // fallback to trending if missing
+      
       const cover =
         attr.coverimage?.formats?.small?.url || attr.coverimage?.url || "";
       const coverUrl = cover || "";
@@ -74,7 +79,7 @@ const gaScript = `
       const html = `
         <div class="article-item">
           <div class="article-text">
-            <a href="news-article/${slug}">${title}</a>
+            <a href="${category}/${slug}">${title}</a>
             <div class="article-description">${summary}</div>
             <div class="article-meta">Published on ${published}</div>
             <div class="article-tags">
@@ -124,10 +129,10 @@ const gaScript = `
 <link rel="stylesheet" href="assets/main.css">
 <link rel="stylesheet" href="assets/listpage.css">
   <meta charset="UTF-8" />
-  <title>RagaDecode | Trending News, Technology Updates, Financial Insights & Automobile Reports</title>
+  <title>RagaDecode | Technology News, Technology Updates</title>
     ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Stay ahead with RagaDecode — your trusted source for decoded trending news, expert technology insights, financial analysis, and the latest automobile updates. Explore editorial-grade articles that break down complex topics into sharp, readable insights." />
+  <meta name="description" content="Stay ahead with RagaDecode — your trusted source for decoded expert technology insights. Explore editorial-grade articles that break down complex topics into sharp, readable insights." />
 
 </head>
 <body>
@@ -150,12 +155,12 @@ const gaScript = `
         <div class="main-content">
           <div class="content-wrapper">
           <section>
-  <h2>Trending News</h2>
+  <h2>Technology</h2>
   ${
-    sections.trending.slice(0, 30).join("\n") || "<p>No articles available.</p>"
+    sections.technology.slice(0, 30).join("\n") || "<p>No articles available.</p>"
   }
   ${
-    sections.trending.length > 30
+    sections.technology.length > 30
       ? `<div style="text-align:right; margin-top:10px;"><a href="/#" class="more-link">More &gt;&gt;</a></div>`
       : ""
   }
@@ -195,8 +200,8 @@ const gaScript = `
 `;
 
     await fs.writeFile(OUTPUT_PATH, pageHtml);
-    console.log(`✅ news-article.html generated with ${data.length} articles`);
+    console.log(`✅ technologies.html generated with ${data.length} articles`);
   } catch (err) {
-    console.error("❌ Failed to generate news artilce:", err.message);
+    console.error("❌ Failed to generate technology artilce:", err.message);
   }
 })();

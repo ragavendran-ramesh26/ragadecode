@@ -48,7 +48,7 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
     <nav>
       <a href="/">Home</a>
       <a href="/news-article">Trending News</a>
-      <a href="#technology">Technology</a>
+      <a href="/technologies">Technology</a>
       <a href="#finance">Finance</a>
       <a href="/decode-automobile-talks">Automobile</a>
       <a href="/tourism-travel-trips">Travel Trips</a>
@@ -146,6 +146,7 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
       const tagSlug = tagName.replace(/[^a-zA-Z0-9\-]/g, "-");
 
        
+      console.log(`${TAGS_API}/${tagId}?populate=*`)
 
       const tagDetailRes = await fetch(`${TAGS_API}/${tagId}?populate=*`);
       const tagDetailJson = await tagDetailRes.json();
@@ -156,8 +157,13 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
       if (!articles || articles.length === 0) {
         articles = tagData.triptags;
       }
+
       if (!articles || articles.length === 0) {
         articles = tagData.tags;
+      }
+
+      if (!articles || articles.length === 0) {
+        articles = tagData.technologytags;
       }
  
 

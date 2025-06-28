@@ -99,7 +99,7 @@ const gaScript = `
     <nav>
       <a href="index">Home</a>
       <a href="/news-article">Trending News</a>
-      <a href="#technology">Technology</a>
+      <a href="/technologies">Technology</a>
       <a href="#finance">Finance</a>
       <a href="/decode-automobile-talks">Automobile</a>
       <a href="/tourism-travel-trips">Travel Trips</a>

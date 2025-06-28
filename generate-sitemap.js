@@ -8,6 +8,8 @@ const baseUrl = "https://ragadecode.com";
 const manualPages = [
   "decode-automobile-talks",
   "news-article",
+  "technologies",
+  "tourism-travel-trips",
 ];
 
 const endpoints = [
@@ -26,6 +28,10 @@ const endpoints = [
   {
     api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags?sort[0]=id:desc",
     section: "tags",
+  },
+  {
+    api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?sort[0]=id:desc",
+    section: "technologies",
   },
   {
     api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/static-pages?sort[0]=id:desc",

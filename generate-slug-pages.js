@@ -32,6 +32,12 @@ const API_CONFIGS = [
     slugPrefix: 'automobile',
   },
   {
+    name: 'technology',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*',
+    outputDir: './technologies',
+    slugPrefix: 'technologies',
+  },
+  {
     name: 'travels',
     apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*',
     outputDir: './tourism-travel-trips',
