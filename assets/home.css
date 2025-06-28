@@ -258,3 +258,16 @@
     font-size: 15px;
   }
 }
+
+
+@media (max-width: 480px) {
+  .left-featured,
+  .right-list {
+    min-width: 100% !important;
+  }
+
+  .section-body {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
