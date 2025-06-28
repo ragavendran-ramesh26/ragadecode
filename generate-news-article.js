@@ -58,7 +58,13 @@ const gaScript = `
       const cover =
         attr.coverimage?.formats?.small?.url || attr.coverimage?.url || "";
       const coverUrl = cover || "";
-      const published = new Date(attr.publishedat || "").toLocaleDateString();
+      const published = new Date(
+                article.publishedAt || ""
+              ).toLocaleDateString("en-IN", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              });
       const summary = (attr.Description_in_detail || "")
         .replace(/[#*_`>]/g, "")
         .replace(/\n/g, " ")

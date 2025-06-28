@@ -38,7 +38,13 @@ const gaScript = `
       const category = attr.Category?.toLowerCase() || "auto"; // fallback to auto if missing
       const cover = attr.coverimage?.formats.small.url || "";
       const coverUrl = cover || "";
-      const published = new Date(attr.publishedAt || "").toLocaleDateString();
+      const published = new Date(
+                article.publishedAt || ""
+              ).toLocaleDateString("en-IN", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              });
       const summary = (attr.Description_in_detail || "")
         .replace(/[#*_`>]/g, "")
         .replace(/\n/g, " ")
