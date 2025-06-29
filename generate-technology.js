@@ -4,7 +4,7 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const API_URL =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=id:desc";
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=publishedat:desc";
 const TAGS_API =
   "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags";
 
@@ -63,13 +63,12 @@ const gaScript = `
       const cover =
         attr.coverimage?.formats?.small?.url || attr.coverimage?.url || "";
       const coverUrl = cover || "";
-      const published = new Date(
-                article.publishedAt || ""
-              ).toLocaleDateString("en-IN", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              });
+      const publishedRaw = attr.publishedat || article.publishedAt || attr.createdAt;
+      const published = new Date(publishedRaw).toLocaleDateString("en-IN", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }); 
 
        
       const summary = (attr.Description_in_detail || "")

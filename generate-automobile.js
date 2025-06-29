@@ -4,7 +4,7 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const API_URL =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=id:desc";
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=publishedat:desc";
 
 const OUTPUT_PATH = path.join(__dirname, "decode-automobile-talks.html");
 
@@ -38,13 +38,12 @@ const gaScript = `
       const category = attr.Category?.toLowerCase() || "auto"; // fallback to auto if missing
       const cover = attr.coverimage?.formats.small.url || "";
       const coverUrl = cover || "";
-      const published = new Date(
-                article.publishedAt || ""
-              ).toLocaleDateString("en-IN", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              });
+      const publishedRaw = attr.publishedat || attr.publishedAt || attr.createdAt;
+      const published = new Date(publishedRaw).toLocaleDateString("en-IN", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }); 
       const summary = (attr.Description_in_detail || "")
         .replace(/[#*_`>]/g, "")
         .replace(/\n/g, " ")

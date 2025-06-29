@@ -15,21 +15,21 @@ const API_CONFIGS = [
   {
     name: "Automobiles",
     apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=publishdat:desc",
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=publishedat:desc",
     outputDir: "./automobile",
     slugPrefix: "automobile",
   },
   {
     name: "Technology",
     apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=publishtedat:desc",
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=publishedat:desc",
     outputDir: "./technologies",
     slugPrefix: "technologies",
   },
   {
     name: "Tourism Travel Trips",
     apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*&sort[0]=id:desc",
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*&sort[0]=publishedat:desc",
     outputDir: "./tourism-travel-trips",
     slugPrefix: "tourism-travel-trips",
   },

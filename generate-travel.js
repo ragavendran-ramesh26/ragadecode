@@ -4,7 +4,7 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const API_URL =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*&sort[0]=id:desc";
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*&sort[0]=publishedat:desc";
 
 const OUTPUT_PATH = path.join(__dirname, "tourism-travel-trips.html");
 
@@ -54,7 +54,12 @@ const gaScript = `
       const cover =
         attr.coverimage?.formats?.small?.url || attr.coverimage?.url || "";
       const coverUrl = cover || "";
-      const published = new Date(attr.publishedAt || "").toLocaleDateString();
+      const publishedRaw = attr.publishedat || attr.publishedAt || attr.createdAt;
+      const published = new Date(publishedRaw).toLocaleDateString("en-IN", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }); 
       const summary = (attr.Description_in_detail || "")
         .replace(/[#*_`>]/g, "")
         .replace(/\n/g, " ")

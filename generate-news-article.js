@@ -61,7 +61,7 @@ const gaScript = `
 
       
 
-      const publishedRaw = attr.publishedat || article.publishedAt || attr.createdAt;
+      const publishedRaw = attr.publishedat || attr.publishedAt || attr.createdAt;
       const published = new Date(publishedRaw).toLocaleDateString("en-IN", {
         year: "numeric",
         month: "short",

@@ -75,13 +75,14 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
                 .trim()
                 .slice(0, 280); // conservative limit (not cutting mid-word)
 
-              const published = new Date(
-                article.publishedAt || ""
-              ).toLocaleDateString("en-IN", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              });
+                const publishedRaw = article.publishedat || article.publishedAt || article.createdAt;
+                const published = new Date(publishedRaw).toLocaleDateString("en-IN", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                }); 
+
+               
 
              
               return `

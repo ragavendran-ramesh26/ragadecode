@@ -89,6 +89,13 @@ function buildRelatedArticlesHtml(attrs) {
         const description = attrs.Description || `Latest ${config.name} articles from RagaDecode — decoded by Raga`;
         const markdown = attrs.Description_in_detail || '*No content available*';
         // const tags = attrs.Tags || '';
+
+        const publishedRaw = attrs.publishedat || attrs.publishedAt || attrs.createdAt;
+        const published = new Date(publishedRaw).toLocaleDateString("en-IN", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        }); 
        
 
 
@@ -140,6 +147,7 @@ function buildRelatedArticlesHtml(attrs) {
         const pageHTML = template
           .replace(/{{TITLE}}/g, title)
           .replace(/{{DESCRIPTION}}/g, description)
+          .replace(/{{PUBLISHED_DATE}}/g, published)
           .replace(/{{COVER_IMAGE_BLOCK}}/g, coverImageBlock)
           .replace(/{{COVER_IMAGE_URL}}/g, coverImageUrl)
           .replace(/{{CONTENT}}/g, contentHTML)
