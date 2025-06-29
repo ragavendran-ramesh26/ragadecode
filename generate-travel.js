@@ -122,10 +122,13 @@ const gaScript = `
 <!-- Web Manifest (Optional but good for PWA support) -->
 <link rel="manifest" href="favicon_io/site.webmanifest">
   <meta charset="UTF-8" />
-  <title>RagaDecode | Automobile talks decoded</title>
+  <title>Stay updated with the latest travel news, explore expert destination guides, and decode unforgettable trip ideas. RagaDecode brings you curated content on tourism, travel trends, and smart travel tips. </title>
     ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Automobile Talks | Cars | Comparison | Best Cars India | What to purchase — decoded by Raga" />
+  <meta name="description" content=" — decoded by Raga" />
+
+  <link rel="canonical" href="https://ragadecode.com/tourism-travel-trips" />
+
 <link rel="stylesheet" href="/assets/main.css">
 <link rel="stylesheet" href="/assets/listpage.css">
 </head>
