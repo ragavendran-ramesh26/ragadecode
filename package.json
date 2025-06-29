@@ -5,6 +5,7 @@
   "scripts": {
     "generate": "node generate-homepage.js && node generate-automobile.js && node generate-travel.js && node generate-slug-pages.js && node generate-news-article.js && node generate-tags.js",
     "build": "npm run generate",
+    "prepare": "husky install",
     "dev": "chokidar '*.js' -c 'npm run generate'"
   },
   "keywords": [],
@@ -21,6 +22,7 @@
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "chokidar-cli": "^3.0.0"
+    "chokidar-cli": "^3.0.0",
+    "husky": "^9.1.7"
   }
 }
