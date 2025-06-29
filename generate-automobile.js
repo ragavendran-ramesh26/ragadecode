@@ -91,12 +91,15 @@ const gaScript = `
 <!-- Web Manifest (Optional but good for PWA support) -->
 <link rel="manifest" href="favicon_io/site.webmanifest">
   <meta charset="UTF-8" />
-  <title>RagaDecode | Automobile talks decoded</title>
+  <title>Automobile Talks Decoded: Car News, EV Trends, Auto Reviews & Insights | RagaDecode</title>
     ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Automobile Talks | Cars | Comparison | Best Cars India | What to purchase — decoded by Raga" />
+  <meta name="description" content="Decode the world of automobiles with expert articles on car launches, EV trends, automotive tech, and in-depth reviews. Stay ahead with RagaDecode’s decoded auto insights." />
 <link rel="stylesheet" href="assets/main.css">
 <link rel="stylesheet" href="assets/listpage.css">
+
+<link rel="canonical" href="https://ragadecode.com/decode-automobile-talks" />
+
 </head>
 <body>
   <header>
