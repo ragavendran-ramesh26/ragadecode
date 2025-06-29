@@ -137,7 +137,7 @@ const gaScript = `
     ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Stay ahead with RagaDecode — your trusted source for decoded trending news, expert technology insights, financial analysis, and the latest automobile updates. Explore editorial-grade articles that break down complex topics into sharp, readable insights." />
-
+<link rel="canonical" href="https://ragadecode.com/" />
 </head>
 <body>
   <header>
