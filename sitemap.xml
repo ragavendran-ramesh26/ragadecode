@@ -21,6 +21,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://ragadecode.com/news-article/chennai-metro-at-10-transforming-urban-travel-one-journey-at-a-time</loc>
+    <lastmod>2025-06-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://ragadecode.com/news-article/maharashtra-government-withdraws-hindi-mandate-in-schools-amid-backlash</loc>
     <lastmod>2025-06-29</lastmod>
     <priority>0.8</priority>
@@ -141,11 +146,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ragadecode.com/news-article/india-s-strategic-diplomacy-amid-west-asia-tensions-operation-sindhu-and-global-talks-decoded</loc>
-    <lastmod>2025-06-29</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://ragadecode.com/automobile/why-the-honda-city-remains-an-underrated-marvel-on-indian-roads</loc>
     <lastmod>2025-06-29</lastmod>
     <priority>0.8</priority>
@@ -207,6 +207,11 @@
   </url>
   <url>
     <loc>https://ragadecode.com/tourism-travel-trips/pollachi-to-high-forest-the-ultimate-valparai-western-ghats-travel-guide</loc>
+    <lastmod>2025-06-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/tags/metro-train</loc>
     <lastmod>2025-06-29</lastmod>
     <priority>0.8</priority>
   </url>
@@ -331,11 +336,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ragadecode.com/tags/ooty-to-kinnakorai</loc>
-    <lastmod>2025-06-25</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://ragadecode.com/technologies/neuralink-breakthrough-first-human-patient-draws-using-only-his-mind</loc>
     <lastmod>2025-06-29</lastmod>
     <priority>0.8</priority>
@@ -377,106 +377,106 @@
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india</loc>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/tamilnadu</loc>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/tamilnadu/chennai</loc>
-    <priority>0.4</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/tamilnadu/pollachi</loc>
-    <priority>0.4</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/tamilnadu/nilgiris</loc>
-    <priority>0.4</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/tamilnadu/valparai</loc>
-    <priority>0.4</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/kerala</loc>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/kerala/pathanamthitta</loc>
-    <priority>0.4</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/kerala/palakkad</loc>
-    <priority>0.4</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/kerala/trivandrum</loc>
-    <priority>0.4</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/gujarat</loc>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/gujarat/ahmedabad</loc>
-    <priority>0.4</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/karnataka</loc>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/west-bengal</loc>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/west-bengal/kolkata</loc>
-    <priority>0.4</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/maharashtra</loc>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/iran</loc>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/israel</loc>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/kuwait</loc>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/qatar</loc>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/indonesia</loc>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/brazil</loc>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/united-states</loc>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/canada</loc>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/ukraine</loc>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/russia</loc>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>
