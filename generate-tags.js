@@ -18,7 +18,7 @@ const gaScript = `
 </script>
 `;
 
-const buildTagPageHTML = (tagName, articles, allTags) => {
+const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
   const formattedTag = tagName.replace(/[^a-zA-Z0-9\-]/g, "-");
 
   return `
@@ -35,10 +35,10 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
 <link rel="stylesheet" href="/assets/main.css">
 <link rel="stylesheet" href="/assets/listpage.css">
   <meta charset="UTF-8" />
-<title>${tagName} Articles: Decoded News & Insights | RagaDecode</title>
+<title>${tagTitle} Articles: Decoded News & Insights | RagaDecode</title>
    ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Explore decoded articles about ${tagName}, including news, insights, and stories curated by RagaDecode." />
+  <meta name="description" content="Explore decoded articles about ${tagTitle}, including news, insights, and stories curated by RagaDecode." />
 <link rel="canonical" href="https://ragadecode.com/tags/${formattedTag}" />
 
 </head>
@@ -61,7 +61,7 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
         <div class="main-content">
           <div class="content-wrapper">
         <section>
-          <h2>${formattedTag}</h2>
+          <h2>${tagTitle}</h2>
           ${articles
             .map((article) => {
               const title = article.Title || "Untitled";
@@ -146,9 +146,13 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
       const tagName = tag.name || "untitled-tag";
       const tagSlug = tagName.replace(/[^a-zA-Z0-9\-]/g, "-");
 
-       
-      console.log(`${TAGS_API}/${tagId}?populate=*`)
+      const tagTitle = tagName
+      .replace(/[^a-zA-Z0-9\s\-]/g, "") // Remove special characters
+      .split(/[\s\-]+/) // Split by space or hyphen
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
 
+        
       const tagDetailRes = await fetch(`${TAGS_API}/${tagId}?populate=*`);
       const tagDetailJson = await tagDetailRes.json();
 
@@ -168,7 +172,7 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
       }
  
 
-      const htmlContent = buildTagPageHTML(tagName, articles, allTags);
+      const htmlContent = buildTagPageHTML(tagName, tagTitle, articles, allTags);
       const filePath = path.join(OUTPUT_DIR, `${tagSlug}.html`);
 
       await fs.ensureDir(OUTPUT_DIR);
