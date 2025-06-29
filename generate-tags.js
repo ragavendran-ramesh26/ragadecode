@@ -39,7 +39,8 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
    ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Explore decoded articles about ${tagTitle}, including news, insights, and stories curated by RagaDecode." />
-<link rel="canonical" href="https://ragadecode.com/tags/${formattedTag}" />
+
+  <link rel="canonical" href="https://ragadecode.com/tags/${formattedTag}" />
 
 </head>
 <body>
@@ -137,7 +138,7 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
 
 (async () => {
   try {
-    const allTagsRes = await fetch(`${TAGS_API}?pouplate=*&sort[0]=id:desc`);
+    const allTagsRes = await fetch(`${TAGS_API}?pagination[page]=1&pagination[pageSize]=1000&populate=*`);
     const allTagsJson = await allTagsRes.json();
     const allTags = allTagsJson.data;
 

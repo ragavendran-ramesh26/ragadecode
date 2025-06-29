@@ -130,7 +130,7 @@ const gaScript = `
 <link rel="stylesheet" href="assets/main.css">
 <link rel="stylesheet" href="assets/listpage.css">
   <meta charset="UTF-8" />
-  <title>Decoded News Articles: Global Headlines, Politics, India News, City News, Economy & Insights | RagaDecode/title>
+  <title>Decoded News Articles: Global Headlines, Politics, India News, City News, Economy & Insights | RagaDecode </title>
     ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Read decoded takes on trending global news, politics, economy, technology, and society. RagaDecode delivers clear, in-depth articles that cut through the noise." />
