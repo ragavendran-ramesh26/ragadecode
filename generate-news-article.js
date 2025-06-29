@@ -130,10 +130,12 @@ const gaScript = `
 <link rel="stylesheet" href="assets/main.css">
 <link rel="stylesheet" href="assets/listpage.css">
   <meta charset="UTF-8" />
-  <title>RagaDecode | Trending News, Technology Updates, Financial Insights & Automobile Reports</title>
+  <title>Decoded News Articles: Global Headlines, Politics, India News, City News, Economy & Insights | RagaDecode/title>
     ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Stay ahead with RagaDecode — your trusted source for decoded trending news, expert technology insights, financial analysis, and the latest automobile updates. Explore editorial-grade articles that break down complex topics into sharp, readable insights." />
+  <meta name="description" content="Read decoded takes on trending global news, politics, economy, technology, and society. RagaDecode delivers clear, in-depth articles that cut through the noise." />
+
+<link rel="canonical" href="https://ragadecode.com/news-article" />
 
 </head>
 <body>
