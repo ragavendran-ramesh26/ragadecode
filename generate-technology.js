@@ -137,10 +137,12 @@ const gaScript = `
 <link rel="stylesheet" href="assets/main.css">
 <link rel="stylesheet" href="assets/listpage.css">
   <meta charset="UTF-8" />
-  <title>RagaDecode | Technology News, Technology Updates</title>
+  <title>Decoded Technologies: Latest Tech News, Innovations, Gadgets & AI Trends | RagaDecode</title>
     ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Stay ahead with RagaDecode — your trusted source for decoded expert technology insights. Explore editorial-grade articles that break down complex topics into sharp, readable insights." />
+  <meta name="description" content="Explore the latest in technology—from AI and gadgets to software trends and innovations. RagaDecode breaks down complex tech news into clear, insightful articles." />
+
+<link rel="canonical" href="https://ragadecode.com/technologies" />
 
 </head>
 <body>
