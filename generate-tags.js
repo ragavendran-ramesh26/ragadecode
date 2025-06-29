@@ -35,10 +35,11 @@ const buildTagPageHTML = (tagName, articles, allTags) => {
 <link rel="stylesheet" href="/assets/main.css">
 <link rel="stylesheet" href="/assets/listpage.css">
   <meta charset="UTF-8" />
-  <title>Articles about ${formattedTag} | RagaDecode</title>
+<title>${tagName} Articles: Decoded News & Insights | RagaDecode</title>
    ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Here is the list of articles about ${formattedTag} from RagaDecode." />
+  <meta name="description" content="Explore decoded articles about ${tagName}, including news, insights, and stories curated by RagaDecode." />
+<link rel="canonical" href="https://ragadecode.com/tags/${formattedTag}" />
 
 </head>
 <body>
