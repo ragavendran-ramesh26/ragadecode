@@ -7,7 +7,7 @@ const API_CONFIGS = [
   {
     name: "Trending News",
     apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=publishedat:desc",
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
 
     outputDir: "./news-article",
     slugPrefix: "news-article",
@@ -15,27 +15,34 @@ const API_CONFIGS = [
   {
     name: "Automobiles",
     apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=publishedat:desc",
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
     outputDir: "./automobile",
     slugPrefix: "automobile",
   },
   {
     name: "Technology",
     apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=publishedat:desc",
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
     outputDir: "./technologies",
     slugPrefix: "technologies",
   },
   {
     name: "Tourism Travel Trips",
     apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*&sort[0]=publishedat:desc",
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
     outputDir: "./tourism-travel-trips",
     slugPrefix: "tourism-travel-trips",
   },
 ];
 const TAGS_API =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags";
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags?pagination[page]=1&pagination[pageSize]=100";
+
+const COUNTRIES_API =
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/countries";
+const STATES_API =
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/states?populate=country";
+const CITIES_API =
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/cities?populate[state][populate]=country";
 
 const OUTPUT_PATH = path.join(__dirname, "index.html");
 
@@ -50,6 +57,11 @@ const gaScript = `
 </script>
 `;
 
+
+
+
+
+
 (async () => {
   try {
     const tagRes = await fetch(TAGS_API);
@@ -63,6 +75,119 @@ const gaScript = `
       })
       .join("\n");
 
+
+    const countriesRes = await fetch(COUNTRIES_API);
+    const statesRes = await fetch(STATES_API);
+    const citiesRes = await fetch(CITIES_API);
+
+    const { data: countriesData } = await countriesRes.json();
+    const { data: statesData } = await statesRes.json();
+    const { data: citiesData } = await citiesRes.json();
+
+    function splitCountries(countries) {
+  const col1 = countries.slice(0, 6);
+  const col2 = countries.slice(6, 12);
+  const col3 = countries.slice(12, 18);
+
+   
+
+  return `
+    <div class="sub-columns">
+      <ul>
+        ${col1.map(c => `<li><a href="/locations/${c.slug}">${c.title}</a></li>`).join("\n")}
+      </ul>
+      <ul>
+        ${col2.map(c => `<li><a href="/locations/${c.slug}">${c.title}</a></li>`).join("\n")}
+      </ul>
+       <ul>
+        ${col3.map(c => `<li><a href="/locations/${c.slug}">${c.title}</a></li>`).join("\n")}
+      </ul>
+    </div>
+  `;
+}
+
+function splitStates(states) {
+  const col1 = states.slice(0, 6);
+  const col2 = states.slice(6, 12); 
+  const col3 = states.slice(12, 18); 
+  return `
+    <div class="sub-columns">
+      <ul>
+        ${col1.map(s => `<li><a href="/locations/${s.country.slug}/${s.slug}">${s.title}</a></li>`).join("\n")}
+      </ul>
+      <ul>
+        ${col2.map(s => `<li><a href="/locations/${s.country.slug}/${s.slug}">${s.title}</a></li>`).join("\n")}
+      </ul>
+      <ul>
+        ${col3.map(s => `<li><a href="/locations/${s.country.slug}/${s.slug}">${s.title}</a></li>`).join("\n")}
+      </ul>
+    </div>
+  `;
+}
+
+function splitCities(cities) {
+  const col1 = cities.slice(0, 6);
+  const col2 = cities.slice(6, 12);
+  const col3 = cities.slice(12, 18);
+  return `
+    <div class="sub-columns">
+      <ul>
+        ${col1.map(city => {
+          const countrySlug = city.state?.country?.slug || "unknown";
+          const stateSlug = city.state?.slug || "unknown";
+          return `<li><a href="/locations/${countrySlug}/${stateSlug}/${city.slug}">${city.title}</a></li>`;
+        }).join("\n")}
+      </ul>
+      <ul>
+        ${col2.map(city => {
+          const countrySlug = city.state?.country?.slug || "unknown";
+          const stateSlug = city.state?.slug || "unknown";
+          return `<li><a href="/locations/${countrySlug}/${stateSlug}/${city.slug}">${city.title}</a></li>`;
+        }).join("\n")}
+      </ul>
+      <ul>
+        ${col3.map(city => {
+          const countrySlug = city.state?.country?.slug || "unknown";
+          const stateSlug = city.state?.slug || "unknown";
+          return `<li><a href="/locations/${countrySlug}/${stateSlug}/${city.slug}">${city.title}</a></li>`;
+        }).join("\n")}
+      </ul>
+    </div>
+  `;
+}
+
+    const regionHtml = `
+      <section class="region-wrapper">
+      <div class="section-title">
+        <h3>Explore News by Location</h3>
+        </div>
+        <div class="region-columns">
+
+          <!-- Countries -->
+          <div class="region-column">
+            <h4>Countries</h4>
+            ${splitCountries(countriesData)}
+          </div>
+
+          <!-- States -->
+          <div class="region-column">
+            <h4>States</h4>
+            ${splitStates(statesData)}
+          </div>
+
+          <!-- Cities -->
+          <div class="region-column">
+            <h4>Cities</h4>
+            ${splitCities(citiesData)}
+          </div>
+
+        </div>
+        <div class="view-more-link">
+          <a href="#">View More Locations →</a>
+        </div>
+      </section>
+          `;
+
     const categoryBlocks = await Promise.all(
       API_CONFIGS.map(async (config) => {
         const res = await fetch(config.apiUrl);
@@ -70,9 +195,10 @@ const gaScript = `
         const articles = json.data || [];
 
         const featured = articles[0];
+ 
 
         const title = featured?.Title || `Sample Headline for ${config.name}`;
-        const image = featured?.coverimage?.url || "assets/default-cover.jpg";
+        const image = featured?.coverimage?.url || "assets/default-image.jpg";
         const slug = featured?.slug || "#";
 
         const items = articles.slice(1, 7).map((a) => {
@@ -91,8 +217,12 @@ const gaScript = `
         <div class="section-body">
           <div class="left-featured">
             <a href="/${config.slugPrefix}/${slug}">
+            <div class="left-image">
               <img src="${image}" alt="${title}">
+              </div>
+              <div class="left-title">
               <h3>${title}</h3>
+              </div>
             </a>
           </div>
           <div class="right-list">
@@ -107,10 +237,10 @@ const gaScript = `
     );
 
     const homepageSectionHtml = `
-<section class="homepage-section">
-  ${categoryBlocks.join("\n")}
-</section>
-`;
+      <section class="homepage-section">
+        ${categoryBlocks.join("\n")}
+      </section>
+      `;
 
     const pageHtml = `
 <!DOCTYPE html>
@@ -169,20 +299,14 @@ const gaScript = `
     <p>
 With a focus on clarity, reliability, and depth, RagaDecode helps you stay informed and empowered — without distractions. It’s your one-stop destination for insightful explainers, fact-based analysis, and smart content that matters.
     </p>
-  </div>
-
+  </div> 
    
-</section>
+</section> 
 
-   
+${regionHtml}
 
-   ${homepageSectionHtml}
-
-
-   
-
-
- 
+    
+   ${homepageSectionHtml} 
     </div>
     </div> 
     <div class="tag-box">
@@ -217,7 +341,9 @@ With a focus on clarity, reliability, and depth, RagaDecode helps you stay infor
 `;
 
     await fs.writeFile(OUTPUT_PATH, pageHtml);
-    console.log(`✅ index.html generated with ${API_CONFIGS.length} categories`);
+    console.log(
+      `✅ index.html generated with ${API_CONFIGS.length} categories`
+    );
   } catch (err) {
     console.error("❌ Failed to generate homepage:", err.message);
   }
