@@ -7,7 +7,7 @@ const API_CONFIGS = [
   {
     name: "Trending News",
     apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=id:desc",
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=publishedat:desc",
 
     outputDir: "./news-article",
     slugPrefix: "news-article",
@@ -15,14 +15,14 @@ const API_CONFIGS = [
   {
     name: "Automobiles",
     apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=id:desc",
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=publishdat:desc",
     outputDir: "./automobile",
     slugPrefix: "automobile",
   },
   {
     name: "Technology",
     apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=id:desc",
+      "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=publishtedat:desc",
     outputDir: "./technologies",
     slugPrefix: "technologies",
   },
@@ -217,7 +217,7 @@ With a focus on clarity, reliability, and depth, RagaDecode helps you stay infor
 `;
 
     await fs.writeFile(OUTPUT_PATH, pageHtml);
-    // console.log(`✅ index.html generated with ${data.length} articles`);
+    console.log(`✅ index.html generated with ${API_CONFIGS.length} categories`);
   } catch (err) {
     console.error("❌ Failed to generate homepage:", err.message);
   }
