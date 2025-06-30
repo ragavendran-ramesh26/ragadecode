@@ -20,7 +20,7 @@ const TEMPLATE_PATH = './template.html';
 const API_CONFIGS = [
   {
     name: 'news-articles',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=id:desc',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&populate[author][populate][profile_image]=true&populate[coverimage]=true&sort[1]=id:desc',
 
     outputDir: './news-article',
     slugPrefix: 'news-article',
@@ -44,6 +44,40 @@ const API_CONFIGS = [
     slugPrefix: 'tourism-travel-trips',
   }
 ];
+
+
+function buildLDJson({ title, coverImageUrl, publishedRaw, lastModifiedUTC, authorName, authorSlug, slugPrefix, slug, description }) {
+  const publishedISO = new Date(publishedRaw).toISOString();
+
+  return `<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": ${JSON.stringify(title)},
+  "image": [${JSON.stringify(coverImageUrl)}],
+  "datePublished": "${publishedISO}",
+  "dateModified": "${lastModifiedUTC}",
+  "author": {
+    "@type": "Person",
+    "name": ${JSON.stringify(authorName)},
+    "url": "https://ragadecode.com/authors/${authorSlug}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "RagaDecode",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ragadecode.com/ragadecode_logo.png"
+    }
+  },
+  "description": ${JSON.stringify(description)},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ragadecode.com/${slugPrefix}/${slug}"
+  }
+}
+</script>`;
+}
 
 function buildRelatedArticlesHtml(attrs) {
   const related = [...(attrs.similar_articles || []), ...(attrs.news_articles || [])];
@@ -86,7 +120,7 @@ function buildRelatedArticlesHtml(attrs) {
         const title = attrs.Title || 'Untitled';
         const slug = attrs.slug;
         const documentId = attrs.documentId || article.id;
-        const description = attrs.Description || `Latest ${config.name} articles from RagaDecode — decoded by Raga`;
+        const description = attrs.short_description || title;
         const markdown = attrs.Description_in_detail || '*No content available*';
         // const tags = attrs.Tags || '';
 
@@ -96,6 +130,45 @@ function buildRelatedArticlesHtml(attrs) {
           month: "short",
           day: "numeric",
         }); 
+
+        const publisedISO = new Date(publishedRaw);
+
+        const lastModifiedRaw = attrs.publishedAt; // Use updatedAt if available
+        const lastModifiedDate = new Date(lastModifiedRaw);
+        const lastModifiedISO = lastModifiedDate.toISOString().split('T')[0]; // "YYYY-MM-DD"
+
+        // For meta tags (UTC format)
+        const lastModifiedUTC = lastModifiedDate.toISOString(); // Full UTC timestamp
+        const publishedUTC = publisedISO.toISOString(); // Full UTC timestamp
+
+
+        let authorBlock = '';
+
+        if (attrs.author) {
+          const author = attrs.author || {};
+          const authorName = author.name || 'Unknown Author';
+          const authorSlug = author.slug || '';
+          const authorNick = author.nick || authorName;
+          const authorBio = author.bio || '';
+          const profileImgUrl =
+            author.profile_image?.formats?.small?.url || author.profile_image?.url || '';
+
+          const authorImageTag = profileImgUrl
+            ? `<a href="/authors/${authorSlug}">
+                <img src="${profileImgUrl}" alt="${authorName}" class="author-image" loading="lazy" />
+              </a>`
+            : '';
+
+          authorBlock = `
+            <div class="author-box">
+              ${authorImageTag}
+              <div class="author-details">
+                <h3>Decoded by ${authorNick}</h3>
+                <a href="/authors/${authorSlug}" class="author-link">About ${authorName}</a>
+              </div>
+            </div>
+          `;
+        }
        
 
 
@@ -143,14 +216,35 @@ function buildRelatedArticlesHtml(attrs) {
               </div>
           </div>`
         : '';
+
+
+        const ldJsonScript = buildLDJson({
+          title,
+          coverImageUrl,
+          publishedRaw,
+          lastModifiedUTC,
+          authorName: attrs.author?.name || 'RagaDecode',
+          authorSlug: attrs.author?.slug || 'ragavendran-ramesh',
+          slugPrefix: config.slugPrefix,
+          slug,
+          description
+        });
         
         const pageHTML = template
+          .replace(/{{STRUCTURED_DATA_JSON}}/g, ldJsonScript)
           .replace(/{{TITLE}}/g, title)
           .replace(/{{DESCRIPTION}}/g, description)
           .replace(/{{PUBLISHED_DATE}}/g, published)
+          .replace(/{{PUBLISED_ON}}/g, publishedRaw)
+          .replace(/{{LAST_MODIFIED}}/g, lastModifiedISO || publishedRaw)
+          .replace(/{{LAST_MODIFIED_UTC}}/g, lastModifiedUTC || publishedRaw)
+          .replace(/{{PUBLISHED_UTC}}/g, publishedUTC || publishedRaw)
           .replace(/{{COVER_IMAGE_BLOCK}}/g, coverImageBlock)
           .replace(/{{COVER_IMAGE_URL}}/g, coverImageUrl)
           .replace(/{{CONTENT}}/g, contentHTML)
+          .replace(/{{AUTHOR_NAME}}/g, attrs.author?.name || 'Ragavendran Ramesh')
+          .replace(/{{AUTHOR_SLUG}}/g, attrs.author?.slug || 'ragavendran-ramesh')
+          .replace(/{{AUTHOR_BLOCK}}/g, authorBlock)
           .replace(/{{TAGS}}/g, tagHtml) // ✅ Insert tags
           .replace(/{{SLUG}}/g, slug)
           .replace(/{{DOC_ID}}/g, documentId)

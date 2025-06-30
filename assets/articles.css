@@ -215,3 +215,28 @@
 .sidebar-box>.tag-section {
     margin-bottom: 24px;
 }
+
+.author-box {
+  display: flex;
+  align-items: center; 
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+.author-image {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+.author-details h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+}
+.author-link {
+  font-size: 0.95rem;
+  color: #007bff;
+  text-decoration: none;
+}

@@ -31,7 +31,7 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
   <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="favicon_io/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="favicon_io/android-chrome-512x512.png">
-  <link rel="manifest" href="favicon_io/site.webmanifest">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
 <link rel="stylesheet" href="/assets/main.css">
 <link rel="stylesheet" href="/assets/listpage.css">
   <meta charset="UTF-8" />

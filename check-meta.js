@@ -13,6 +13,19 @@ const htmlFiles = glob.sync("**/*.html", {
 
 htmlFiles.forEach((file) => {
   const content = fs.readFileSync(file, "utf-8");
+
+  // 🔍 Check for any usage of https://www.ragadecode.com
+  if (content.includes("https://www.ragadecode.com")) {
+    warnings.push(`⚠️ ${file} contains link or reference to https://www.ragadecode.com — use https://ragadecode.com instead.`);
+  }
+
+  // 🔍 Check for any usage of *.html links (not just anchors)
+  const htmlLinkPattern = /(["'])[^"']+\.html(["'])/gi;
+  const matches = content.match(htmlLinkPattern);
+  if (matches) {
+    warnings.push(`⚠️ ${file} contains .html link(s): ${[...new Set(matches)].join(", ")}`);
+  }
+
   const dom = new JSDOM(content);
   const { document } = dom.window;
 
@@ -44,7 +57,7 @@ if (errors.length > 0) {
 }
 
 if (warnings.length > 0) {
-  console.warn("\n⚠️ .html href warnings:");
+  console.warn("\n⚠️ Warnings:");
   warnings.forEach((w) => console.warn(w));
 }
 
@@ -53,6 +66,6 @@ if (errors.length > 0) {
 } else {
   console.log("✅ All pages have valid title, meta description, and canonical URL.");
   if (warnings.length === 0) {
-    console.log("✅ No <a href> tags contain .html links.");
+    console.log("✅ No warnings found (no .html links or www.ragadecode.com references).");
   }
 }
