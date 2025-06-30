@@ -1,2 +1,7 @@
 # Redirect all .html pages to their clean version
 /(.*).html   /:splat   301!
+
+# Force canonical HTTPS and non-www
+http://www.ragadecode.com/*      https://ragadecode.com/:splat  301!
+http://ragadecode.com/*          https://ragadecode.com/:splat  301!
+https://www.ragadecode.com/*     https://ragadecode.com/:splat  301!
