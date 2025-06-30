@@ -4,9 +4,11 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const API_URL =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*&sort[0]=publishedat:desc";
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/finances?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true";
+const TAGS_API =
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags";
 
-const OUTPUT_PATH = path.join(__dirname, "tourism-travel-trips.html");
+const OUTPUT_PATH = path.join(__dirname, "finances.html");
 
 const gaScript = `
 <!-- Google tag (gtag.js) -->
@@ -21,6 +23,9 @@ const gaScript = `
 
 (async () => {
   try {
+    const tagRes = await fetch(TAGS_API);
+    const { data: tagData } = await tagRes.json();
+
     const res = await fetch(API_URL);
     const { data } = await res.json();
 
@@ -29,14 +34,12 @@ const gaScript = `
       technology: [],
       finance: [],
       automobile: [],
-      travel: [],
     };
 
     const uniqueTagMap = new Map();
 
     for (const article of data) {
       const attr = article.attributes || article;
-
       const hashtags = attr.hashtags || [];
 
       for (const tag of hashtags) {
@@ -46,20 +49,32 @@ const gaScript = `
       }
     }
 
+
     for (const article of data) {
       const attr = article.attributes || article;
       const title = attr.Title || "Untitled";
       const slug = attr.slug || "";
-      const category = attr.category?.toLowerCase(); // fallback to auto if missing
+      const category = attr.category?.toLowerCase(); // fallback to trending if missing
       const cover =
         attr.coverimage?.formats?.small?.url || attr.coverimage?.url || "";
       const coverUrl = cover || "";
+
+      
+
       const publishedRaw = attr.publishedat || attr.publishedAt || attr.createdAt;
       const published = new Date(publishedRaw).toLocaleDateString("en-IN", {
         year: "numeric",
         month: "short",
         day: "numeric",
       }); 
+
+      // const published = new Date(
+      //           article.publishedAt || ""
+      //         ).toLocaleDateString("en-IN", {
+      //           year: "numeric",
+      //           month: "short",
+      //           day: "numeric",
+      //         });
       const summary = (attr.Description_in_detail || "")
         .replace(/[#*_`>]/g, "")
         .replace(/\n/g, " ")
@@ -75,29 +90,25 @@ const gaScript = `
       const html = `
         <div class="article-item">
           <div class="article-text">
-            <a href="tourism-travel-trips/${slug}">${title}</a>
+            <a href="${category}/${slug}">${title}</a>
             <div class="article-description">${summary}</div>
             <div class="article-meta">Published on ${published}</div>
             <div class="article-tags">
-              ${tags }
+              ${tags}
             </div>
           </div>
           ${
             coverUrl
               ? `<img src="${coverUrl}" class="article-thumb" alt="${title}">`
               : ""
-          } 
-       
+          }
         </div>
-        
       `;
 
       if (category.includes("tech")) sections.technology.push(html);
-      else if (category.includes("finance")) sections.finance.push(html);
-      else if (category.includes("automobile"))
+      else if (category.includes("finances")) sections.finance.push(html);
+      else if (category.includes("auto"))
         sections.automobile.push(html); // ✅ Add this
-      else if (category.includes("tourism-travel-trip"))
-        sections.travel.push(html); // ✅ Add this
       else sections.trending.push(html);
     }
 
@@ -126,16 +137,16 @@ const gaScript = `
 
 <!-- Web Manifest (Optional but good for PWA support) -->
 <link rel="manifest" href="favicon_io/site.webmanifest">
+<link rel="stylesheet" href="assets/main.css">
+<link rel="stylesheet" href="assets/listpage.css">
   <meta charset="UTF-8" />
-  <title>Stay updated with the latest travel news, explore expert destination guides, and decode unforgettable trip ideas. RagaDecode brings you curated content on tourism, travel trends, and smart travel tips. </title>
+  <title>Decoded News Articles: Global Headlines, Politics, India News, City News, Economy & Insights | RagaDecode </title>
     ${gaScript}
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content=" — decoded by Raga" />
+  <meta name="description" content="Read decoded takes on trending global news, politics, economy, technology, and society. RagaDecode delivers clear, in-depth articles that cut through the noise." />
 
-  <link rel="canonical" href="https://ragadecode.com/tourism-travel-trips" />
+<link rel="canonical" href="https://ragadecode.com/news-article" />
 
-<link rel="stylesheet" href="/assets/main.css">
-<link rel="stylesheet" href="/assets/listpage.css">
 </head>
 <body>
   <header>
@@ -151,16 +162,19 @@ const gaScript = `
     </nav>
   </header>
 
-  <main>
+ 
+ <main>
       <div class="layout-wrapper">
         <div class="main-content">
           <div class="content-wrapper">
           <section>
-  <h2>Tourism Travel Trips</h2>
-  ${sections.travel.slice(0, 30).join("\n") || "<p>No articles available.</p>"}
+  <h2>Trending News</h2>
   ${
-    sections.travel.length > 30
-      ? `<div style="text-align:right; margin-top:10px;"><a href="/tourism-travel-trips" class="more-link">More &gt;&gt;</a></div>`
+    sections.finance.slice(0, 30).join("\n") || "<p>No articles available.</p>"
+  }
+  ${
+    sections.finance.length > 30
+      ? `<div style="text-align:right; margin-top:10px;"><a href="/#" class="more-link">More &gt;&gt;</a></div>`
       : ""
   }
 </section>
@@ -168,11 +182,11 @@ const gaScript = `
     </div>
     </div>
 
-   <div class="sidebar">
+    <div class="sidebar">
     <div class="tag-section">
       <h3>Tags</h3>
       <div class="tag-box">
-        ${tagBoxHtml}
+       ${tagBoxHtml}
       </div>
 
       <!-- <h3 style="margin-top: 24px;">Sponsored</h3>
@@ -181,8 +195,9 @@ const gaScript = `
     </div>
   </div>
 </main>
- <footer>
-     <p>
+
+  <footer>
+      <p>
             <a href="/static-pages/about-us">About Us</a> |
             <a href="/static-pages/editorial-policy">Editorial Policy </a> | 
             <a href="/static-pages/privacy-policy">Privacy Policy </a> |
@@ -192,6 +207,7 @@ const gaScript = `
         <div class="disclaimer">
     <strong>Transparency Notice:</strong> RagaDecode.com is a digital media publication. We do not sell products or services. If our domain name has ever been misused elsewhere, please report it by<a href="/static-pages/contact-us">contacting us</a>.
   </div>
+
         <p>&copy; 2025 RagaDecode. All rights reserved.</p>
       
 
@@ -201,13 +217,8 @@ const gaScript = `
 `;
 
     await fs.writeFile(OUTPUT_PATH, pageHtml);
-    console.log(
-      `✅ tourism-travel-trips.html generated with ${data.length} articles`
-    );
+    console.log(`✅ finances.html generated with ${data.length} articles`);
   } catch (err) {
-    console.error(
-      "❌ Failed to generate tourism-travel-trips page:",
-      err.message
-    );
+    console.error("❌ Failed to generate finance articles:", err.message);
   }
 })();

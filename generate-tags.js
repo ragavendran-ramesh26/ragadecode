@@ -51,7 +51,7 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
       <a href="/">Home</a>
       <a href="/news-article">Trending News</a>
       <a href="/technologies">Technology</a>
-      <a href="#finance">Finance</a>
+      <a href="/finances">Finance</a>
       <a href="/decode-automobile-talks">Automobile</a>
       <a href="/tourism-travel-trips">Travel Trips</a>
     </nav>
@@ -174,6 +174,10 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
 
       if (!articles || articles.length === 0) {
         articles = tagData.technologytags;
+      }
+
+      if (!articles || articles.length === 0) {
+        articles = tagData.finances;
       }
  
 

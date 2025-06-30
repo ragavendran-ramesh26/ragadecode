@@ -48,6 +48,12 @@ const ENDPOINTS = [
     api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?pagination[pageSize]=50",
     path: "technologies",
     priority: PRIORITY.ARTICLES
+  },
+  {
+    name: "finances",
+    api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/finances?pagination[pageSize]=50",
+    path: "technologies",
+    priority: PRIORITY.ARTICLES
   }
 ];
 

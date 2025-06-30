@@ -4,7 +4,7 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const API_URL =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=publishedat:desc";
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true";
 const TAGS_API =
   "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags";
 
@@ -156,7 +156,7 @@ const gaScript = `
       <a href="/">Home</a>
       <a href="/news-article">Trending News</a>
       <a href="/technologies">Technology</a>
-      <a href="#finance">Finance</a>
+      <a href="/finances">Finance</a>
       <a href="/decode-automobile-talks">Automobile</a>
       <a href="/tourism-travel-trips">Travel Trips</a>
     </nav>

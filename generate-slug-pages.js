@@ -29,55 +29,163 @@ const API_CONFIGS = [
   },
   {
     name: 'automobiles',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate[coverimage][populate]=*',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[author][populate][profile_image]=true&populate[coverimage]=true',
     outputDir: './automobile',
     slugPrefix: 'automobile',
   },
   {
     name: 'technology',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true',
     outputDir: './technologies',
     slugPrefix: 'technologies',
   },
   {
     name: 'travels',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true',
     outputDir: './tourism-travel-trips',
     slugPrefix: 'tourism-travel-trips',
+  },
+  {
+    name: 'finances',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/finances?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true',
+    outputDir: './finances',
+    slugPrefix: 'finances',
   }
 ];
 
 
-function buildLDJson({ title, coverImageUrl, publishedRaw, lastModifiedUTC, authorName, authorSlug, slugPrefix, slug, description }) {
-  const publishedISO = new Date(publishedRaw).toISOString();
 
-  return `<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "NewsArticle",
-  "headline": ${JSON.stringify(title)},
-  "image": [${JSON.stringify(coverImageUrl)}],
-  "datePublished": "${publishedISO}",
-  "dateModified": "${lastModifiedUTC}",
-  "author": {
-    "@type": "Person",
-    "name": ${JSON.stringify(authorName)},
-    "url": "https://ragadecode.com/authors/${authorSlug}"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "RagaDecode",
-    "logo": {
+
+
+function buildLDJson({ 
+  title, 
+  coverImageUrl, 
+  publishedRaw, 
+  lastModifiedUTC, 
+  authorName, 
+  authorSlug, 
+  slugPrefix, 
+  slug, 
+  description,
+  category,
+  keywords,
+  schema_details
+}) {
+  const publishedISO = new Date(publishedRaw).toISOString();
+  
+  // Base schema common to all types
+  const baseSchema = {
+    "@context": "https://schema.org",
+    "headline": title,
+    "description": description,
+    "datePublished": publishedISO,
+    "dateModified": lastModifiedUTC,
+    "author": {
+      "@type": "Person",
+      "name": authorName,
+      "url": `${BASE_URL}/authors/${authorSlug}`
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "RagaDecode",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${BASE_URL}/ragadecode_logo.png`
+      }
+    },
+    "image": {
       "@type": "ImageObject",
-      "url": "https://ragadecode.com/ragadecode_logo.png"
+      "url": coverImageUrl,
+      "width": "1200",
+      "height": "630"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}/${slugPrefix}/${slug}`
     }
-  },
-  "description": ${JSON.stringify(description)},
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://ragadecode.com/${slugPrefix}/${slug}"
+  };
+
+  // Category-specific overrides
+  let categorySchema;
+  switch(category) {
+    case 'news-article':
+      categorySchema = {
+        "@type": "NewsArticle",
+        "keywords": keywords || ["news", "trending"],
+      };
+      break;
+      
+    case 'technologies':
+      categorySchema = {
+        "@type": "TechArticle",
+        "keywords": keywords,
+        "proficiencyLevel": "Beginner"
+      };
+      break;
+      
+    case 'tourism-travel-trips':
+      categorySchema = {
+        "@type": "TravelGuide",
+        "keywords": keywords,
+        "location": {
+          "@type": "Place",
+          "name": schema_details // You might want to extract this from content
+        }
+      };
+      break;
+      
+    case 'finances':
+      categorySchema = {
+        "@type": "Article",
+        "keywords": keywords,
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "xPath": ["/html/head/title", "/html/head/meta[@name='description']/@content"]
+        }
+      };
+      break;
+      
+    case 'automobile':
+      // Check content type from title/description
+      const isNews = title.includes('Launch') || description.includes('announced') || description.includes('Unveiled');
+      const isComparison = title.includes('vs') || title.includes('comparison');
+      
+      if (isNews) {
+        categorySchema = {
+          "@type": "NewsArticle",
+          "keywords": keywords
+        };
+      } 
+      else if (isComparison) {
+        categorySchema = {
+          "@type": "Article",
+          "keywords": keywords,
+          "about": {
+            "@type": "Product",
+            "name": schema_details
+          }
+        };
+      }
+      else {
+        // Default for general articles
+        categorySchema = {
+          "@type": "Article",
+          "keywords": keywords
+        };
+      }
+      break;
+      
+    default:
+      categorySchema = {
+        "@type": "Article"
+      };
   }
-}
+
+  // Merge base schema with category-specific schema
+  const finalSchema = {...baseSchema, ...categorySchema};
+  
+  return `<script type="application/ld+json">
+${JSON.stringify(finalSchema, null, 2)}
 </script>`;
 }
 
@@ -128,8 +236,14 @@ function buildRelatedArticlesHtml(attrs) {
         const slug = attrs.slug;
         const documentId = attrs.documentId || article.id;
         const description = attrs.short_description || title;
+        const category = attrs.category || '';
 
-        
+        const keywords = attrs.Tags 
+        ? attrs.Tags.split(',').map(tag => tag.trim()) 
+        : [];
+
+        const schema_details = attrs.schema || '';
+ 
 
 
         const markdown = attrs.Description_in_detail || '*No content available*';
@@ -235,17 +349,21 @@ function buildRelatedArticlesHtml(attrs) {
           </div>`
         : '';
 
+        console.log(attrs.author.name)
 
         const ldJsonScript = buildLDJson({
           title,
           coverImageUrl,
           publishedRaw,
           lastModifiedUTC,
-          authorName: attrs.author?.name || 'RagaDecode',
+          authorName: attrs.author?.name || 'Ragavendran Ramesh',
           authorSlug: attrs.author?.slug || 'ragavendran-ramesh',
           slugPrefix: config.slugPrefix,
           slug,
-          description
+          description,
+          category,
+          keywords,
+          schema_details
         });
         
         const pageHTML = template
