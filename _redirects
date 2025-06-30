@@ -1,7 +1,10 @@
-# Redirect all .html pages (any depth) to clean versions
-/(.*).html  /:splat  301!
+# Redirect visible .html URLs to clean URLs
+/static-pages/(.*).html    /static-pages/:splat   301!
+/news_article/(.*).html   /news_article/:splat  301!
+/technologies/(.*).html      /technologies/:splat     301!
 
-# Force all www + http traffic to HTTPS non-www
-http://www.ragadecode.com/*   https://ragadecode.com/:splat  301!
-http://ragadecode.com/*       https://ragadecode.com/:splat  301!
-https://www.ragadecode.com/*  https://ragadecode.com/:splat  301!
+# Rewrite clean URLs to real .html files (so the browser loads the file)
+# This makes `/static-pages/about-us` load `/static-pages/about-us.html`
+/static-pages/:slug        /static-pages/:slug.html      200
+/news_article/:slug       /news_article/:slug.html     200
+/technologies/:slug          /technologies/:slug.html        200
