@@ -53,7 +53,7 @@ const gaScript = `
       const html = `
         <div class="article-item">
           <div class="article-text">
-            <a href="automobile/${slug}.html">${title}</a>
+            <a href="automobile/${slug}">${title}</a>
             <div class="article-description">${summary}</div>
             <div class="article-meta">Published on ${published}</div>
           </div>
@@ -127,7 +127,7 @@ const gaScript = `
   }
   ${
     sections.automobile.length > 30
-      ? `<div style="text-align:right; margin-top:10px;"><a href="/decode-automobile-talks.html" class="more-link">More &gt;&gt;</a></div>`
+      ? `<div style="text-align:right; margin-top:10px;"><a href="/decode-automobile-talks" class="more-link">More &gt;&gt;</a></div>`
       : ""
   }
 </section>
@@ -164,7 +164,7 @@ const gaScript = `
 
     await fs.writeFile(OUTPUT_PATH, pageHtml);
     console.log(
-      `✅ decode-automobile-talks.html generated with ${data.length} articles`
+      `✅ decode-automobile-talks generated with ${data.length} articles`
     );
   } catch (err) {
     console.error("❌ Failed to generate automobile page:", err.message);

@@ -4,9 +4,11 @@ const glob = require("glob");
 const { JSDOM } = require("jsdom");
 
 const errors = [];
+const warnings = [];
 
+// Match all HTML files except node_modules, dist, etc.
 const htmlFiles = glob.sync("**/*.html", {
-  ignore: ["node_modules/**", "dist/**"], // adjust as needed
+  ignore: ["node_modules/**", "dist/**"],
 });
 
 htmlFiles.forEach((file) => {
@@ -26,12 +28,31 @@ htmlFiles.forEach((file) => {
   if (missing.length > 0) {
     errors.push(`❌ ${file} is missing: ${missing.join(", ")}`);
   }
+
+  // Check for <a href="*.html">
+  const anchors = Array.from(document.querySelectorAll("a[href$='.html']"));
+  if (anchors.length > 0) {
+    anchors.forEach((a) => {
+      warnings.push(`⚠️ ${file} contains .html link: ${a.outerHTML}`);
+    });
+  }
 });
 
 if (errors.length > 0) {
-  console.error("Metadata checks failed:");
+  console.error("❌ Metadata checks failed:");
   errors.forEach((e) => console.error(e));
-  process.exit(1); // 🔴 fail
+}
+
+if (warnings.length > 0) {
+  console.warn("\n⚠️ .html href warnings:");
+  warnings.forEach((w) => console.warn(w));
+}
+
+if (errors.length > 0) {
+  process.exit(1); // Hard fail on missing metadata
 } else {
   console.log("✅ All pages have valid title, meta description, and canonical URL.");
+  if (warnings.length === 0) {
+    console.log("✅ No <a href> tags contain .html links.");
+  }
 }
