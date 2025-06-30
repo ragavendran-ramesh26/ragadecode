@@ -6,6 +6,7 @@ require('dotenv').config({ path: dotenvPath });
 
 const path = require('path');
 const marked = require('marked');
+const crypto = require('crypto');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 
@@ -15,12 +16,13 @@ const BASE_URL = `https://${BASE_DOMAIN}`;
 
 const BASE_IMAGE_URL = ''; // Set to CDN base if needed
 const TEMPLATE_PATH = './template.html';
+const CACHE_FILE = './.article_cache.json';
 
 // ✅ List of APIs to process
 const API_CONFIGS = [
   {
     name: 'news-articles',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&populate[author][populate][profile_image]=true&populate[coverimage]=true&sort[1]=id:desc',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true',
 
     outputDir: './news-article',
     slugPrefix: 'news-article',
@@ -108,6 +110,11 @@ function buildRelatedArticlesHtml(attrs) {
 </script>
 `;
 
+    let cache = {};
+    if (await fs.pathExists(CACHE_FILE)) {
+      cache = await fs.readJson(CACHE_FILE);
+    }
+
     for (const config of API_CONFIGS) {
       console.log(`🔄 Fetching articles for ${config.name}...`);
       const res = await fetch(config.apiUrl);
@@ -121,6 +128,10 @@ function buildRelatedArticlesHtml(attrs) {
         const slug = attrs.slug;
         const documentId = attrs.documentId || article.id;
         const description = attrs.short_description || title;
+
+        
+
+
         const markdown = attrs.Description_in_detail || '*No content available*';
         // const tags = attrs.Tags || '';
 
@@ -140,6 +151,13 @@ function buildRelatedArticlesHtml(attrs) {
         // For meta tags (UTC format)
         const lastModifiedUTC = lastModifiedDate.toISOString(); // Full UTC timestamp
         const publishedUTC = publisedISO.toISOString(); // Full UTC timestamp
+
+         // Check cache
+        const cacheKey = `${config.name}-${documentId}`;
+        if (cache[cacheKey] === attrs.updatedAt) {
+          console.log(`⏩ Skipping unchanged: ${slug}`);
+          continue;
+        }
 
 
         let authorBlock = '';
@@ -252,16 +270,18 @@ function buildRelatedArticlesHtml(attrs) {
           .replace(/{{BASE_DOMAIN}}/g, BASE_URL)
           .replace(/{{GA_SCRIPT}}/g, analyticsScript)
           .replace(/{{RELATED_ARTICLES_SECTION}}/g, relatedArticlesSection);
-      
-          // .replace(/{{RELATED_ARTICLES_HTML}}/g, relatedArticlesHtml);
+       
+        
 
-        const outputPath = path.join(config.outputDir, `${slug}.html`);
+        const outputPath = path.join(config.outputDir, `${slug}.html`); 
         await fs.writeFile(outputPath, pageHTML);
-        console.log(`✅ Generated: ${config.outputDir}/${slug}.html`);
+        console.log(`✅ Generated: ${outputPath}`);
+        cache[cacheKey] = attrs.updatedAt;
       }
 
-      console.log(`🎉 All pages generated for ${config.name}`);
+      console.log(`🎉 All pages processed for ${config.name}`);
     }
+      await fs.writeJson(CACHE_FILE, cache, { spaces: 2 });
   } catch (err) {
     console.error('❌ Generation failed:', err);
   }
