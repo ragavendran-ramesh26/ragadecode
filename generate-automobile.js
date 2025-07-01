@@ -92,6 +92,8 @@ const gaScript = `
   <meta charset="UTF-8" />
   <title>Automobile Talks Decoded: Car News, EV Trends, Auto Reviews & Insights | RagaDecode </title>
     ${gaScript}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036"
+     crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Decode the world of automobiles with expert articles on car launches, EV trends, automotive tech, and in-depth reviews. Stay ahead with RagaDecode’s decoded auto insights." />
 <link rel="stylesheet" href="assets/main.css">

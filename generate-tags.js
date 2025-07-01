@@ -37,6 +37,8 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
   <meta charset="UTF-8" />
 <title>${tagTitle} Articles: Decoded News & Insights | RagaDecode</title>
    ${gaScript}
+   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036"
+     crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Explore decoded articles about ${tagTitle}, including news, insights, and stories curated by RagaDecode." />
 

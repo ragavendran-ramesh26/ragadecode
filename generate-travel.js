@@ -129,6 +129,8 @@ const gaScript = `
   <meta charset="UTF-8" />
   <title>Stay updated with the latest travel news, explore expert destination guides, and decode unforgettable trip ideas. RagaDecode brings you curated content on tourism, travel trends, and smart travel tips. </title>
     ${gaScript}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036"
+     crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content=" — decoded by Raga" />
 

@@ -272,6 +272,8 @@ function splitCities(cities) {
   <meta charset="UTF-8" />
   <title>RagaDecode | Trending News, Technology Updates, Financial Insights & Automobile Reports</title>
     ${gaScript}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036"
+     crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Stay ahead with RagaDecode — your trusted source for decoded trending news, expert technology insights, financial analysis, and the latest automobile updates. Explore editorial-grade articles that break down complex topics into sharp, readable insights." />
 <link rel="canonical" href="https://ragadecode.com/" />

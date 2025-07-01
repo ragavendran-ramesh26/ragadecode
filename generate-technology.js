@@ -138,6 +138,8 @@ const gaScript = `
   <meta charset="UTF-8" />
   <title>Decoded Technologies: Latest Tech News, Innovations, Gadgets & AI Trends | RagaDecode</title>
     ${gaScript}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036"
+     crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Explore the latest in technology—from AI and gadgets to software trends and innovations. RagaDecode breaks down complex tech news into clear, insightful articles." />
 
