@@ -75,13 +75,17 @@ const gaScript = `
       //           month: "short",
       //           day: "numeric",
       //         });
-      const summary = (attr.Description_in_detail || "")
-        .replace(/[#*_`>]/g, "")
-        .replace(/\n/g, " ")
-        .trim()
-        .slice(0, 280); // conservative limit (not cutting mid-word)
+      const rawSummary = (attr.Description_in_detail || "")
+  .replace(/[#*_`>]/g, "")
+  .replace(/\n/g, " ")
+  .trim();
+
+const summary = rawSummary.length > 180
+  ? rawSummary.slice(0, rawSummary.slice(0, 180).lastIndexOf(" ")) + "..."
+  : rawSummary;
 
       const tags = (attr.hashtags || [])
+        .slice(0, 2)  // ✅ Limit to 2 tags max
         .map((tag) => tag.name || "")
         .filter(Boolean)
         .map((name) => `<a href="/tags/${name.toLowerCase().replace(/\s+/g, "-")}">#${name}</a>`)
@@ -139,6 +143,7 @@ const gaScript = `
 <link rel="manifest" href="favicon_io/site.webmanifest">
 <link rel="stylesheet" href="assets/main.css">
 <link rel="stylesheet" href="assets/listpage.css">
+<link rel="stylesheet" href="assets/newslist.css">
   <meta charset="UTF-8" />
   <title>Decoded News Articles: Global Headlines, Politics, India News, City News, Economy & Insights | RagaDecode </title>
     ${gaScript}
@@ -148,6 +153,11 @@ const gaScript = `
 <link rel="canonical" href="https://ragadecode.com/news-article" />
 
 </head>
+<style>
+
+
+</style>
+
 <body>
   <header>
     <h1>Raga Decode</h1>
@@ -167,17 +177,49 @@ const gaScript = `
       <div class="layout-wrapper">
         <div class="main-content">
           <div class="content-wrapper">
-          <section>
+<section>
   <h2>Trending News</h2>
+  <div class="two-column fixed-height-grid">
+    <div class="column">
+      ${sections.trending.slice(0, 10).join("\n")}
+    </div>
+    <div class="column">
+      ${sections.trending.slice(10, 20).join("\n")}
+    </div>
+  </div>
+
   ${
-    sections.trending.slice(0, 30).join("\n") || "<p>No articles available.</p>"
-  }
-  ${
-    sections.trending.length > 30
-      ? `<div style="text-align:right; margin-top:10px;"><a href="/#" class="more-link">More &gt;&gt;</a></div>`
+    sections.trending.length > 20
+      ? `
+      <div class="compact-list">
+        ${sections.trending.slice(30).map(html => {
+          // Extract title, slug, image, date from the original HTML string
+          const titleMatch = html.match(/<a href="[^"]+">(.+?)<\/a>/);
+          const urlMatch = html.match(/<a href="([^"]+)">/);
+          const imgMatch = html.match(/<img src="([^"]+)"[^>]*>/);
+          const dateMatch = html.match(/Published on ([^<]+)/);
+
+          const title = titleMatch ? titleMatch[1] : "Untitled";
+          const link = urlMatch ? urlMatch[1] : "#";
+          const image = imgMatch ? imgMatch[1] : "";
+          const date = dateMatch ? dateMatch[1] : "";
+
+          return `
+            <div class="compact-item">
+              ${image ? `<img src="${image}" class="compact-thumb" alt="${title}"/>` : ""}
+              <div class="compact-text">
+                <a href="${link}">${title}</a>
+                <div class="compact-date">Published on ${date}</div>
+              </div>
+            </div>
+          `;
+        }).join("\n")}
+      </div>
+      `
       : ""
   }
 </section>
+
  
     </div>
     </div>
