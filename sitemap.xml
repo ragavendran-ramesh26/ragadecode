@@ -3,27 +3,37 @@
   <url>
     <loc>https://ragadecode.com/</loc>
     <priority>1</priority>
-    <lastmod>2025-06-30</lastmod>
+    <lastmod>2025-07-01</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/decode-automobile-talks</loc>
     <priority>0.8</priority>
-    <lastmod>2025-06-30</lastmod>
+    <lastmod>2025-07-01</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/news-article</loc>
     <priority>0.8</priority>
-    <lastmod>2025-06-30</lastmod>
+    <lastmod>2025-07-01</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/technologies</loc>
     <priority>0.8</priority>
-    <lastmod>2025-06-30</lastmod>
+    <lastmod>2025-07-01</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/tourism-travel-trips</loc>
     <priority>0.8</priority>
+    <lastmod>2025-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/news-article/air-india-flight-315-returns-to-hong-kong-after-fuel-filter-warning</loc>
+    <lastmod>2025-07-01</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/news-article/cbse-class-10-board-exams-to-be-held-twice-a-year-from-2026</loc>
     <lastmod>2025-06-30</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/news-article/air-india-171-tragedy-what-really-happened-a-captain-s-expert-breakdown</loc>
@@ -141,11 +151,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ragadecode.com/news-article/cbse-class-10-board-exams-to-be-held-twice-a-year-from-2026</loc>
-    <lastmod>2025-06-30</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://ragadecode.com/news-article/uk-f-35-b-jet-stranded-in-thiruvananthapuram-british-engineers-begin-urgent-repairs</loc>
     <lastmod>2025-06-30</lastmod>
     <priority>0.7</priority>
@@ -221,11 +226,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ragadecode.com/automobile/maruti-suzuki-e-vx-unveiled-india-s-electric-future-rolls-out-at-bharat-mobility-expo</loc>
-    <lastmod>2025-06-30</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://ragadecode.com/automobile/suzuki-e-access-india-s-next-big-family-ev-from-a-trusted-giant</loc>
     <lastmod>2025-06-30</lastmod>
     <priority>0.7</priority>
@@ -236,7 +236,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ragadecode.com/automobile/maruti-suzuki-e-vx-unveiled-india-s-electric-future-rolls-out-at-bharat-mobility-expo</loc>
+    <lastmod>2025-06-30</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ragadecode.com/tourism-travel-trips/gavi-kerala-ksrtc-forest-bus-timings-entry-pass-booking-wildlife-safari-budget-forest-stays</loc>
+    <lastmod>2025-06-30</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/tourism-travel-trips/elephant-tusk-smuggling-foiled-near-valparai-five-arrested-including-forest-staff</loc>
     <lastmod>2025-06-30</lastmod>
     <priority>0.7</priority>
   </url>
@@ -261,7 +271,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ragadecode.com/tourism-travel-trips/elephant-tusk-smuggling-foiled-near-valparai-five-arrested-including-forest-staff</loc>
+    <loc>https://ragadecode.com/technologies/6g-the-next-leap-in-global-connectivity-and-innovation</loc>
     <lastmod>2025-06-30</lastmod>
     <priority>0.7</priority>
   </url>
@@ -272,11 +282,6 @@
   </url>
   <url>
     <loc>https://ragadecode.com/technologies/internet-s-largest-password-leak-16-billion-credentials-exposed</loc>
-    <lastmod>2025-06-30</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/technologies/6g-the-next-leap-in-global-connectivity-and-innovation</loc>
     <lastmod>2025-06-30</lastmod>
     <priority>0.7</priority>
   </url>
@@ -481,6 +486,11 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://ragadecode.com/tags/airindia</loc>
+    <lastmod>2025-07-01</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://ragadecode.com/static-pages/about-us</loc>
     <lastmod>2025-06-30</lastmod>
     <priority>0.2</priority>
@@ -559,5 +569,10 @@
     <loc>https://ragadecode.com/locations/russia</loc>
     <priority>0.5</priority>
     <lastmod>2025-06-29</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/locations/hong-kong</loc>
+    <priority>0.5</priority>
+    <lastmod>2025-07-01</lastmod>
   </url>
 </urlset>
