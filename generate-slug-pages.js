@@ -347,9 +347,7 @@ function buildRelatedArticlesHtml(attrs) {
                 </ul>
               </div>
           </div>`
-        : '';
-
-        console.log(attrs.author.name)
+        : ''; 
 
         const ldJsonScript = buildLDJson({
           title,

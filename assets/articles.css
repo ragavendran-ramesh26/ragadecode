@@ -96,7 +96,7 @@
 
 /* Images from CMS */
 .content-body img {
-    max-width: 100%;
+    max-width: 30%;
     height: auto;
     display: block;
     margin: 1.5rem auto;
