@@ -144,6 +144,7 @@ const gaScript = `
     ${gaScript}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036"
      crossorigin="anonymous"></script>
+     
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Read decoded takes on trending global news, politics, economy, technology, and society. RagaDecode delivers clear, in-depth articles that cut through the noise." />
 

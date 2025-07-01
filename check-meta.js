@@ -6,6 +6,9 @@ const { JSDOM } = require("jsdom");
 const errors = [];
 const warnings = [];
 
+const ADSENSE_SCRIPT_SRC = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036";
+
+
 // Match all HTML files except node_modules, dist, etc.
 const htmlFiles = glob.sync("**/*.html", {
   ignore: ["node_modules/**", "dist/**"],
@@ -49,7 +52,20 @@ htmlFiles.forEach((file) => {
       warnings.push(`⚠️ ${file} contains .html link: ${a.outerHTML}`);
     });
   }
+
+
+   // ✅ AdSense script check
+  const adsScriptFound = Array.from(document.querySelectorAll("script"))
+    .some(script => script.src.includes(ADSENSE_SCRIPT_SRC));
+
+  if (!adsScriptFound) {
+    warnings.push(`⚠️ ${file} is missing the AdSense script.`);
+  }
+
+
 });
+
+
 
 if (errors.length > 0) {
   console.error("❌ Metadata checks failed:");
