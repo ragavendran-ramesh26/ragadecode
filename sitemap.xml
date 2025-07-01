@@ -26,6 +26,11 @@
     <lastmod>2025-07-01</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/news-article/indian-railways-fare-hike-from-july-1-what-you-need-to-know</loc>
+    <lastmod>2025-07-01</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ragadecode.com/news-article/telangana-chemical-factory-blast-leaves-15-dead-dozens-injured-in-in-sangareddy-industrial-disaster</loc>
     <lastmod>2025-07-01</lastmod>
     <priority>0.7</priority>
@@ -497,6 +502,11 @@
   </url>
   <url>
     <loc>https://ragadecode.com/tags/factory-blast</loc>
+    <lastmod>2025-07-01</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/tags/irctc</loc>
     <lastmod>2025-07-01</lastmod>
     <priority>0.3</priority>
   </url>
