@@ -26,6 +26,11 @@
     <lastmod>2025-07-01</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/news-article/telangana-chemical-factory-blast-leaves-15-dead-dozens-injured-in-in-sangareddy-industrial-disaster</loc>
+    <lastmod>2025-07-01</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ragadecode.com/news-article/air-india-flight-315-returns-to-hong-kong-after-fuel-filter-warning</loc>
     <lastmod>2025-07-01</lastmod>
     <priority>0.7</priority>
@@ -487,6 +492,11 @@
   </url>
   <url>
     <loc>https://ragadecode.com/tags/airindia</loc>
+    <lastmod>2025-07-01</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/tags/factory-blast</loc>
     <lastmod>2025-07-01</lastmod>
     <priority>0.3</priority>
   </url>
