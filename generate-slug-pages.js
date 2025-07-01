@@ -125,7 +125,7 @@ function buildLDJson({
       
     case 'tourism-travel-trips':
       categorySchema = {
-        "@type": "TravelGuide",
+        "@type": "Article",
         "keywords": keywords,
         "location": {
           "@type": "Place",
