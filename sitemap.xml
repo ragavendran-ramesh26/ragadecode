@@ -326,6 +326,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ragadecode.com/technologies/google-io-2024-sundar-pichai-on-ai-search-and-the-future</loc>
+    <lastmod>2025-07-02</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ragadecode.com/technologies/internet-s-largest-password-leak-16-billion-credentials-exposed</loc>
     <lastmod>2025-06-30</lastmod>
     <priority>0.7</priority>
@@ -592,6 +597,11 @@
   </url>
   <url>
     <loc>https://ragadecode.com/tags/mpv</loc>
+    <lastmod>2025-07-02</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/tags/google</loc>
     <lastmod>2025-07-02</lastmod>
     <priority>0.3</priority>
   </url>
