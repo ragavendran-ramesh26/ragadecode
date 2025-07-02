@@ -144,7 +144,12 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
 
 (async () => {
   try {
-    const allTagsRes = await fetch(`${TAGS_API}?pagination[page]=1&pagination[pageSize]=1000&populate=*`);
+    const allTagsRes = await fetch(`${TAGS_API}?sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate=*`);
+
+    
+
+
+
     const allTagsJson = await allTagsRes.json();
     const allTags = allTagsJson.data;
 
@@ -159,6 +164,7 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
 
+    
         
       const tagDetailRes = await fetch(`${TAGS_API}/${tagId}?populate=*`);
       const tagDetailJson = await tagDetailRes.json();
