@@ -3,27 +3,32 @@
   <url>
     <loc>https://ragadecode.com/</loc>
     <priority>1</priority>
-    <lastmod>2025-07-01</lastmod>
+    <lastmod>2025-07-02</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/decode-automobile-talks</loc>
     <priority>0.8</priority>
-    <lastmod>2025-07-01</lastmod>
+    <lastmod>2025-07-02</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/news-article</loc>
     <priority>0.8</priority>
-    <lastmod>2025-07-01</lastmod>
+    <lastmod>2025-07-02</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/technologies</loc>
     <priority>0.8</priority>
-    <lastmod>2025-07-01</lastmod>
+    <lastmod>2025-07-02</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/tourism-travel-trips</loc>
     <priority>0.8</priority>
-    <lastmod>2025-07-01</lastmod>
+    <lastmod>2025-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/news-article/sivaganga-custodial-death-five-policemen-arrested-case-transferred-to-cb-cid</loc>
+    <lastmod>2025-07-02</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/news-article/shocking-lock-up-death-in-tamil-nadu-ajith-kumar-allegedly-killed-in-police-custody</loc>
@@ -586,18 +591,18 @@
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://ragadecode.com/static-pages/editorial-policy</loc>
+    <loc>https://ragadecode.com/static-pages/terms-and-conditions</loc>
     <lastmod>2025-06-30</lastmod>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/static-pages/editorial-policy</loc>
+    <lastmod>2025-07-01</lastmod>
     <priority>0.2</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/static-pages/privacy-policy</loc>
-    <lastmod>2025-06-30</lastmod>
-    <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/static-pages/terms-and-conditions</loc>
-    <lastmod>2025-06-30</lastmod>
+    <lastmod>2025-07-01</lastmod>
     <priority>0.2</priority>
   </url>
   <url>
