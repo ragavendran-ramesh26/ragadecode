@@ -31,6 +31,7 @@ const gaScript = `
       automobile: [],
     };
 
+    const uniqueTagMap = new Map();
     for (const article of data) {
       const attr = article.attributes || article;
       const title = attr.Title || "Untitled";
@@ -49,6 +50,14 @@ const gaScript = `
         .replace(/\n/g, " ")
         .trim()
         .slice(0, 280); // conservative limit (not cutting mid-word)
+
+      const hashtags = attr.hashtags || [];
+
+      for (const tag of hashtags) {
+          if (tag && tag.name && !uniqueTagMap.has(tag.name)) {
+            uniqueTagMap.set(tag.name, tag);
+          }
+        }
 
       const html = `
         <div class="article-item">
@@ -71,6 +80,15 @@ const gaScript = `
         sections.automobile.push(html); // ✅ Add this
       else sections.trending.push(html);
     }
+
+   
+    const tagBoxHtml = Array.from(uniqueTagMap.values())
+  .map((tag) => {
+    const name = tag.name || "";
+    const slug = name.toLowerCase().replace(/\s+/g, "-");
+    return `<span><a href="/tags/${slug}">#${name}</a></span>`;
+  })
+  .join("\n");
 
     const pageHtml = `
 <!DOCTYPE html>
@@ -140,7 +158,7 @@ const gaScript = `
     <div class="tag-section">
       <h3>Tags</h3>
       <div class="tag-box">
-         
+          ${tagBoxHtml}
       </div> 
     
  </div>

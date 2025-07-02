@@ -22,14 +22,14 @@ const CACHE_FILE = './.article_cache.json';
 const API_CONFIGS = [
   {
     name: 'news-articles',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[similar_articles]=true&populate[news_articles]=true',
 
     outputDir: './news-article',
     slugPrefix: 'news-article',
   },
   {
     name: 'automobiles',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[author][populate][profile_image]=true&populate[coverimage]=true',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[hashtags]=true',
     outputDir: './automobile',
     slugPrefix: 'automobile',
   },
