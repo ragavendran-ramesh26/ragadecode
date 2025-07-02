@@ -318,11 +318,7 @@ ${regionHtml}
    ${homepageSectionHtml} 
     </div>
     </div> 
-    <div class="tag-box">
-       ${tagBoxHtml}
-      </div>
-
-      
+     
     </div>
     </div>
 
