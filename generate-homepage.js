@@ -3,43 +3,46 @@ const path = require("path");
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
+const API_URL =
+  "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[coverimage]=true&populate[category]=true";
+
 const API_CONFIGS = [
   {
     name: "Trending News",
     apiUrl:
       "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
 
-    outputDir: "./news-article",
-    slugPrefix: "news-article",
+    // outputDir: "./news-article",
+    // slugPrefix: "news-article",
   },
-  {
-    name: "Automobiles",
-    apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
-    outputDir: "./automobile",
-    slugPrefix: "automobile",
-  },
-  {
-    name: "Technology",
-    apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
-    outputDir: "./technologies",
-    slugPrefix: "technologies",
-  },
-  {
-    name: "Tourism Travel Trips",
-    apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
-    outputDir: "./tourism-travel-trips",
-    slugPrefix: "tourism-travel-trips",
-  },
-  {
-    name: "Finances",
-    apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/finances?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
-    outputDir: "./finances",
-    slugPrefix: "finances",
-  },
+  // {
+  //   name: "Automobiles",
+  //   apiUrl:
+  //     "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
+  //   // outputDir: "./automobile",
+  //   // slugPrefix: "automobile",
+  // },
+  // {
+  //   name: "Technology",
+  //   apiUrl:
+  //     "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
+  //   // outputDir: "./technologies",
+  //   // slugPrefix: "technologies",
+  // },
+  // {
+  //   name: "Tourism Travel Trips",
+  //   apiUrl:
+  //     "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
+  //   // outputDir: "./tourism-travel-trips",
+  //   // slugPrefix: "tourism-travel-trips",
+  // },
+  // {
+  //   name: "Finances",
+  //   apiUrl:
+  //     "https://genuine-compassion-eb21be0109.strapiapp.com/api/finances?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
+  //   // outputDir: "./finances",
+  //   // slugPrefix: "finances",
+  // },
 ];
 const TAGS_API =
   "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags?pagination[page]=1&pagination[pageSize]=100";
@@ -64,11 +67,6 @@ const gaScript = `
 </script>
 `;
 
-
-
-
-
-
 (async () => {
   try {
     const tagRes = await fetch(TAGS_API);
@@ -82,7 +80,6 @@ const gaScript = `
       })
       .join("\n");
 
-
     const countriesRes = await fetch(COUNTRIES_API);
     const statesRes = await fetch(STATES_API);
     const citiesRes = await fetch(CITIES_API);
@@ -92,76 +89,101 @@ const gaScript = `
     const { data: citiesData } = await citiesRes.json();
 
     function splitCountries(countries) {
-  const col1 = countries.slice(0, 6);
-  const col2 = countries.slice(6, 12);
-  const col3 = countries.slice(12, 18);
+      const col1 = countries.slice(0, 6);
+      const col2 = countries.slice(6, 12);
+      const col3 = countries.slice(12, 18);
 
-   
-
-  return `
+      return `
     <div class="sub-columns">
       <ul>
-        ${col1.map(c => `<li><a href="/locations/${c.slug}">${c.title}</a></li>`).join("\n")}
+        ${col1
+          .map((c) => `<li><a href="/locations/${c.slug}">${c.title}</a></li>`)
+          .join("\n")}
       </ul>
       <ul>
-        ${col2.map(c => `<li><a href="/locations/${c.slug}">${c.title}</a></li>`).join("\n")}
+        ${col2
+          .map((c) => `<li><a href="/locations/${c.slug}">${c.title}</a></li>`)
+          .join("\n")}
       </ul>
        <ul>
-        ${col3.map(c => `<li><a href="/locations/${c.slug}">${c.title}</a></li>`).join("\n")}
+        ${col3
+          .map((c) => `<li><a href="/locations/${c.slug}">${c.title}</a></li>`)
+          .join("\n")}
       </ul>
     </div>
   `;
-}
+    }
 
-function splitStates(states) {
-  const col1 = states.slice(0, 6);
-  const col2 = states.slice(6, 12); 
-  const col3 = states.slice(12, 18); 
-  return `
+    function splitStates(states) {
+      const col1 = states.slice(0, 6);
+      const col2 = states.slice(6, 12);
+      const col3 = states.slice(12, 18);
+      return `
     <div class="sub-columns">
       <ul>
-        ${col1.map(s => `<li><a href="/locations/${s.country.slug}/${s.slug}">${s.title}</a></li>`).join("\n")}
+        ${col1
+          .map(
+            (s) =>
+              `<li><a href="/locations/${s.country.slug}/${s.slug}">${s.title}</a></li>`
+          )
+          .join("\n")}
       </ul>
       <ul>
-        ${col2.map(s => `<li><a href="/locations/${s.country.slug}/${s.slug}">${s.title}</a></li>`).join("\n")}
+        ${col2
+          .map(
+            (s) =>
+              `<li><a href="/locations/${s.country.slug}/${s.slug}">${s.title}</a></li>`
+          )
+          .join("\n")}
       </ul>
       <ul>
-        ${col3.map(s => `<li><a href="/locations/${s.country.slug}/${s.slug}">${s.title}</a></li>`).join("\n")}
+        ${col3
+          .map(
+            (s) =>
+              `<li><a href="/locations/${s.country.slug}/${s.slug}">${s.title}</a></li>`
+          )
+          .join("\n")}
       </ul>
     </div>
   `;
-}
+    }
 
-function splitCities(cities) {
-  const col1 = cities.slice(0, 6);
-  const col2 = cities.slice(6, 12);
-  const col3 = cities.slice(12, 18);
-  return `
+    function splitCities(cities) {
+      const col1 = cities.slice(0, 6);
+      const col2 = cities.slice(6, 12);
+      const col3 = cities.slice(12, 18);
+      return `
     <div class="sub-columns">
       <ul>
-        ${col1.map(city => {
-          const countrySlug = city.state?.country?.slug || "unknown";
-          const stateSlug = city.state?.slug || "unknown";
-          return `<li><a href="/locations/${countrySlug}/${stateSlug}/${city.slug}">${city.title}</a></li>`;
-        }).join("\n")}
+        ${col1
+          .map((city) => {
+            const countrySlug = city.state?.country?.slug || "unknown";
+            const stateSlug = city.state?.slug || "unknown";
+            return `<li><a href="/locations/${countrySlug}/${stateSlug}/${city.slug}">${city.title}</a></li>`;
+          })
+          .join("\n")}
       </ul>
       <ul>
-        ${col2.map(city => {
-          const countrySlug = city.state?.country?.slug || "unknown";
-          const stateSlug = city.state?.slug || "unknown";
-          return `<li><a href="/locations/${countrySlug}/${stateSlug}/${city.slug}">${city.title}</a></li>`;
-        }).join("\n")}
+        ${col2
+          .map((city) => {
+            const countrySlug = city.state?.country?.slug || "unknown";
+            const stateSlug = city.state?.slug || "unknown";
+            return `<li><a href="/locations/${countrySlug}/${stateSlug}/${city.slug}">${city.title}</a></li>`;
+          })
+          .join("\n")}
       </ul>
       <ul>
-        ${col3.map(city => {
-          const countrySlug = city.state?.country?.slug || "unknown";
-          const stateSlug = city.state?.slug || "unknown";
-          return `<li><a href="/locations/${countrySlug}/${stateSlug}/${city.slug}">${city.title}</a></li>`;
-        }).join("\n")}
+        ${col3
+          .map((city) => {
+            const countrySlug = city.state?.country?.slug || "unknown";
+            const stateSlug = city.state?.slug || "unknown";
+            return `<li><a href="/locations/${countrySlug}/${stateSlug}/${city.slug}">${city.title}</a></li>`;
+          })
+          .join("\n")}
       </ul>
     </div>
   `;
-}
+    }
 
     const regionHtml = `
       <section class="region-wrapper">
@@ -195,53 +217,63 @@ function splitCities(cities) {
       </section>
           `;
 
-    const categoryBlocks = await Promise.all(
-      API_CONFIGS.map(async (config) => {
-        const res = await fetch(config.apiUrl);
-        const json = await res.json();
-        const articles = json.data || [];
+    const categoryBlocksMap = {};
 
-        const featured = articles[0];
- 
+    const response = await fetch(API_URL);
+    const { data: articles } = await response.json();
 
-        const title = featured?.Title || `Sample Headline for ${config.name}`;
-        const image = featured?.coverimage?.url || "assets/default-image.jpg";
-        const slug = featured?.slug || "#";
+    articles.forEach((article) => {
+      const cat = article?.category?.name || "Uncategorized";
+      const catSlug = article?.category?.slug || "uncategorized";
+      if (!categoryBlocksMap[catSlug]) {
+        categoryBlocksMap[catSlug] = {
+          name: cat,
+          slug: catSlug,
+          articles: [],
+        };
+      }
+      categoryBlocksMap[catSlug].articles.push(article);
+    });
 
-        const items = articles.slice(1, 7).map((a) => {
-          const shortTitle = a?.Title?.slice(0, 70) || "Untitled article";
-          const articleSlug = a?.slug || "#";
-          const slugPrefix = config.slugPrefix;
-          return `<li><a href="/${slugPrefix}/${articleSlug}">${shortTitle}</a></li>`;
-        });
+    const categoryBlocks = Object.values(categoryBlocksMap).map((category) => {
+      const featured = category.articles[0];
+      if (!featured) return ""; // skip empty
 
-        return `
-      <div class="category-block">
-        <div class="section-header">
-          <h2>${config.name}</h2>
-          <a href="/${config.slugPrefix}" class="view-all">View All</a>
-        </div>
-        <div class="section-body">
-          <div class="left-featured">
-            <a href="/${config.slugPrefix}/${slug}">
+      const title = featured.Title;
+      const slug = featured.slug;
+      const image = featured.coverimage?.url || "/assets/default-image.jpg";
+
+      const listItems = category.articles.slice(1, 7).map((a) => {
+        return `<li><a href="/${category.slug}/${a.slug}">${a.Title?.slice(
+          0,
+          70
+        )}</a></li>`;
+      });
+
+      return `
+    <div class="category-block">
+      <div class="section-header">
+        <h2>${category.name}</h2>
+        <a href="/${category.slug}" class="view-all">View All</a>
+      </div>
+      <div class="section-body">
+        <div class="left-featured">
+          <a href="/${category.slug}/${slug}">
             <div class="left-image">
               <img src="${image}" alt="${title}">
-              </div>
-              <div class="left-title">
+            </div>
+            <div class="left-title">
               <h3>${title}</h3>
-              </div>
-            </a>
-          </div>
-          <div class="right-list">
-            <ul>
-              ${items.join("\n")}
-            </ul>
-          </div>
+            </div>
+          </a>
+        </div>
+        <div class="right-list">
+          <ul>${listItems.join("\n")}</ul>
         </div>
       </div>
-    `;
-      })
-    );
+    </div>
+  `;
+    });
 
     const homepageSectionHtml = `
       <section class="homepage-section">

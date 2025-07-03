@@ -54,7 +54,7 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
       <a href="/news-article">Trending News</a>
       <a href="/technologies">Technology</a>
       <a href="/finances">Finance</a>
-      <a href="/decode-automobile-talks">Automobile</a>
+      <a href="/automobile">Automobile</a>
       <a href="/tourism-travel-trips">Travel Trips</a>
     </nav>
   </header>
@@ -69,7 +69,9 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
             .map((article) => {
               const title = article.Title || "Untitled";
               const slug = article.slug || "#";
-              const category = article.category || ""; // Assuming category is a string like "news-article" or "automobile"
+              const category = article?.category?.slug || ""; // Assuming category is a string like "news-article" or "automobile"
+
+              // console.log(article)
 
               const summary = (article.Description_in_detail || "")
                 .replace(/[#*_`>]/g, "")
@@ -144,9 +146,9 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
 
 (async () => {
   try {
-    const allTagsRes = await fetch(`${TAGS_API}?sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate=*`);
+    const allTagsRes = await fetch(`${TAGS_API}?sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[tags][populate]=category`);
 
-    console.log(`${TAGS_API}?sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate=*`)
+    // console.log(`${TAGS_API}?sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[tags][populate]=category`)
 
     
     const allTagsJson = await allTagsRes.json();
@@ -165,7 +167,11 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
 
     
         
-      const tagDetailRes = await fetch(`${TAGS_API}/${tagId}?populate=*`);
+      const tagDetailRes = await fetch(`${TAGS_API}/${tagId}?populate[tags][populate]=category`);
+
+
+      
+
       const tagDetailJson = await tagDetailRes.json();
 
       const tagData = tagDetailJson.data || {};
@@ -186,7 +192,7 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
       if (!articles || articles.length === 0) {
         articles = tagData.finances;
       }
-      
+
       if (!articles || articles.length === 0) {
         articles = tagData.automobiles;
       }

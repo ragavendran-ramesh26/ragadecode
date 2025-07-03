@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "generate": "node generate-homepage.js && node generate-automobile.js && node generate-technology.js && node generate-travel.js && node generate-slug-pages.js && node generate-news-article.js && node generate-tags.js && node generate-finance.js && node generate-locations.js",
+    "generate": "node generate-slug-pages.js && node generate-news-article.js && node generate-homepage.js  && node generate-tags.js && node generate-locations.js",
     "build": "npm run generate",
     "prepare": "husky install",
     "dev": "chokidar '*.js' -c 'npm run generate'"
