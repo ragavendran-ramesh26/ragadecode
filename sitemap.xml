@@ -3,27 +3,32 @@
   <url>
     <loc>https://ragadecode.com/</loc>
     <priority>1</priority>
-    <lastmod>2025-07-02</lastmod>
+    <lastmod>2025-07-03</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/decode-automobile-talks</loc>
     <priority>0.8</priority>
-    <lastmod>2025-07-02</lastmod>
+    <lastmod>2025-07-03</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/news-article</loc>
     <priority>0.8</priority>
-    <lastmod>2025-07-02</lastmod>
+    <lastmod>2025-07-03</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/technologies</loc>
     <priority>0.8</priority>
-    <lastmod>2025-07-02</lastmod>
+    <lastmod>2025-07-03</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/tourism-travel-trips</loc>
     <priority>0.8</priority>
-    <lastmod>2025-07-02</lastmod>
+    <lastmod>2025-07-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/news-article/prof-deivam-latest-interview-to-reporters-about-nikita-s-scam-and-ajith-kumar-custodial-death-case</loc>
+    <lastmod>2025-07-03</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/news-article/shocking-lock-up-death-in-tamil-nadu-ajith-kumar-allegedly-killed-in-police-custody</loc>
@@ -326,11 +331,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ragadecode.com/technologies/google-io-2024-sundar-pichai-on-ai-search-and-the-future</loc>
-    <lastmod>2025-07-02</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://ragadecode.com/technologies/internet-s-largest-password-leak-16-billion-credentials-exposed</loc>
     <lastmod>2025-06-30</lastmod>
     <priority>0.7</priority>
@@ -338,6 +338,11 @@
   <url>
     <loc>https://ragadecode.com/technologies/the-godfather-of-ai-sounds-the-alarm-15-terrifying-dangers-of-artificial-intelligence</loc>
     <lastmod>2025-07-01</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/technologies/google-io-2024-sundar-pichai-on-ai-search-and-the-future</loc>
+    <lastmod>2025-07-02</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
