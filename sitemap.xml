@@ -26,6 +26,11 @@
     <lastmod>2025-07-03</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/news-article/is-flying-still-safe-why-air-incidents-are-shaking-confidence-in-aviation</loc>
+    <lastmod>2025-07-03</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ragadecode.com/news-article/prof-deivam-latest-interview-to-reporters-about-nikita-s-scam-and-ajith-kumar-custodial-death-case</loc>
     <lastmod>2025-07-03</lastmod>
     <priority>0.7</priority>
@@ -611,27 +616,27 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://ragadecode.com/static-pages/contact-us</loc>
+    <lastmod>2025-07-03</lastmod>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/static-pages/privacy-policy</loc>
+    <lastmod>2025-07-03</lastmod>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/static-pages/terms-and-conditions</loc>
+    <lastmod>2025-07-03</lastmod>
+    <priority>0.2</priority>
+  </url>
+  <url>
     <loc>https://ragadecode.com/static-pages/about-us</loc>
     <lastmod>2025-06-30</lastmod>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://ragadecode.com/static-pages/contact-us</loc>
-    <lastmod>2025-06-30</lastmod>
-    <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/static-pages/terms-and-conditions</loc>
-    <lastmod>2025-06-30</lastmod>
-    <priority>0.2</priority>
-  </url>
-  <url>
     <loc>https://ragadecode.com/static-pages/editorial-policy</loc>
-    <lastmod>2025-07-01</lastmod>
-    <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/static-pages/privacy-policy</loc>
     <lastmod>2025-07-01</lastmod>
     <priority>0.2</priority>
   </url>
@@ -694,5 +699,15 @@
     <loc>https://ragadecode.com/locations/hong-kong</loc>
     <priority>0.5</priority>
     <lastmod>2025-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/locations/japan</loc>
+    <priority>0.5</priority>
+    <lastmod>2025-07-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/locations/china</loc>
+    <priority>0.5</priority>
+    <lastmod>2025-07-03</lastmod>
   </url>
 </urlset>
