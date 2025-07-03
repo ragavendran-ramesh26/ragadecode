@@ -146,10 +146,9 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
   try {
     const allTagsRes = await fetch(`${TAGS_API}?sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate=*`);
 
+    console.log(`${TAGS_API}?sort[0]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate=*`)
+
     
-
-
-
     const allTagsJson = await allTagsRes.json();
     const allTags = allTagsJson.data;
 
@@ -186,6 +185,10 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
 
       if (!articles || articles.length === 0) {
         articles = tagData.finances;
+      }
+      
+      if (!articles || articles.length === 0) {
+        articles = tagData.automobiles;
       }
  
 
