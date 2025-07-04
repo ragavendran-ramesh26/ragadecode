@@ -45,6 +45,9 @@ const analyticsScript = `
 
       const bioHtml = marked.parse(bio);
 
+      const headerHtml =  fs.readFileSync(path.join(__dirname, 'partials/header.html'), 'utf-8');
+      const footerHtml = fs.readFileSync(path.join(__dirname, 'partials/footer.html'), 'utf-8');
+
       const finalHtml = template
         .replace(/{{TITLE}}/g, title)
         .replace(/{{facebook}}/g, fb)
@@ -58,6 +61,8 @@ const analyticsScript = `
         .replace(/{{SLUG}}/g, slug)
         .replace(/{{SLUG_PREFIX}}/g, 'authors')
         .replace(/{{NICKNAME}}/g, nickname)
+        .replace(/{{HEADER}}/g, headerHtml)
+        .replace(/{{FOOTER}}/g, footerHtml)
         .replace(/{{COVER_IMAGE_URL}}/g, profileImgUrl);
 
       const outputPath = path.join(OUTPUT_DIR, `${slug}.html`);
