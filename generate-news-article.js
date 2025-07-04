@@ -78,6 +78,10 @@ const gaScript = `
         const articleCategory = attr.category?.data?.attributes?.slug || 
                               (attr.category?.attributes || attr.category)?.slug || 
                               "news-article";
+
+
+        console.log(articleCategory)
+
         const cover = attr.coverimage?.data?.attributes?.formats?.small?.url || 
                      attr.coverimage?.data?.attributes?.url || 
                      (attr.coverimage?.attributes || attr.coverimage)?.url || 
@@ -113,7 +117,7 @@ const gaScript = `
         const html = `
           <div class="article-item">
             <div class="article-text">
-              <a href="${articleCategory}/${slug}">${title}</a>
+              <a href="/${articleCategory}/${slug}">${title}</a>
               <div class="article-description">${summary}</div>
               <div class="article-meta">Published on ${published}</div>
               <div class="article-tags">
@@ -199,6 +203,9 @@ const gaScript = `
                 ? `
                 <div class="compact-list">
                   ${sections[categorySlug].slice(20).map(html => {
+
+                  
+
                     const titleMatch = html.match(/<a href="[^"]+">(.+?)<\/a>/);
                     const urlMatch = html.match(/<a href="([^"]+)">/);
                     const imgMatch = html.match(/<img src="([^"]+)"[^>]*>/);
