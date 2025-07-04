@@ -56,47 +56,88 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
       }
     });
 
-    const renderArticleBlock = (article) => {
+    // const renderArticleBlock = (article) => {
 
 
-      const a = article.attributes || article;
+    //   const a = article.attributes || article;
 
        
-      const title = a.Title || "Untitled";
-      const slug = a.slug || "#";
-      const image = a.coverimage?.formats?.thumbnail?.url || "/assets/default-image.png";
-      const category = a.category?.name;
-      const categorySlug = a.category?.slug;
+    //   const title = a.Title || "Untitled";
+    //   const slug = a.slug || "#";
+    //   const image = a.coverimage?.formats?.thumbnail?.url || "/assets/default-image.png";
+    //   const category = a.category?.name;
+    //   const categorySlug = a.category?.slug;
 
-      const articleUrl = `/${categorySlug}/${slug}`;
+    //   const articleUrl = `/${categorySlug}/${slug}`;
 
-      return `
-        <div class="card">
-          <a href="${articleUrl}">
-            <img src="${image}" alt="${title}" loading="lazy" />
-            <div class="card-content">
-              <h3>${title}</h3>
-            </div>
-          </a>
-        </div>`;
-    };
+    //   return `
+    //     <div class="card">
+    //       <a href="${articleUrl}">
+    //         <img src="${image}" alt="${title}" loading="lazy" />
+    //         <div class="card-content">
+    //           <h3>${title}</h3>
+    //         </div>
+    //       </a>
+    //     </div>`;
+    // };
+
+
+    function renderCompactItem(article) {
+  const a = article.attributes || article;
+  const title = a.Title || "Untitled";
+  const slug = a.slug || "#";
+  const publishedRaw = a.publishedAt || a.publishedat || a.createdAt;
+  const published = new Date(publishedRaw).toLocaleDateString("en-IN", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+  const image = a.coverimage?.data?.attributes?.formats?.thumbnail?.url ||
+                a.coverimage?.formats?.thumbnail?.url ||
+                a.coverimage?.url ||
+                "/assets/default-image.png";
+  const categoryName = a.category?.data?.attributes?.name || a.category?.name || "News";
+  const categorySlug = a.category?.data?.attributes?.slug || a.category?.slug || "news-article";
+  const articleUrl = `/${categorySlug}/${slug}`;
+
+  return `
+    <div class="compact-item">
+  
+      <img src="${image}" class="compact-thumb" alt="${title}" />
+      
+      <div class="compact-text">
+        
+        <a href="${articleUrl}">${title}</a>
+        <div class="compact-date">${categoryName} | Published on ${published}</div>
+       
+        
+      </div>
+    </div>`;
+}
 
     const buildPage = async (slugPath, name, newsArticles = [], travelArticles = []) => {
-      const newsBlockHtml = newsArticles.length > 0
-        ? `<div class="column${travelArticles.length === 0 ? " full-width" : ""}">
-            <h2>Latest News from ${name}</h2>
-            <div class="card-grid ${travelArticles.length === 0 ? "grid-4" : ""}">
-              ${newsArticles.map(renderArticleBlock).join("\n")}
-            </div>
-          </div>` : "";
+     const newsBlockHtml = newsArticles.length > 0
+  ? `<div class="column full-width">
+      <h2>${name}</h2> 
 
-      const travelBlockHtml = travelArticles.length > 0
-        ? `<div class="column">
-            <h2>Travel Guides</h2>
-            <div class="card-grid">
-              ${travelArticles.map(renderArticleBlock).join("\n")}
-            </div>
-          </div>` : "";
+      <div class="two-column-compact">
+     
+        <div class="compact-column">
+          ${newsArticles
+            .filter((_, i) => i % 2 === 0)
+            .map(renderCompactItem)
+            .join("\n")}
+        </div>
+        <div class="compact-column">
+       
+           ${newsArticles
+            .filter((_, i) => i % 2 !== 0)
+            .map(renderCompactItem)
+            .join("\n")}
+        </div>
+      </div>
+    </div>`
+  : "";
 
       const pageHtml = template
         .replace(/{{COUNTRY_NAME}}/g, name)
@@ -105,7 +146,6 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
         .replace(/{{NEWS_BLOCK_SECTION}}/g, newsBlockHtml)
         .replace(/{{GA_SCRIPT}}/g, analyticsScript)
         .replace(/{{BASE_DOMAIN}}/g, BASE_URL)
-        .replace(/{{TRAVEL_BLOCK_SECTION}}/g, travelBlockHtml);
 
       const outputPath = path.join(OUTPUT_DIR, `${slugPath}.html`);
       await fs.ensureDir(path.dirname(outputPath));
