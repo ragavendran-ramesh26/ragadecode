@@ -148,6 +148,25 @@ async function generateSitemap() {
       xml += `  </url>\n`;
     }
 
+    // 5.1 Metal & currency pages
+    console.log("adding metal pages...");
+    const staticPages = [
+      "today-gold-price",
+      "today-silver-price",
+      "today-platinum-price",
+      "today-currency-conversion-rate"
+    ];
+
+    for (const page of staticPages) {
+      xml += `  <url>\n`;
+      xml += `    <loc>${BASE_URL}/${page}</loc>\n`;
+      xml += `    <lastmod>${formatDate()}</lastmod>\n`;
+      xml += `    <priority>${PRIORITY.MAIN_CATEGORIES}</priority>\n`;
+      xml += `  </url>\n`;
+    }
+
+
+
     // 6. Location hierarchy
     console.log("Fetching locations...");
     const locationsRes = await fetch(

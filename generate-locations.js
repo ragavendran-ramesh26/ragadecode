@@ -139,12 +139,17 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
     </div>`
   : "";
 
+      const headerHtml = fs.readFileSync(path.join(__dirname, "partials/header.html"), "utf-8");
+      const footerHtml = fs.readFileSync(path.join(__dirname, "partials/footer.html"), "utf-8");
+
       const pageHtml = template
         .replace(/{{COUNTRY_NAME}}/g, name)
         .replace(/{{COUNTRY_SLUG}}/g, slugPath)
         .replace(/{{CANONICAL_PATH}}/g, `${slugPath}`)
         .replace(/{{NEWS_BLOCK_SECTION}}/g, newsBlockHtml)
         .replace(/{{GA_SCRIPT}}/g, analyticsScript)
+        .replace(/{{HEADER}}/g, headerHtml)
+        .replace(/{{FOOTER}}/g, footerHtml)
         .replace(/{{BASE_DOMAIN}}/g, BASE_URL)
 
       const outputPath = path.join(OUTPUT_DIR, `${slugPath}.html`);

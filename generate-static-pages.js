@@ -100,6 +100,9 @@ function buildRelatedArticlesHtml(attrs) {
               </div>
           </div>`
         : '';
+
+        const headerHtml = fs.readFileSync(path.join(__dirname, "partials/header.html"), "utf-8");
+        const footerHtml = fs.readFileSync(path.join(__dirname, "partials/footer.html"), "utf-8");
         
         const pageHTML = template
           .replace(/{{TITLE}}/g, title)
@@ -112,6 +115,8 @@ function buildRelatedArticlesHtml(attrs) {
           .replace(/{{SLUG_PREFIX}}/g, config.slugPrefix)
           .replace(/{{BASE_DOMAIN}}/g, BASE_URL)
           .replace(/{{GA_SCRIPT}}/g, analyticsScript)
+          .replace(/{{HEADER}}/g, headerHtml)
+          .replace(/{{FOOTER}}/g, footerHtml)
           .replace(/{{RELATED_ARTICLES_SECTION}}/g, relatedArticlesSection);
       
           // .replace(/{{RELATED_ARTICLES_HTML}}/g, relatedArticlesHtml);

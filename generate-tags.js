@@ -18,6 +18,9 @@ const gaScript = `
 </script>
 `;
 
+const headerHtml = fs.readFileSync(path.join(__dirname, "partials/header.html"), "utf-8");
+const footerHtml = fs.readFileSync(path.join(__dirname, "partials/footer.html"), "utf-8");
+
 const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
   const formattedTag = tagName.replace(/[^a-zA-Z0-9\-]/g, "-");
 
@@ -46,18 +49,7 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
 
 </head>
 <body>
-  <header>
-    <h1>Raga Decode</h1>
-    <p>Decoded News. Clear. Bold. Unfiltered.</p>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/news-article">Trending News</a>
-      <a href="/technologies">Technology</a>
-      <a href="/finances">Finance</a>
-      <a href="/automobile">Automobile</a>
-      <a href="/tourism-travel-trips">Travel Trips</a>
-    </nav>
-  </header>
+${headerHtml}
 
    <main>
       <div class="layout-wrapper">
@@ -123,22 +115,7 @@ const buildTagPageHTML = (tagName, tagTitle, articles, allTags) => {
    
   </main>
 
- <footer>
-       <p>
-            <a href="/static-pages/about-us">About Us</a> |
-            <a href="/static-pages/editorial-policy">Editorial Policy </a> | 
-            <a href="/static-pages/privacy-policy">Privacy Policy </a> |
-            <a href="/static-pages/terms-and-conditions">Terms and Conditions </a> |
-            <a href="/static-pages/contact-us">Contact Us </a>
-        </p>
-        <div class="disclaimer">
-    <strong>Transparency Notice:</strong> RagaDecode.com is a digital media publication. We do not sell products or services. If our domain name has ever been misused elsewhere, please report it by<a href="/static-pages/contact-us">contacting us</a>.
-  </div>
-        
-        <p>&copy; 2025 RagaDecode. All rights reserved.</p>
-      
-
-    </footer>
+${footerHtml}
 </body>
 </html>
 `;

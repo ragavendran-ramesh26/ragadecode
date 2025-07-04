@@ -322,6 +322,10 @@ const gaScript = `
       <a href="/decode-automobile-talks">Automobile</a>
       <a href="/tourism-travel-trips">Travel Trips</a>
     </nav>
+    <div class="rate-box">
+      Today Gold Rate (per gm): <span id="gold-rate">Rs.9800</span>
+      Today Silver Rate (per gm): <span id="gold-rate">Rs.101</span>
+    </div>
   </header>
 
  

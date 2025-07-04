@@ -1,0 +1,128 @@
+.page-description {
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+    color: #444;
+    line-height: 1.6;
+}
+
+.highlight-box {
+    background: #fffbe6;
+
+    padding: 1.5rem 1.5rem;
+
+    margin: 2rem 0;
+
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+
+}
+
+.highlight-heading {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    color: #1a237e;
+    letter-spacing: 0.3px;
+}
+
+.highlight-label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.highlight-value {
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: #c62828;
+}
+
+.highlight-rate {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+.highlight-unit {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+  margin-left: 0.5rem;
+}
+
+.history-section {
+    margin-top: 2rem;
+}
+
+.history-heading {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #0d47a1;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+.price-table th,
+.price-table td {
+    border: 1px solid #ddd;
+    padding: 0.8rem 1rem;
+    text-align: left;
+}
+
+.price-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.other-metals {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+}
+
+.other-metal-label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.other-metal-label a {
+  text-decoration: none;
+  color: #1565c0;
+  font-weight: 500;
+}
+
+.other-metal-label a:hover {
+  text-decoration: underline;
+}
+
+.price-disclaimer {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+
+@media screen and (max-width: 600px) {
+    .highlight-box {
+        padding: 1rem;
+    }
+
+    .highlight-heading {
+        font-size: 1.5rem;
+    }
+
+    .highlight-value {
+        font-size: 2rem;
+    }
+}

@@ -251,6 +251,9 @@ function buildRelatedArticlesHtml(attrs) {
   gtag('config', 'G-QEL34RBXBH');
 </script>`;
 
+        const headerHtml = fs.readFileSync(path.join(__dirname, 'partials', 'header.html'), 'utf-8');
+        const footerHtml = fs.readFileSync(path.join(__dirname, 'partials', 'footer.html'), 'utf-8');
+
         const pageHTML = template
           .replace(/{{STRUCTURED_DATA_JSON}}/g, ldJsonScript)
           .replace(/{{TITLE}}/g, title)
@@ -272,6 +275,8 @@ function buildRelatedArticlesHtml(attrs) {
           .replace(/{{SLUG_PREFIX}}/g, categorySlug)
           .replace(/{{BASE_DOMAIN}}/g, BASE_URL)
           .replace(/{{GA_SCRIPT}}/g, analyticsScript)
+          .replace(/{{HEADER}}/g, headerHtml)
+          .replace(/{{FOOTER}}/g, footerHtml)
           .replace(/{{RELATED_ARTICLES_SECTION}}/g, relatedArticlesSection);
 
         const outputPath = path.join(outputDir, `${slug}.html`);

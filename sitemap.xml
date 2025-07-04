@@ -3,7 +3,7 @@
   <url>
     <loc>https://ragadecode.com/</loc>
     <priority>1</priority>
-    <lastmod>2025-07-03</lastmod>
+    <lastmod>2025-07-04</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/news-article</loc>
@@ -39,6 +39,11 @@
     <loc>https://ragadecode.com/finances</loc>
     <lastmod>2025-07-03</lastmod>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/tourism-travel-trips/elephant-tusk-smuggling-foiled-near-valparai-five-arrested-including-forest-staff</loc>
+    <lastmod>2025-07-04</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/technologies/neuralink-breakthrough-first-human-patient-draws-using-only-his-mind</loc>
@@ -87,11 +92,6 @@
   </url>
   <url>
     <loc>https://ragadecode.com/tourism-travel-trips/gavi-kerala-ksrtc-forest-bus-timings-entry-pass-booking-wildlife-safari-budget-forest-stays</loc>
-    <lastmod>2025-07-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/technologies/elephant-tusk-smuggling-foiled-near-valparai-five-arrested-including-forest-staff</loc>
     <lastmod>2025-07-03</lastmod>
     <priority>0.8</priority>
   </url>
@@ -709,6 +709,26 @@
     <loc>https://ragadecode.com/static-pages/editorial-policy</loc>
     <lastmod>2025-07-01</lastmod>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/today-gold-price</loc>
+    <lastmod>2025-07-04</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/today-silver-price</loc>
+    <lastmod>2025-07-04</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/today-platinum-price</loc>
+    <lastmod>2025-07-04</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/today-currency-conversion-rate</loc>
+    <lastmod>2025-07-04</lastmod>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india</loc>
