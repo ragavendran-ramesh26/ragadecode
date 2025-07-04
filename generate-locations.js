@@ -72,7 +72,7 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
 
       return `
         <div class="card">
-          <a href="/${articleUrl}">
+          <a href="${articleUrl}">
             <img src="${image}" alt="${title}" loading="lazy" />
             <div class="card-content">
               <h3>${title}</h3>
