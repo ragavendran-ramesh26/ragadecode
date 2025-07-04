@@ -281,6 +281,9 @@ const gaScript = `
       </section>
       `;
 
+    const headerHtml =  fs.readFileSync(path.join(__dirname, "partials/header.html"), "utf-8");
+    const footerHtml = fs.readFileSync(path.join(__dirname, "partials/footer.html"), "utf-8");
+
     const pageHtml = `
 <!DOCTYPE html>
 <html lang="en">
@@ -311,22 +314,7 @@ const gaScript = `
 <link rel="canonical" href="https://ragadecode.com/" />
 </head>
 <body>
-  <header>
-    <h1>Raga Decode</h1>
-    <p>Decoded News. Clear. Bold. Unfiltered.</p>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/news-article">Trending News</a>
-      <a href="/technologies">Technology</a>
-      <a href="/finances">Finance</a>
-      <a href="/decode-automobile-talks">Automobile</a>
-      <a href="/tourism-travel-trips">Travel Trips</a>
-    </nav>
-    <div class="rate-box">
-      Today Gold Rate (per gm): <span id="gold-rate">Rs.9800</span>
-      Today Silver Rate (per gm): <span id="gold-rate">Rs.101</span>
-    </div>
-  </header>
+${headerHtml}
 
  
  <main>
@@ -362,21 +350,7 @@ ${regionHtml}
   </div>
 </main>
 
-  <footer>
-      <p>
-            <a href="/static-pages/about-us">About Us</a> |
-            <a href="/static-pages/editorial-policy">Editorial Policy </a> | 
-            <a href="/static-pages/privacy-policy">Privacy Policy </a> |
-            <a href="/static-pages/terms-and-conditions">Terms and Conditions </a> |
-            <a href="/static-pages/contact-us">Contact Us </a>
-        </p>
-          <div class="disclaimer">
-    <strong>Transparency Notice:</strong> RagaDecode.com is a digital media publication. We do not sell products or services. If our domain name has ever been misused elsewhere, please report it by<a href="/static-pages/contact-us">contacting us</a>.
-  </div>
-        <p>&copy; 2025 RagaDecode. All rights reserved.</p>
-      
-
-    </footer>
+  ${footerHtml}
 </body>
 </html>
 `;
