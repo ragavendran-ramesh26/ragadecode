@@ -8,9 +8,9 @@ const BASE_URL = `https://${BASE_DOMAIN}`;
 const TEMPLATE_PATH = "./locations_template.html";
 const OUTPUT_DIR = "./locations";
 
-const COUNTRY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/countries?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc`;
-const STATE_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/states?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate=country`;
-const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate[state][populate]=country`;
+const COUNTRY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/countries?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate[news_articles][populate][1]=category`;
+const STATE_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/states?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate=country&populate[news_articles][populate][1]=category`;
+const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate[state][populate]=country&populate[news_articles][populate][1]=category`;
 
 (async () => {
   try {
@@ -57,15 +57,22 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
     });
 
     const renderArticleBlock = (article) => {
+
+
       const a = article.attributes || article;
+
+       
       const title = a.Title || "Untitled";
       const slug = a.slug || "#";
       const image = a.coverimage?.formats?.thumbnail?.url || "/assets/default-image.png";
-      const category = a.category?.toLowerCase().replace(/\s+/g, "-") || "news-article";
+      const category = a.category?.name;
+      const categorySlug = a.category?.slug;
+
+      const articleUrl = `/${categorySlug}/${slug}`;
 
       return `
         <div class="card">
-          <a href="/${category}/${slug}">
+          <a href="/${articleUrl}">
             <img src="${image}" alt="${title}" loading="lazy" />
             <div class="card-content">
               <h3>${title}</h3>
