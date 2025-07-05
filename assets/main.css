@@ -191,8 +191,7 @@ nav a {
 .footer {
   width: 100%;
   background: #ffffff;
-  padding: 40px 20px;
-  font-family: sans-serif;
+  padding: 1.5em;
   color: #333;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
