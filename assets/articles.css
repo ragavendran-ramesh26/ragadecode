@@ -240,3 +240,41 @@
   color: #007bff;
   text-decoration: none;
 }
+
+
+
+/* Clean breadcrumb appearance */
+/* Ensure breadcrumb is left-aligned and clean */
+.breadcrumb {
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 16px;
+  padding: 0;
+  color: #444;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start; /* this ensures it starts from the left */
+  gap: 6px;
+}
+
+/* Reset all global nav a styles for breadcrumb only */
+.breadcrumb a {
+  all: unset !important;
+  font-size: 14px;
+  color: #1a0dab !important;
+  cursor: pointer !important;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: #555;
+}
+
+.breadcrumb-separator {
+  color: #999;
+}
+

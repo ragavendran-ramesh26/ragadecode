@@ -140,6 +140,7 @@ function buildRelatedArticlesHtml(attrs) {
 
   
         const categorySlug = category?.slug;
+        const categoryName = category?.name;
 
        
 
@@ -272,6 +273,7 @@ function buildRelatedArticlesHtml(attrs) {
           .replace(/{{TAGS}}/g, tagHtml)
           .replace(/{{SLUG}}/g, slug)
           .replace(/{{DOC_ID}}/g, documentId)
+          .replace(/{{CATEGORY_NAME}}/g, categoryName)
           .replace(/{{SLUG_PREFIX}}/g, categorySlug)
           .replace(/{{BASE_DOMAIN}}/g, BASE_URL)
           .replace(/{{GA_SCRIPT}}/g, analyticsScript)
