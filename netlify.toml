@@ -29,3 +29,11 @@
   from = "/news-article/indigo-flight-makes-emergency-landing-in-chennai-after-mid-air-technical-malfunction"
   to   = "/airlines/indigo-flight-makes-emergency-landing-in-chennai-after-mid-air-technical-malfunction"
   status = 301
+
+[[redirects]]
+  from = "/news-article/air-india-flight-315-returns-to-hong-kong-after-fuel-filter-warning"
+  to   = "/airlines/air-india-flight-315-returns-to-hong-kong-after-fuel-filter-warning"
+  status = 301
+
+
+  
