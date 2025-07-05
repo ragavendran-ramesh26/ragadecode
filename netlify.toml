@@ -2,3 +2,30 @@
   from = "/news-article/air-india-171-understanding-the-tragedy-and-the-possibility-of-vapor-lock"
   to = "/airlines/air-india-171-understanding-the-tragedy-and-the-possibility-of-vapor-lock"
   status = 301
+
+
+[[redirects]]
+  from = "/news-article/inside-the-investigation-of-air-india-flight-ai-171-the-story-behind-the-black-boxes"
+  to = "/airlines/inside-the-investigation-of-air-india-flight-ai-171-the-story-behind-the-black-boxes"
+  status = 301
+
+[[redirects]]
+  from = "/news-article/air-india-171-tragedy-what-really-happened-a-captain-s-expert-breakdown"
+  to = "/airtines/air-india-171-tragedy-what-really-happened-a-captain-s-expert-breakdown"
+  status = 301
+
+
+[[redirects]]
+  from = "/news-article/air-india-171-tragedy-what-really-happened-a-captain-s-expert-breakdown"
+  to = "/airtines/air-india-171-tragedy-what-really-happened-a-captain-s-expert-breakdown"
+  status = 301
+
+[[redirects]]
+  from = "/news-article/air-india-crash-fallout-dgca-fires-senior-officials-amid-probe-and-black-box-damage-concerns"
+  to   = "/airlines/air-india-crash-fallout-dgca-fires-senior-officials-amid-probe-and-black-box-damage-concerns"
+  status = 301
+
+[[redirects]]
+  from = "/news-article/indigo-flight-makes-emergency-landing-in-chennai-after-mid-air-technical-malfunction"
+  to   = "/airlines/indigo-flight-makes-emergency-landing-in-chennai-after-mid-air-technical-malfunction"
+  status = 301
