@@ -62,16 +62,15 @@ nav {
 nav a {
   text-decoration: none;
   padding: 0.4rem 0.7rem;
-  background-color: #0066e6;
-  color: #fff;
+  
   border-radius: 6px;
   font-size: 0.85rem;
   transition: background 0.3s ease;
 }
 
-nav a:hover {
+/* nav a:hover {
   background-color: #004bb5;
-}
+} */
 
 footer {
   text-align: center;
@@ -113,3 +112,94 @@ footer a:hover {
     flex-direction: column;
   }
 }
+
+.site-header {
+      background: #ffffff;
+      border-bottom: 1px solid #eee;
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .logo-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .site-tagline {
+      font-size: 13px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 22px;
+    }
+
+    .main-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .main-nav a {
+      font-size: 15px;
+      text-decoration: none;
+      color: #007bff;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    /* .main-nav a:hover {
+      border-bottom: 2px solid #007bff;
+      color: #0056b3;
+    } */
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .main-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .main-nav.show {
+        display: flex;
+      }
+    }
