@@ -1,6 +1,7 @@
 const fs = require("fs-extra");
 const path = require("path");
 const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const marked = require('marked');
 
 const BASE_DOMAIN = "ragadecode.com";
 const BASE_URL = `https://${BASE_DOMAIN}`;
@@ -115,10 +116,18 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
     </div>`;
 }
 
-    const buildPage = async (slugPath, name, newsArticles = [], travelArticles = []) => {
+    const buildPage = async (slugPath, name, newsArticles = [], desc , travelArticles = []) => {
+       
+
+     markedDescription = marked.parse(desc || '');
      const newsBlockHtml = newsArticles.length > 0
+
+     
+
   ? `<div class="column full-width">
       <h2>${name}</h2> 
+
+      <div style="margin-bottom:20px;" >${markedDescription}</div>
 
       <div class="two-column-compact">
      
@@ -166,22 +175,25 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
 
       const newsArticles = country.news_articles || [];
       const travelArticles = country.tourism_travel_trips || [];
+      const desc = '';
 
-      await buildPage(countrySlug, countryName, newsArticles, travelArticles);
+      await buildPage(countrySlug, countryName, newsArticles, desc, travelArticles);
 
       // Filter related states
       const relatedStates = states.filter((s) => s.country?.id === countryId);
       for (const state of relatedStates) {
         const stateName = state.title;
         const stateSlug = state.slug;
-        await buildPage(`${countrySlug}/${stateSlug}`, stateName, state.news_articles, state.tourism_travel_trips);
+        const desc = '';
+        await buildPage(`${countrySlug}/${stateSlug}`, stateName, state.news_articles, desc, state.tourism_travel_trips);
 
         // Filter related cities
         const stateCities = stateMap[state.id]?.cities || [];
-        for (const city of stateCities) {
+        for (const city of stateCities) { 
           const cityName = city.title;
-          const citySlug = city.slug;
-          await buildPage(`${countrySlug}/${stateSlug}/${citySlug}`, cityName, city.news_articles, city.tourism_travel_trips);
+          const citySlug = city.slug; 
+          const cityDescription = city.Description_in_detail;
+          await buildPage(`${countrySlug}/${stateSlug}/${citySlug}`, cityName, city.news_articles, cityDescription, city.tourism_travel_trips);
         }
       }
     }
