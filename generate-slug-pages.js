@@ -15,32 +15,32 @@ const TEMPLATE_PATH = './template.html';
 const API_CONFIGS = [
   {
     name: 'news-articles',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[similar_articles]=true&populate[news_articles]=true&populate[category]=true',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[similar_articles]=true&populate[news_articles]=true&populate[category]=true&populate[cities]=true&populate[states]=true&populate[countries]=true',
   },
-  {
-    name: 'automobiles',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[hashtags]=true&populate[category]=true',
-    // outputDir: './automobile',
-    // slugPrefix: 'automobile',
-  },
-  {
-    name: 'technology',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[category]=true',
-    // outputDir: './technologies',
-    // slugPrefix: 'technologies',
-  },
-  {
-    name: 'travels',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[category]=true',
-    // outputDir: './tourism-travel-trips',
-    // slugPrefix: 'tourism-travel-trips',
-  },
-  {
-    name: 'finances',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/finances?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[category]=true',
-    // outputDir: './finances',
-    // slugPrefix: 'finances',
-  }
+  // {
+  //   name: 'automobiles',
+  //   apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[hashtags]=true&populate[category]=true',
+  //   // outputDir: './automobile',
+  //   // slugPrefix: 'automobile',
+  // },
+  // {
+  //   name: 'technology',
+  //   apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[category]=true',
+  //   // outputDir: './technologies',
+  //   // slugPrefix: 'technologies',
+  // },
+  // {
+  //   name: 'travels',
+  //   apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[category]=true',
+  //   // outputDir: './tourism-travel-trips',
+  //   // slugPrefix: 'tourism-travel-trips',
+  // },
+  // {
+  //   name: 'finances',
+  //   apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/finances?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[category]=true',
+  //   // outputDir: './finances',
+  //   // slugPrefix: 'finances',
+  // }
 ];
 
 function buildLDJson({ 
@@ -187,6 +187,8 @@ function buildRelatedArticlesHtml(attrs) {
           }
         }
 
+
+
         let authorBlock = '';
         if (attrs.author) {
           const author = attrs.author;
@@ -208,6 +210,19 @@ function buildRelatedArticlesHtml(attrs) {
                 <a href="/authors/${authorSlug}" class="author-link">About ${authorName}</a>
               </div>
             </div>`;
+        }
+
+        const country = attrs.countries?.[0]?.title || '';
+        const state = attrs.states?.[0]?.title || '';
+        const city = attrs.cities?.[0]?.title || '';
+
+        let locationBlock = '';
+        if (country && state && city) {
+          locationBlock = `<div class="location-block">${country} | ${state} | ${city}</div>`;
+        } else if (country && state) {
+          locationBlock = `<div class="location-block">${country} | ${state}</div>`;
+        } else if (country) {
+          locationBlock = `<div class="location-block">${country}</div>`;
         }
 
         const contentHTML = marked.parse(markdown);
@@ -266,11 +281,11 @@ function buildRelatedArticlesHtml(attrs) {
           .replace(/{{PUBLISHED_UTC}}/g, publishedUTC)
           .replace(/{{COVER_IMAGE_BLOCK}}/g, coverImageBlock)
           .replace(/{{COVER_IMAGE_URL}}/g, coverImageUrl)
-          .replace(/{{CONTENT}}/g, contentHTML)
+          .replace(/{{CONTENT}}/g, contentHTML + locationBlock  )
           .replace(/{{AUTHOR_NAME}}/g, attrs.author?.name || 'Ragavendran Ramesh')
           .replace(/{{AUTHOR_SLUG}}/g, attrs.author?.slug || 'ragavendran-ramesh')
-          .replace(/{{AUTHOR_BLOCK}}/g, authorBlock)
-          .replace(/{{TAGS}}/g, tagHtml)
+          .replace(/{{AUTHOR_BLOCK}}/g, authorBlock )
+          .replace(/{{TAGS}}/g, tagHtml )
           .replace(/{{SLUG}}/g, slug)
           .replace(/{{DOC_ID}}/g, documentId)
           .replace(/{{CATEGORY_NAME}}/g, categoryName)
