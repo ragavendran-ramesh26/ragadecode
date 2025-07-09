@@ -15,7 +15,7 @@ const TEMPLATE_PATH = './template.html';
 const API_CONFIGS = [
   {
     name: 'news-articles',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[similar_articles]=true&populate[news_articles]=true&populate[category]=true&populate[cities]=true&populate[states]=true&populate[countries]=true',
+    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[category]=true&populate[cities]=true&populate[states]=true&populate[countries]=true&populate[similar_articles][populate][category]=true&populate[news_articles][populate][category]=true',
   },
   // {
   //   name: 'automobiles',
@@ -117,8 +117,7 @@ function buildRelatedArticlesHtml(attrs) {
     const relatedSlug = attr.slug || '';
 
     const categorySlug = attr.category?.data?.attributes?.slug ||
-                         attr.category?.slug || 
-                         'news-article'; // fallback
+                         attr.category?.slug
 
     if (!relatedSlug || !categorySlug) return '';
 
