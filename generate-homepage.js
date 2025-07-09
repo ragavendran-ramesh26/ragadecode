@@ -6,44 +6,44 @@ const fetch = (...args) =>
 const API_URL =
   "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[coverimage]=true&populate[category]=true";
 
-const API_CONFIGS = [
-  {
-    name: "Trending News",
-    apiUrl:
-      "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
+// const API_CONFIGS = [
+//   {
+//     name: "Trending News",
+//     apiUrl:
+//       "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
 
-    // outputDir: "./news-article",
-    // slugPrefix: "news-article",
-  },
-  // {
-  //   name: "Automobiles",
-  //   apiUrl:
-  //     "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
-  //   // outputDir: "./automobile",
-  //   // slugPrefix: "automobile",
-  // },
-  // {
-  //   name: "Technology",
-  //   apiUrl:
-  //     "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
-  //   // outputDir: "./technologies",
-  //   // slugPrefix: "technologies",
-  // },
-  // {
-  //   name: "Tourism Travel Trips",
-  //   apiUrl:
-  //     "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
-  //   // outputDir: "./tourism-travel-trips",
-  //   // slugPrefix: "tourism-travel-trips",
-  // },
-  // {
-  //   name: "Finances",
-  //   apiUrl:
-  //     "https://genuine-compassion-eb21be0109.strapiapp.com/api/finances?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
-  //   // outputDir: "./finances",
-  //   // slugPrefix: "finances",
-  // },
-];
+//     // outputDir: "./news-article",
+//     // slugPrefix: "news-article",
+//   },
+//   // {
+//   //   name: "Automobiles",
+//   //   apiUrl:
+//   //     "https://genuine-compassion-eb21be0109.strapiapp.com/api/automobiles?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
+//   //   // outputDir: "./automobile",
+//   //   // slugPrefix: "automobile",
+//   // },
+//   // {
+//   //   name: "Technology",
+//   //   apiUrl:
+//   //     "https://genuine-compassion-eb21be0109.strapiapp.com/api/technologies?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
+//   //   // outputDir: "./technologies",
+//   //   // slugPrefix: "technologies",
+//   // },
+//   // {
+//   //   name: "Tourism Travel Trips",
+//   //   apiUrl:
+//   //     "https://genuine-compassion-eb21be0109.strapiapp.com/api/tourism-travel-trips?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
+//   //   // outputDir: "./tourism-travel-trips",
+//   //   // slugPrefix: "tourism-travel-trips",
+//   // },
+//   // {
+//   //   name: "Finances",
+//   //   apiUrl:
+//   //     "https://genuine-compassion-eb21be0109.strapiapp.com/api/finances?populate=*&sort[0]=publishedat:desc&sort[1]=id:desc",
+//   //   // outputDir: "./finances",
+//   //   // slugPrefix: "finances",
+//   // },
+// ];
 const TAGS_API =
   "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags?pagination[page]=1&pagination[pageSize]=100";
 
@@ -357,9 +357,9 @@ ${regionHtml}
 
     await fs.writeFile(OUTPUT_PATH, pageHtml);
     console.log(
-      `✅ index.html generated with ${API_CONFIGS.length} categories`
+      `✅ index.html generated`
     );
   } catch (err) {
-    console.error("❌ Failed to generate homepage:", err.message);
+    console.error("❌ Failed to generate homepage:", err);
   }
 })();
