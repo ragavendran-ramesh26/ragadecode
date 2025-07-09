@@ -104,15 +104,25 @@ ${JSON.stringify({ ...baseSchema, ...categorySchema }, null, 2)}
 }
 
 function buildRelatedArticlesHtml(attrs) {
-  const related = [...(attrs.similar_articles || []), ...(attrs.news_articles || [])];
+  const related = [
+    ...(attrs.similar_articles?.data || attrs.similar_articles || []),
+    ...(attrs.news_articles?.data || attrs.news_articles || [])
+  ];
+
   if (!related.length) return '';
 
   return related.map(item => {
-    const relatedTitle = item.Title || 'Untitled';
-    const relatedSlug = item.slug || '';
-    const itemCategory = (item.category || '').toLowerCase().trim().replace(/\s+/g, '-');
-    if (!itemCategory || !relatedSlug) return '';
-    return `<li><a href="/${itemCategory}/${relatedSlug}" class="related-link">${relatedTitle}</a></li>`;
+    const attr = item.attributes || item;
+    const relatedTitle = attr.Title || 'Untitled';
+    const relatedSlug = attr.slug || '';
+
+    const categorySlug = attr.category?.data?.attributes?.slug ||
+                         attr.category?.slug || 
+                         'news-article'; // fallback
+
+    if (!relatedSlug || !categorySlug) return '';
+
+    return `<li><a href="/${categorySlug}/${relatedSlug}" class="related-link">${relatedTitle}</a></li>`;
   }).join('');
 }
 
