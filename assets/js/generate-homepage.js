@@ -183,8 +183,8 @@ function splitCities(cities) {
    // ✅ SECTION 2 - "Full Story" Block from only 'news-article' category
 const newsArticles = nonMetroArticles.filter(article => article.category?.slug === 'news-article');
 
-const section2Main = newsArticles[0];
-const section2Others = newsArticles.slice(1, 4); // next 3 stories
+const section2Main = newsArticles[1];
+const section2Others = newsArticles.slice(2, 5); // next 3 stories
 
 if (section2Main) {
   const s2Title = section2Main.Title;
