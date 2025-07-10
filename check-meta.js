@@ -11,7 +11,7 @@ const ADSENSE_SCRIPT_SRC = "https://pagead2.googlesyndication.com/pagead/js/adsb
 
 // Match all HTML files except node_modules, dist, etc.
 const htmlFiles = glob.sync("**/*.html", {
-  ignore: ["node_modules/**", "dist/**", "partials/**"],
+  ignore: ["node_modules/**", "dist/**", "templates/**"],
 });
 
 htmlFiles.forEach((file) => {
