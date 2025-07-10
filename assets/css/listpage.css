@@ -1,0 +1,11 @@
+.section-title {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+      .section-subtitle {
+        color: #6c757d;
+        font-size: 1rem;
+      }
+      .card-title a:hover {
+        color: #007bff;
+      }

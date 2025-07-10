@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "generate": "node generate-slug-pages.js && node generate-news-article.js && node generate-homepage.js  && node generate-tags.js && node generate-locations.js && node fetch_and_generate.js && node generate-author.js && node generate-static-pages.js",
+    "generate": "node assets/js/generate-slug-pages.js && node assets/js/generate-articles.js && node assets/js/generate-homepage.js  && node assets/js/generate-tags.js && assets/js/node assets/js/generate-locations.js && node assets/js/fetch_and_generate.js && node assets/js/generate-author.js && node assets/js/generate-static-pages.js ",
     "build": "npm run generate",
     "prepare": "husky install",
     "dev": "chokidar '*.js' -c 'npm run generate'"
@@ -13,7 +13,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "axios": "^1.10.0",
+    "bootstrap": "^5.3.7",
     "chokidar": "^4.0.3",
     "dotenv": "^16.5.0",
     "fs-extra": "^11.3.0",
@@ -25,5 +27,14 @@
   "devDependencies": {
     "chokidar-cli": "^3.0.0",
     "husky": "^9.1.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ragavendran-ramesh26/ragadecode.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ragavendran-ramesh26/ragadecode/issues"
+  },
+  "homepage": "https://github.com/ragavendran-ramesh26/ragadecode#readme"
 }

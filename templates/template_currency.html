@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>{{SEO_TITLE}} | RagaDecode</title>
+  {{GA_SCRIPT}}
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="{{SEO_DESCRIPTION}} | ragadecode" />
+  <meta name="author" content="Ragavendran Ramesh" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+  <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon_io/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon_io/android-chrome-512x512.png">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
+
+  <!-- Bootstrap & FontAwesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- SEO Meta -->
+  <link rel="canonical" href="{{BASE_DOMAIN}}/{{SLUG}}" />
+  <meta property="og:title" content="{{SEO_TITLE}}" />
+  <meta property="og:description" content="{{SEO_DESCRIPTION}} | RagaDecode" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{BASE_DOMAIN}}/{{SLUG}}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{SEO_TITLE}}" />
+  <meta name="twitter:description" content="{{SEO_DESCRIPTION}} | RagaDecode" />
+</head>
+
+<body>
+
+  {{HEADER}}
+
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+
+        <!-- Page Title -->
+        <h1 class="mb-4 text-center">{{TITLE}}</h1>
+
+        <!-- Description -->
+        <p class="lead text-center text-muted mb-4">{{PAGE_DESCRIPTION}}</p>
+
+        <!-- Currency Content Block -->
+        <section class="bg-light p-4 p-md-5 rounded shadow-sm mb-4">
+          {{CONTENT}}
+        </section>
+
+        <!-- Back Link -->
+        <div class="mt-5">
+          <a href="/" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left me-1"></i> Back to Home
+          </a>
+        </div> 
+
+      </div>
+    </div>
+  </main>
+
+  {{FOOTER}}
+
+</body>
+
+</html>

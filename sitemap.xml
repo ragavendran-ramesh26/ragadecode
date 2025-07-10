@@ -3,7 +3,7 @@
   <url>
     <loc>https://ragadecode.com/</loc>
     <priority>1</priority>
-    <lastmod>2025-07-09</lastmod>
+    <lastmod>2025-07-10</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/news-article</loc>
@@ -44,6 +44,16 @@
     <loc>https://ragadecode.com/iaf</loc>
     <lastmod>2025-07-09</lastmod>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/technologies/6g-the-next-leap-in-global-connectivity-and-innovation</loc>
+    <lastmod>2025-07-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/automobile/suzuki-e-access-india-s-next-big-family-ev-from-a-trusted-giant</loc>
+    <lastmod>2025-07-09</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/iaf/breaking-iaf-jaguar-fighter-jet-crashes-in-rajasthan-s-churu-pilots-feared-dead-in-third-mishap-this-year</loc>
@@ -171,11 +181,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ragadecode.com/technologies/6g-the-next-leap-in-global-connectivity-and-innovation</loc>
-    <lastmod>2025-07-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://ragadecode.com/tourism-travel-trips/tourists-chased-by-elephant-on-valparai-athirappilly-road</loc>
     <lastmod>2025-07-03</lastmod>
     <priority>0.8</priority>
@@ -202,11 +207,6 @@
   </url>
   <url>
     <loc>https://ragadecode.com/automobile/why-the-honda-city-remains-an-underrated-marvel-on-indian-roads</loc>
-    <lastmod>2025-07-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/automobile/suzuki-e-access-india-s-next-big-family-ev-from-a-trusted-giant</loc>
     <lastmod>2025-07-03</lastmod>
     <priority>0.8</priority>
   </url>
@@ -822,22 +822,22 @@
   </url>
   <url>
     <loc>https://ragadecode.com/today-gold-price</loc>
-    <lastmod>2025-07-09</lastmod>
+    <lastmod>2025-07-10</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/today-silver-price</loc>
-    <lastmod>2025-07-09</lastmod>
+    <lastmod>2025-07-10</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/today-platinum-price</loc>
-    <lastmod>2025-07-09</lastmod>
+    <lastmod>2025-07-10</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ragadecode.com/today-currency-conversion-rate</loc>
-    <lastmod>2025-07-09</lastmod>
+    <lastmod>2025-07-10</lastmod>
     <priority>0.9</priority>
   </url>
   <url>

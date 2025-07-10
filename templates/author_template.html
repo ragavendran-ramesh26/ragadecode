@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{TITLE}} | RagaDecode</title>
+  {{GA_SCRIPT}}
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Explore {{TITLE}}'s insights and contributions at RagaDecode" />
+  <meta name="author" content="{{TITLE}}" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <link rel="icon" href="/favicon_io/favicon.ico">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
+  <link rel="canonical" href="{{BASE_DOMAIN}}/authors/{{SLUG}}" />
+
+  <meta property="og:title" content="{{TITLE}} | RagaDecode" />
+  <meta property="og:description" content="Explore {{TITLE}}'s work at RagaDecode" />
+  <meta property="og:image" content="{{COVER_IMAGE_URL}}" />
+  <meta property="og:url" content="{{BASE_DOMAIN}}/authors/{{SLUG}}" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+<body>
+
+  {{HEADER}}
+
+  <main class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-12 col-xl-12">
+        <div class="card border-0 p-4">
+          <div class="">
+            <img src="{{COVER_IMAGE_URL}}" alt="{{TITLE}}" class="rounded-circle mb-3" style="width: 140px; height: 140px; object-fit: cover;" />
+            <h2 class="fw-bold">{{TITLE}}</h2>
+            <p class="text-muted">Nickname: <strong>{{NICKNAME}}</strong></p>
+          </div>
+
+          <hr />
+
+          <div class="mb-4">
+            {{BIO}}
+          </div>
+
+          <div class="d-flex gap-4 fs-5 mb-3">
+            <a href="{{facebook}}" target="_blank" class="text-secondary"><i class="fab fa-facebook-f"></i></a>
+            <a href="{{instagram}}" target="_blank" class="text-secondary"><i class="fab fa-instagram"></i></a>
+            <a href="{{twitter}}" target="_blank" class="text-secondary"><i class="fab fa-twitter"></i></a>
+            <a href="{{linkedin}}" target="_blank" class="text-secondary"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+
+          <p class=" mb-0"><strong>Email:</strong> <a href="mailto:{{email}}" class="text-decoration-none">{{email}}</a></p>
+        </div>
+
+        <div class="mt-4">
+          <a href="/" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left me-1"></i> Back to Home
+          </a>
+        </div> 
+      </div>
+    </div>
+  </main>
+
+  {{FOOTER}}
+
+</body>
+</html>

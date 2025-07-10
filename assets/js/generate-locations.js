@@ -6,12 +6,15 @@ const marked = require('marked');
 const BASE_DOMAIN = "ragadecode.com";
 const BASE_URL = `https://${BASE_DOMAIN}`;
 
-const TEMPLATE_PATH = "./locations_template.html";
-const OUTPUT_DIR = "./locations";
+ 
+const TEMPLATE_PATH = path.join(__dirname, "../../templates/locations_template.html");
+const OUTPUT_DIR = path.join(__dirname, "../../locations");
+const headerHtml = fs.readFileSync(path.join(__dirname, "../../templates/header.html"), "utf-8");
+const footerHtml = fs.readFileSync(path.join(__dirname, "../../templates/footer.html"), "utf-8");
 
-const COUNTRY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/countries?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate[news_articles][populate][1]=category`;
-const STATE_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/states?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate=country&populate[news_articles][populate][1]=category`;
-const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate[state][populate]=country&populate[news_articles][populate][1]=category`;
+const COUNTRY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/countries?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate[news_articles][populate][1]=category&populate[news_articles][populate][2]=author`;
+const STATE_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/states?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate=country&populate[news_articles][populate][1]=category&populate[news_articles][populate][2]=author`;
+const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate[state][populate]=country&populate[news_articles][populate][1]=category&populate[news_articles][populate][2]=author`;
 
 (async () => {
   try {
@@ -100,56 +103,39 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
   const categoryName = a.category?.data?.attributes?.name || a.category?.name || "News";
   const categorySlug = a.category?.data?.attributes?.slug || a.category?.slug || "news-article";
   const articleUrl = `/${categorySlug}/${slug}`;
+  const authorName = a.author.name;
+  const short_description = a.short_description;
 
   return `
-    <div class="compact-item">
+    <div class="d-flex flex-column flex-sm-row gap-3 mb-4 border-bottom pb-3">
+  <img 
+    src="${image}" 
+    class="rounded flex-shrink-0" 
+    style="width: 100px; height: 75px; object-fit: cover;" 
+    alt="${title}" 
+  />
   
-      <img src="${image}" class="compact-thumb" alt="${title}" />
-      
-      <div class="compact-text">
-        
-        <a href="${articleUrl}">${title}</a>
-        <div class="compact-date">${categoryName} | Published on ${published}</div>
-       
-        
-      </div>
-    </div>`;
+  <div class="flex-grow-1">
+    <h6 class="mb-1 fw-semibold">
+      <a href="${articleUrl}" class="text-dark text-decoration-none">${title}</a>
+    </h6>
+
+    <small class="text-muted d-block mb-1">
+      ${authorName ? `${authorName} • ` : ''}${categoryName} • Published on ${published}
+    </small>
+
+    <p class="mb-0 text-secondary small">${short_description}</p>
+  </div>
+</div>`;
 }
 
     const buildPage = async (slugPath, name, newsArticles = [], desc , travelArticles = []) => {
        
 
      markedDescription = marked.parse(desc || '');
-     const newsBlockHtml = newsArticles.length > 0
+     const newsBlockHtml = newsArticles.map(renderCompactItem).join('');
 
-     
-
-  ? `<div class="column full-width">
-      <h2>${name}</h2> 
-
-      <div style="margin-bottom:20px;" >${markedDescription}</div>
-
-      <div class="two-column-compact">
-     
-        <div class="compact-column">
-          ${newsArticles
-            .filter((_, i) => i % 2 === 0)
-            .map(renderCompactItem)
-            .join("\n")}
-        </div>
-        <div class="compact-column">
-       
-           ${newsArticles
-            .filter((_, i) => i % 2 !== 0)
-            .map(renderCompactItem)
-            .join("\n")}
-        </div>
-      </div>
-    </div>`
-  : "";
-
-      const headerHtml = fs.readFileSync(path.join(__dirname, "partials/header.html"), "utf-8");
-      const footerHtml = fs.readFileSync(path.join(__dirname, "partials/footer.html"), "utf-8");
+    
 
       const pageHtml = template
         .replace(/{{COUNTRY_NAME}}/g, name)

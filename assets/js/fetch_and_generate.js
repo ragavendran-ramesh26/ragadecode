@@ -6,9 +6,12 @@ const fetch = (...args) =>
 const METALS_API =
   "https://api.metals.dev/v1/latest?api_key=APKAB7KKG6EAHI9WNWJX5409WNWJX&currency=INR&unit=g";
 
-const metalsTemplatePath = path.join(__dirname, "template_metals.html");
-const currencyTemplatePath = path.join(__dirname, "template_currency.html");
-const cacheFile = path.join(__dirname, "metals_cache.json");
+const metalsTemplatePath = path.join(__dirname, "../../templates/template_metals.html");
+const currencyTemplatePath = path.join(__dirname, "../../templates/template_currency.html");
+const cacheFile = path.join(__dirname, "../../metals_cache.json");
+const headerHtml = fs.readFileSync(path.join(__dirname, "../../templates/header.html"), "utf-8");
+const footerHtml = fs.readFileSync(path.join(__dirname, "../../templates/footer.html"), "utf-8");
+const OUTPUT_DIR = path.join(__dirname, "../../");
 
 const gaScript = `
 <!-- Google tag (gtag.js) -->
@@ -50,8 +53,7 @@ function buildPage(
   slug,
   content
 ) {
-    const headerHtml = fs.readFileSync(path.join(__dirname, "partials/header.html"), "utf-8");
-    const footerHtml = fs.readFileSync(path.join(__dirname, "partials/footer.html"), "utf-8");
+   
 
   return template
     .replace(/{{TITLE}}/g, seoTitle)
@@ -123,23 +125,24 @@ async function generateStaticPages() {
 const otherLinksHtml = otherMetals
   .map((m) => {
     const label = m.charAt(0).toUpperCase() + m.slice(1);
-    return `<span class="other-metal-label"><a href="/today-${m}-price">Find Today's ${label} Rate in INR</a></span>`;
+    return `<a class="btn btn-sm btn-outline-primary me-2 mt-2" href="/today-${m}-price">View ${label} Rate</a>`;
   })
   .join("");
 
-    const mainContent = `
-<section class="highlight-box">
-  <h2 class="highlight-heading">Today's ${metalLabel} Rate</h2>
-  <div class="highlight-rate">
-   
-    <span class="highlight-value">${formattedPrice}</span>
-     <span class="highlight-unit"> / (per gram):</span>
+  const mainContent = `
+<section class="bg-light p-4 p-md-5 rounded shadow-sm mb-4">
+  <h2 class="h4 fw-bold mb-3 text-primary">Today's ${metalLabel} Price in India</h2>
+
+  <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+    <div class="fs-3 fw-semibold text-success mb-3 mb-md-0">
+      <i class="fas"></i> ${formattedPrice} 
+      <span class="fs-6 text-muted">/ gram</span>
+    </div>
+    <div class="d-flex flex-wrap justify-content-md-end">
+      ${otherLinksHtml}
+    </div>
   </div>
-</section>
-<div class="other-metals">
-  ${otherLinksHtml}
-</div>
-`;
+</section>`;
     // TODO: Replace with DB values from Neon later
     const historicalData = [
       { date: date, price: price },
@@ -168,7 +171,7 @@ const otherLinksHtml = otherMetals
       historyTable // ← only the table body rows here
     ).replace(/{{TODAY_RATE}}/g, mainContent); // inject highlighted block
 
-    fs.writeFileSync(path.join(__dirname, `${slug}.html`), html);
+    fs.writeFileSync(path.join(OUTPUT_DIR, `${slug}.html`), html);
   }
 
   const currencyTitle = `Today Currency Conversion Rate in India`;
@@ -177,29 +180,51 @@ const otherLinksHtml = otherMetals
   const currencyDescription = `Get today’s live currency exchange rates vs INR. Check how major global currencies like USD, EUR, GBP, JPY, and more compare to Indian Rupees. Updated daily with accurate Forex market feeds.`;
 
  const currencyContent = `
-<div class="currency-box">
-  <h2 class="section-heading">Top 5 Currencies vs INR</h2>
-  <ul class="currency-grid highlight-currencies">
+<section class="bg-light p-4 p-md-5 rounded shadow-sm mb-4">
+  <h2 class="h5 fw-bold mb-4 text-primary">Top 5 Currencies vs INR</h2>
+  <div class="row g-3">
     ${["USD", "EUR", "GBP", "JPY", "CNY"]
       .map(
-        (code) =>
-          `<li><strong>${code}</strong>: ${formatINR(currencies[code])}</li>`
+        (code) => `
+      <div class="col-sm-6 col-lg-4">
+        <div class="border rounded p-3 bg-white text-center shadow-sm">
+          <div class="fw-semibold">${code}</div>
+          <div class="text-success fs-5">${formatINR(currencies[code])}</div>
+        </div>
+      </div>
+    `
       )
       .join("")}
-  </ul>
+  </div>
+</section>
 
-  <h2 class="section-heading">All Currencies vs INR</h2>
-  <ul class="currency-grid">
-    ${Object.entries(currencies)
-      .filter(([code]) => !["USD", "EUR", "GBP", "JPY", "CNY"].includes(code))
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(
-        ([code, val]) =>
-          `<li><strong>${code}</strong>: ${formatINR(val)}</li>`
-      )
-      .join("")}
-  </ul>
-</div>
+<section class="mt-5">
+  <h2 class="h5 fw-bold mb-4">All Currencies vs INR</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered align-middle small">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">Currency</th>
+          <th scope="col">Rate (INR)</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${Object.entries(currencies)
+          .filter(([code]) => !["USD", "EUR", "GBP", "JPY", "CNY"].includes(code))
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(
+            ([code, val]) => `
+          <tr>
+            <td><strong>${code}</strong></td>
+            <td>${formatINR(val)}</td>
+          </tr>
+        `
+          )
+          .join("")}
+      </tbody>
+    </table>
+  </div>
+</section>
 `;
 
 
@@ -212,7 +237,7 @@ const currencyHtml = buildPage(
   currencySlug,
   currencyContent
 );
-  fs.writeFileSync(path.join(__dirname, `${currencySlug}.html`), currencyHtml);
+  fs.writeFileSync(path.join(OUTPUT_DIR, `${currencySlug}.html`), currencyHtml);
 
   console.log("📄 Pages generated:");
   console.log(" - today-gold-price.html");

@@ -14,7 +14,10 @@ const BASE_DOMAIN = 'ragadecode.com';
 const BASE_URL = `https://${BASE_DOMAIN}`;
 
 const BASE_IMAGE_URL = ''; // Set to CDN base if needed
-const TEMPLATE_PATH = './template_static.html';
+const TEMPLATE_PATH = path.join(__dirname, '../../templates/template_static.html');
+const headerHtml = fs.readFileSync(path.join(__dirname, "../../templates/header.html"), "utf-8");
+const footerHtml = fs.readFileSync(path.join(__dirname, "../../templates/footer.html"), "utf-8");
+
 
 // ✅ List of APIs to process
 const API_CONFIGS = [
@@ -22,7 +25,7 @@ const API_CONFIGS = [
     name: 'static-pages',
     apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/static-pages?populate=*',
 
-    outputDir: './static-pages',
+    outputDir: path.join(__dirname, '../../static-pages'),
   }
 ];
 
@@ -71,45 +74,19 @@ function buildRelatedArticlesHtml(attrs) {
         const documentId = attrs.documentId || article.id;
         const description = attrs.content;
         const markdown = attrs.content || '*No content available*';
-        // const tags = attrs.Tags || '';
-       
-
-
-       
-
+     
         const contentHTML = marked.parse(markdown);
 
-         const tagHtml = (attrs.hashtags || [])
-        .map(tag => {
-          const name = tag.name || '';
-          const slug = name.toLowerCase().replace(/\s+/g, '-');
-          return `<span><a href="/tags/${slug}">#${name}</a></span>`;
-        })
-        .join(' ');
-
+          
          
-        const relatedArticlesHtml = buildRelatedArticlesHtml(attrs);
-
-        const relatedArticlesSection = relatedArticlesHtml
-        ? `<div class="related-articles">
-              <h3>Related Articles</h3>
-              <div class="related-box">
-                <ul>
-                  ${relatedArticlesHtml}
-                </ul>
-              </div>
-          </div>`
-        : '';
-
-        const headerHtml = fs.readFileSync(path.join(__dirname, "partials/header.html"), "utf-8");
-        const footerHtml = fs.readFileSync(path.join(__dirname, "partials/footer.html"), "utf-8");
+       
         
         const pageHTML = template
           .replace(/{{TITLE}}/g, title)
           .replace(/{{DESCRIPTION}}/g, description)
           
           .replace(/{{CONTENT}}/g, contentHTML)
-          .replace(/{{TAGS}}/g, tagHtml) // ✅ Insert tags
+           
           .replace(/{{SLUG}}/g, slug)
           .replace(/{{DOC_ID}}/g, documentId)
           .replace(/{{SLUG_PREFIX}}/g, config.slugPrefix)
@@ -117,9 +94,7 @@ function buildRelatedArticlesHtml(attrs) {
           .replace(/{{GA_SCRIPT}}/g, analyticsScript)
           .replace(/{{HEADER}}/g, headerHtml)
           .replace(/{{FOOTER}}/g, footerHtml)
-          .replace(/{{RELATED_ARTICLES_SECTION}}/g, relatedArticlesSection);
-      
-          // .replace(/{{RELATED_ARTICLES_HTML}}/g, relatedArticlesHtml);
+            
 
         const outputPath = path.join(config.outputDir, `${slug}.html`);
         await fs.writeFile(outputPath, pageHTML);

@@ -1,0 +1,84 @@
+<footer class="footer bg-white text-dark pt-5 border-top">
+  <div class="container">
+    <div class="row gy-4">
+
+      <!-- Brand & Description -->
+      <div class="col-12 col-md-5">
+        <div class="d-flex align-items-center mb-2">
+          <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/ragadecode_logo_668c5f78f9.png" alt="RagaDecode Logo" class="me-2" style="height: 40px;">
+          <span class="h5 mb-0 fw-bold">RagaDecode</span>
+        </div>
+        <p class="small mb-3">
+          RagaDecode empowers readers to decode<br>
+          complex global events with simplified journalism —<br>
+          making headlines easier to follow, understand, and act on.
+        </p>
+        <div class="d-flex gap-3">
+          <a href="https://www.facebook.com/ragadecode" target="_blank" class="text-dark"><i class="fab fa-facebook fa-lg"></i></a>
+          <a href="https://www.instagram.com/_ragadecode.com_" target="_blank" class="text-dark"><i class="fab fa-instagram fa-lg"></i></a>
+          <a href="https://x.com/ragadecode" target="_blank" class="text-dark"><i class="fab fa-twitter fa-lg"></i></a>
+        </div>
+      </div>
+
+      <!-- News Links -->
+      <div class="col-6 col-md-2">
+        <h6 class="fw-bold">News</h6>
+        <ul class="list-unstyled small">
+          <li><a href="/news-article/" class="text-decoration-none text-dark">Trending</a></li>
+          <li><a href="/locations/india" class="text-decoration-none text-dark">India</a></li>
+          <li><a href="/indian-railways" class="text-decoration-none text-dark">Indian Railways</a></li>
+          <li><a href="/airlines" class="text-decoration-none text-dark">Airlines</a></li>
+        </ul>
+      </div>
+
+      <!-- Articles Links -->
+      <div class="col-6 col-md-2">
+        <h6 class="fw-bold">Articles</h6>
+        <ul class="list-unstyled small">
+          <li><a href="/technologies" class="text-decoration-none text-dark">Technology</a></li>
+          <li><a href="/automobile/" class="text-decoration-none text-dark">Automobile</a></li>
+          <li><a href="/finances" class="text-decoration-none text-dark">Finance</a></li>
+          <li><a href="/tourism-travel-trips/" class="text-decoration-none text-dark">Tourism & Travel</a></li>
+        </ul>
+      </div>
+
+      <!-- Company Links -->
+      <div class="col-12 col-md-3">
+        <h6 class="fw-bold">Company</h6>
+        <ul class="list-unstyled small">
+          <li><a href="/static-pages/about-us" class="text-decoration-none text-dark">About Us</a></li>
+          <li><a href="/static-pages/contact-us" class="text-decoration-none text-dark">Contact Us</a></li>
+          <li><a href="/authors/ragavendran-ramesh" class="text-decoration-none text-dark">About Author</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr class="mt-4" />
+
+    <!-- Bottom Footer -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pb-3 small text-center text-md-start">
+      <p class="mb-2 mb-md-0 text-muted">&copy; 2025 <strong>RagaDecode</strong>. All rights reserved.</p>
+      <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-md-end">
+        <a href="/static-pages/privacy-policy" class="text-decoration-none text-muted">Privacy Policy</a>
+        <a href="/static-pages/terms-and-conditions" class="text-decoration-none text-muted">Terms and Conditions</a>
+        <a href="/static-pages/editorial-policy" class="text-decoration-none text-muted">Editorial Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+  const dateElement = document.getElementById("today-date");
+  const today = new Date();
+
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+
+  const formattedDate = today.toLocaleDateString("en-US", options);
+  dateElement.textContent = formattedDate;
+</script>
+
