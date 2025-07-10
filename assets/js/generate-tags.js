@@ -40,9 +40,9 @@ const gaScript = `
       const tagName = tag.name || "untitled-tag";
       const tagSlug = tagName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
-      const getArticleURL = `${TAGS_API}/${tagId}?populate[tags][populate][0]=category&populate[tags][populate][1]=coverimage&populate[tags][populate][2]=author&populate[tags][populate][3]=hashtags`
+      const getArticleURL = `${TAGS_API}/${tagId}?populate[tags][populate][0]=category&populate[tags][populate][1]=coverimage&populate[tags][populate][2]=author&populate[tags][populate][3]=hashtags&populate[tags][sort][0]=publishedAt:desc`
 
-     
+    //  console.log(getArticleURL)
 
       const tagDetailRes = await fetch(getArticleURL);
       const tagDetailJson = await tagDetailRes.json();
