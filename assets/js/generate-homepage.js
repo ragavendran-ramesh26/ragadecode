@@ -11,7 +11,7 @@ const headerHtml = fs.readFileSync(path.join(__dirname, "../../templates/header.
 const footerHtml = fs.readFileSync(path.join(__dirname, "../../templates/footer.html"), "utf-8");
 
 // APIs
-const API_URL = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate=coverimage&populate=category&populate=author&populate=cities&populate=states';
+const API_URL = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate=coverimage&populate=category&populate=author&populate=cities&populate=states&populate=countries&populate=hashtags';
 const TAGS_API = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags?pagination[page]=1&pagination[pageSize]=100';
 const COUNTRIES_API = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/countries';
 const STATES_API = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/states?populate=country';
@@ -114,7 +114,7 @@ function splitCities(cities) {
     const resp = await fetch(API_URL);
     const { data: articles } = await resp.json();
 
-
+    
 
     const metroCities = ['delhi', 'mumbai', 'chennai', 'kolkata', 'bangalore', 'hyderabad'];
 
@@ -126,65 +126,115 @@ function splitCities(cities) {
 
 
 
-    // ✅ Generate SECTION 1 (hero block)
-    const hero = articles[0];
-    const heroImage = hero.coverimage?.url || '/assets/default.jpg';
-    const heroTitle = hero.Title;
-    const heroSlug = hero.slug;
-    const heroCategory = hero.category?.slug || 'news-article';
-    const heroAuthor = hero.author?.name || 'RagaDecode Editorial';
-    const heroDate = new Date(hero.publishedat).toLocaleDateString('en-GB', {
-      day: 'numeric', month: 'short', year: 'numeric'
-    });
-  
-    const heroExcerpt = marked.parse(hero.short_description?.slice(0, 300)) || '';
+  const section1Articles = articles
+  .filter(a => {
+    
 
-    const heroTitleWords = heroTitle.split(' ');
-    const lastWord = heroTitleWords.pop();
-    const section1Html = `
-      <section class="section-1-feature py-5 border-bottom">
+    // ✅ CORRECT: loop through the hashtags array
+    const isViralHashtag = (a.hashtags || []).some(tag =>
+      tag.name?.toLowerCase() === 'viral'
+    );
+
+    const isIndian = (a.countries || []).some(country =>
+      country.title?.toLowerCase() === 'india'
+    ); 
+
+    return isViralHashtag && isIndian;
+  })
+  .slice(0, 5);
+
+const section1Html = `
+<section class="section-1-feature py-5 border-bottom">
   <div class="container">
-    <div class="row align-items-center g-4 flex-column flex-md-row">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
       
-      <!-- Left Image Block -->
-      <a href="/${heroCategory}/${heroSlug}">
-      <div class="col-md-6">
-        
-          <img 
-            src="${heroImage}" 
-            class="img-fluid rounded w-100" 
-            alt="${heroTitle}"
-            style="object-fit: cover; max-height: 400px;"
-          />
-        </a>
-        <div class="mt-2">
-          <small class="text-muted">By ${heroAuthor} | ${heroDate}</small>
+      <div class="carousel-inner">
+        ${section1Articles.map((article, index) => {
+          const image = article.coverimage?.url || '/assets/default.jpg';
+          const title = article.Title;
+          const slug = article.slug;
+          const category = article.category?.slug || 'news-article';
+          const author = article.author?.name || 'RagaDecode Editorial';
+          const date = new Date(article.publishedat).toLocaleDateString('en-GB', {
+            day: 'numeric', month: 'short', year: 'numeric'
+          });
+          const excerpt = marked.parse(article.short_description?.slice(0, 200) || '');
+
+          const titleWords = title.split(' ');
+          const lastWord = titleWords.pop();
+
+          return `
+            <div class="carousel-item ${index === 0 ? 'active' : ''}">
+              <div class="row align-items-center g-4 flex-column flex-md-row">
+                <div class="col-md-6">
+                  <a href="/${category}/${slug}">
+                    <img src="${image}" class="img-fluid rounded w-100" style="object-fit: cover; max-height: 400px;" alt="${title}">
+                  </a>
+                  <div class="mt-2"><small class="text-muted">By ${author} | ${date}</small></div>
+                </div>
+                <div class="col-md-6">
+                  <a href="/${category}/${slug}" class="text-decoration-none text-dark">
+                    <h2 class="fw-bold lh-base">${titleWords.join(' ')} <span class="text-highlights">${lastWord}</span></h2>
+                    <p class="text-muted mt-3">${excerpt}</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+
+      <!-- Dots -->
+      <div class="d-flex justify-content-center mt-4 mb-2">
+        <div class="carousel-indicators custom-dots">
+          ${section1Articles.map((_, index) => `
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-label="Slide ${index + 1}"></button>
+          `).join('')}
         </div>
       </div>
-      </a>
 
-      <!-- Right Content Block -->
-      <div class="col-md-6">
-      <a href="/${heroCategory}/${heroSlug}" class="text-decoration-none text-dark fw-semibold">
-        <h2 class="fw-bold lh-base">
-          ${heroTitleWords.join(' ')} <span class="text-highlights">${lastWord}</span>
-        </h2>
-        <p class="text-muted fs-6 mt-3">
-          ${heroExcerpt}
-        </p>
-        </a>
-      </div>
-
+      
     </div>
   </div>
 </section>
-    `;
+`;
+
+const usedSlugs = new Set();
+
+function getNextArticles(list, count) {
+  const results = [];
+  for (const a of list) {
+    if (!usedSlugs.has(a.slug)) {
+      results.push(a);
+      usedSlugs.add(a.slug);
+      if (results.length === count) break;
+    }
+  }
+  return results;
+}
 
    // ✅ SECTION 2 - "Full Story" Block from only 'news-article' category
-const newsArticles = nonMetroArticles.filter(article => article.category?.slug === 'news-article');
+const validArticles = nonMetroArticles.filter(article => {
+  const isNewsArticle = article.category?.slug === 'news-article';
 
-const section2Main = newsArticles[1];
-const section2Others = newsArticles.slice(2, 5); // next 3 stories
+  const hasViralHashtag = (article.hashtags || []).some(
+    tag => tag.name?.toLowerCase() === 'viral'
+  );
+
+  const isIndian = (article.countries || []).some(
+    country => country.title?.toLowerCase() === 'india'
+  );
+
+  return isNewsArticle && !hasViralHashtag && isIndian;
+});
+
+
+
+
+const section2Articles = getNextArticles(validArticles, 4);
+const section2Main = section2Articles[0];
+const section2Others = section2Articles.slice(1);
+let section2Html = '';
 
 if (section2Main) {
   const s2Title = section2Main.Title;
@@ -202,18 +252,15 @@ if (section2Main) {
     });
     return `
       <div class="col-md-4">
-      <a href="/news-article/${story.slug}" class="text-decoration-none">
-        <div class="card border-0  h-100">
-          
+        <a href="/news-article/${story.slug}" class="text-decoration-none">
+          <div class="card border-0 h-100">
             <img src="${story.coverimage?.url || '/assets/default.jpg'}" class="card-img-top rounded" style="object-fit: cover; height: 200px;" alt="${story.Title}">
-
-          
-          <div class="card-body px-0">
-            <small class="text-muted d-block mb-1">By ${story.author?.name || 'Unknown'} • ${cardDate}</small>
-            <h5 class="card-title fw-semibold">${story.Title}</h5>
-            <p>${story.short_description}</p>
+            <div class="card-body px-0">
+              <small class="text-muted d-block mb-1">By ${story.author?.name || 'Unknown'} • ${cardDate}</small>
+              <h5 class="card-title fw-semibold">${story.Title}</h5>
+              <p>${story.short_description}</p>
+            </div>
           </div>
-        </div>
         </a>
       </div>
     `;
@@ -247,8 +294,9 @@ if (section2Main) {
     </section>
   `;
 } else {
-  section2Html = ''; // fallback if no 'news-article' exists
+  section2Html = ''; // fallback if no valid article
 }
+
 
 
 
@@ -256,10 +304,12 @@ if (section2Main) {
  // Choose any index depending on article set
 const newsArticles_section3 = nonMetroArticles.filter(article => article.category?.slug === 'news-article');
 
-const section3Main = newsArticles_section3[4];
-const section3Side = newsArticles_section3.slice(5, 12); // 3 side stories
+const section3Articles = getNextArticles(newsArticles_section3, 4);
+const section3Main = section3Articles[0];
+const section3Side = section3Articles.slice(1);
 
 let section3Html = '';
+
 if (section3Main && section3Side.length === 7) {
   const s3Title = section3Main.Title;
   const s3Slug = section3Main.slug;
@@ -328,6 +378,8 @@ if (section3Main && section3Side.length === 7) {
 const section4Articles = nonMetroArticles.filter(a => a.category?.slug === 'news-article');
 const section4Main = section4Articles[12];
 const section4Grid = section4Articles.slice(13, 17); // Next 4
+
+
 
 let section4Html = '';
 if (section4Main && section4Grid.length === 4) {

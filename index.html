@@ -78,7 +78,40 @@
       content="Stay ahead with RagaDecode — your trusted source for decoded trending news, expert technology insights, financial analysis, and the latest automobile updates. Explore editorial-grade articles that break down complex topics into sharp, readable insights."
     />
     <link rel="canonical" href="https://ragadecode.com/" />
+<style>
+ /* Dots style */
+.carousel-indicators.custom-dots [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #bbb;
+  margin: 0 6px;
+  border: none;
+  opacity: 1;
+  transition: background-color 0.3s ease;
+}
+.carousel-indicators.custom-dots .active {
+  background-color: #007BFF;
+}
 
+/* Buttons style */
+.btn-carousel {
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.btn-carousel:hover {
+  background-color: #007BFF;
+  color: white;
+  border-color: #007BFF;
+}
+
+
+</style>
   
   </head>
   <body class="d-flex flex-column min-vh-100">
@@ -148,44 +181,86 @@
       <div class="container"> 
 
         <section class="mb-5">
-      <section class="section-1-feature py-5 border-bottom">
+<section class="section-1-feature py-5 border-bottom">
   <div class="container">
-    <div class="row align-items-center g-4 flex-column flex-md-row">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
       
-      <!-- Left Image Block -->
-      <a href="/iaf/follow-up-churu-jaguar-crash-sparks-renewed-scrutiny-of-iaf-s-aging-fleet">
-      <div class="col-md-6">
+      <div class="carousel-inner">
         
-          <img 
-            src="https://genuine-compassion-eb21be0109.media.strapiapp.com/churu_4d7860c778.webp" 
-            class="img-fluid rounded w-100" 
-            alt="Follow-Up: Churu Jaguar Crash Sparks Renewed Scrutiny of IAF’s Aging Fleet"
-            style="object-fit: cover; max-height: 400px;"
-          />
-        </a>
-        <div class="mt-2">
-          <small class="text-muted">By Ragavendran Ramesh | 10 Jul 2025</small>
+            <div class="carousel-item active">
+              <div class="row align-items-center g-4 flex-column flex-md-row">
+                <div class="col-md-6">
+                  <a href="/news-article/decoding-gujarat-s-gambhira-bridge-collapse-why-infrastructure-warnings-went-unheard-what-needs-to-change">
+                    <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/gujar_bridge_3fb8820164.avif" class="img-fluid rounded w-100" style="object-fit: cover; max-height: 400px;" alt="Decoding Gujarat’s Gambhira Bridge Collapse: Why Infrastructure Warnings Went Unheard — What Needs to Change">
+                  </a>
+                  <div class="mt-2"><small class="text-muted">By Ragavendran Ramesh | 10 Jul 2025</small></div>
+                </div>
+                <div class="col-md-6">
+                  <a href="/news-article/decoding-gujarat-s-gambhira-bridge-collapse-why-infrastructure-warnings-went-unheard-what-needs-to-change" class="text-decoration-none text-dark">
+                    <h2 class="fw-bold lh-base">Decoding Gujarat’s Gambhira Bridge Collapse: Why Infrastructure Warnings Went Unheard — What Needs to <span class="text-highlights">Change</span></h2>
+                    <p class="text-muted mt-3"><p>A fatal collapse of the Gambhira Bridge in Gujarat&#39;s Vadodara district on July 9, 2025, killed at least 13 and exposed deep flaws in India&#39;s bridge maintenance. Here&#39;s what failed—and how future trage</p>
+</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="carousel-item ">
+              <div class="row align-items-center g-4 flex-column flex-md-row">
+                <div class="col-md-6">
+                  <a href="/iaf/breaking-iaf-jaguar-fighter-jet-crashes-in-rajasthan-s-churu-pilots-feared-dead-in-third-mishap-this-year">
+                    <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/Screenshot_2025_07_09_at_3_46_31_PM_0835f5c023.png" class="img-fluid rounded w-100" style="object-fit: cover; max-height: 400px;" alt="BREAKING: IAF Jaguar Fighter Jet Crashes in Rajasthan’s Churu – Pilots Feared Dead in Third Mishap This Year">
+                  </a>
+                  <div class="mt-2"><small class="text-muted">By Ragavendran Ramesh | 9 Jul 2025</small></div>
+                </div>
+                <div class="col-md-6">
+                  <a href="/iaf/breaking-iaf-jaguar-fighter-jet-crashes-in-rajasthan-s-churu-pilots-feared-dead-in-third-mishap-this-year" class="text-decoration-none text-dark">
+                    <h2 class="fw-bold lh-base">BREAKING: IAF Jaguar Fighter Jet Crashes in Rajasthan’s Churu – Pilots Feared Dead in Third Mishap This <span class="text-highlights">Year</span></h2>
+                    <p class="text-muted mt-3"><p>IAF Jaguar crash in Rajasthan claims 2 pilots - third incident in 2025. Analysis reveals dangers of India&#39;s aging fighter fleet, maintenance challenges, and urgent need for modernization to prevent fu</p>
+</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="carousel-item ">
+              <div class="row align-items-center g-4 flex-column flex-md-row">
+                <div class="col-md-6">
+                  <a href="/news-article/tamil-nadu-train-accident-school-van-hit-by-train-in-cuddalore">
+                    <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/school_van_accident_9b35709626.avif" class="img-fluid rounded w-100" style="object-fit: cover; max-height: 400px;" alt="Tamil Nadu Train Accident: School Van Hit by Train in Cuddalore">
+                  </a>
+                  <div class="mt-2"><small class="text-muted">By Ragavendran Ramesh | 8 Jul 2025</small></div>
+                </div>
+                <div class="col-md-6">
+                  <a href="/news-article/tamil-nadu-train-accident-school-van-hit-by-train-in-cuddalore" class="text-decoration-none text-dark">
+                    <h2 class="fw-bold lh-base">Tamil Nadu Train Accident: School Van Hit by Train in <span class="text-highlights">Cuddalore</span></h2>
+                    <p class="text-muted mt-3"><p>School van hit by train in Tamil Nadu&#39;s Cuddalore; 2 students dead, others injured. Unmanned railway crossing blamed for the tragic accident.</p>
+</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          
+      </div>
+
+      <!-- Dots -->
+      <div class="d-flex justify-content-center mt-4 mb-2">
+        <div class="carousel-indicators custom-dots">
+          
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+          
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+          
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+          
         </div>
       </div>
-      </a>
 
-      <!-- Right Content Block -->
-      <div class="col-md-6">
-      <a href="/iaf/follow-up-churu-jaguar-crash-sparks-renewed-scrutiny-of-iaf-s-aging-fleet" class="text-decoration-none text-dark fw-semibold">
-        <h2 class="fw-bold lh-base">
-          Follow-Up: Churu Jaguar Crash Sparks Renewed Scrutiny of IAF’s Aging <span class="text-highlights">Fleet</span>
-        </h2>
-        <p class="text-muted fs-6 mt-3">
-          <p>Following the fatal Jaguar fighter crash in Rajasthan, this update confirms pilot identities, reveals critical safety flaws, and examines growing calls for urgent IAF fleet modernization.</p>
-
-        </p>
-        </a>
-      </div>
-
+      
     </div>
   </div>
 </section>
-    </section>
+</section>
 
         <section class="mb-5">
     <section class="section-2-feature py-5 border-bottom">
@@ -212,52 +287,43 @@
         <div class="row g-4">
           
       <div class="col-md-4">
-      <a href="/news-article/tamil-nadu-train-accident-school-van-hit-by-train-in-cuddalore" class="text-decoration-none">
-        <div class="card border-0  h-100">
-          
-            <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/school_van_accident_9b35709626.avif" class="card-img-top rounded" style="object-fit: cover; height: 200px;" alt="Tamil Nadu Train Accident: School Van Hit by Train in Cuddalore">
-
-          
-          <div class="card-body px-0">
-            <small class="text-muted d-block mb-1">By Ragavendran Ramesh • 8 Jul 2025</small>
-            <h5 class="card-title fw-semibold">Tamil Nadu Train Accident: School Van Hit by Train in Cuddalore</h5>
-            <p>School van hit by train in Tamil Nadu's Cuddalore; 2 students dead, others injured. Unmanned railway crossing blamed for the tragic accident.</p>
-          </div>
-        </div>
-        </a>
-      </div>
-    
-
-      <div class="col-md-4">
-      <a href="/news-article/major-shake-up-in-madurai-corporation-cm-stalin-orders-all-zonal-heads-to-resign" class="text-decoration-none">
-        <div class="card border-0  h-100">
-          
+        <a href="/news-article/major-shake-up-in-madurai-corporation-cm-stalin-orders-all-zonal-heads-to-resign" class="text-decoration-none">
+          <div class="card border-0 h-100">
             <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/madurai_cmstalin_02ddf80479.png" class="card-img-top rounded" style="object-fit: cover; height: 200px;" alt="Major Shake-up in Madurai Corporation: CM Stalin Orders All Zonal Heads to Resign">
-
-          
-          <div class="card-body px-0">
-            <small class="text-muted d-block mb-1">By Ragavendran Ramesh • 7 Jul 2025</small>
-            <h5 class="card-title fw-semibold">Major Shake-up in Madurai Corporation: CM Stalin Orders All Zonal Heads to Resign</h5>
-            <p>Tamil Nadu CM Stalin orders all Madurai Corporation zonal heads to resign, aiming for better governance and party discipline. Major political shake-up ahead.</p>
+            <div class="card-body px-0">
+              <small class="text-muted d-block mb-1">By Ragavendran Ramesh • 7 Jul 2025</small>
+              <h5 class="card-title fw-semibold">Major Shake-up in Madurai Corporation: CM Stalin Orders All Zonal Heads to Resign</h5>
+              <p>Tamil Nadu CM Stalin orders all Madurai Corporation zonal heads to resign, aiming for better governance and party discipline. Major political shake-up ahead.</p>
+            </div>
           </div>
-        </div>
         </a>
       </div>
     
 
       <div class="col-md-4">
-      <a href="/news-article/trump-declares-25-tariffs-on-japan-and-south-korea-warns-more-countries" class="text-decoration-none">
-        <div class="card border-0  h-100">
-          
-            <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/trump_25_tariff_0d78e7f671.png" class="card-img-top rounded" style="object-fit: cover; height: 200px;" alt="Trump Declares 25% Tariffs on Japan and South Korea, Warns More Countries">
-
-          
-          <div class="card-body px-0">
-            <small class="text-muted d-block mb-1">By Ragavendran Ramesh • 7 Jul 2025</small>
-            <h5 class="card-title fw-semibold">Trump Declares 25% Tariffs on Japan and South Korea, Warns More Countries</h5>
-            <p>Trump announces 25% tariffs on Japan and South Korea starting August 1, urges fair trade, warns more countries may face similar actions soon.</p>
+        <a href="/news-article/pune-courier-rape-case-update-accused-arrested-in-karve-nagar-after-chilling-attack-in-kondhwa" class="text-decoration-none">
+          <div class="card border-0 h-100">
+            <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/pune_rape_case_police_arrested_d7656996e4.png" class="card-img-top rounded" style="object-fit: cover; height: 200px;" alt="Pune Courier Rape Case Update: Accused Arrested in Karve Nagar After Chilling Attack in Kondhwa">
+            <div class="card-body px-0">
+              <small class="text-muted d-block mb-1">By Ragavendran Ramesh • 4 Jul 2025</small>
+              <h5 class="card-title fw-semibold">Pune Courier Rape Case Update: Accused Arrested in Karve Nagar After Chilling Attack in Kondhwa</h5>
+              <p>Pune rape case update: Police arrest courier-posing attacker from Karve Nagar after shocking assault on IT professional in Kondhwa. Get full details now.</p>
+            </div>
           </div>
-        </div>
+        </a>
+      </div>
+    
+
+      <div class="col-md-4">
+        <a href="/news-article/fake-delivery-man-attacks-woman-in-pune" class="text-decoration-none">
+          <div class="card border-0 h-100">
+            <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/pune_delivery_ba862739dd.png" class="card-img-top rounded" style="object-fit: cover; height: 200px;" alt="Fake Delivery Man Attacks Woman in Pune">
+            <div class="card-body px-0">
+              <small class="text-muted d-block mb-1">By Ragavendran Ramesh • 3 Jul 2025</small>
+              <h5 class="card-title fw-semibold">Fake Delivery Man Attacks Woman in Pune</h5>
+              <p>Fake courier agent raped a woman in her Pune apartment after using a spray to incapacitate her, took a selfie, and threatened to return. Police search ongoing.</p>
+            </div>
+          </div>
         </a>
       </div>
     
@@ -266,139 +332,7 @@
     </section>
   </section>
 
-        <section class="mb-5">
-    <section class="section-3-highlight py-5 border-bottom">
-      <div class="container">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-          <h2 class="fw-bold">Full <span class="text-warning">Read</span></h2>
-          <a href="/news-article" class="text-dark fw-semibold">See All</a>
-        </div>
-        <div class="row g-4">
-          <div class="col-12 col-lg-8">
-            <a href="/news-article/trump-declares-25-tariffs-on-japan-and-south-korea-warns-more-countries">
-              <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/trump_25_tariff_0d78e7f671.png" class="img-fluid rounded w-100" style="object-fit: cover; max-height: 400px;" alt="Trump Declares 25% Tariffs on Japan and South Korea, Warns More Countries">
-            </a>
-            <div class="mt-3">
-            <a href="/news-article/trump-declares-25-tariffs-on-japan-and-south-korea-warns-more-countries" class="text-decoration-none text-dark">
-              <h3 class="fw-bold">Trump Declares 25% Tariffs on Japan and South Korea, Warns More Countries</h3>
-              <small class="text-muted">By Ragavendran Ramesh • 7 Jul 2025</small>
-              <p class="mt-2 text-muted"><p>Trump announces 25% tariffs on Japan and South Korea starting August 1, urges fair trade, warns more countries may face similar actions soon.</p>
-</p>
-              </a>
-            </div>
-
-          </div>
-          <div class="col-12 col-lg-4">
-            
-      <div class="d-flex mb-3">
-        <div style="width: 90px; height: 60px; flex-shrink: 0;">
-          <a href="/news-article/pune-courier-rape-case-update-accused-arrested-in-karve-nagar-after-chilling-attack-in-kondhwa">
-            <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/pune_rape_case_police_arrested_d7656996e4.png" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: 100%;" alt="Pune Courier Rape Case Update: Accused Arrested in Karve Nagar After Chilling Attack in Kondhwa">
-          </a>
-        </div>
-        <div class="ps-3"> 
-        <a href="/news-article/pune-courier-rape-case-update-accused-arrested-in-karve-nagar-after-chilling-attack-in-kondhwa" class="text-decoration-none text-dark">
-          <p class="mb-0 small fw-semibold">Pune Courier Rape Case Update: Accused Arrested in Karve Nagar After Chilling Attack in Kondhwa</p>
-          <small class="text-muted d-block mb-1">4 Jul 2025</small>
-          </a>
-        </div>
-      </div>
-    
-
-      <div class="d-flex mb-3">
-        <div style="width: 90px; height: 60px; flex-shrink: 0;">
-          <a href="/news-article/fake-delivery-man-attacks-woman-in-pune">
-            <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/pune_delivery_ba862739dd.png" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: 100%;" alt="Fake Delivery Man Attacks Woman in Pune">
-          </a>
-        </div>
-        <div class="ps-3"> 
-        <a href="/news-article/fake-delivery-man-attacks-woman-in-pune" class="text-decoration-none text-dark">
-          <p class="mb-0 small fw-semibold">Fake Delivery Man Attacks Woman in Pune</p>
-          <small class="text-muted d-block mb-1">3 Jul 2025</small>
-          </a>
-        </div>
-      </div>
-    
-
-      <div class="d-flex mb-3">
-        <div style="width: 90px; height: 60px; flex-shrink: 0;">
-          <a href="/news-article/karnataka-police-officer-resigns-after-public-humiliation-by-cm-siddaramaiah">
-            <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/Karnataka_Police_Officer_Resigns_After_Public_Humiliation_by_CM_Siddaramaiah_5daeace69b.png" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: 100%;" alt="Karnataka Police Officer Resigns After Public Humiliation by CM Siddaramaiah">
-          </a>
-        </div>
-        <div class="ps-3"> 
-        <a href="/news-article/karnataka-police-officer-resigns-after-public-humiliation-by-cm-siddaramaiah" class="text-decoration-none text-dark">
-          <p class="mb-0 small fw-semibold">Karnataka Police Officer Resigns After Public Humiliation by CM Siddaramaiah</p>
-          <small class="text-muted d-block mb-1">3 Jul 2025</small>
-          </a>
-        </div>
-      </div>
-    
-
-      <div class="d-flex mb-3">
-        <div style="width: 90px; height: 60px; flex-shrink: 0;">
-          <a href="/news-article/prof-deivam-latest-interview-to-reporters-about-nikita-s-scam-and-ajith-kumar-custodial-death-case">
-            <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/Screenshot_2025_07_03_at_11_59_06_AM_c8e232d05e.png" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: 100%;" alt="Prof. Deivam Latest Interview to Reporters – About Nikita’s Scam & Ajith Kumar Custodial-Death Case">
-          </a>
-        </div>
-        <div class="ps-3"> 
-        <a href="/news-article/prof-deivam-latest-interview-to-reporters-about-nikita-s-scam-and-ajith-kumar-custodial-death-case" class="text-decoration-none text-dark">
-          <p class="mb-0 small fw-semibold">Prof. Deivam Latest Interview to Reporters – About Nikita’s Scam & Ajith Kumar Custodial-Death Case</p>
-          <small class="text-muted d-block mb-1">3 Jul 2025</small>
-          </a>
-        </div>
-      </div>
-    
-
-      <div class="d-flex mb-3">
-        <div style="width: 90px; height: 60px; flex-shrink: 0;">
-          <a href="/news-article/three-indian-nationals-kidnapped-in-mali-amid-al-qaeda-linked-violence">
-            <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/3indian_attac_K_mali_9aa772e4a8.webp" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: 100%;" alt="Three Indian Nationals Kidnapped in Mali Amid Al-Qaeda-Linked Violence">
-          </a>
-        </div>
-        <div class="ps-3"> 
-        <a href="/news-article/three-indian-nationals-kidnapped-in-mali-amid-al-qaeda-linked-violence" class="text-decoration-none text-dark">
-          <p class="mb-0 small fw-semibold">Three Indian Nationals Kidnapped in Mali Amid Al-Qaeda-Linked Violence</p>
-          <small class="text-muted d-block mb-1">3 Jul 2025</small>
-          </a>
-        </div>
-      </div>
-    
-
-      <div class="d-flex mb-3">
-        <div style="width: 90px; height: 60px; flex-shrink: 0;">
-          <a href="/news-article/sivaganga-custodial-death-five-policemen-arrested-case-transferred-to-cb-cid">
-            <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/lockupdeath_ajithkumar_aaa09034fa.avif" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: 100%;" alt="Sivaganga Custodial Death: Five Policemen Arrested, Case Transferred to CB-CID">
-          </a>
-        </div>
-        <div class="ps-3"> 
-        <a href="/news-article/sivaganga-custodial-death-five-policemen-arrested-case-transferred-to-cb-cid" class="text-decoration-none text-dark">
-          <p class="mb-0 small fw-semibold">Sivaganga Custodial Death: Five Policemen Arrested, Case Transferred to CB-CID</p>
-          <small class="text-muted d-block mb-1">2 Jul 2025</small>
-          </a>
-        </div>
-      </div>
-    
-
-      <div class="d-flex mb-3">
-        <div style="width: 90px; height: 60px; flex-shrink: 0;">
-          <a href="/news-article/nursing-student-murdered-in-madhya-pradesh-hospital">
-            <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/brutalmurder_c3d87a679e.png" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: 100%;" alt="Nursing Student Murdered in Madhya Pradesh Hospital">
-          </a>
-        </div>
-        <div class="ps-3"> 
-        <a href="/news-article/nursing-student-murdered-in-madhya-pradesh-hospital" class="text-decoration-none text-dark">
-          <p class="mb-0 small fw-semibold">Nursing Student Murdered in Madhya Pradesh Hospital</p>
-          <small class="text-muted d-block mb-1">1 Jul 2025</small>
-          </a>
-        </div>
-      </div>
-    
-          </div>
-        </div>
-      </div>
-    </section>
-  </section>
+        <section class="mb-5"></section>
 
         <section class="mb-5">
     <section class="section-4-mostsee py-5 border-bottom">
