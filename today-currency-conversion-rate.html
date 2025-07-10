@@ -46,40 +46,61 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm sticky-top">
-  <div class="container py-2 d-flex justify-content-between align-items-center">
+  <!-- Top Info Strip -->
+<div class="bg-white border-bottom py-2 d-flex justify-content-between align-items-center px-3 small text-muted">
+  <div>
+    <strong id="today-date"></strong>
+  </div>
+  <!-- <div class="d-flex align-items-center gap-3">
+    <div class="text-warning"><i class="bi bi-sun-fill"></i> 33°C</div>
+  </div> -->
+</div>
 
-    <!-- Left: Logo + Brand -->
-    <div class="d-flex align-items-center gap-3">
-      <a href="/" class="text-decoration-none">
-        <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/ragadecode_logo_668c5f78f9.png" alt="Raga Decode Logo" style="height: 60px;">
-      </a>
-      <div class="d-flex flex-column">
-        <a class="navbar-brand text-dark text-decoration-none mb-0" href="/">Raga Decode</a>
-        <span class="tagline text-muted small">Decoded News. Clear. Bold. Unfiltered.</span>
+<!-- Logo + Brand + Toggler -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm border-bottom sticky-top px-3 py-1" style="z-index: 1050;">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center gap-2 mb-0" href="/" style="font-size: 1rem;">
+      <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/ragadecode_logo_668c5f78f9.png"
+           alt="Raga Decode Logo" height="36" />
+      <div class="d-flex flex-column lh-sm">
+        <span class="fw-semibold text-dark" style="font-size: 1rem;">Raga Decode</span>
+        <small class="text-muted" style="font-size: 0.7rem;">Decoded News. Clear. Bold. Unfiltered.</small>
       </div>
-    </div>
+    </a>
 
-    <!-- Right: Hamburger -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Toggler -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
   </div>
 
-  <!-- Collapsible Links -->
-  <div class="collapse navbar-collapse border-top px-3" id="mainNavbar">
-    <ul class="navbar-nav ms-auto gap-3 py-3 py-lg-0">
-      <li class="nav-item"><a class="nav-link text-primary" href="/">Home</a></li>
-      <li class="nav-item"><a class="nav-link text-primary" href="/news-article">Trending News</a></li>
-      <li class="nav-item"><a class="nav-link text-primary" href="/technologies">Technology</a></li>
-      <li class="nav-item"><a class="nav-link text-primary" href="/finances">Finance</a></li>
-      <li class="nav-item"><a class="nav-link text-primary" href="/automobile">Automobile</a></li>
-      <li class="nav-item"><a class="nav-link text-primary" href="/tourism-travel-trips">Travel Trips</a></li>
-      <li class="nav-item"><a class="nav-link text-primary" href="/today-gold-price">Gold Rate</a></li>
-      <li class="nav-item"><a class="nav-link text-primary" href="/today-currency-conversion-rate">Currency Rate</a></li>
+  <!-- Collapse Nav Items -->
+  <div class="collapse navbar-collapse px-3" id="mainNavbar">
+    <ul class="navbar-nav ms-auto gap-lg-3 gap-2">
+      <li class="nav-item"><a class="nav-link text-dark" href="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="/news-article">Trending</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="/technologies">Technology</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="/finances">Finance</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="/automobile">Automobile</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="/tourism-travel-trips">Travel</a></li>
     </ul>
   </div>
 </nav>
+
+<!-- Horizontal Category Scroller -->
+<div class="bg-light border-bottom overflow-auto d-flex gap-3 py-2 px-3" style="white-space: nowrap; z-index: 1040;">
+
+  <a class="text-decoration-none text-dark" href="/indian-railways">Indian Railways</a>
+  <a class="text-decoration-none text-dark" href="/iaf">Indian Armed Forces</a>
+  <a class="text-decoration-none text-dark" href="/airlines">Airlines</a>
+  <a class="text-decoration-none text-dark" href="/locations/india">India</a>
+  <a class="text-decoration-none text-dark" href="/locations/india/tamilnadu">Tamil Nadu</a>
+  <a class="text-decoration-none text-dark" href="/locations/india/kerala">Kerala</a>
+  <a class="text-decoration-none text-dark" href="/locations/india/karnataka">Karnataka</a>
+  <a class="text-decoration-none text-dark" href="/locations/india/maharashtra">Maharashtra</a>
+  <a class="text-decoration-none text-dark" href="/locations/india/west-bengal">West Bengal</a>
+</div>
 
 
   <main class="container py-5">
@@ -102,21 +123,21 @@
       <div class="col-sm-6 col-lg-4">
         <div class="border rounded p-3 bg-white text-center shadow-sm">
           <div class="fw-semibold">USD</div>
-          <div class="text-success fs-5">₹85.7</div>
+          <div class="text-success fs-5">₹85.71</div>
         </div>
       </div>
     
       <div class="col-sm-6 col-lg-4">
         <div class="border rounded p-3 bg-white text-center shadow-sm">
           <div class="fw-semibold">EUR</div>
-          <div class="text-success fs-5">₹100.48</div>
+          <div class="text-success fs-5">₹100.67</div>
         </div>
       </div>
     
       <div class="col-sm-6 col-lg-4">
         <div class="border rounded p-3 bg-white text-center shadow-sm">
           <div class="fw-semibold">GBP</div>
-          <div class="text-success fs-5">₹116.47</div>
+          <div class="text-success fs-5">₹116.64</div>
         </div>
       </div>
     
@@ -171,7 +192,7 @@
         
           <tr>
             <td><strong>ANG</strong></td>
-            <td>₹47.6</td>
+            <td>₹47.58</td>
           </tr>
         
           <tr>
@@ -186,7 +207,7 @@
         
           <tr>
             <td><strong>AUD</strong></td>
-            <td>₹56.02</td>
+            <td>₹56.1</td>
           </tr>
         
           <tr>
@@ -196,17 +217,17 @@
         
           <tr>
             <td><strong>AZN</strong></td>
-            <td>₹50.41</td>
+            <td>₹50.42</td>
           </tr>
         
           <tr>
             <td><strong>BAM</strong></td>
-            <td>₹51.37</td>
+            <td>₹51.47</td>
           </tr>
         
           <tr>
             <td><strong>BBD</strong></td>
-            <td>₹42.85</td>
+            <td>₹42.86</td>
           </tr>
         
           <tr>
@@ -216,12 +237,12 @@
         
           <tr>
             <td><strong>BGN</strong></td>
-            <td>₹51.37</td>
+            <td>₹51.47</td>
           </tr>
         
           <tr>
             <td><strong>BHD</strong></td>
-            <td>₹227.93</td>
+            <td>₹227.96</td>
           </tr>
         
           <tr>
@@ -231,32 +252,32 @@
         
           <tr>
             <td><strong>BMD</strong></td>
-            <td>₹85.7</td>
+            <td>₹85.71</td>
           </tr>
         
           <tr>
             <td><strong>BND</strong></td>
-            <td>₹66.96</td>
+            <td>₹67.02</td>
           </tr>
         
           <tr>
             <td><strong>BOB</strong></td>
-            <td>₹12.39</td>
+            <td>₹12.41</td>
           </tr>
         
           <tr>
             <td><strong>BRL</strong></td>
-            <td>₹15.36</td>
+            <td>₹15.37</td>
           </tr>
         
           <tr>
             <td><strong>BSD</strong></td>
-            <td>₹85.7</td>
+            <td>₹85.71</td>
           </tr>
         
           <tr>
             <td><strong>BTC</strong></td>
-            <td>₹95,35,394.92</td>
+            <td>₹95,36,010.4</td>
           </tr>
         
           <tr>
@@ -266,7 +287,7 @@
         
           <tr>
             <td><strong>BWP</strong></td>
-            <td>₹6.42</td>
+            <td>₹6.41</td>
           </tr>
         
           <tr>
@@ -281,12 +302,12 @@
         
           <tr>
             <td><strong>BZD</strong></td>
-            <td>₹42.56</td>
+            <td>₹42.6</td>
           </tr>
         
           <tr>
             <td><strong>CAD</strong></td>
-            <td>₹62.62</td>
+            <td>₹62.67</td>
           </tr>
         
           <tr>
@@ -296,7 +317,7 @@
         
           <tr>
             <td><strong>CHF</strong></td>
-            <td>₹107.94</td>
+            <td>₹108.18</td>
           </tr>
         
           <tr>
@@ -306,7 +327,7 @@
         
           <tr>
             <td><strong>CNH</strong></td>
-            <td>₹11.93</td>
+            <td>₹11.94</td>
           </tr>
         
           <tr>
@@ -321,12 +342,12 @@
         
           <tr>
             <td><strong>CUC</strong></td>
-            <td>₹85.7</td>
+            <td>₹85.71</td>
           </tr>
         
           <tr>
             <td><strong>CUP</strong></td>
-            <td>₹3.57</td>
+            <td>₹3.58</td>
           </tr>
         
           <tr>
@@ -346,7 +367,7 @@
         
           <tr>
             <td><strong>DKK</strong></td>
-            <td>₹13.47</td>
+            <td>₹13.49</td>
           </tr>
         
           <tr>
@@ -361,7 +382,7 @@
         
           <tr>
             <td><strong>EEK</strong></td>
-            <td>₹6.42</td>
+            <td>₹6.43</td>
           </tr>
         
           <tr>
@@ -381,12 +402,12 @@
         
           <tr>
             <td><strong>FJD</strong></td>
-            <td>₹38.1</td>
+            <td>₹38.17</td>
           </tr>
         
           <tr>
             <td><strong>FKP</strong></td>
-            <td>₹116.47</td>
+            <td>₹116.64</td>
           </tr>
         
           <tr>
@@ -396,17 +417,17 @@
         
           <tr>
             <td><strong>GGP</strong></td>
-            <td>₹116.47</td>
+            <td>₹116.64</td>
           </tr>
         
           <tr>
             <td><strong>GHS</strong></td>
-            <td>₹8.26</td>
+            <td>₹8.25</td>
           </tr>
         
           <tr>
             <td><strong>GIP</strong></td>
-            <td>₹116.47</td>
+            <td>₹116.64</td>
           </tr>
         
           <tr>
@@ -441,7 +462,7 @@
         
           <tr>
             <td><strong>HRK</strong></td>
-            <td>₹13.34</td>
+            <td>₹13.36</td>
           </tr>
         
           <tr>
@@ -466,7 +487,7 @@
         
           <tr>
             <td><strong>IMP</strong></td>
-            <td>₹116.47</td>
+            <td>₹116.64</td>
           </tr>
         
           <tr>
@@ -491,7 +512,7 @@
         
           <tr>
             <td><strong>JEP</strong></td>
-            <td>₹116.47</td>
+            <td>₹116.64</td>
           </tr>
         
           <tr>
@@ -501,7 +522,7 @@
         
           <tr>
             <td><strong>JOD</strong></td>
-            <td>₹120.87</td>
+            <td>₹120.89</td>
           </tr>
         
           <tr>
@@ -536,12 +557,12 @@
         
           <tr>
             <td><strong>KWD</strong></td>
-            <td>₹280.65</td>
+            <td>₹280.68</td>
           </tr>
         
           <tr>
             <td><strong>KYD</strong></td>
-            <td>₹103.36</td>
+            <td>₹103.37</td>
           </tr>
         
           <tr>
@@ -571,17 +592,17 @@
         
           <tr>
             <td><strong>LSL</strong></td>
-            <td>₹4.81</td>
+            <td>₹4.82</td>
           </tr>
         
           <tr>
             <td><strong>LTL</strong></td>
-            <td>₹29.1</td>
+            <td>₹29.16</td>
           </tr>
         
           <tr>
             <td><strong>LVL</strong></td>
-            <td>₹142.97</td>
+            <td>₹143.24</td>
           </tr>
         
           <tr>
@@ -646,12 +667,12 @@
         
           <tr>
             <td><strong>MXN</strong></td>
-            <td>₹4.6</td>
+            <td>₹4.61</td>
           </tr>
         
           <tr>
             <td><strong>MYR</strong></td>
-            <td>₹20.16</td>
+            <td>₹20.19</td>
           </tr>
         
           <tr>
@@ -661,7 +682,7 @@
         
           <tr>
             <td><strong>NAD</strong></td>
-            <td>₹4.81</td>
+            <td>₹4.82</td>
           </tr>
         
           <tr>
@@ -676,7 +697,7 @@
         
           <tr>
             <td><strong>NOK</strong></td>
-            <td>₹8.49</td>
+            <td>₹8.51</td>
           </tr>
         
           <tr>
@@ -691,27 +712,27 @@
         
           <tr>
             <td><strong>NZD</strong></td>
-            <td>₹51.44</td>
+            <td>₹51.5</td>
           </tr>
         
           <tr>
             <td><strong>OMR</strong></td>
-            <td>₹222.67</td>
+            <td>₹222.71</td>
           </tr>
         
           <tr>
             <td><strong>PAB</strong></td>
-            <td>₹85.7</td>
+            <td>₹85.71</td>
           </tr>
         
           <tr>
             <td><strong>PEN</strong></td>
-            <td>₹24.15</td>
+            <td>₹24.16</td>
           </tr>
         
           <tr>
             <td><strong>PGK</strong></td>
-            <td>₹20.78</td>
+            <td>₹20.44</td>
           </tr>
         
           <tr>
@@ -726,7 +747,7 @@
         
           <tr>
             <td><strong>PLN</strong></td>
-            <td>₹23.68</td>
+            <td>₹23.72</td>
           </tr>
         
           <tr>
@@ -736,12 +757,12 @@
         
           <tr>
             <td><strong>QAR</strong></td>
-            <td>₹23.54</td>
+            <td>₹23.55</td>
           </tr>
         
           <tr>
             <td><strong>RON</strong></td>
-            <td>₹19.79</td>
+            <td>₹19.83</td>
           </tr>
         
           <tr>
@@ -761,17 +782,17 @@
         
           <tr>
             <td><strong>SAR</strong></td>
-            <td>₹22.85</td>
+            <td>₹22.86</td>
           </tr>
         
           <tr>
             <td><strong>SBD</strong></td>
-            <td>₹10.21</td>
+            <td>₹10.18</td>
           </tr>
         
           <tr>
             <td><strong>SCR</strong></td>
-            <td>₹5.85</td>
+            <td>₹5.9</td>
           </tr>
         
           <tr>
@@ -781,17 +802,17 @@
         
           <tr>
             <td><strong>SEK</strong></td>
-            <td>₹9.01</td>
+            <td>₹9.03</td>
           </tr>
         
           <tr>
             <td><strong>SGD</strong></td>
-            <td>₹66.96</td>
+            <td>₹67.02</td>
           </tr>
         
           <tr>
             <td><strong>SHP</strong></td>
-            <td>₹116.47</td>
+            <td>₹116.64</td>
           </tr>
         
           <tr>
@@ -816,7 +837,7 @@
         
           <tr>
             <td><strong>SPL</strong></td>
-            <td>₹514.2</td>
+            <td>₹514.27</td>
           </tr>
         
           <tr>
@@ -831,7 +852,7 @@
         
           <tr>
             <td><strong>SVC</strong></td>
-            <td>₹9.79</td>
+            <td>₹9.8</td>
           </tr>
         
           <tr>
@@ -841,32 +862,32 @@
         
           <tr>
             <td><strong>SZL</strong></td>
-            <td>₹4.81</td>
+            <td>₹4.82</td>
           </tr>
         
           <tr>
             <td><strong>THB</strong></td>
-            <td>₹2.62</td>
+            <td>₹2.63</td>
           </tr>
         
           <tr>
             <td><strong>TJS</strong></td>
-            <td>₹8.92</td>
+            <td>₹8.93</td>
           </tr>
         
           <tr>
             <td><strong>TMT</strong></td>
-            <td>₹24.42</td>
+            <td>₹24.43</td>
           </tr>
         
           <tr>
             <td><strong>TND</strong></td>
-            <td>₹29.59</td>
+            <td>₹29.6</td>
           </tr>
         
           <tr>
             <td><strong>TOP</strong></td>
-            <td>₹35.95</td>
+            <td>₹35.99</td>
           </tr>
         
           <tr>
@@ -876,17 +897,17 @@
         
           <tr>
             <td><strong>TTD</strong></td>
-            <td>₹12.62</td>
+            <td>₹12.63</td>
           </tr>
         
           <tr>
             <td><strong>TVD</strong></td>
-            <td>₹56.02</td>
+            <td>₹56.1</td>
           </tr>
         
           <tr>
             <td><strong>TWD</strong></td>
-            <td>₹2.94</td>
+            <td>₹2.93</td>
           </tr>
         
           <tr>
@@ -951,12 +972,12 @@
         
           <tr>
             <td><strong>XCD</strong></td>
-            <td>₹31.66</td>
+            <td>₹31.67</td>
           </tr>
         
           <tr>
             <td><strong>XDR</strong></td>
-            <td>₹117.43</td>
+            <td>₹117.45</td>
           </tr>
         
           <tr>
@@ -976,7 +997,7 @@
         
           <tr>
             <td><strong>ZAR</strong></td>
-            <td>₹4.81</td>
+            <td>₹4.82</td>
           </tr>
         
           <tr>
@@ -1014,19 +1035,18 @@
 
   <footer class="footer bg-white text-dark pt-5 border-top">
   <div class="container">
-    <div class="row">
+    <div class="row gy-4">
 
       <!-- Brand & Description -->
-      <div class="col-md-5 mb-4">
-        <div class="d-flex align-items-center mb-3">
+      <div class="col-12 col-md-5">
+        <div class="d-flex align-items-center mb-2">
           <img src="https://genuine-compassion-eb21be0109.media.strapiapp.com/ragadecode_logo_668c5f78f9.png" alt="RagaDecode Logo" class="me-2" style="height: 40px;">
           <span class="h5 mb-0 fw-bold">RagaDecode</span>
         </div>
         <p class="small mb-3">
-          RagaDecode empowers readers to decode<br />
-          complex global events with simplified journalism<br />
-          — making headlines easier to follow,<br />
-          understand, and act on.
+          RagaDecode empowers readers to decode<br>
+          complex global events with simplified journalism —<br>
+          making headlines easier to follow, understand, and act on.
         </p>
         <div class="d-flex gap-3">
           <a href="https://www.facebook.com/ragadecode" target="_blank" class="text-dark"><i class="fab fa-facebook fa-lg"></i></a>
@@ -1036,7 +1056,7 @@
       </div>
 
       <!-- News Links -->
-      <div class="col-md-2 mb-4">
+      <div class="col-6 col-md-2">
         <h6 class="fw-bold">News</h6>
         <ul class="list-unstyled small">
           <li><a href="/news-article/" class="text-decoration-none text-dark">Trending</a></li>
@@ -1047,7 +1067,7 @@
       </div>
 
       <!-- Articles Links -->
-      <div class="col-md-2 mb-4">
+      <div class="col-6 col-md-2">
         <h6 class="fw-bold">Articles</h6>
         <ul class="list-unstyled small">
           <li><a href="/technologies" class="text-decoration-none text-dark">Technology</a></li>
@@ -1058,7 +1078,7 @@
       </div>
 
       <!-- Company Links -->
-      <div class="col-md-3 mb-4">
+      <div class="col-12 col-md-3">
         <h6 class="fw-bold">Company</h6>
         <ul class="list-unstyled small">
           <li><a href="/static-pages/about-us" class="text-decoration-none text-dark">About Us</a></li>
@@ -1069,12 +1089,12 @@
 
     </div>
 
-    <hr />
+    <hr class="mt-4" />
 
     <!-- Bottom Footer -->
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pb-3 small">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pb-3 small text-center text-md-start">
       <p class="mb-2 mb-md-0 text-muted">&copy; 2025 <strong>RagaDecode</strong>. All rights reserved.</p>
-      <div class="d-flex gap-3">
+      <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-md-end">
         <a href="/static-pages/privacy-policy" class="text-decoration-none text-muted">Privacy Policy</a>
         <a href="/static-pages/terms-and-conditions" class="text-decoration-none text-muted">Terms and Conditions</a>
         <a href="/static-pages/editorial-policy" class="text-decoration-none text-muted">Editorial Policy</a>
@@ -1082,6 +1102,21 @@
     </div>
   </div>
 </footer>
+<script>
+  const dateElement = document.getElementById("today-date");
+  const today = new Date();
+
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+
+  const formattedDate = today.toLocaleDateString("en-US", options);
+  dateElement.textContent = formattedDate;
+</script>
+
 
 
 </body>
