@@ -37,56 +37,14 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+   
+
     {{STRUCTURED_DATA_JSON}} {{GA_SCRIPT}}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036"
      crossorigin="anonymous"></script>
 
-    <style>
-      .cover-img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-        object-fit: cover;
-        margin-bottom: 24px;
-      }
-
-      .main-heading {
-        font-size: 2.5rem;
-        font-weight: 700;
-      }
-
-      .content-body {
-        font-size: 1.1rem;
-        line-height: 1.7;
-      }
-
-      .related-section {
-        margin-top: 4rem;
-      }
-
-      .related-card img {
-        height: 180px;
-        object-fit: cover;
-        border-radius: 6px;
-      }
-
-      .related-card .card-title {
-        font-size: 1.1rem;
-        font-weight: 600;
-      }
-
-      .article-date {
-        color: #6c757d;
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-      }
-
-      .back-link {
-        display: inline-block;
-        margin-top: 2rem;
-        color: #007bff;
-      }
-    </style>
+      <link rel="stylesheet" href="/assets/css/markdown.css">
+    
   </head>
 
   <body>
@@ -116,7 +74,10 @@
 
           <!-- Content Body -->
           <div class="content-body px-1 px-md-2 px-lg-3 mt-4 mb-5">
+            <div class="content-markdown">
             {{CONTENT}}
+            </div>
+
           </div>
 
           <!-- Author Info -->
