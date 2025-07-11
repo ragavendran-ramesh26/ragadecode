@@ -22,6 +22,11 @@ const API_CONFIGS = [
   },
 ];
 
+function sanitizeMarkdownContent(content) {
+  if (!content || typeof content !== 'string') return '*No content available*';
+  return content.replace(/\[object Object\]/g, '');
+}
+
 function buildLDJson({ title, coverImageUrl, publishedRaw, lastModifiedUTC, authorName, authorSlug, slugPrefix, slug, description, category, keywords, schema_details }) {
   const publishedISO = new Date(publishedRaw).toISOString();
   const baseSchema = {
@@ -116,7 +121,7 @@ function buildRelatedArticlesHtml(attrs) {
   try {
     const template = await fs.readFile(TEMPLATE_PATH, 'utf8');
     for (const config of API_CONFIGS) {
-      console.log(`🔄 Fetching articles for ${config.name}...`);
+   
       const res = await fetch(config.apiUrl);
       const { data } = await res.json();
 
@@ -149,7 +154,14 @@ function buildRelatedArticlesHtml(attrs) {
 
         const keywords = attrs.Tags ? attrs.Tags.split(',').map(tag => tag.trim()) : [];
         const schema_details = attrs.schema || '';
-        const markdown = attrs.Description_in_detail || '*No content available*';
+        // const markdown = attrs.Description_in_detail || '*No content available*';
+        // const markdownRaw = attrs.Description_in_detail || '*No content available*';
+
+        let markdownRaw = attrs.Description_in_detail;
+if (typeof markdownRaw !== 'string') {
+  markdownRaw = JSON.stringify(markdownRaw, null, 2);
+}
+const markdown = sanitizeMarkdownContent(markdownRaw); 
 
         const publishedRaw = attrs.publishedat || attrs.publishedAt || attrs.createdAt;
         const published = new Date(publishedRaw).toLocaleDateString("en-IN", { year: "numeric", month: "short", day: "numeric" });
@@ -218,7 +230,28 @@ if (attrs.author) {
         else if (country && state) locationBlock = `<div class="location-block">${country} | ${state}</div>`;
         else if (country) locationBlock = `<div class="location-block">${country}</div>`;
 
-        const contentHTML = marked.parse(markdown);
+        // const contentHTML = marked.parse(markdown);
+
+        const renderer = new marked.Renderer();
+        renderer.table = (header, body) => {
+          return `
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <thead>${header}</thead>
+                <tbody>${body}</tbody>
+              </table>
+            </div>`;
+        };
+        marked.setOptions({ renderer });
+
+        let contentHTML;
+        try {
+          contentHTML = marked.parse(markdown);
+        } catch (err) {
+          console.error('Markdown parsing failed:', err);
+          contentHTML = '<p>Error rendering content.</p>';
+        }
+        
         const tagHtml = (attrs.hashtags || []).map(tag => {
           const name = tag.name || '';
           const slug = name.toLowerCase().replace(/\s+/g, '-');
