@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+// const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const marked = require('marked');
 
 // Paths
@@ -9,13 +9,15 @@ const OUTPUT_PATH = path.join(__dirname, '../../index.html');
 
 const headerHtml = fs.readFileSync(path.join(__dirname, "../../templates/header.html"), "utf-8");
 const footerHtml = fs.readFileSync(path.join(__dirname, "../../templates/footer.html"), "utf-8");
+const API_CONFIG= require("../../assets/js/api-config");
+const fetchWithAuth = require('../../assets/js/api-client');
 
 // APIs
-const API_URL = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate=coverimage&populate=category&populate=author&populate=cities&populate=states&populate=countries&populate=hashtags';
-const TAGS_API = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags?pagination[page]=1&pagination[pageSize]=100';
-const COUNTRIES_API = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/countries';
-const STATES_API = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/states?populate=country';
-const CITIES_API = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/cities?populate[state][populate]=country';
+const API_URL = API_CONFIG.NEWS_ARTICLES;
+const TAGS_API = API_CONFIG.TAGS_API
+const COUNTRIES_API = API_CONFIG.COUNTRIES_API
+const STATES_API = API_CONFIG.STATES_API
+const CITIES_API = API_CONFIG.CITIES_API
 
 const gaScript = `
 <!-- Google tag (gtag.js) -->
@@ -38,6 +40,9 @@ function splitList(data, size = 6) {
 
 function splitCountries(countries) {
   const [col1, col2, col3] = splitList(countries);
+
+
+   
   return `
     <div class="sub-columns">
       <ul>${col1.map(c => `<li><a href="/locations/${c.slug}">${c.title}</a></li>`).join('')}</ul>
@@ -49,6 +54,7 @@ function splitCountries(countries) {
 
 function splitStates(states) {
   const [col1, col2, col3] = splitList(states);
+
   return `
     <div class="sub-columns">
       <ul>${col1.map(s => `<li><a href="/locations/${s.country.slug}/${s.slug}">${s.title}</a></li>`).join('')}</ul>
@@ -77,8 +83,11 @@ function splitCities(cities) {
 (async () => {
   try {
     // Fetch tags
-    const tagRes = await fetch(TAGS_API);
+    const tagRes = await fetchWithAuth(TAGS_API);
     const { data: tagData } = await tagRes.json();
+
+     
+
     const tagBoxHtml = tagData.map(tag => {
       const name = tag.name || '';
       const slug = name.toLowerCase().replace(/\s+/g, '-');
@@ -87,13 +96,21 @@ function splitCities(cities) {
 
     // Fetch regions
     const [countriesRes, statesRes, citiesRes] = await Promise.all([
-      fetch(COUNTRIES_API),
-      fetch(STATES_API),
-      fetch(CITIES_API),
+      fetchWithAuth(COUNTRIES_API),
+      fetchWithAuth(STATES_API),
+      fetchWithAuth(CITIES_API),
     ]);
     const { data: countriesData } = await countriesRes.json();
     const { data: statesData } = await statesRes.json();
     const { data: citiesData } = await citiesRes.json();
+
+
+    statesData.forEach(s => {
+      if (!s.country || !s.country.slug) {
+        console.warn(`⚠️ State missing country slug: ${s.title}`);
+      }
+    });
+
 
     const regionHtml = `
       <section class="region-wrapper">
@@ -111,7 +128,7 @@ function splitCities(cities) {
 
 
     // Fetch articles
-    const resp = await fetch(API_URL);
+    const resp = await fetchWithAuth(API_URL);
     const { data: articles } = await resp.json();
 
     

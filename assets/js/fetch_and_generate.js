@@ -1,10 +1,13 @@
 const fs = require("fs");
 const path = require("path");
 const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-const METALS_API =
-  "https://api.metals.dev/v1/latest?api_key=APKAB7KKG6EAHI9WNWJX5409WNWJX&currency=INR&unit=g";
+
+const API_CONFIG = require("../../assets/js/api-config");
+
+
+const METALS_API = API_CONFIG.METALS_API;
 
 const metalsTemplatePath = path.join(__dirname, "../../templates/template_metals.html");
 const currencyTemplatePath = path.join(__dirname, "../../templates/template_currency.html");

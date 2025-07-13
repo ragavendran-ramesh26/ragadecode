@@ -1,6 +1,6 @@
 const fs = require("fs-extra");
 const path = require("path");
-const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const fetch = require('../../assets/js/api-client');
 const marked = require('marked');
 
 const BASE_DOMAIN = "ragadecode.com";
@@ -11,10 +11,11 @@ const TEMPLATE_PATH = path.join(__dirname, "../../templates/locations_template.h
 const OUTPUT_DIR = path.join(__dirname, "../../locations");
 const headerHtml = fs.readFileSync(path.join(__dirname, "../../templates/header.html"), "utf-8");
 const footerHtml = fs.readFileSync(path.join(__dirname, "../../templates/footer.html"), "utf-8");
+const API_CONFIG= require("../../assets/js/api-config");
 
-const COUNTRY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/countries?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate[news_articles][populate][1]=category&populate[news_articles][populate][2]=author`;
-const STATE_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/states?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate=country&populate[news_articles][populate][1]=category&populate[news_articles][populate][2]=author`;
-const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities?populate[news_articles][populate]=coverimage&populate[news_articles][sort][0]=publishedat:desc&populate[tourism_travel_trips][populate]=coverimage&populate[tourism_travel_trips][sort][0]=publishedat:desc&populate[state][populate]=country&populate[news_articles][populate][1]=category&populate[news_articles][populate][2]=author`;
+const COUNTRY_API = API_CONFIG.COUNTRY_PAGE_API;
+const STATE_API = API_CONFIG.STATE_PAGE_API;
+const CITY_API = API_CONFIG.CITY_PAGE_API;
 
 (async () => {
   try {
@@ -30,15 +31,41 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
 `;
 
     const template = await fs.readFile(TEMPLATE_PATH, "utf8");
+
+    // console.log("🌐 Fetching data from API endpoints...");
+    // console.log(`➡️ COUNTRY_API: ${COUNTRY_API}`);
+    // console.log(`➡️ STATE_API:   ${STATE_API}`);
+    // console.log(`➡️ CITY_API:    ${CITY_API}`);
+
     const [countryRes, stateRes, cityRes] = await Promise.all([
-      fetch(COUNTRY_API),
-      fetch(STATE_API),
-      fetch(CITY_API),
+      fetch(COUNTRY_API).catch(err => {
+        throw new Error(`❌ Failed to fetch countries: ${err.message}`);
+      }),
+      fetch(STATE_API).catch(err => {
+        throw new Error(`❌ Failed to fetch states: ${err.message}`);
+      }),
+      fetch(CITY_API).catch(err => {
+        throw new Error(`❌ Failed to fetch cities: ${err.message}`);
+      }),
     ]);
 
-    const countries = (await countryRes.json()).data;
-    const states = (await stateRes.json()).data;
-    const cities = (await cityRes.json()).data;
+    const countryJson = await countryRes.json();
+const stateJson = await stateRes.json();
+const cityJson = await cityRes.json();
+
+if (!countryJson?.data || !Array.isArray(countryJson.data)) {
+  throw new Error(`Invalid country data format from ${COUNTRY_API}`);
+}
+if (!stateJson?.data || !Array.isArray(stateJson.data)) {
+  throw new Error(`Invalid state data format from ${STATE_API}`);
+}
+if (!cityJson?.data || !Array.isArray(cityJson.data)) {
+  throw new Error(`Invalid city data format from ${CITY_API}`);
+}
+
+const countries = countryJson.data;
+const states = stateJson.data;
+const cities = cityJson.data;
 
     // Map states to countries
     const countryMap = {};
@@ -59,31 +86,6 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
         stateMap[stateId].cities.push(city);
       }
     });
-
-    // const renderArticleBlock = (article) => {
-
-
-    //   const a = article.attributes || article;
-
-       
-    //   const title = a.Title || "Untitled";
-    //   const slug = a.slug || "#";
-    //   const image = a.coverimage?.formats?.thumbnail?.url || "/assets/default-image.png";
-    //   const category = a.category?.name;
-    //   const categorySlug = a.category?.slug;
-
-    //   const articleUrl = `/${categorySlug}/${slug}`;
-
-    //   return `
-    //     <div class="card">
-    //       <a href="${articleUrl}">
-    //         <img src="${image}" alt="${title}" loading="lazy" />
-    //         <div class="card-content">
-    //           <h3>${title}</h3>
-    //         </div>
-    //       </a>
-    //     </div>`;
-    // };
 
 
     function renderCompactItem(article) {
@@ -129,6 +131,10 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
 </div>`;
 }
 
+      function getEntityId(entity) {
+        return entity?.id || entity?.data?.id || null;
+      }
+
     const buildPage = async (slugPath, name, newsArticles = [], desc , travelArticles = []) => {
        
 
@@ -153,6 +159,9 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
       console.log(`✅ Generated: ${slugPath}.html`);
     };
 
+
+    console.log("🚀 Starting location page generation...");
+
     // Generate all
     for (const country of countries) {
       const countryId = country.id;
@@ -164,27 +173,53 @@ const CITY_API = `https://genuine-compassion-eb21be0109.strapiapp.com/api/cities
       const desc = '';
 
       await buildPage(countrySlug, countryName, newsArticles, desc, travelArticles);
+      console.log(`🌍 Country page generated: /locations/${countrySlug}.html`);
 
       // Filter related states
-      const relatedStates = states.filter((s) => s.country?.id === countryId);
+      const relatedStates = states.filter(
+        (s) => getEntityId(s.country) === country.id
+      );
       for (const state of relatedStates) {
         const stateName = state.title;
         const stateSlug = state.slug;
         const desc = '';
+
         await buildPage(`${countrySlug}/${stateSlug}`, stateName, state.news_articles, desc, state.tourism_travel_trips);
+        console.log(`  🏙️ State page generated: /locations/${countrySlug}/${stateSlug}.html`);
 
         // Filter related cities
-        const stateCities = stateMap[state.id]?.cities || [];
+        const stateCities = cities.filter(
+          (c) => getEntityId(c.state) === state.id
+        );
         for (const city of stateCities) { 
           const cityName = city.title;
           const citySlug = city.slug; 
           const cityDescription = city.Description_in_detail;
+
           await buildPage(`${countrySlug}/${stateSlug}/${citySlug}`, cityName, city.news_articles, cityDescription, city.tourism_travel_trips);
+          console.log(`    🏘️ City page generated: /locations/${countrySlug}/${stateSlug}/${citySlug}.html`);
+        }
+
+        if (stateCities.length === 0) {
+          console.log(`    ⚠️ No cities found for state: ${stateName}`);
         }
       }
+
+      if (relatedStates.length === 0) {
+          console.warn(`  ⚠️ No states found for country: ${countryName} (ID: ${countryId})`);
+
+          const problematicStates = states.filter(s =>
+            s.country === null ||
+            (typeof s.country === 'object' && !('id' in s.country) && !('data' in s.country))
+          );
+
+          problematicStates.forEach(ps => {
+            console.warn(`    ⚠️ Skipped state: ${ps.title} — missing or invalid country reference`);
+          });
+        }
     }
 
-    console.log("🎉 All location pages generated.");
+    console.log("✅ All country, state, and city location pages generated successfully.");
   } catch (err) {
     console.error("❌ Failed to generate pages:", err.message);
   }

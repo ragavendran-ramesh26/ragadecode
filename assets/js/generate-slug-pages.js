@@ -6,7 +6,7 @@ require('dotenv').config({ path: dotenvPath });
 const path = require('path');
 const marked = require('marked');
 const renderer = new marked.Renderer();
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+
 
 // --- HTML Escape Utility Function ---
 function escapeHtml(str) {
@@ -27,13 +27,16 @@ const default_img = "https://ragadecode.com/assets/default-image.png";
 
 const headerHtml = fs.readFileSync(path.join(__dirname, "../../templates/header.html"), "utf-8");
 const footerHtml = fs.readFileSync(path.join(__dirname, "../../templates/footer.html"), "utf-8");
+const API_CONFIG_URL = require("../../assets/js/api-config");
 
 const API_CONFIGS = [
   {
     name: 'news-articles',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[category]=true&populate[countries]=true&populate[states]=true&populate[cities]=true&pagination[pageSize]=100&populate[similar_articles][populate][category]=true&populate[news_articles][populate][category]=true&populate[similar_articles][populate][coverimage]=true&populate[news_articles][populate][coverimage]=true&populate[news_articles][populate][author]=true&populate[similar_articles][populate][author]=true',
+    apiUrl: API_CONFIG_URL.FULL_SLUG_ARTICLE
   },
 ];
+
+const fetch = require('../../assets/js/api-client');
 
 function buildLDJson({ title, coverImageUrl, publishedRaw, lastModifiedUTC, authorName, authorSlug, slugPrefix, slug, description, category, keywords, schema_details }) {
   const publishedISO = new Date(publishedRaw).toISOString();

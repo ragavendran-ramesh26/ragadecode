@@ -1,9 +1,9 @@
 const fs = require("fs-extra");
 const path = require("path");
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const fetch = require('../../assets/js/api-client');
 
-const TAGS_API = "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags";
+const API_CONFIG = require("../../assets/js/api-config");
+const TAGS_API = API_CONFIG.TAGS_API;
 const OUTPUT_DIR = path.join(__dirname, "../../tags");
 const headerHtml = fs.readFileSync(path.join(__dirname, "../../templates/header.html"), "utf-8");
 const footerHtml = fs.readFileSync(path.join(__dirname, "../../templates/footer.html"), "utf-8");
@@ -21,17 +21,13 @@ const gaScript = `
   gtag('config', 'G-QEL34RBXBH');
 </script>`;
 
-
-
-
 (async () => {
   try {
-    const tagListRes = await fetch(`${TAGS_API}?sort[0]=id:desc&pagination[pageSize]=100&populate[tags][populate][0]=category&populate[tags][populate][1]=coverimage&populate[tags][populate][2]=author&populate[tags][populate][3]=hashtags`);
+    console.log("➡️ Fetching all tags...");
+    const tagListRes = await fetch(`${TAGS_API}?populate[news_articles]=true`);
     const tagListJson = await tagListRes.json();
-
-   
-
     const allTags = tagListJson.data;
+    console.log(`✅ Total tags fetched: ${allTags.length}`);
 
     const template = fs.readFileSync(TEMPLATE_PATH, "utf-8");
 
@@ -39,26 +35,30 @@ const gaScript = `
       const tagId = tag.documentId;
       const tagName = tag.name || "untitled-tag";
       const tagSlug = tagName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      const getArticleURL = `${TAGS_API}/${tagId}?populate[news_articles]=true`;
 
-      const getArticleURL = `${TAGS_API}/${tagId}?populate[tags][populate][0]=category&populate[tags][populate][1]=coverimage&populate[tags][populate][2]=author&populate[tags][populate][3]=hashtags&populate[tags][sort][0]=publishedAt:desc`
-
-    //  console.log(getArticleURL)
+      console.log(`\n🔎 Processing tag: ${tagName}`);
+      console.log(`📎 Tag ID: ${tagId}`);
+      console.log(`🌐 Detail API URL: ${getArticleURL}`);
 
       const tagDetailRes = await fetch(getArticleURL);
       const tagDetailJson = await tagDetailRes.json();
       const tagData = tagDetailJson.data;
-      const articles = tagData?.tags || [];
 
-     
+      const articles = tagData?.news_articles || [];
+      console.log(`📄 Articles found for ${tagName}: ${articles.length}`);
 
-      if (!articles || articles.length === 0) continue;
+      if (!articles || articles.length === 0) {
+        console.warn(`⚠️ Skipping tag '${tagName}' – no articles`);
+        continue;
+      }
 
-      const cardsHtml = articles.map(article => {
+      const cardsHtml = articles.map((article, i) => {
         const attr = article.attributes || article;
         const title = attr.Title || "Untitled";
         const slug = attr.slug || "";
         const short_description = attr.short_description || "";
-        const articleCategory = attr.category?.slug; 
+        const articleCategory = attr.category?.slug || "news-article";
         const cover = attr.coverimage?.url || default_img;
         const publishedRaw = attr.publishedat || attr.publishedAt || attr.createdAt;
         const published = new Date(publishedRaw).toLocaleDateString("en-IN", {
@@ -69,14 +69,12 @@ const gaScript = `
         const authorName = attr.author?.data?.attributes?.name || attr.author?.name || "";
         const tags = attr.hashtags?.data || [];
 
-        const tagsHtml = tags
-          .map(t => {
-            const name = t?.attributes?.name || t?.name || "";
-            return name
-              ? `<a href="/tags/${name.toLowerCase().replace(/\s+/g, "-")}" class="badge bg-light border text-dark">#${name}</a>`
-              : "";
-          })
-          .join(" ");
+        console.log(`   #${i + 1}: ${title} → /${articleCategory}/${slug}`);
+
+        const tagsHtml = tags.map(t => {
+          const name = t?.attributes?.name || t?.name || "";
+          return name ? `<a href="/tags/${name.toLowerCase().replace(/\s+/g, "-")}" class="badge bg-light border text-dark">#${name}</a>` : "";
+        }).join(" ");
 
         return `
         <div class="col-md-4">
@@ -117,7 +115,7 @@ const gaScript = `
       const filePath = path.join(OUTPUT_DIR, `${tagSlug}.html`);
       await fs.ensureDir(OUTPUT_DIR);
       await fs.writeFile(filePath, finalHtml, "utf8");
-      console.log(`✅ Generated: tags/${tagSlug}`);
+      console.log(`✅ Generated page: tags/${tagSlug}.html`);
     }
   } catch (err) {
     console.error("❌ Failed to generate tag pages:", err);

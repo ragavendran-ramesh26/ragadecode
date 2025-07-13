@@ -1,12 +1,13 @@
 const fs = require('fs-extra');
 const path = require('path');
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const fetch = require('../../assets/js/api-client');
 const { marked } = require('marked');
 
 const TEMPLATE_PATH = path.join(__dirname, '../../templates/author_template.html');
 const OUTPUT_DIR = path.join(__dirname, '../../authors');
 const BASE_DOMAIN = 'https://ragadecode.com';
-const AUTHORS_API = 'https://genuine-compassion-eb21be0109.strapiapp.com/api/authors?populate=profile_image';
+const API_CONFIG= require("../../assets/js/api-config");
+const AUTHORS_API = API_CONFIG.AUTHORS_API;
 const headerHtml = fs.readFileSync(path.join(__dirname, "../../templates/header.html"), "utf-8");
 const footerHtml = fs.readFileSync(path.join(__dirname, "../../templates/footer.html"), "utf-8");
 

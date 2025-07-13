@@ -17,14 +17,14 @@ const BASE_IMAGE_URL = ''; // Set to CDN base if needed
 const TEMPLATE_PATH = path.join(__dirname, '../../templates/template_static.html');
 const headerHtml = fs.readFileSync(path.join(__dirname, "../../templates/header.html"), "utf-8");
 const footerHtml = fs.readFileSync(path.join(__dirname, "../../templates/footer.html"), "utf-8");
+const API_CONFIG_URL= require("../../assets/js/api-config");
 
 
 // ✅ List of APIs to process
 const API_CONFIGS = [
   {
     name: 'static-pages',
-    apiUrl: 'https://genuine-compassion-eb21be0109.strapiapp.com/api/static-pages?populate=*',
-
+    apiUrl: API_CONFIG_URL.STATIC_PAGES_API,
     outputDir: path.join(__dirname, '../../static-pages'),
   }
 ];

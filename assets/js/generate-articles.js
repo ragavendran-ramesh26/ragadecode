@@ -2,17 +2,14 @@
 const { stat } = require("fs");
 const fs = require("fs-extra");
 const path = require("path");
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const fetch = require('../../assets/js/api-client');
+const API_CONFIG= require("../../assets/js/api-config");
 
-const API_URL =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[category]=true&populate[countries]=true&populate[states]=true&populate[cities]=true";
+const API_URL = API_CONFIG.FULL_SLUG_ARTICLE;
 
-const TAGS_API =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/hashtags";
+const TAGS_API = API_CONFIG.ALL_TAGS_API;
 
-const STATES_API =
-  "https://genuine-compassion-eb21be0109.strapiapp.com/api/states?pagination[pageSize]=100&populate[news_articles][populate][1]=category&filters[country][title][$eq]=India&populate[news_articles][populate][0]=coverimage&populate[news_articles][sort][0]=publishedAt:desc&populate[country]=true&populate[news_articles][populate][2]=author&populate[news_articles][populate][3]=hashtags";
+const STATES_API =API_CONFIG.STATE_PAGE_API;
 
 const default_img = "https://ragadecode.com/assets/default-image.png";
 

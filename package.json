@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "generate": "node assets/js/generate-slug-pages.js && node assets/js/generate-articles.js && node assets/js/generate-homepage.js  && node assets/js/generate-tags.js && node assets/js/generate-locations.js && node assets/js/fetch_and_generate.js && node assets/js/generate-author.js && node assets/js/generate-static-pages.js ",
+    "generate": "node assets/js/generate-slug-pages.js && node assets/js/generate-articles.js && node assets/js/generate-homepage.js  && node assets/js/generate-tags.js && node assets/js/generate-locations.js && node assets/js/fetch_and_generate.js && node assets/js/generate-author.js",
     "build": "npm run generate",
     "prepare": "husky install",
     "dev": "chokidar '*.js' -c 'npm run generate'"
