@@ -1,7 +1,6 @@
 const fs = require("fs-extra");
 const path = require("path");
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const fetch = require('./assets/js/api-client');
 
 const BASE_URL = "https://ragadecode.com";
 
@@ -19,12 +18,12 @@ const PRIORITY = {
 const ENDPOINTS = [
   {
     name: "news",
-    api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/news-articles?pagination[pageSize]=100&sort[0]=publishedAt:desc&sort[1]=updatedAt:desc&populate[category]=true&populate[hashtags]=true",
+    api: "https://api.ragadecode.com/api/news-articles",
     priority: PRIORITY.ARTICLES
   },
   {
     name: "categories",
-    api: "https://genuine-compassion-eb21be0109.strapiapp.com/api/categories?pagination[pageSize]=100",
+    api: "https://api.ragadecode.com/api/categories",
     priority: PRIORITY.MAIN_CATEGORIES
   }
 ];
