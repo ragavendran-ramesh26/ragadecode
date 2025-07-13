@@ -69,6 +69,16 @@ const gaScript = `
       const categoryAttr = category.attributes || category;
       const categoryName = categoryAttr.name || "News";
 
+      const seoTitle = categoryAttr.seo_title || `${categoryName} News and Articles | RagaDecode`;
+      const metaDescription = categoryAttr.meta_description || `Get the latest updates, stories, and headlines for ${categoryName} on RagaDecode. Curated content on current affairs, insights, and more.`;
+      const shortDescription = categoryAttr.short_description || `Explore trending stories and news articles in the ${categoryName} category. Updated daily for better context and clarity.`;
+
+      const category_cover_img = categoryAttr.cover_image;
+      const hasCoverImage = !!category_cover_img && category_cover_img.trim() !== "";
+
+
+
+
       const sections = [];
       const uniqueTagMap = new Map();
 
@@ -459,6 +469,12 @@ const section3Html = emptyCountryArticles.trim()
         .replace(/{{SECTION_4}}/g, "") // Add logic if SECTION_4 is needed later
         .replace(/{{CATEGORY_NAME}}/g, categoryName)
         .replace(/{{CATEGORY_SLUG}}/g, categorySlug)
+        .replace(/{{SEO_TITLE}}/g, seoTitle)
+        .replace(/{{META_DESCRIPTION}}/g, metaDescription)
+        .replace(/{{SHORT_DESC}}/g, shortDescription)
+        .replace(/{{COVER_IMAGE_TAG}}/g, hasCoverImage 
+        ? `<img src="${category_cover_img}" alt="Category cover image" class="img-fluid shadow-sm" style="max-height: 360px; object-fit: cover; width: 100%;" />` 
+        : "")
         .replace(/{{FOOTER}}/g, footerHtml);
 
       // const outputDir = path.join(__dirname, categorySlug);
