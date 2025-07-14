@@ -1,5 +1,83 @@
 [
   {
+    "id": 126,
+    "documentId": "126",
+    "name": "Smart Watches - Square",
+    "alternative_text": "affiliate",
+    "caption": "https://amzn.to/44HQ4BC",
+    "formats": {
+      "small": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/smart-watches-square.png",
+        "hash": "smart_watches_-_square",
+        "mime": "image/png",
+        "name": "small_Smart Watches - Square",
+        "path": null,
+        "size": 0.14,
+        "width": 500,
+        "height": 282,
+        "sizeInBytes": 146800
+      },
+      "thumbnail": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/smart-watches-square.png",
+        "hash": "smart_watches_-_square",
+        "mime": "image/png",
+        "name": "thumbnail_Smart Watches - Square",
+        "path": null,
+        "size": 0.04666666666666667,
+        "width": 245,
+        "height": 138,
+        "sizeInBytes": 48933
+      }
+    },
+    "mime_type": "image/png",
+    "size": 0.14,
+    "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/smart-watches-square.png",
+    "provider": "aws-s3",
+    "created_at": "2025-07-14T23:03:14.598327+05:30",
+    "published_at": "2025-07-14T23:03:13.688927+05:30"
+  },
+  {
+    "id": 125,
+    "documentId": "125",
+    "name": "Samsung Tv - Rectangle",
+    "alternative_text": "affiliate",
+    "caption": "https://amzn.to/44tFTlj",
+    "formats": {
+      "small": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/samsung-tv-rectangle.png",
+        "hash": "samsung_tv_-_rectangle",
+        "mime": "image/png",
+        "name": "small_Samsung Tv - Rectangle",
+        "path": null,
+        "size": 0.08,
+        "width": 500,
+        "height": 282,
+        "sizeInBytes": 83886
+      },
+      "thumbnail": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/samsung-tv-rectangle.png",
+        "hash": "samsung_tv_-_rectangle",
+        "mime": "image/png",
+        "name": "thumbnail_Samsung Tv - Rectangle",
+        "path": null,
+        "size": 0.02666666666666667,
+        "width": 245,
+        "height": 138,
+        "sizeInBytes": 27962
+      }
+    },
+    "mime_type": "image/png",
+    "size": 0.08,
+    "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/samsung-tv-rectangle.png",
+    "provider": "aws-s3",
+    "created_at": "2025-07-14T22:38:23.083149+05:30",
+    "published_at": "2025-07-14T22:38:22.178468+05:30"
+  },
+  {
     "id": 122,
     "documentId": "122",
     "name": "Preparation Books - Rectangle",

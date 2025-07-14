@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Decoded articles curated from across {{COUNTRY_NAME}} | RagaDecode</title>
+    <title>{{SEO_TITLE}}</title>
     {{GA_SCRIPT}}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036"
      crossorigin="anonymous"></script>
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" /> 
     <meta
       name="description"
-      content="Explore the latest decoded news and travel insights from {{COUNTRY_NAME}}. Curated by RagaDecode for curious minds."
+      content="{{LOCATION_SHORT_DESC}}"
     />
 
     <link
@@ -63,11 +63,39 @@
     {{HEADER}}
 
    <main class="container py-4">
-      <h2 class="mb-4">{{COUNTRY_NAME}}</h2>
-      <div class="row g-4">
-          {{NEWS_BLOCK_SECTION}} 
+  <h2 class="mb-4">{{COUNTRY_NAME}}</h2>
+  <p class="mb-4">{{LOCATION_SHORT_DESC}}</p>
+
+  <div class="row align-items-start">
+    <!-- Left Column: News Articles -->
+    <div class="col-lg-9 col-md-8">
+      <div class="row g-4" id="news-container">
+        {{NEWS_BLOCK_SECTION}}
       </div>
-    </main>
+      <p class="mt-4">{{LOCATION_DESC}}</p>
+    </div>
+
+    <!-- Right Column: Sidebar -->
+    <div class="col-lg-3 col-md-4">
+      <div class="sticky-top" style="top: 70px;">
+        <h5 class="fw-semibold mb-3 border-bottom pb-2 text-primary">
+          From Indian Cities
+        </h5>
+        <ul class="list-unstyled mb-0">
+          <li class="mb-2"><a href="/locations/india/tamilnadu/chennai" class="text-decoration-none text-dark">Chennai</a></li>
+          <li class="mb-2"><a href="/locations/india/maharashtra/mumbai" class="text-decoration-none text-dark">Mumbai</a></li> 
+          <li class="mb-2"><a href="/locations/india/west-bengal/kolkata" class="text-decoration-none text-dark">Kolkata</a></li> 
+          <li class="mb-2"><a href="/locations/india/telangana/hyderabad" class="text-decoration-none text-dark">Hyderabad</a></li>
+          <li class="mb-2"><a href="/locations/india/gujarat/ahmedabad" class="text-decoration-none text-dark">Ahmedabad</a></li>
+          <li class="mb-2"><a href="/locations/india/maharashtra/pune" class="text-decoration-none text-dark">Pune</a></li>
+          <li class="mb-2"><a href="/locations/india/kerala/trivandrum" class="text-decoration-none text-dark">Trivandrum</a></li>
+        </ul>
+        <div id="affiliate-2-square"></div> 
+      </div>
+    </div>
+  </div>
+</main>
+
     {{FOOTER}}
   </body>
 </html>

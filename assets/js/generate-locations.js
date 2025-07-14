@@ -85,7 +85,7 @@ const cities = cityJson.data;
     });
 
 
-    function renderCompactItem(article) {
+   function renderCompactItem(article) {
   const a = article.attributes || article;
   const title = a.Title || "Untitled";
   const slug = a.slug || "#";
@@ -102,47 +102,83 @@ const cities = cityJson.data;
   const categoryName = a.category?.data?.attributes?.name || a.category?.name || "News";
   const categorySlug = a.category?.data?.attributes?.slug || a.category?.slug || "news-article";
   const articleUrl = `/${categorySlug}/${slug}`;
-  const authorName = a.author.name;
-  const short_description = a.short_description;
+  const authorName = a.author?.name || "Unknown";
+  const short_description = a.short_description || "";
 
   return `
-    <div class="d-flex flex-column flex-sm-row gap-3 mb-4 border-bottom pb-3">
-  <img 
-    src="${image}" 
-    class="rounded flex-shrink-0" 
-    style="width: 100px; height: 75px; object-fit: cover;" 
-    alt="${title}" 
-  />
-  
-  <div class="flex-grow-1">
-    <h6 class="mb-1 fw-semibold">
-      <a href="${articleUrl}" class="text-dark text-decoration-none">${title}</a>
-    </h6>
-
-    <small class="text-muted d-block mb-1">
-      ${authorName ? `${authorName} • ` : ''}${categoryName} • Published on ${published}
-    </small>
-
-    <p class="mb-0 text-secondary small">${short_description}</p>
-  </div>
-</div>`;
+    <div class="col-md-6 article-block">
+      <div class="border-bottom d-flex flex-column justify-content-between h-100 w-100">
+      <div>
+        <div class="d-flex gap-3">
+          <img 
+            src="${image}" 
+            class="rounded flex-shrink-0" 
+            style="width: 100px; height: 75px; object-fit: cover;" 
+            alt="${title}" 
+          />
+          <div class="flex-grow-1">
+            <h6 class="mb-1 fw-semibold">
+              <a href="${articleUrl}" class="text-dark text-decoration-none">${title}</a>
+            </h6>
+            <small class="text-muted d-block mb-1">
+              ${authorName ? `${authorName} • ` : ''}${categoryName} • Published on ${published}
+            </small>
+          </div>
+        </div>
+        <p class="mt-2 text-secondary small">${short_description}</p>
+      </div>
+      </div>
+    </div>`;
 }
+
+
+function generateNewsBlockSection(articles) {
+  let html = "";
+  let adCount = 0;
+
+  articles.forEach((article, index) => {
+    html += renderCompactItem(article);
+
+    // Inject ad after every 4th article, max 3 ads, and only for first 12 articles
+    if ((index + 1) % 4 === 0 && index < 12 && adCount < 3) {
+      adCount++; // Increment first to get 1-based index
+      html += `
+        <div class="col-12 ad-placeholder">
+          <div id="affiliate-${adCount}-rectangle"></div>
+        </div>
+      `;
+    }
+  });
+
+  return html;
+}
+
+
+
 
       function getEntityId(entity) {
         return entity?.id || entity?.data?.id || null;
       }
 
-    const buildPage = async (slugPath, name, newsArticles = [], desc , travelArticles = []) => {
+    const buildPage = async (slugPath, name, newsArticles = [], desc , shortdesc, seoTitle, travelArticles = []) => {
        
 
      markedDescription = marked.parse(desc || '');
-     const newsBlockHtml = newsArticles.map(renderCompactItem).join('');
+    //  const newsBlockHtml = newsArticles.map(renderCompactItem).join('');
 
+     const newsBlockHtml = generateNewsBlockSection(newsArticles);
+
+     const shortDesc_SEO_Desc = shortdesc || `Explore the latest decoded news and travel insights from ${name}. Curated by RagaDecode for curious minds.`;
+     
+     const seo_title = seoTitle || `Decoded articles curated from across ${name} | RagaDecode`
     
 
       const pageHtml = template
         .replace(/{{COUNTRY_NAME}}/g, name)
         .replace(/{{COUNTRY_SLUG}}/g, slugPath)
+        .replace(/{{LOCATION_DESC}}/g, markedDescription)
+        .replace(/{{SEO_TITLE}}/g, seo_title)
+        .replace(/{{LOCATION_SHORT_DESC}}/g, shortDesc_SEO_Desc) 
         .replace(/{{CANONICAL_PATH}}/g, `${slugPath}`)
         .replace(/{{NEWS_BLOCK_SECTION}}/g, newsBlockHtml)
         .replace(/{{GA_SCRIPT}}/g, analyticsScript)
@@ -164,12 +200,16 @@ const cities = cityJson.data;
       const countryId = country.id;
       const countryName = country.title;
       const countrySlug = country.slug;
+      const countryDesc = country.Description_in_detail;
+      const countryShortDesc = country.short_description;
 
       const newsArticles = country.news_articles || [];
       const travelArticles = country.tourism_travel_trips || [];
-      const desc = '';
+      const desc = countryDesc;
+      const shortdesc = countryShortDesc;
+      const seoTitle = '';
 
-      await buildPage(countrySlug, countryName, newsArticles, desc, travelArticles);
+      await buildPage(countrySlug, countryName, newsArticles, desc, shortdesc, seoTitle, travelArticles);
       console.log(`🌍 Country page generated: /locations/${countrySlug}.html`);
 
       // Filter related states
@@ -180,8 +220,10 @@ const cities = cityJson.data;
         const stateName = state.title;
         const stateSlug = state.slug;
         const desc = '';
+        const shortdesc = '';
+        const seoTitle = '';
 
-        await buildPage(`${countrySlug}/${stateSlug}`, stateName, state.news_articles, desc, state.tourism_travel_trips);
+        await buildPage(`${countrySlug}/${stateSlug}`, stateName, state.news_articles, desc, shortdesc, seoTitle, state.tourism_travel_trips);
         console.log(`  🏙️ State page generated: /locations/${countrySlug}/${stateSlug}.html`);
 
         // Filter related cities
@@ -192,8 +234,10 @@ const cities = cityJson.data;
           const cityName = city.title;
           const citySlug = city.slug; 
           const cityDescription = city.Description_in_detail;
+          const shortdesc = city.short_description;
+          const seoTitle = city.seo_title;
 
-          await buildPage(`${countrySlug}/${stateSlug}/${citySlug}`, cityName, city.news_articles, cityDescription, city.tourism_travel_trips);
+          await buildPage(`${countrySlug}/${stateSlug}/${citySlug}`, cityName, city.news_articles, cityDescription, shortdesc, seoTitle, city.tourism_travel_trips);
           console.log(`    🏘️ City page generated: /locations/${countrySlug}/${stateSlug}/${citySlug}.html`);
         }
 
