@@ -1,5 +1,83 @@
 [
   {
+    "id": 132,
+    "documentId": "132",
+    "name": "Samsung TV - Rectangle",
+    "alternative_text": "affiliate",
+    "caption": "https://amzn.to/4lMqdzk",
+    "formats": {
+      "small": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/samsung-tv-rectangle-1.png",
+        "hash": "samsung_tv_-_rectangle",
+        "mime": "image/png",
+        "name": "small_Samsung TV - Rectangle",
+        "path": null,
+        "size": 0.02,
+        "width": 500,
+        "height": 282,
+        "sizeInBytes": 20971
+      },
+      "thumbnail": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/samsung-tv-rectangle-1.png",
+        "hash": "samsung_tv_-_rectangle",
+        "mime": "image/png",
+        "name": "thumbnail_Samsung TV - Rectangle",
+        "path": null,
+        "size": 0.006666666666666667,
+        "width": 245,
+        "height": 138,
+        "sizeInBytes": 6990
+      }
+    },
+    "mime_type": "image/png",
+    "size": 0.02,
+    "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/samsung-tv-rectangle-1.png",
+    "provider": "aws-s3",
+    "created_at": "2025-07-15T02:55:37.532460+05:30",
+    "published_at": "2025-07-15T02:55:37.229039+05:30"
+  },
+  {
+    "id": 131,
+    "documentId": "131",
+    "name": "Baby Dress - Rectangle",
+    "alternative_text": "affiliate",
+    "caption": "https://amzn.to/3GGUhh0",
+    "formats": {
+      "small": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/baby-dress-rectangle.png",
+        "hash": "baby_dress_-_rectangle",
+        "mime": "image/png",
+        "name": "small_Baby Dress - Rectangle",
+        "path": null,
+        "size": 0.02,
+        "width": 500,
+        "height": 282,
+        "sizeInBytes": 20971
+      },
+      "thumbnail": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/baby-dress-rectangle.png",
+        "hash": "baby_dress_-_rectangle",
+        "mime": "image/png",
+        "name": "thumbnail_Baby Dress - Rectangle",
+        "path": null,
+        "size": 0.006666666666666667,
+        "width": 245,
+        "height": 138,
+        "sizeInBytes": 6990
+      }
+    },
+    "mime_type": "image/png",
+    "size": 0.02,
+    "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/baby-dress-rectangle.png",
+    "provider": "aws-s3",
+    "created_at": "2025-07-15T02:47:22.496406+05:30",
+    "published_at": "2025-07-15T02:47:22.067215+05:30"
+  },
+  {
     "id": 126,
     "documentId": "126",
     "name": "Smart Watches - Square",

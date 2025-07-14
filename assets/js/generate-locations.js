@@ -140,7 +140,7 @@ function generateNewsBlockSection(articles) {
     html += renderCompactItem(article);
 
     // Inject ad after every 4th article, max 3 ads, and only for first 12 articles
-    if ((index + 1) % 4 === 0 && index < 12 && adCount < 3) {
+    if ((index + 1) % 4 === 0 && index < 16 && adCount < 4) {
       adCount++; // Increment first to get 1-based index
       html += `
         <div class="col-12 ad-placeholder">
