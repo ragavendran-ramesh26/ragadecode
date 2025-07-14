@@ -138,6 +138,26 @@
           
     <div class="d-flex flex-column flex-sm-row gap-3 mb-4 border-bottom pb-3">
   <img 
+    src="https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/nipha-virus.png" 
+    class="rounded flex-shrink-0" 
+    style="width: 100px; height: 75px; object-fit: cover;" 
+    alt="Nipah Virus Resurfaces in Kerala: 2 Dead, 6 Districts on High Alert" 
+  />
+  
+  <div class="flex-grow-1">
+    <h6 class="mb-1 fw-semibold">
+      <a href="/news-article/nipah-virus-resurfaces-in-kerala-2-dead-6-districts-on-high-alert" class="text-dark text-decoration-none">Nipah Virus Resurfaces in Kerala: 2 Dead, 6 Districts on High Alert</a>
+    </h6>
+
+    <small class="text-muted d-block mb-1">
+      Ragavendran Ramesh • News Articles • Published on 14 Jul 2025
+    </small>
+
+    <p class="mb-0 text-secondary small">Kerala has reported two confirmed Nipah virus deaths in Palakkad, prompting a health alert across six districts. Get full details on symptoms, contacts traced, emergency response, and prevention measures in this comprehensive report.</p>
+  </div>
+</div>
+    <div class="d-flex flex-column flex-sm-row gap-3 mb-4 border-bottom pb-3">
+  <img 
     src="https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/iim-culcata-rape-case.png" 
     class="rounded flex-shrink-0" 
     style="width: 100px; height: 75px; object-fit: cover;" 
@@ -1486,8 +1506,10 @@
       </div>
     </div>
   </div>
-</footer>
+</footer> 
+
 <script>
+  
   const dateElement = document.getElementById("today-date");
   const today = new Date();
 
@@ -1500,6 +1522,22 @@
 
   const formattedDate = today.toLocaleDateString("en-US", options);
   dateElement.textContent = formattedDate;
+</script>
+
+
+<script src="/assets/js/render-affiliate.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  fetch('/assets/data/media.json')
+    .then(res => res.json())
+    .then(mediaList => {
+      console.log("✅ Media List Loaded:", mediaList);
+      mediaList.forEach(item => console.log("🖼️", item.name));
+      autoRenderAllAffiliateWidgets(mediaList);
+    })
+    .catch(err => console.error('❌ Failed to load media list', err));
+}); 
+
 </script>
 
 

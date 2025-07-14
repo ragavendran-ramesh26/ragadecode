@@ -310,8 +310,10 @@
       </div>
     </div>
   </div>
-</footer>
+</footer> 
+
 <script>
+  
   const dateElement = document.getElementById("today-date");
   const today = new Date();
 
@@ -324,6 +326,22 @@
 
   const formattedDate = today.toLocaleDateString("en-US", options);
   dateElement.textContent = formattedDate;
+</script>
+
+
+<script src="/assets/js/render-affiliate.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  fetch('/assets/data/media.json')
+    .then(res => res.json())
+    .then(mediaList => {
+      console.log("✅ Media List Loaded:", mediaList);
+      mediaList.forEach(item => console.log("🖼️", item.name));
+      autoRenderAllAffiliateWidgets(mediaList);
+    })
+    .catch(err => console.error('❌ Failed to load media list', err));
+}); 
+
 </script>
 
 

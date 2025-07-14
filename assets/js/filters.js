@@ -61,7 +61,7 @@ function isFromMetroCity(article) {
   const metroCitySlugs = [
     'mumbai', 'delhi', 'chennai', 'kolkata', 'bengaluru', 
     'hyderabad', 'ahmedabad', 'pune', 'kanpur', 'jaipur',
-    'lucknow', 'nagpur', 'indore', 'thane', 'bhopal',
+    'lucknow', 'nagpur', 'indore', 'thane', 'bhopal', 'Kochi',
     'visakhapatnam', 'patna', 'vadodara', 'ghaziabad', 'ludhiana'
   ];
 
