@@ -6,8 +6,39 @@ const { JSDOM } = require("jsdom");
 const errors = [];
 const warnings = [];
 
-const ADSENSE_SCRIPT_SRC = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036";
+// ✅ Sitemap Duplicate Check
+const sitemapPath = path.resolve("sitemap.xml");
 
+if (fs.existsSync(sitemapPath)) {
+  const sitemapContent = fs.readFileSync(sitemapPath, "utf-8");
+  const locPattern = /<loc>(.*?)<\/loc>/g;
+  const urls = [];
+  let match;
+  while ((match = locPattern.exec(sitemapContent)) !== null) {
+    const cleanUrl = match[1].trim().replace(/\/+$/, ""); // remove trailing slash
+    urls.push(cleanUrl);
+  }
+
+  const seen = new Set();
+  const duplicates = urls.filter((url) => {
+    if (seen.has(url)) return true;
+    seen.add(url);
+    return false;
+  });
+
+  if (duplicates.length > 0) {
+    console.error("❌ Duplicate URLs found in sitemap.xml:");
+    duplicates.forEach((url) => console.error(`🔁 ${url}`));
+    process.exit(1); // Block the build
+  } else {
+    console.log("✅ No duplicate URLs found in sitemap.xml.");
+  }
+} else {
+  console.warn("⚠️ sitemap.xml not found, skipping duplicate check.");
+}
+
+// Continue metadata validation
+const ADSENSE_SCRIPT_SRC = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036";
 
 // Match all HTML files except node_modules, dist, etc.
 const htmlFiles = glob.sync("**/*.html", {
@@ -17,12 +48,12 @@ const htmlFiles = glob.sync("**/*.html", {
 htmlFiles.forEach((file) => {
   const content = fs.readFileSync(file, "utf-8");
 
-  // 🔍 Check for any usage of https://www.ragadecode.com
+  // Check for www. links
   if (content.includes("https://www.ragadecode.com")) {
-    warnings.push(`⚠️ ${file} contains link or reference to https://www.ragadecode.com — use https://ragadecode.com instead.`);
+    warnings.push(`⚠️ ${file} contains link to https://www.ragadecode.com — use https://ragadecode.com instead.`);
   }
 
-  // 🔍 Check for any usage of *.html links (not just anchors)
+  // Check for .html links
   const htmlLinkPattern = /(["'])[^"']+\.html(["'])/gi;
   const matches = content.match(htmlLinkPattern);
   if (matches) {
@@ -53,20 +84,16 @@ htmlFiles.forEach((file) => {
     });
   }
 
-
-   // ✅ AdSense script check
+  // Check for AdSense
   const adsScriptFound = Array.from(document.querySelectorAll("script"))
     .some(script => script.src.includes(ADSENSE_SCRIPT_SRC));
 
   if (!adsScriptFound) {
     warnings.push(`⚠️ ${file} is missing the AdSense script.`);
   }
-
-
 });
 
-
-
+// Report summary
 if (errors.length > 0) {
   console.error("❌ Metadata checks failed:");
   errors.forEach((e) => console.error(e));
@@ -82,6 +109,6 @@ if (errors.length > 0) {
 } else {
   console.log("✅ All pages have valid title, meta description, and canonical URL.");
   if (warnings.length === 0) {
-    console.log("✅ No warnings found (no .html links or www.ragadecode.com references).");
+    console.log("✅ No warnings found (no .html links or www references).");
   }
 }
