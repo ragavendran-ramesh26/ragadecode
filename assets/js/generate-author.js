@@ -24,8 +24,7 @@ const analyticsScript = `
 (async () => {
   try {
     const template = await fs.readFile(TEMPLATE_PATH, 'utf8');
-    const res = await fetch(AUTHORS_API);
-    const { data } = await res.json();
+    const { data } = await fetch(AUTHORS_API); 
 
     await fs.ensureDir(OUTPUT_DIR);
 

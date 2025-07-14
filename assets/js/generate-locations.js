@@ -37,22 +37,19 @@ const CITY_API = API_CONFIG.CITY_PAGE_API;
     // console.log(`➡️ STATE_API:   ${STATE_API}`);
     // console.log(`➡️ CITY_API:    ${CITY_API}`);
 
-    const [countryRes, stateRes, cityRes] = await Promise.all([
-      fetch(COUNTRY_API).catch(err => {
-        throw new Error(`❌ Failed to fetch countries: ${err.message}`);
-      }),
-      fetch(STATE_API).catch(err => {
-        throw new Error(`❌ Failed to fetch states: ${err.message}`);
-      }),
-      fetch(CITY_API).catch(err => {
-        throw new Error(`❌ Failed to fetch cities: ${err.message}`);
-      }),
-    ]);
+    const [countryJson, stateJson, cityJson] = await Promise.all([
+  fetch(COUNTRY_API).catch(err => {
+    throw new Error(`❌ Failed to fetch countries: ${err.message}`);
+  }),
+  fetch(STATE_API).catch(err => {
+    throw new Error(`❌ Failed to fetch states: ${err.message}`);
+  }),
+  fetch(CITY_API).catch(err => {
+    throw new Error(`❌ Failed to fetch cities: ${err.message}`);
+  }),
+]);
 
-    const countryJson = await countryRes.json();
-const stateJson = await stateRes.json();
-const cityJson = await cityRes.json();
-
+// ✅ Now validate the response
 if (!countryJson?.data || !Array.isArray(countryJson.data)) {
   throw new Error(`Invalid country data format from ${COUNTRY_API}`);
 }

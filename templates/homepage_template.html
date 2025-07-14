@@ -108,25 +108,94 @@
   <body class="d-flex flex-column min-vh-100">
     {{HEADER}}
 
-    <!-- Main Content -->
-    <main class="flex-grow-1 py-4">
-      <div class="container"> 
+     <main class="flex-grow-1 py-4">
+  <div class="container">
 
-        <section class="mb-5">{{SECTION_1}}</section>
+    <!-- Full Width: Section 1 -->
+    <section class="mb-5">
+      <h2>Viral Now</h2>
+      <p class="lead">
+        RagaDecode brings you India’s most viral stories—Top memes, shocking videos, X and Instagram trends, and headline surprises. We don’t just share the buzz; our editorial team verifies, contextualises, and decodes why it’s trending. From feel‑good moments to political shockwaves, expect bold, fast, fact‑checked updates rooted in reality. Stay on pulse with what’s igniting online conversations and social outrage across the country.
+      </p>
+      {{SECTION_1}}
+    </section>
 
-        <section class="mb-5">{{SECTION_2}}</section>
+    <!-- Two Column Layout Begins -->
+    <div class="row">
 
-        <section class="mb-5">{{SECTION_3}}</section>
+      <!-- LHS: Main Sections -->
+      <div class="col-lg-9 col-md-8">
+        <section class="mb-5">
+          <p class="lead">
+            Catch the freshest news across India as it breaks. Our “Most Recent” section delivers timely, in‑depth articles on current events, from national policy and tech developments to defence and social trends. Every story is fact‑checked and contextualised for clarity. Stay ahead with trustworthy updates—no filler, no delays. Read the full story behind each headline, always prioritising accuracy over speed.
+          </p>
+          {{SECTION_2}}
+        </section>
 
-        <section class="mb-5">{{SECTION_4}}</section>
+         <div id="affiliate-1-rectangle"></div>
 
-        <section class="mb-5">{{SECTION_5}}</section>
+        <section class="mb-5">
+          <p class="lead">
+            Looking for a deeper dive? “Full Read” brings you one featured, long‑form story each day—complete with on‑the‑ground reporting, expert interviews, and comprehensive context—plus sidebar picks for fresh perspectives. Designed for thoughtful consumption, this section offers richer insights into the most pressing issues shaping India and beyond. Enjoy narrative‑driven, quality journalism that informs and engages.
+          </p>
+          {{SECTION_3}}
+        </section>
 
-        <section class="mb-5">{{SECTION_6}}</section>
+        <section class="mb-5">
+          <p class="lead">
+            These are the stories everyone’s talking about—the most viewed, most shared, and most emotionally charged headlines of the week. From shocking crimes to tragic accidents, “Most See” captures the real-life incidents that gripped the nation and sparked urgent conversations. These aren't just news reports—they're moments that moved people, ignited public debate, and raised important questions about safety, justice, and accountability in India.
+          </p>
+          {{SECTION_4}}
+        </section>
 
-         
+         <div id="affiliate-2-rectangle"></div>
+
+        <section class="mb-5">
+          <p class="lead">
+            Explore your interests with our curated thematic sections—Automobile, Technology, Indian Railways, Airlines. Whether you're tracking EV trends, tech policy, rail infrastructure, or airline updates, we offer topical coverage with clarity and context. Each section features a featured story plus related reads, giving you a complete snapshot of developments within that niche. Stay informed, stay interested.
+          </p>
+          {{SECTION_5}}
+        </section>
+
+        <section class="mb-5">
+          <p class="lead">
+            Local stories matter. “From India’s Metro Cities” delivers on‑the‑ground news and updates from Delhi, Mumbai, Chennai, Kolkata, Bangalore, and Hyderabad. City‑level politics, metro infrastructure, viral street stories, urban policies—this is where national issues meet local lives. Whether you live in India’s heartlands or beyond, these metro‑focused features bring you closer to the cities that drive national conversations.
+          </p>
+          {{SECTION_6}}
+        </section>
       </div>
-    </main>
+
+      <!-- RHS: Sidebar -->
+      <div class="col-lg-3 col-md-4">
+        <div class="sticky-top" style="top: 70px;">
+          <div class="mb-4"> 
+             {{SECTION_OTT}}
+          </div>  
+
+           <div id="affiliate-1-square"></div> 
+
+           <div class="mb-4"> 
+             {{SECTION_GADGETS}}
+          </div>
+
+        </div>
+        
+      </div> 
+
+    <div class="text-muted">
+       <p>RagaDecode.com is a digital media platform that provides decoded insights across several categories, including trending news, technology, finance, automobiles, and travel.</p>
+       <p>
+        The platform aims to simplify complex narratives and deliver factual, unbiased content in an easy-to-understand manner. It utilizes a hybrid approach, combining human editorial judgment with AI-assisted research tools for content creation. RagaDecode's editorial workflow involves discovering trending topics, transcribing long-form videos into readable text, verifying claims using AI tools, rewriting the stories into structured articles with sourcing, and manually reviewing the content before publishing. The platform is founded, written, and curated by <a href="https://ragadecode.com/authors/ragavendran-ramesh">Ragavendran Ramesh</a>
+       </p>
+    </div>
+
+    </div> <!-- End of Row -->
+
+   
+
+  </div>
+</main>
+
 
     {{FOOTER}}
   </body>

@@ -1,0 +1,119 @@
+[
+  {
+    "id": 122,
+    "documentId": "122",
+    "name": "Preparation Books - Rectangle",
+    "alternative_text": "affiliate",
+    "caption": "https://amzn.to/450kb8F",
+    "formats": {
+      "small": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/preparation-books-rectangle.png",
+        "hash": "preparation_books_-_rectangle",
+        "mime": "image/png",
+        "name": "small_Preparation Books - Rectangle",
+        "path": null,
+        "size": 0.17,
+        "width": 500,
+        "height": 282,
+        "sizeInBytes": 178257
+      },
+      "thumbnail": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/preparation-books-rectangle.png",
+        "hash": "preparation_books_-_rectangle",
+        "mime": "image/png",
+        "name": "thumbnail_Preparation Books - Rectangle",
+        "path": null,
+        "size": 0.05666666666666667,
+        "width": 245,
+        "height": 138,
+        "sizeInBytes": 59419
+      }
+    },
+    "mime_type": "image/png",
+    "size": 0.17,
+    "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/preparation-books-rectangle.png",
+    "provider": "aws-s3",
+    "created_at": "2025-07-14T17:19:04.641730+05:30",
+    "published_at": "2025-07-14T17:19:04.338258+05:30"
+  },
+  {
+    "id": 121,
+    "documentId": "121",
+    "name": "Notebooks & Papers - Rectangle",
+    "alternative_text": "affiliate",
+    "caption": "https://amzn.to/4lKAPzn",
+    "formats": {
+      "small": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/notebooks-papers.png",
+        "hash": "notebooks_&_papers_-_rectangle",
+        "mime": "image/png",
+        "name": "small_Notebooks & Papers - Rectangle",
+        "path": null,
+        "size": 0.07,
+        "width": 500,
+        "height": 282,
+        "sizeInBytes": 73400
+      },
+      "thumbnail": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/notebooks-papers.png",
+        "hash": "notebooks_&_papers_-_rectangle",
+        "mime": "image/png",
+        "name": "thumbnail_Notebooks & Papers - Rectangle",
+        "path": null,
+        "size": 0.023333333333333334,
+        "width": 245,
+        "height": 138,
+        "sizeInBytes": 24466
+      }
+    },
+    "mime_type": "image/png",
+    "size": 0.07,
+    "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/notebooks-papers.png",
+    "provider": "aws-s3",
+    "created_at": "2025-07-14T15:50:49.597133+05:30",
+    "published_at": "2025-07-14T15:50:48.836045+05:30"
+  },
+  {
+    "id": 120,
+    "documentId": "120",
+    "name": "Computer & Accessories - Square",
+    "alternative_text": "affiliate",
+    "caption": "https://amzn.to/3IkE5mb",
+    "formats": {
+      "small": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/computer-accessories.png",
+        "hash": "computer_&_accessories_-_square",
+        "mime": "image/png",
+        "name": "small_Computer & Accessories - Square",
+        "path": null,
+        "size": 0.13,
+        "width": 500,
+        "height": 282,
+        "sizeInBytes": 136314
+      },
+      "thumbnail": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/computer-accessories.png",
+        "hash": "computer_&_accessories_-_square",
+        "mime": "image/png",
+        "name": "thumbnail_Computer & Accessories - Square",
+        "path": null,
+        "size": 0.043333333333333335,
+        "width": 245,
+        "height": 138,
+        "sizeInBytes": 45438
+      }
+    },
+    "mime_type": "image/png",
+    "size": 0.13,
+    "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/computer-accessories.png",
+    "provider": "aws-s3",
+    "created_at": "2025-07-14T14:37:17.429026+05:30",
+    "published_at": "2025-07-14T14:37:16.639929+05:30"
+  }
+]

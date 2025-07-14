@@ -7,6 +7,8 @@ const BASE_STRAPI_URL = 'https://api.ragadecode.com/api'
 const API_CONFIG = { 
 
   NEWS_ARTICLES: `${BASE_STRAPI_URL}/news-articles`,
+
+  SEARCH_MEDIA: `${BASE_STRAPI_URL}/media`,
   
   FULL_SLUG_ARTICLE: `${BASE_STRAPI_URL}/news-articles`,
 

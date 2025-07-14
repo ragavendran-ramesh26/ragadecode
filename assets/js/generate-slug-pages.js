@@ -283,8 +283,9 @@ marked.setOptions({
     const template = await fs.readFile(TEMPLATE_PATH, 'utf8');
     for (const config of API_CONFIGS) {
       console.log(`🔄 Fetching articles for ${config.name}...`);
-      const res = await fetch(config.apiUrl);
-      const { data } = await res.json();
+      
+      const { data } = await fetch(config.apiUrl);  // ✅ simplified and correct
+
 
       for (const article of data) {
         const attrs = article.attributes || article;

@@ -24,8 +24,7 @@ const gaScript = `
 (async () => {
   try {
     console.log("➡️ Fetching all tags...");
-    const tagListRes = await fetch(`${TAGS_API}?populate[news_articles]=true`);
-    const tagListJson = await tagListRes.json();
+    const tagListJson = await fetch(`${TAGS_API}?populate[news_articles]=true`);
     const allTags = tagListJson.data;
     console.log(`✅ Total tags fetched: ${allTags.length}`);
 
@@ -41,8 +40,7 @@ const gaScript = `
       console.log(`📎 Tag ID: ${tagId}`);
       console.log(`🌐 Detail API URL: ${getArticleURL}`);
 
-      const tagDetailRes = await fetch(getArticleURL);
-      const tagDetailJson = await tagDetailRes.json();
+      const tagDetailJson = await fetch(getArticleURL);
       const tagData = tagDetailJson.data;
 
       const articles = tagData?.news_articles || [];

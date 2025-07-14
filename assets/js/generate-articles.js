@@ -33,19 +33,20 @@ const gaScript = `
 
 (async () => {
   try {
-    const [tagRes, articleRes, statesRes] = await Promise.all([
-      fetch(TAGS_API),
-      fetch(API_URL),
-      fetch(STATES_API),
-    ]);
+const [tagRes, articleRes, statesRes] = await Promise.all([
+  fetch(TAGS_API),
+  fetch(API_URL),
+  fetch(STATES_API),
+]);
 
-    const { data: tagData } = await tagRes.json();
-    const { data } = await articleRes.json();
-    const { data: states } = await statesRes.json();
+const { data: tagData } = tagRes;
+const { data: articles } = articleRes;  // ✅ define this
+const { data: states } = statesRes;
+
 
     const categoryMap = new Map();
 
-    for (const article of data) {
+    for (const article of articles) {
       const attr = article.attributes || article;
       const category = attr.category?.data || attr.category;
 
