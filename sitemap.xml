@@ -61,6 +61,11 @@
     <lastmod>2025-07-15</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/automobile/tesla-model-y-launches-in-india-price-specs-showroom-and-everything-you-need-to-know</loc>
+    <priority>0.8</priority>
+    <lastmod>2025-07-15</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/finances/why-most-gold-loan-companies-are-from-kerala-cultural-capital-of-indias-gold-finance-boom</loc>
     <priority>0.8</priority>
     <lastmod>2025-07-15</lastmod>
@@ -626,6 +631,11 @@
     <lastmod>2025-07-15</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/tags/ev-cars</loc>
+    <priority>0.6</priority>
+    <lastmod>2025-07-15</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/tags/viral</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-15</lastmod>
@@ -831,11 +841,6 @@
     <lastmod>2025-07-15</lastmod>
   </url>
   <url>
-    <loc>https://ragadecode.com/tags/ev-cars</loc>
-    <priority>0.6</priority>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
     <loc>https://ragadecode.com/tags/cibil</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-15</lastmod>
@@ -1031,6 +1036,16 @@
     <lastmod>2025-07-06</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/locations/india/maharashtra</loc>
+    <priority>0.4</priority>
+    <lastmod>2025-06-29</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/locations/india/maharashtra/mumbai</loc>
+    <priority>0.3</priority>
+    <lastmod>2025-07-03</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/locations/united-kingdom</loc>
     <priority>0.5</priority>
     <lastmod>2025-07-15</lastmod>
@@ -1176,11 +1191,6 @@
     <lastmod>2025-07-03</lastmod>
   </url>
   <url>
-    <loc>https://ragadecode.com/locations/india/maharashtra</loc>
-    <priority>0.4</priority>
-    <lastmod>2025-06-29</lastmod>
-  </url>
-  <url>
     <loc>https://ragadecode.com/locations/india/maharashtra/pune</loc>
     <priority>0.3</priority>
     <lastmod>2025-07-03</lastmod>
@@ -1244,10 +1254,5 @@
     <loc>https://ragadecode.com/locations/india/kerala/trivandrum</loc>
     <priority>0.3</priority>
     <lastmod>2025-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/locations/india/maharashtra/mumbai</loc>
-    <priority>0.3</priority>
-    <lastmod>2025-07-03</lastmod>
   </url>
 </urlset>
