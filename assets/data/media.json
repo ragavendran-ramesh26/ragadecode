@@ -1,5 +1,122 @@
 [
   {
+    "id": 143,
+    "documentId": "143",
+    "name": "Gillette - Square",
+    "alternative_text": "affiliate",
+    "caption": "https://amzn.to/4lAbec8",
+    "formats": {
+      "small": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/gillette-square.jpg",
+        "hash": "gillette_-_square",
+        "mime": "image/jpeg",
+        "name": "small_Gillette - Square",
+        "path": null,
+        "size": 0.03,
+        "width": 500,
+        "height": 282,
+        "sizeInBytes": 31457
+      },
+      "thumbnail": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/gillette-square.jpg",
+        "hash": "gillette_-_square",
+        "mime": "image/jpeg",
+        "name": "thumbnail_Gillette - Square",
+        "path": null,
+        "size": 0.01,
+        "width": 245,
+        "height": 138,
+        "sizeInBytes": 10485
+      }
+    },
+    "mime_type": "image/jpeg",
+    "size": 0.03,
+    "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/gillette-square.jpg",
+    "provider": "aws-s3",
+    "created_at": "2025-07-16T03:58:45.708642+05:30",
+    "published_at": "2025-07-16T03:58:45.455535+05:30"
+  },
+  {
+    "id": 142,
+    "documentId": "142",
+    "name": "Sensodyne - Square",
+    "alternative_text": "affiliate",
+    "caption": "https://amzn.to/3IwRhUY",
+    "formats": {
+      "small": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/sensodyne-square.jpg",
+        "hash": "sensodyne_-_square",
+        "mime": "image/jpeg",
+        "name": "small_Sensodyne - Square",
+        "path": null,
+        "size": 0.72,
+        "width": 500,
+        "height": 282,
+        "sizeInBytes": 754974
+      },
+      "thumbnail": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/sensodyne-square.jpg",
+        "hash": "sensodyne_-_square",
+        "mime": "image/jpeg",
+        "name": "thumbnail_Sensodyne - Square",
+        "path": null,
+        "size": 0.24,
+        "width": 245,
+        "height": 138,
+        "sizeInBytes": 251658
+      }
+    },
+    "mime_type": "image/jpeg",
+    "size": 0.72,
+    "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/sensodyne-square.jpg",
+    "provider": "aws-s3",
+    "created_at": "2025-07-16T03:57:57.066451+05:30",
+    "published_at": "2025-07-16T03:57:56.615811+05:30"
+  },
+  {
+    "id": 141,
+    "documentId": "141",
+    "name": "Top Picks Best Deals - Rectangle",
+    "alternative_text": "affiliate",
+    "caption": "https://amzn.to/44wTRmt",
+    "formats": {
+      "small": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/top-picks-best-deals-rectangle.jpg",
+        "hash": "top_picks_best_deals_-_rectangle",
+        "mime": "image/jpeg",
+        "name": "small_Top Picks Best Deals - Rectangle",
+        "path": null,
+        "size": 0.07,
+        "width": 500,
+        "height": 282,
+        "sizeInBytes": 73400
+      },
+      "thumbnail": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/top-picks-best-deals-rectangle.jpg",
+        "hash": "top_picks_best_deals_-_rectangle",
+        "mime": "image/jpeg",
+        "name": "thumbnail_Top Picks Best Deals - Rectangle",
+        "path": null,
+        "size": 0.023333333333333334,
+        "width": 245,
+        "height": 138,
+        "sizeInBytes": 24466
+      }
+    },
+    "mime_type": "image/jpeg",
+    "size": 0.07,
+    "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/top-picks-best-deals-rectangle.jpg",
+    "provider": "aws-s3",
+    "created_at": "2025-07-16T03:54:27.436258+05:30",
+    "published_at": "2025-07-16T03:54:27.159358+05:30"
+  },
+  {
     "id": 132,
     "documentId": "132",
     "name": "Samsung TV - Rectangle",
