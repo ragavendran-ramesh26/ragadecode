@@ -387,7 +387,7 @@ marked.setOptions({
 
         const relatedArticlesHtml = buildRelatedArticlesHtml(attrs);
         const relatedArticlesSection = relatedArticlesHtml
-        ? `<div class="related-articles row g-4 mt-4">${relatedArticlesHtml}</div>`
+        ? `<div class="related-articles row g-4 mt-4 mb-4">${relatedArticlesHtml}</div>`
         : '';
         const ldJsonScript = buildLDJson({ title, coverImageUrl, publishedRaw, lastModifiedUTC, authorName: attrs.author?.name || 'Ragavendran Ramesh', authorSlug: attrs.author?.slug || 'ragavendran-ramesh', slugPrefix: categorySlug, slug, description, category, keywords, schema_details });
 
