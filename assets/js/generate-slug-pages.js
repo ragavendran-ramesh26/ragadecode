@@ -108,9 +108,10 @@ function buildRelatedArticlesHtml(attrs) {
     const categorySlug = attr.category?.data?.attributes?.slug || attr.category?.slug;
    
     const imageUrl = attr.coverimage?.url || default_img;
-    const short_description = attr.short_description;
+    const short_description = attr.short_description || '';
+
   
-    const publishedRaw = attrs.publishedat || attrs.publishedAt || attrs.createdAt;
+    const publishedRaw = attrs.publishedAt;
     const published = new Date(publishedRaw).toLocaleDateString("en-IN", { year: "numeric", month: "short", day: "numeric" });
     // const publisedISO = new Date(publishedRaw); // This variable is not used after its declaration
 
