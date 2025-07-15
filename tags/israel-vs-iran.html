@@ -351,7 +351,6 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch('/assets/data/media.json')
     .then(res => res.json())
     .then(mediaList => {
-      console.log("✅ Media List Loaded:", mediaList);
       mediaList.forEach(item => console.log("🖼️", item.name));
       autoRenderAllAffiliateWidgets(mediaList);
     })

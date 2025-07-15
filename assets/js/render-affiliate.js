@@ -74,8 +74,7 @@ function autoRenderAllAffiliateWidgets(mediaList) {
   const organized = organizeAffiliates(mediaList);
   const allDivs = document.querySelectorAll("div[id^='affiliate-']");
 
-  console.log(`📦 Found ${allDivs.length} affiliate container divs on the page`);
-  console.log(`🔍 Affiliate counts - Rectangles: ${organized.rectangles.length}, Squares: ${organized.squares.length}`);
+  
 
   allDivs.forEach(div => {
     const id = div.id;
@@ -85,8 +84,7 @@ function autoRenderAllAffiliateWidgets(mediaList) {
       const number = parseInt(match[1]);
       const type = match[2].toLowerCase();
       const category = type === 'rectangle' ? organized.rectangles : organized.squares;
-
-      console.log(`📌 Processing ID: "${id}" — Looking for #${number} (${type})`);
+ 
 
       if (number <= category.length) {
         const item = category[number - 1]; // Arrays are 0-indexed
