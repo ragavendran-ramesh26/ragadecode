@@ -12,11 +12,11 @@ function inCountry(article, countrySlug) {
 }
 
 function isViralIndianNewsArticle(article) {
-  const isCat = isCategory(article, 'news-article');
+  // const isCat = isCategory(article, 'news-article');
   const isViral = hasHashtag(article, 'viral');
-  const isIndian = inCountry(article, 'india');
+  // const isIndian = inCountry(article, 'india');
 
-  const passed = isCat && isViral && isIndian;
+  const passed = isViral;
 
   if (passed) {
     console.log(`✅ Section 1 - Selected: ${article.title || article.Title || '[No Title]'}`);
