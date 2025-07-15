@@ -6,6 +6,11 @@
     <lastmod>2025-07-15</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/exams</loc>
+    <priority>0.9</priority>
+    <lastmod>2025-07-15</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/statistical-data</loc>
     <priority>0.9</priority>
     <lastmod>2025-07-15</lastmod>
@@ -58,6 +63,16 @@
   <url>
     <loc>https://ragadecode.com/news-article</loc>
     <priority>0.9</priority>
+    <lastmod>2025-07-15</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/exams/tnpsc-addendum-8f2024-129-new-vacancies-announced-in-group-ii-iia-examination</loc>
+    <priority>0.8</priority>
+    <lastmod>2025-07-15</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/airlines/air-india-ai-171-crash-unveiling-the-faa-warnings-fuel-switch-faults-and-regulatory-gaps</loc>
+    <priority>0.8</priority>
     <lastmod>2025-07-15</lastmod>
   </url>
   <url>
@@ -631,12 +646,22 @@
     <lastmod>2025-07-15</lastmod>
   </url>
   <url>
-    <loc>https://ragadecode.com/tags/ev-cars</loc>
+    <loc>https://ragadecode.com/tags/viral</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-15</lastmod>
   </url>
   <url>
-    <loc>https://ragadecode.com/tags/viral</loc>
+    <loc>https://ragadecode.com/tags/airindia</loc>
+    <priority>0.6</priority>
+    <lastmod>2025-07-15</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/tags/air-india-171</loc>
+    <priority>0.6</priority>
+    <lastmod>2025-07-15</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/tags/ev-cars</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-15</lastmod>
   </url>
@@ -677,16 +702,6 @@
   </url>
   <url>
     <loc>https://ragadecode.com/tags/airlines</loc>
-    <priority>0.6</priority>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/tags/airindia</loc>
-    <priority>0.6</priority>
-    <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/tags/air-india-171</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-15</lastmod>
   </url>
@@ -1036,6 +1051,16 @@
     <lastmod>2025-07-06</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/locations/india/gujarat</loc>
+    <priority>0.4</priority>
+    <lastmod>2025-06-28</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/locations/india/gujarat/ahmedabad</loc>
+    <priority>0.3</priority>
+    <lastmod>2025-06-28</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/locations/india/maharashtra</loc>
     <priority>0.4</priority>
     <lastmod>2025-06-29</lastmod>
@@ -1094,16 +1119,6 @@
     <loc>https://ragadecode.com/locations/india/telangana/hyderabad</loc>
     <priority>0.3</priority>
     <lastmod>2025-07-15</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/locations/india/gujarat</loc>
-    <priority>0.4</priority>
-    <lastmod>2025-06-28</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/locations/india/gujarat/ahmedabad</loc>
-    <priority>0.3</priority>
-    <lastmod>2025-06-28</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/tamilnadu</loc>
