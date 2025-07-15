@@ -50,6 +50,10 @@ const gaScript = `
     const { data: articles } = articleRes; // ✅ define this
     const { data: states } = statesRes;
 
+      const section1ArticleIds = new Set();
+  const section2ArticleIds = new Set();  
+  const section3ArticleIds = new Set();
+
     const categoryMap = new Map();
 
     for (const article of articles) {
@@ -182,10 +186,10 @@ const gaScript = `
       const worldArticles = sections
         .filter(({ attr }) => {
           const countries = attr.countries || [];
-          return (
-            countries.length > 0 &&
-            !countries.some((c) => c.title?.toLowerCase() === "india")
-          );
+          const id = attr.id || attr.slug;
+          const isWorld = countries.length > 0 && !countries.some((c) => c.title?.toLowerCase() === "india");
+          if (isWorld) section1ArticleIds.add(id);
+          return isWorld;
         })
         .map(({ attr }) => {
           const title = attr.Title || "Untitled";
@@ -324,6 +328,8 @@ const gaScript = `
                 }
               );
 
+              section2ArticleIds.add(attr.id || attr.slug);
+
               const authorName = attr.author?.name || "";
 
               const tags = attr.hashtags?.data || attr.hashtags || [];
@@ -395,53 +401,58 @@ const gaScript = `
         `
         : "";
 
-      const emptyCountryArticles = sections
-        .filter(({ attr }) => {
-          const countries = attr.countries || [];
-          return countries.length === 0;
-        })
-        .map(({ attr }) => {
-          const title = attr.Title || "Untitled";
-          const slug = attr.slug || "";
-          const short_description = attr.short_description || "";
-          const articleCategory =
-            attr.category?.data?.attributes?.slug ||
-            (attr.category?.attributes || attr.category)?.slug ||
-            "news-article";
-          const cover =
-            attr.coverimage?.data?.attributes?.url ||
-            (attr.coverimage?.attributes || attr.coverimage)?.url ||
-            default_img;
-          const publishedRaw =
-            attr.publishedat || attr.publishedAt || attr.createdAt;
-          const published = new Date(publishedRaw).toLocaleDateString("en-IN", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          });
-          const authorName =
-            attr.author?.data?.attributes?.name || attr.author?.name || "";
+   const emptyCountryArticles = sections
+  .filter(({ attr }) => {
+    const countries = attr.countries || [];
+    const id = attr.id || attr.slug;
 
-          const tags = attr.hashtags?.data || attr.hashtags || [];
+    const articleCategorySlug =
+      attr.category?.data?.attributes?.slug ||
+      (attr.category?.attributes || attr.category)?.slug ||
+      "";
 
-          const tagsHtml = tags
-            .slice(0, 3)
-            .map((tag) => {
-              const name = tag?.attributes?.name || tag?.name || "";
-              return name
-                ? `<a href="/tags/${name
-                    .toLowerCase()
-                    .replace(
-                      /\s+/g,
-                      "-"
-                    )}" class="badge bg-light border text-dark">#${name}</a>`
-                : "";
-            })
-            .join(" ");
+    const isMatch = countries.length === 0 && articleCategorySlug === categorySlug;
+    if (isMatch) section3ArticleIds.add(id);  // ✅ Add this
+    return isMatch;
+  })
+  .map(({ attr }) => {
+    const title = attr.Title || "Untitled";
+    const slug = attr.slug || "";
+    const short_description = attr.short_description || "";
+    const articleCategory =
+      attr.category?.data?.attributes?.slug ||
+      (attr.category?.attributes || attr.category)?.slug ||
+      "news-article";
+    const cover =
+      attr.coverimage?.data?.attributes?.url ||
+      (attr.coverimage?.attributes || attr.coverimage)?.url ||
+      default_img;
+    const publishedRaw =
+      attr.publishedat || attr.publishedAt || attr.createdAt;
+    const published = new Date(publishedRaw).toLocaleDateString("en-IN", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+    const authorName =
+      attr.author?.data?.attributes?.name || attr.author?.name || "";
 
-          return `
+    const tags = attr.hashtags?.data || attr.hashtags || [];
+
+    const tagsHtml = tags
+      .slice(0, 3)
+      .map((tag) => {
+        const name = tag?.attributes?.name || tag?.name || "";
+        return name
+          ? `<a href="/tags/${name
+              .toLowerCase()
+              .replace(/\s+/g, "-")}" class="badge bg-light border text-dark">#${name}</a>`
+          : "";
+      })
+      .join(" ");
+
+    return `
       <div class="col-md-4">
-      
         <div class="card border-0 h-100">
           ${
             cover
@@ -463,22 +474,127 @@ const gaScript = `
         </div>
       </div>
     `;
-        })
-        .join("");
+  })
+  .join("");
 
-      const section3Html = emptyCountryArticles.trim()
-        ? `
+const section3Html = emptyCountryArticles.trim()
+  ? `
 <section class="best-articles-section py-5">
   <div class="container">
     <h2 class="section-title text-center mb-2">${categoryName}</h2>
-    <p class="section-subtitle text-center mb-4"></p>
+    <p class="section-subtitle text-center mb-4">Articles from this category without location data</p>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
       ${emptyCountryArticles}
     </div>
   </div>
 </section>
 `
-        : "";
+  : "";
+
+
+
+
+
+  const section4Articles = sections
+  .filter(({ attr }) => {
+    const countries = attr.countries || [];
+    const articleId = attr.id || attr.slug;
+
+    const articleCategorySlug =
+      attr.category?.data?.attributes?.slug ||
+      (attr.category?.attributes || attr.category)?.slug ||
+      "";
+
+    const inSection1 = section1ArticleIds.has(articleId);
+    const inSection2 = section2ArticleIds.has(articleId);
+    const inSection3 = section3ArticleIds.has(articleId);
+
+    return (
+      articleCategorySlug === categorySlug &&
+      !inSection1 &&
+      !inSection2 &&
+      !inSection3
+    );
+  })
+  .map(({ attr }) => {
+    const title = attr.Title || "Untitled";
+    const slug = attr.slug || "";
+    const short_description = attr.short_description || "";
+    const articleCategory =
+      attr.category?.data?.attributes?.slug ||
+      (attr.category?.attributes || attr.category)?.slug ||
+      "news-article";
+    const cover =
+      attr.coverimage?.data?.attributes?.url ||
+      (attr.coverimage?.attributes || attr.coverimage)?.url ||
+      default_img;
+    const publishedRaw =
+      attr.publishedat || attr.publishedAt || attr.createdAt;
+    const published = new Date(publishedRaw).toLocaleDateString("en-IN", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+    const authorName =
+      attr.author?.data?.attributes?.name || attr.author?.name || "";
+
+    const tags = attr.hashtags?.data || attr.hashtags || [];
+
+    const tagsHtml = tags
+      .slice(0, 3)
+      .map((tag) => {
+        const name = tag?.attributes?.name || tag?.name || "";
+        return name
+          ? `<a href="/tags/${name
+              .toLowerCase()
+              .replace(/\s+/g, "-")}" class="badge bg-light border text-dark">#${name}</a>`
+          : "";
+      })
+      .join(" ");
+
+    return `
+      <div class="col-md-4">
+        <div class="card border-0 h-100">
+          ${
+            cover
+              ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="object-fit: cover; height: 200px;">`
+              : ""
+          }
+          <div class="card-body px-0">
+            <small class="text-muted d-block mb-1">${
+              authorName ? `By ${authorName}` : ""
+            } • ${published}</small>
+            <h5 class="card-title fw-semibold">
+              <a href="/${articleCategory}/${slug}" class="text-dark text-decoration-none">${title}</a>
+            </h5>
+            <p>${short_description}</p>
+            <div class="d-flex flex-wrap gap-1 mt-3">
+              ${tagsHtml}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  })
+  .join("");
+
+
+  const section4Html = section4Articles.trim()
+  ? `
+<section class="best-articles-section py-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-2">${categoryName} — More Articles</h2>
+    <p class="section-subtitle text-center mb-4">Other stories in this category</p>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      ${section4Articles}
+    </div>
+  </div>
+</section>
+`
+  : "";
+
+
+
 
       const finalPageHtml = template
         .replace(/{{GA_SCRIPT}}/g, gaScript)
@@ -486,6 +602,7 @@ const gaScript = `
         .replace(/{{SECTION_1}}/g, section1Html)
         .replace(/{{SECTION_2}}/g, section2Html)
         .replace(/{{SECTION_3}}/g, section3Html)
+        .replace(/{{SECTION_4}}/g, section4Html)
         .replace(/{{SECTION_4}}/g, "") // Add logic if SECTION_4 is needed later
         .replace(/{{CATEGORY_NAME}}/g, categoryName)
         .replace(/{{CATEGORY_SLUG}}/g, categorySlug)
