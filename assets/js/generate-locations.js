@@ -219,9 +219,9 @@ function generateNewsBlockSection(articles) {
       for (const state of relatedStates) {
         const stateName = state.title;
         const stateSlug = state.slug;
-        const desc = '';
-        const shortdesc = '';
-        const seoTitle = '';
+        const desc = state.Description_in_detail;
+        const shortdesc = state.short_description;
+        const seoTitle = state.seo_title;
 
         await buildPage(`${countrySlug}/${stateSlug}`, stateName, state.news_articles, desc, shortdesc, seoTitle, state.tourism_travel_trips);
         console.log(`  🏙️ State page generated: /locations/${countrySlug}/${stateSlug}.html`);

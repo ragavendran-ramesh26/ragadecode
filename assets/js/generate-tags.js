@@ -1,5 +1,6 @@
 const fs = require("fs-extra");
 const path = require("path");
+const marked = require('marked');
 const fetch = require('../../assets/js/api-client');
 
 const API_CONFIG = require("../../assets/js/api-config");
@@ -35,10 +36,11 @@ const gaScript = `
       const tagName = tag.name || "untitled-tag";
       const tagSlug = tagName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
       const getArticleURL = `${TAGS_API}/${tagId}?populate[news_articles]=true`;
+      const seoTitle = tag.seo_title;
+      const shortDesc = tag.short_description;
+      markedDescription = marked.parse(tag.description_in_detail || '');
 
-      console.log(`\n🔎 Processing tag: ${tagName}`);
-      console.log(`📎 Tag ID: ${tagId}`);
-      console.log(`🌐 Detail API URL: ${getArticleURL}`);
+      console.log(`\n🔎 Processing tag: ${seoTitle}`);   
 
       const tagDetailJson = await fetch(getArticleURL);
       const tagData = tagDetailJson.data;
@@ -106,6 +108,9 @@ const gaScript = `
         .replace(/{{HEADER}}/g, headerHtml)
         .replace(/{{FOOTER}}/g, footerHtml)
         .replace(/{{TAG_NAME}}/g, tagTitle)
+        .replace(/{{SEO_TITLE}}/g, seoTitle)
+        .replace(/{{SHORT_DESC}}/g, shortDesc)
+        .replace(/{{DESC}}/g, markedDescription)
         .replace(/{{TAG_SLUG}}/g, tagSlug)
         .replace(/{{CARDS}}/g, cardsHtml)
         .replace(/{{ALL_TAGS}}/g, allTagLinks);

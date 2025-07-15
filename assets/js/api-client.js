@@ -19,9 +19,9 @@ async function fetchWithAuth(url, options = {}) {
     signal: controller.signal,
   };
 
-  console.log(`📡 Requesting: ${url}`);
-  console.log(`➡️ Method: ${finalOptions.method || 'GET'}`);
-  console.log(`➡️ Headers:`, finalOptions.headers);
+  // console.log(`📡 Requesting: ${url}`);
+  // console.log(`➡️ Method: ${finalOptions.method || 'GET'}`);
+  // console.log(`➡️ Headers:`, finalOptions.headers);
 
   try {
     const response = await fetch(url, finalOptions);

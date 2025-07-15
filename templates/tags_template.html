@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Decoded {{TAG_NAME}} | RagaDecode</title>
+    <title>{{SEO_TITLE}} - RagaDecode</title>
     {{GA_SCRIPT}}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4195715781915036"
      crossorigin="anonymous"></script>
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Latest {{TAG_NAME}} news and articles from RagaDecode. Stay updated with decoded takes on {{TAG_NAME}} news."
+      content="{{Latest {{TAG_NAME}} news and articles from RagaDecode. Stay updated with decoded takes on {{TAG_NAME}} news.}}"
     />
 
     <link
@@ -63,10 +63,17 @@
     {{HEADER}}
 
    <main class="container py-4">
+     
       <h2 class="mb-4">{{TAG_NAME}}</h2>
+      <p>
+        {{SHORT_DESC}}
+      </p>
       <div class="row g-4">
         {{CARDS}}
       </div>
+      <p>
+        {{DESC}}
+      </p>
     </main>
     {{FOOTER}}
   </body>
