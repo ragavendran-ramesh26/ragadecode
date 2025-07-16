@@ -11,6 +11,7 @@ const API_CONFIG = {
   SEARCH_MEDIA: `${BASE_STRAPI_URL}/media`,
   
   FULL_SLUG_ARTICLE: `${BASE_STRAPI_URL}/news-articles`,
+  CATEGORIES: `${BASE_STRAPI_URL}/categories`,
 
   // GET_ARTICLES_LIST: `${BASE_STRAPI_URL}/news-articles?sort[0]=publishedat:desc&sort[1]=id:desc&pagination[page]=1&pagination[pageSize]=100&populate[hashtags]=true&populate[author][populate][profile_image]=true&populate[coverimage]=true&populate[category]=true&populate[countries]=true&populate[states]=true&populate[cities]=true`,
 
