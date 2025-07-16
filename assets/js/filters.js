@@ -62,7 +62,7 @@ function isFromMetroCity(article) {
     'mumbai', 'delhi', 'chennai', 'kolkata', 'bengaluru', 
     'hyderabad', 'ahmedabad', 'pune', 'kanpur', 'jaipur',
     'lucknow', 'nagpur', 'indore', 'thane', 'bhopal', 'Kochi',
-    'visakhapatnam', 'patna', 'vadodara', 'ghaziabad', 'ludhiana'
+    'visakhapatnam', 'patna', 'vadodara', 'ghaziabad', 'ludhiana' , 'palakkad'
   ];
 
   const citySlugs = (article.cities || []).map(city => city.slug?.toLowerCase() || '');

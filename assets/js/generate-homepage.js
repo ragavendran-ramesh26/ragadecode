@@ -145,7 +145,7 @@ function splitCities(cities) {
                     <div class="row align-items-center g-4 flex-column flex-md-row">
                       <div class="col-md-6">
                         <a href="/${art.category?.slug||'news-article'}/${art.slug}">
-                          <img src="${img}" class="img-fluid rounded w-100" style="object-fit:cover;max-height:400px" alt="">
+                          <img src="${img}" class="img-fluid rounded w-100" style="max-height:400px" alt="">
                         </a>
                         <div class="mt-2"><small class="text-muted">By ${art.author?.name||'RagaDecode'} • ${dt}</small></div>
                       </div>

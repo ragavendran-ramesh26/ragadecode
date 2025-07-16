@@ -77,20 +77,24 @@ const gaScript = `
         }).join(" ");
 
         return `
-        <div class="col-md-4">
+        <div class="col-md-6 col-lg-4">
+        <a href="/${articleCategory}/${slug}" class="text-dark text-decoration-none">
           <div class="card border-0 h-100">
-            <img src="${cover}" class="card-img-top rounded" style="object-fit:cover; height:200px;" alt="${title}" />
+            <img src="${cover}" class="card-img-top rounded" style="height:200px;" alt="${title}" />
             <div class="card-body px-0">
               <small class="text-muted d-block mb-1">${authorName ? `By ${authorName} • ` : ""}${published}</small>
               <h5 class="card-title fw-semibold">
-                <a href="/${articleCategory}/${slug}" class="text-dark text-decoration-none">${title}</a>
+                ${title}
               </h5>
               <p>${short_description}</p>
               <div class="d-flex flex-wrap gap-1 mt-3">${tagsHtml}</div>
             </div>
           </div>
+          </a>
         </div>`;
       }).join("");
+
+       
 
       const allTagLinks = allTags.map(t => {
         const name = t.name || "";

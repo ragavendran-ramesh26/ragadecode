@@ -283,11 +283,11 @@ const gaScript = `
             .join(" ");
 
           return `
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="card border-0 h-100">
           ${
             cover
-              ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="object-fit: cover; height: 200px;">`
+              ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="height: 200px;">`
               : ""
           }
 
@@ -406,7 +406,7 @@ const gaScript = `
       <div class="card border-0  h-100">
       ${
         cover
-          ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="object-fit: cover; height: 200px;">`
+          ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="height: 200px;">`
           : ""
       }
 
@@ -512,7 +512,7 @@ const gaScript = `
         <div class="card border-0 h-100">
           ${
             cover
-              ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="object-fit: cover; height: 200px;">`
+              ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="height: 200px;">`
               : ""
           }
           <div class="card-body px-0">
@@ -612,7 +612,7 @@ const gaScript = `
         <div class="card border-0 h-100">
           ${
             cover
-              ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="object-fit: cover; height: 200px;">`
+              ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="height: 200px;">`
               : ""
           }
           <div class="card-body px-0">
