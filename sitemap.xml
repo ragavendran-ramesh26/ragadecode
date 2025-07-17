@@ -66,7 +66,12 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://ragadecode.com/ott-release/dna-tamil-a-genetic-thriller-with-a-punch-ott-release-jio-hoststar</loc>
+    <loc>https://ragadecode.com/news-article/school-bus-collides-with-bike-on-kolar-road-1-dead-2-injured-in-bhopal</loc>
+    <priority>0.8</priority>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/ott-release/dna-tamil-a-genetic-thriller-with-a-punch-ott-release-jiohotstar</loc>
     <priority>0.8</priority>
     <lastmod>2025-07-17</lastmod>
   </url>
@@ -756,6 +761,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/tags/accident</loc>
+    <priority>0.6</priority>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/tags/jio-hotstar</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-17</lastmod>
@@ -792,11 +802,6 @@
   </url>
   <url>
     <loc>https://ragadecode.com/tags/netflix</loc>
-    <priority>0.6</priority>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/tags/accident</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-17</lastmod>
   </url>
@@ -1181,6 +1186,16 @@
     <lastmod>2025-07-06</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/locations/india/madhya-pradesh</loc>
+    <priority>0.4</priority>
+    <lastmod>2025-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/locations/india/madhya-pradesh/bhopal</loc>
+    <priority>0.3</priority>
+    <lastmod>2025-07-05</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/locations/india/telangana</loc>
     <priority>0.4</priority>
     <lastmod>2025-07-01</lastmod>
@@ -1339,16 +1354,6 @@
     <loc>https://ragadecode.com/locations/india/maharashtra/pune</loc>
     <priority>0.3</priority>
     <lastmod>2025-07-03</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/locations/india/madhya-pradesh</loc>
-    <priority>0.4</priority>
-    <lastmod>2025-07-01</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/locations/india/madhya-pradesh/bhopal</loc>
-    <priority>0.3</priority>
-    <lastmod>2025-07-05</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/andhra-pradesh</loc>
