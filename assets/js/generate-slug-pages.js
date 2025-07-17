@@ -111,7 +111,7 @@ function buildRelatedArticlesHtml(attrs) {
     const short_description = attr.short_description || '';
 
   
-    const publishedRaw = attrs.publishedAt;
+    const publishedRaw = attr.publishedat || attr.publishedAt || attr.createdAt;
     const published = new Date(publishedRaw).toLocaleDateString("en-IN", { year: "numeric", month: "short", day: "numeric" });
     // const publisedISO = new Date(publishedRaw); // This variable is not used after its declaration
 
