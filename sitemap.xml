@@ -66,6 +66,11 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/news-article/cpi-leader-k-chandu-rathod-gunned-down-during-morning-walk-in-hyderabad</loc>
+    <priority>0.8</priority>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/airlines/indigo-flight-6e6271-declares-panpan-delhi-to-goa-flight-suffers-engine-failure-makes-emergency-landing-in-mumbai</loc>
     <priority>0.8</priority>
     <lastmod>2025-07-17</lastmod>
@@ -741,12 +746,17 @@
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
-    <loc>https://ragadecode.com/tags/airlines</loc>
+    <loc>https://ragadecode.com/tags/murder</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-17</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/tags/viral</loc>
+    <priority>0.6</priority>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/tags/airlines</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-17</lastmod>
   </url>
@@ -857,11 +867,6 @@
   </url>
   <url>
     <loc>https://ragadecode.com/tags/sony-liv</loc>
-    <priority>0.6</priority>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/tags/murder</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-17</lastmod>
   </url>
@@ -1166,6 +1171,16 @@
     <lastmod>2025-07-06</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/locations/india/telangana</loc>
+    <priority>0.4</priority>
+    <lastmod>2025-07-01</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/locations/india/telangana/hyderabad</loc>
+    <priority>0.3</priority>
+    <lastmod>2025-07-17</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/locations/india/karnataka</loc>
     <priority>0.4</priority>
     <lastmod>2025-06-29</lastmod>
@@ -1237,16 +1252,6 @@
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/west-bengal/joka</loc>
-    <priority>0.3</priority>
-    <lastmod>2025-07-17</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/locations/india/telangana</loc>
-    <priority>0.4</priority>
-    <lastmod>2025-07-01</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/locations/india/telangana/hyderabad</loc>
     <priority>0.3</priority>
     <lastmod>2025-07-17</lastmod>
   </url>
