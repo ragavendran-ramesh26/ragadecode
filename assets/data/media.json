@@ -1,5 +1,44 @@
 [
   {
+    "id": 176,
+    "documentId": "176",
+    "name": "home-invertors - Rectangle",
+    "alternative_text": "affiliate",
+    "caption": "https://amzn.to/4m4HXGu",
+    "formats": {
+      "small": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/home-invertors-rectangle.png",
+        "hash": "home-invertors_-_rectangle",
+        "mime": "image/png",
+        "name": "small_home-invertors - Rectangle",
+        "path": null,
+        "size": 0.13,
+        "width": 500,
+        "height": 282,
+        "sizeInBytes": 136314
+      },
+      "thumbnail": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/home-invertors-rectangle.png",
+        "hash": "home-invertors_-_rectangle",
+        "mime": "image/png",
+        "name": "thumbnail_home-invertors - Rectangle",
+        "path": null,
+        "size": 0.043333333333333335,
+        "width": 245,
+        "height": 138,
+        "sizeInBytes": 45438
+      }
+    },
+    "mime_type": "image/png",
+    "size": 0.13,
+    "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/home-invertors-rectangle.png",
+    "provider": "aws-s3",
+    "created_at": "2025-07-20T03:15:14.779295+05:30",
+    "published_at": "2025-07-20T03:15:14.446499+05:30"
+  },
+  {
     "id": 143,
     "documentId": "143",
     "name": "Gillette - Square",
