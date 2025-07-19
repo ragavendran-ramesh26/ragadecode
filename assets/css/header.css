@@ -1,0 +1,52 @@
+.gradient-icon {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.gradient-ott {
+  background-image: linear-gradient(to right, #4b0082, #8e2de2);
+}
+.gradient-gadgets {
+  background-image: linear-gradient(to right, #ff5722, #ff9800);
+}
+.gradient-exams {
+  background-image: linear-gradient(to right, #3f51b5, #2196f3);
+}
+.gradient-accidents {
+  background-image: linear-gradient(to right, #f44336, #ff1744);
+}
+.gradient-crime {
+  background-image: linear-gradient(to right, #9c27b0, #e040fb);
+}
+.gradient-railways {
+  background-image: linear-gradient(to right, #4caf50, #8bc34a);
+}
+.gradient-iaf {
+  background-image: linear-gradient(to right, #2196f3, #00bcd4);
+}
+.gradient-airlines {
+  background-image: linear-gradient(to right, #009688, #4db6ac);
+}
+.gradient-india {
+  background-image: linear-gradient(to right, #ff9800, #ffc107);
+}
+.gradient-tn {
+  background-image: linear-gradient(to right, #c62828, #ef5350);
+}
+.gradient-kerala {
+  background-image: linear-gradient(to right, #2e7d32, #66bb6a);
+}
+.gradient-karnataka {
+  background-image: linear-gradient(to right, #0277bd, #4fc3f7);
+}
+.gradient-maha {
+  background-image: linear-gradient(to right, #6a1b9a, #ba68c8);
+}
+.gradient-bengal {
+  background-image: linear-gradient(to right, #ef6c00, #ffa726);
+}
+.gradient-gujarat {
+  background-image: linear-gradient(to right, #ad1457, #f06292);
+}
