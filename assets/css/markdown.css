@@ -169,3 +169,55 @@
   color: #6c757d;
 }
 /* --- END NEW BLOCKQUOTE STYLES --- */
+
+
+.faq-section { 
+  padding: 1.5rem; 
+  position: relative;
+}
+
+.faq-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  color: #222;
+}
+
+.faq-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed #ccc;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-question {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #111;
+  display: flex;
+  align-items: center;
+}
+
+.faq-question i {
+  color: #007bff;
+  margin-right: 8px;
+}
+
+.faq-answer {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1440px !important;
+  }
+}

@@ -80,7 +80,7 @@ const gaScript = `
         <div class="col-md-6 col-lg-4">
         <a href="/${articleCategory}/${slug}" class="text-dark text-decoration-none">
           <div class="card border-0 h-100">
-            <img src="${cover}" class="card-img-top rounded" style="height:200px;" alt="${title}" />
+            <img src="${cover}" class="card-img-top rounded" style="min-height:200px; max-height: 350px;" alt="${title}" />
             <div class="card-body px-0">
               <small class="text-muted d-block mb-1">${authorName ? `By ${authorName} • ` : ""}${published}</small>
               <h5 class="card-title fw-semibold">

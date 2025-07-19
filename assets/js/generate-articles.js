@@ -287,7 +287,7 @@ const gaScript = `
         <div class="card border-0 h-100">
           ${
             cover
-              ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="height: 200px;">`
+              ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="min-height:200px; max-height: 350px;">`
               : ""
           }
 
@@ -406,7 +406,7 @@ const gaScript = `
       <div class="card border-0  h-100">
       ${
         cover
-          ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="height: 200px;">`
+          ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="min-height:200px; max-height: 350px;">`
           : ""
       }
 
@@ -512,7 +512,7 @@ const gaScript = `
         <div class="card border-0 h-100">
           ${
             cover
-              ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="height: 200px;">`
+              ? `<img src="${cover}" class="card-img-top rounded" alt="${title}" style="min-height:200px; max-height: 350px;">`
               : ""
           }
           <div class="card-body px-0">

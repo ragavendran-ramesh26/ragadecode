@@ -125,7 +125,7 @@ function buildRelatedArticlesHtml(attrs) {
       <div class="col-12 col-sm-6 col-md-6 col-lg-4">
         <div class="card related-card h-100">
           <a href="/${categorySlug}/${relatedSlug}" class="text-decoration-none text-dark">
-            <img src="${imageUrl}" class="card-img-top rounded" style="height:200px;"  alt="${relatedTitle}" loading="lazy" />
+            <img src="${imageUrl}" class="card-img-top rounded" style="height:3500px;"  alt="${relatedTitle}" loading="lazy" />
             <div class="card-body">
                <small class="text-muted d-block mb-1">${authorName ? `By ${authorName} • ` : ""}${published}</small>
               <h5 class="card-title">${relatedTitle}</h5>
@@ -393,6 +393,53 @@ marked.setOptions({
 
         const analyticsScript = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-QEL34RBXBH"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-QEL34RBXBH');</script>`;
 
+
+const faqs = attrs.faq || [];
+
+let faqSectionRHS = '';
+let faqSectionBottom = '';
+
+if (faqs.length > 0) {
+  const faqTop15 = faqs.slice(0, 15);
+  const faqRemaining = faqs.slice(15);
+
+  const buildFaqItems = (faqList) => {
+    return faqList.map((item, index) => {
+      const q = escapeHtml(item.question || `Q${index + 1}`);
+      const a = escapeHtml(item.answer || '');
+      return `
+        <div class="faq-item mb-4">
+          <div class="faq-question">
+            <i class="fas fa-question-circle text-primary me-2"></i> ${q}
+          </div>
+          <div class="faq-answer mt-2">
+            ${a}
+          </div>
+        </div>
+      `;
+    }).join('\n');
+  };
+
+  if (faqTop15.length > 0) {
+    faqSectionRHS = `
+      <section class="faq-section">
+        <h3 class="text-center  mb-4">Quick Info</h3>
+        ${buildFaqItems(faqTop15)}
+      </section>
+    `;
+  }
+
+  if (faqRemaining.length > 0) {
+    faqSectionBottom = `
+      <section class="faq-section">
+        <h3 class="text-center mb-4">In-Depth Answers</h3>
+        ${buildFaqItems(faqRemaining)}
+      </section>
+    `;
+  }
+}
+
+
         const pageHTML = template
           .replace(/{{STRUCTURED_DATA_JSON}}/g, ldJsonScript)
           .replace(/{{TITLE}}/g, title)
@@ -415,6 +462,8 @@ marked.setOptions({
           .replace(/{{SLUG_PREFIX}}/g, categorySlug)
           .replace(/{{BASE_DOMAIN}}/g, BASE_URL)
           .replace(/{{GA_SCRIPT}}/g, analyticsScript)
+          .replace(/{{FAQ_SECTION_RHS}}/g, faqSectionRHS)
+          .replace(/{{FAQ_SECTION_BOTTOM}}/g, faqSectionBottom)
           .replace(/{{HEADER}}/g, headerHtml)
           .replace(/{{FOOTER}}/g, footerHtml)
           .replace(/{{RELATED_SECTION_BLOCK}}/g, relatedArticlesSection ? `
