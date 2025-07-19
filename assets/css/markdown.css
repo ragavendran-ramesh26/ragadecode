@@ -119,9 +119,6 @@
   line-height: 1.7;
 }
 
-.related-section {
-  margin-top: 4rem;
-}
 
 .related-card img {
   height: 180px;
@@ -172,7 +169,7 @@
 
 
 .faq-section { 
-  padding: 1.5rem; 
+  padding: 0.2rem; 
   position: relative;
 }
 
