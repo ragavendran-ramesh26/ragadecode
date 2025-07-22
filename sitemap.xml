@@ -66,6 +66,11 @@
     <lastmod>2025-07-22</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/airlines/air-india-a320-veers-off-runway-in-mumbai-what-really-happened</loc>
+    <priority>0.8</priority>
+    <lastmod>2025-07-22</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/news-article/v-s-achuthanandan-a-legendary-communist-and-peoples-leader-of-kerala-a-detailed-biography</loc>
     <priority>0.8</priority>
     <lastmod>2025-07-22</lastmod>
@@ -811,12 +816,17 @@
     <lastmod>2025-07-22</lastmod>
   </url>
   <url>
-    <loc>https://ragadecode.com/tags/viral</loc>
+    <loc>https://ragadecode.com/tags/airlines</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-22</lastmod>
   </url>
   <url>
-    <loc>https://ragadecode.com/tags/airlines</loc>
+    <loc>https://ragadecode.com/tags/airindia</loc>
+    <priority>0.6</priority>
+    <lastmod>2025-07-22</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/tags/viral</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-22</lastmod>
   </url>
@@ -892,11 +902,6 @@
   </url>
   <url>
     <loc>https://ragadecode.com/tags/zee5</loc>
-    <priority>0.6</priority>
-    <lastmod>2025-07-22</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/tags/airindia</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-22</lastmod>
   </url>
@@ -1236,6 +1241,16 @@
     <lastmod>2025-07-06</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/locations/india/maharashtra</loc>
+    <priority>0.4</priority>
+    <lastmod>2025-06-29</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/locations/india/maharashtra/mumbai</loc>
+    <priority>0.3</priority>
+    <lastmod>2025-07-03</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/locations/india/kerala</loc>
     <priority>0.4</priority>
     <lastmod>2025-06-28</lastmod>
@@ -1314,16 +1329,6 @@
     <loc>https://ragadecode.com/locations/india/kerala/palakkad</loc>
     <priority>0.3</priority>
     <lastmod>2025-07-06</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/locations/india/maharashtra</loc>
-    <priority>0.4</priority>
-    <lastmod>2025-06-29</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/locations/india/maharashtra/mumbai</loc>
-    <priority>0.3</priority>
-    <lastmod>2025-07-03</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/united-kingdom</loc>
