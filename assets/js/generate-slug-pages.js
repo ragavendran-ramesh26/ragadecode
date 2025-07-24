@@ -440,28 +440,41 @@ if (faqs.length > 0) {
 }
 
 
-const encodedUrl = encodeURIComponent(`${BASE_URL}/${categorySlug}/${slug}`);
-const encodedTitle = encodeURIComponent(title);
+const rawUrl = `${BASE_URL}/${categorySlug}/${slug}`;
+const art_title = attrs.Title || 'Untitled';
+
+// Build UTM URLs
+const urlWhatsapp = `${rawUrl}?utm_source=whatsapp&utm_medium=share_button&utm_campaign=social_share`;
+const urlTwitter = `${rawUrl}?utm_source=twitter&utm_medium=share_button&utm_campaign=social_share`;
+const urlFacebook = `${rawUrl}?utm_source=facebook&utm_medium=share_button&utm_campaign=social_share`;
+const urlCopy = `${rawUrl}?utm_source=copy_link&utm_medium=share_button&utm_campaign=social_share`;
+
+const encodedTitle = encodeURIComponent(art_title);
+const encodedWhatsapp = encodeURIComponent(urlWhatsapp);
+const encodedTwitter = encodeURIComponent(urlTwitter);
+const encodedFacebook = encodeURIComponent(urlFacebook);
+
 
 const shareButtonsBlock = `
 <div class="text-center">
   <h5 class="mb-3">Share this article</h5>
   <div class="share-buttons">
-    <a href="https://wa.me/?text=${encodedTitle}%20${encodedUrl}" target="_blank" class="btn btn-success" aria-label="Share on WhatsApp">
+    <a href="https://wa.me/?text=${encodedTitle}%20${encodedWhatsapp}" target="_blank" class="btn btn-success" aria-label="Share on WhatsApp">
       <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
     </a>
-    <a href="https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}" target="_blank" class="btn btn-primary" aria-label="Share on Twitter">
+    <a href="https://twitter.com/intent/tweet?url=${encodedTwitter}&text=${encodedTitle}" target="_blank" class="btn btn-primary" aria-label="Share on Twitter">
       <i class="fab fa-twitter"></i><span>Twitter</span>
     </a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}" target="_blank" class="btn btn-info" aria-label="Share on Facebook">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedFacebook}" target="_blank" class="btn btn-info" aria-label="Share on Facebook">
       <i class="fab fa-facebook-f"></i><span>Facebook</span>
     </a>
-    <button onclick="copyToClipboard('${BASE_URL}/${categorySlug}/${slug}')" class="btn btn-dark" aria-label="Copy Link">
+    <button onclick="copyToClipboard('${urlCopy}')" class="btn btn-dark" aria-label="Copy Link">
       <i class="fas fa-link"></i><span>Copy</span>
     </button>
   </div>
   <div id="copy-toast">Link copied!</div>
 </div>
+
 <script>
 function copyToClipboard(url) {
   navigator.clipboard.writeText(url).then(() => {
