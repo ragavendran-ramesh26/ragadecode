@@ -218,3 +218,51 @@
     max-width: 1440px !important;
   }
 }
+
+
+
+.share-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+.share-buttons .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  padding: 4px 8px;
+  line-height: 1;
+  height: 32px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.share-buttons .btn i {
+  font-size: 15px;
+}
+
+/* Icon-only on small screens */
+@media (max-width: 480px) {
+  .share-buttons .btn span {
+    display: none;
+  }
+}
+#copy-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 6px;
+  z-index: 9999;
+  display: none;
+}

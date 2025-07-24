@@ -440,6 +440,43 @@ if (faqs.length > 0) {
 }
 
 
+const encodedUrl = encodeURIComponent(`${BASE_URL}/${categorySlug}/${slug}`);
+const encodedTitle = encodeURIComponent(title);
+
+const shareButtonsBlock = `
+<div class="text-center">
+  <h5 class="mb-3">Share this article</h5>
+  <div class="share-buttons">
+    <a href="https://wa.me/?text=${encodedTitle}%20${encodedUrl}" target="_blank" class="btn btn-success" aria-label="Share on WhatsApp">
+      <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
+    </a>
+    <a href="https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}" target="_blank" class="btn btn-primary" aria-label="Share on Twitter">
+      <i class="fab fa-twitter"></i><span>Twitter</span>
+    </a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}" target="_blank" class="btn btn-info" aria-label="Share on Facebook">
+      <i class="fab fa-facebook-f"></i><span>Facebook</span>
+    </a>
+    <button onclick="copyToClipboard('${BASE_URL}/${categorySlug}/${slug}')" class="btn btn-dark" aria-label="Copy Link">
+      <i class="fas fa-link"></i><span>Copy</span>
+    </button>
+  </div>
+  <div id="copy-toast">Link copied!</div>
+</div>
+<script>
+function copyToClipboard(url) {
+  navigator.clipboard.writeText(url).then(() => {
+    const toast = document.getElementById('copy-toast');
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 2000);
+  }).catch(err => {
+    console.error('Failed to copy: ', err);
+  });
+}
+</script>
+`;
+
+
+
         const pageHTML = template
           .replace(/{{STRUCTURED_DATA_JSON}}/g, ldJsonScript)
           .replace(/{{TITLE}}/g, title)
@@ -466,6 +503,7 @@ if (faqs.length > 0) {
           .replace(/{{FAQ_SECTION_BOTTOM}}/g, faqSectionBottom)
           .replace(/{{HEADER}}/g, headerHtml)
           .replace(/{{FOOTER}}/g, footerHtml)
+          .replace(/{{SHARE_BUTTONS}}/g, shareButtonsBlock)
           .replace(/{{RELATED_SECTION_BLOCK}}/g, relatedArticlesSection ? `
           <div class="related-section">
             <h3 class="mb-4 text-center">Related Articles</h3>
