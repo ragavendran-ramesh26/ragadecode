@@ -1,10 +1,18 @@
 /* logic 1 */
-function isCategory(article, slug) {
-  return article.category?.slug?.toLowerCase() === slug.toLowerCase();
+function isCategory(article, slugs) {
+  if (!Array.isArray(slugs)) {
+    slugs = [slugs]; // Convert single slug to array
+  }
+  const articleSlug = article.category?.slug?.toLowerCase();
+  return slugs.some(slug => articleSlug === slug.toLowerCase());
 }
 
-function hasHashtag(article, hashtagName) {
-  return (article.hashtags || []).some(tag => tag.name?.toLowerCase() === hashtagName.toLowerCase());
+function hasHashtag(article, hashtagNames) {
+  if (!Array.isArray(hashtagNames)) {
+    hashtagNames = [hashtagNames]; // Convert single string to array
+  }
+  const tags = (article.hashtags || []).map(tag => tag.name?.toLowerCase() || '');
+  return hashtagNames.some(name => tags.includes(name.toLowerCase()));
 }
 
 function inCountry(article, countrySlug) {
@@ -26,11 +34,11 @@ function isViralIndianNewsArticle(article) {
 }
 
 function isNonViralIndianNewsArticle(article) {
-  const isCat = isCategory(article, 'news-article');
+  const isCat = isCategory(article, ['news-article', 'statistical-data', 'exams', 'tourism-travel-trips']);
   const isIndian = inCountry(article, 'india');
-  const isNotViral = !hasHashtag(article, 'viral');
+  const isNotViral = !hasHashtag(article, 'viral'); 
 
-  const passed = isCat && isIndian && isNotViral;
+  const passed = isCat && isIndian && (isNotViral);
 
   if (passed) {
     console.log(`✅ Section 2 - Selected (Non-Viral): ${article.title || article.Title || '[No Title]'}`);
@@ -48,7 +56,7 @@ function isCrimeOrDeathTag(article) {
     name.includes('death')
   );
 
-  const passed = matched & isNotViral
+  const passed = matched & isNotViral 
 
   if (passed) {
     console.log(`✅ Logic 3 Match: ${article.Title}`);

@@ -1,8 +1,6 @@
 <footer class="footer bg-white text-dark pt-5 border-top">
   <div class="container">
-    <div class="row gy-4">
-    
-
+    <div class="row gy-4"> 
 
       <!-- Brand & Description -->
       <div class="col-12 col-md-5">
@@ -19,9 +17,9 @@
           <a href="https://www.facebook.com/ragadecode" target="_blank" class="text-blue"><i class="fab fa-facebook fa-lg"></i></a>
           <a href="https://www.instagram.com/_ragadecode.com_" target="_blank"><i class="fab fa-instagram fa-lg" style="color: #E4405F;"></i></a>
           <a href="https://x.com/ragadecode" target="_blank" class="text-dark"><i class="fab fa-twitter fa-lg" ></i></a>
-           <a href="https://whatsapp.com/channel/0029Vb5muIZ89inmjau8hy2j" target="_blank"  title="WhatsApp">
-      <i class="fab fa-whatsapp fa-lg" style="color: #25D366;"></i>
-    </a>
+          <a href="https://whatsapp.com/channel/0029Vb5muIZ89inmjau8hy2j" target="_blank"  title="WhatsApp">
+            <i class="fab fa-whatsapp fa-lg" style="color: #25D366;"></i>
+          </a>
         </div>
       </div>
 
@@ -57,7 +55,7 @@
         </ul>
       </div>
 
-    </div>
+    </div> 
 
     <hr class="mt-4" />
 
@@ -75,45 +73,39 @@
       </div>
   </div>
 </footer> 
-
-<script>
-  
-  const dateElement = document.getElementById("today-date");
-  const today = new Date();
-
-  const options = {
-    weekday: "short",
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  };
-
-  const formattedDate = today.toLocaleDateString("en-US", options);
-  dateElement.textContent = formattedDate;
-</script>
-
-
-<script src="/assets/js/render-affiliate.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  fetch('/assets/data/media.json')
-    .then(res => res.json())
-    .then(mediaList => {
-      mediaList.forEach(item => console.log("🖼️", item.name));
-      autoRenderAllAffiliateWidgets(mediaList);
-    })
-    .catch(err => console.error('❌ Failed to load media list', err));
-}); 
-
-</script>
-
-<!-- <script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: 'ta', // Tamil only
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-    }, 'google_translate_element');
+<!-- Floating WhatsApp Subscribe Button -->
+<style>
+  .floating-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
   }
-</script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  .floating-whatsapp a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #25D366;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+  }
+  .floating-whatsapp a:hover {
+    background-color: #1ebe5d;
+  }
+  .floating-whatsapp i {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+</style>
+
+<div class="floating-whatsapp">
+  <a href="https://whatsapp.com/channel/0029Vb5muIZ89inmjau8hy2j" target="_blank">
+    <i class="fab fa-whatsapp"></i> Subscribe
+  </a>
+</div>

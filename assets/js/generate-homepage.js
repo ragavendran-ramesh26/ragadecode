@@ -176,7 +176,7 @@ function splitCities(cities) {
     // const section2Pool     = articles.filter(isNonViralIndianNewsArticle);
      const section2Articles = articles
       .filter(isNonViralIndianNewsArticle)  // ✅ Step 1: find all matching
-      .slice(0, 4);                          // ✅ Step 2: take top 4
+      .slice(0, 10);                          // ✅ Step 2: take top 4
 
     // const section2Articles = getNextArticles(section2Pool, 4);
     const [sec2Main, ...sec2Others] = section2Articles;
@@ -225,7 +225,7 @@ function splitCities(cities) {
     // let section3Articles = articles.filter(isNonViralIndianNewsArticle);
      const section3Articles = articles
       .filter(isNonViralIndianNewsArticle)  // ✅ Step 1: find all matching
-      .slice(4, 8);     
+      .slice(10, 14);     
     const [sec3Main, ...sec3Side] = section3Articles;
     const section3Html = sec3Main ? `
       <section class="section-3-highlight py-5 border-bottom">
@@ -281,10 +281,12 @@ function splitCities(cities) {
 
     const section4ArticlesFiltered = section4ArticlesRaw.filter(a => !section3Slugs.has(a.slug) && !section2Slugs.has(a.slug)); 
 
-    const [sec4Main, ...sec4Grid] = section4ArticlesFiltered.slice(0,5);
-    console.log("Section 4 Picked Titles:", [sec4Main?.Title, ...sec4Grid.map(a => a.Title)]);
+    const [sec4Main, ...sec4Grid] = section4ArticlesFiltered.slice(0,13);
 
-    const section4Html = sec4Main && sec4Grid.length === 4 ?`
+    console.log("Section 4 Picked Titles:", [sec4Main?.Title, ...sec4Grid.map(a => a.Title)]);
+  
+
+    const section4Html = sec4Main && sec4Grid.length === 12 ?`
     
       <section class="section-4-mostsee py-5 border-bottom">
         <div class="container">
@@ -293,7 +295,7 @@ function splitCities(cities) {
             <a href="/news-article" class="text-dark fw-semibold">See All</a>
           </div>
           <div class="row g-4">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
               <a href="/news-article/${sec4Main.slug}">
                 <img src="${sec4Main.coverimage?.url||'/assets/default.jpg'}" class="img-fluid rounded w-100" style="object-fit:cover;max-height:400px" alt="">
               </a>
@@ -303,10 +305,10 @@ function splitCities(cities) {
                 <p class="text-muted">${sec4Main.short_description?.slice(0,300)} <a href="/news-article/${sec4Main.slug}" class="text-decoration-none">Read More...</a></p>
               </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-12">
               <div class="row">
                 ${sec4Grid.map(art=>`
-                  <div class="col-sm-6 mb-4">
+                  <div class="col-sm-2 mb-4">
                     <a href="/${art.category.slug}/${art.slug}" class="text-decoration-none">
                       <img src="${art.coverimage?.url||'/assets/default.jpg'}" class="img-fluid rounded mb-2 w-100" style="object-fit:cover;height:150px" alt="">
                       <div class="d-flex align-items-center text-muted" style="font-size:13px">
