@@ -17,9 +17,9 @@
           <a href="https://www.facebook.com/ragadecode" target="_blank" class="text-blue"><i class="fab fa-facebook fa-lg"></i></a>
           <a href="https://www.instagram.com/_ragadecode.com_" target="_blank"><i class="fab fa-instagram fa-lg" style="color: #E4405F;"></i></a>
           <a href="https://x.com/ragadecode" target="_blank" class="text-dark"><i class="fab fa-twitter fa-lg" ></i></a>
-          <a href="https://whatsapp.com/channel/0029Vb5muIZ89inmjau8hy2j" target="_blank"  title="WhatsApp">
-            <i class="fab fa-whatsapp fa-lg" style="color: #25D366;"></i>
-          </a>
+           <a href="https://whatsapp.com/channel/0029Vb5muIZ89inmjau8hy2j" target="_blank"  title="WhatsApp">
+      <i class="fab fa-whatsapp fa-lg" style="color: #25D366;"></i>
+    </a>
         </div>
       </div>
 
@@ -55,7 +55,7 @@
         </ul>
       </div>
 
-    </div> 
+    </div>
 
     <hr class="mt-4" />
 
@@ -73,6 +73,9 @@
       </div>
   </div>
 </footer> 
+
+
+
 <!-- Floating WhatsApp Subscribe Button -->
 <style>
   .floating-whatsapp {
@@ -109,3 +112,35 @@
     <i class="fab fa-whatsapp"></i> Subscribe
   </a>
 </div>
+
+<script>
+  
+  const dateElement = document.getElementById("today-date");
+  const today = new Date();
+
+  const options = {
+    weekday: "short",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+
+  const formattedDate = today.toLocaleDateString("en-US", options);
+  dateElement.textContent = formattedDate;
+</script>
+
+
+<script src="/assets/js/render-affiliate.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  fetch('/assets/data/media.json')
+    .then(res => res.json())
+    .then(mediaList => {
+      mediaList.forEach(item => console.log("🖼️", item.name));
+      autoRenderAllAffiliateWidgets(mediaList);
+    })
+    .catch(err => console.error('❌ Failed to load media list', err));
+}); 
+
+</script>
+
