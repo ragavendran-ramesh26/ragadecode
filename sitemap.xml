@@ -66,6 +66,16 @@
     <lastmod>2025-07-27</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/tourism-travel-trips/ramapura-elephant-camp-bandipur-tiger-reserve-a-conservation-focused-wildlife-destination</loc>
+    <priority>0.8</priority>
+    <lastmod>2025-07-27</lastmod>
+  </url>
+  <url>
+    <loc>https://ragadecode.com/tourism-travel-trips/theppakadu-elephant-camp-mudumalai-tiger-reserve-a-living-elephant-sanctuary</loc>
+    <priority>0.8</priority>
+    <lastmod>2025-07-27</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/tourism-travel-trips/carmelagiri-elephant-park-munnar-a-family-friendly-elephant-experience</loc>
     <priority>0.8</priority>
     <lastmod>2025-07-27</lastmod>
@@ -936,17 +946,22 @@
     <lastmod>2025-07-27</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/tags/karnataka-tourism</loc>
+    <priority>0.6</priority>
+    <lastmod>2025-07-27</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/tags/elephant</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-27</lastmod>
   </url>
   <url>
-    <loc>https://ragadecode.com/tags/kerala-tourism</loc>
+    <loc>https://ragadecode.com/tags/tamilnadu-tourism</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-27</lastmod>
   </url>
   <url>
-    <loc>https://ragadecode.com/tags/tamilnadu-tourism</loc>
+    <loc>https://ragadecode.com/tags/kerala-tourism</loc>
     <priority>0.6</priority>
     <lastmod>2025-07-27</lastmod>
   </url>
@@ -1371,6 +1386,11 @@
     <lastmod>2025-06-28</lastmod>
   </url>
   <url>
+    <loc>https://ragadecode.com/locations/india/tamilnadu/nilgiris</loc>
+    <priority>0.3</priority>
+    <lastmod>2025-06-29</lastmod>
+  </url>
+  <url>
     <loc>https://ragadecode.com/locations/india/tamilnadu/pollachi</loc>
     <priority>0.3</priority>
     <lastmod>2025-07-06</lastmod>
@@ -1579,11 +1599,6 @@
     <loc>https://ragadecode.com/locations/india/maharashtra/nagpur</loc>
     <priority>0.3</priority>
     <lastmod>2025-07-04</lastmod>
-  </url>
-  <url>
-    <loc>https://ragadecode.com/locations/india/tamilnadu/nilgiris</loc>
-    <priority>0.3</priority>
-    <lastmod>2025-06-29</lastmod>
   </url>
   <url>
     <loc>https://ragadecode.com/locations/india/kerala/pathanamthitta</loc>
