@@ -34,7 +34,7 @@ function isViralIndianNewsArticle(article) {
 }
 
 function isNonViralIndianNewsArticle(article) {
-  const isCat = isCategory(article, ['news-article', 'statistical-data', 'exams', 'tourism-travel-trips']);
+  const isCat = isCategory(article, ['news-article', 'statistical-data', 'exams',]);
   const isIndian = inCountry(article, 'india');
   const isNotViral = !hasHashtag(article, 'viral'); 
 
