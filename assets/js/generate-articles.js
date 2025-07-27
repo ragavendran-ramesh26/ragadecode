@@ -649,8 +649,7 @@ const gaScript = `
 
       
 
-      const rawTags = categoryHashtagMap.get(categorySlug) || [];
-
+      const rawTags = categoryHashtagMap.get(categorySlug) || []; 
       let associatedTagsHtml = "";
 
       if (rawTags.length > 0) {
