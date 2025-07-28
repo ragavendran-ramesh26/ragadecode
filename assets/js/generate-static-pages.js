@@ -6,7 +6,8 @@ require('dotenv').config({ path: dotenvPath });
 
 const path = require('path');
 const marked = require('marked');
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+// const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const fetch = require('../../assets/js/api-client');
 
 
 const BASE_DOMAIN = 'ragadecode.com';
@@ -60,14 +61,21 @@ function buildRelatedArticlesHtml(attrs) {
 
     for (const config of API_CONFIGS) {
       console.log(`🔄 Fetching articles for ${config.name}...`);
-      const res = await fetch(config.apiUrl);
-      const { data } = await res.json();
+      const apiResponse = await fetch(config.apiUrl);
+      const data = apiResponse.data || apiResponse; // Extract 'data' if wrapped
+     
+
+
+      if (!data || !Array.isArray(data)) {
+        console.error(`❌ No data found for ${config.name}`);
+        continue;
+      }
 
       await fs.ensureDir(config.outputDir);
 
       for (const article of data) {
         const attrs = article.attributes || article;
-        const title = attrs.Title || 'Untitled';
+        const title = attrs.title || 'Untitled';
         const slug = attrs.slug;
         const category = attrs.category?.toLowerCase() || ''; 
         const createdAt = attrs.created_date || '';

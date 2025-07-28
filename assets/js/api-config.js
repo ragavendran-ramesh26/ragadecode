@@ -27,7 +27,7 @@ const API_CONFIG = {
 
 
   AUTHORS_API: `${BASE_STRAPI_URL}/authors`,
-  STATIC_PAGES_API: `${BASE_STRAPI_URL}/static-pages?populate=*`,
+  STATIC_PAGES_API: `${BASE_STRAPI_URL}/static-pages`,
 
   // ARTICLE_STATES_LIST:`${BASE_STRAPI_URL}/states?pagination[pageSize]=100&populate[news_articles][populate][1]=category&filters[country][title][$eq]=India&populate[news_articles][populate][0]=coverimage&populate[news_articles][sort][0]=publishedAt:desc&populate[country]=true&populate[news_articles][populate][2]=author&populate[news_articles][populate][3]=hashtags`,
 
