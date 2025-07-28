@@ -122,7 +122,7 @@ function buildRelatedArticlesHtml(attrs) {
     if (!relatedSlug || !categorySlug) return '';
 
     return `
-      <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+      <div class="col-12 col-sm-6 col-md-6 col-lg-3">
         <div class="card related-card h-100">
           <a href="/${categorySlug}/${relatedSlug}" class="text-decoration-none text-dark">
             <img src="${imageUrl}" class="card-img-top rounded" style="height:350px;"  alt="${relatedTitle}" loading="lazy" />
