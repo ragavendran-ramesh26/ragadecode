@@ -70,27 +70,6 @@
       content="Stay ahead with RagaDecode — your trusted source for decoded trending news, expert technology insights, financial analysis, and the latest automobile updates. Explore editorial-grade articles that break down complex topics into sharp, readable insights."
     />
     <link rel="canonical" href="https://ragadecode.com/" />
-    <script async data-cfasync="false">
-  (function() {
-      const url = new URL(window.location.href);
-      const clickID = url.searchParams.get("click_id");
-      const sourceID = url.searchParams.get("source_id");
-
-      const s = document.createElement("script");
-      s.dataset.cfasync = "false";
-      s.src = "https://push-sdk.com/f/sdk.js?z=1740874";
-      s.onload = (opts) => {
-          opts.zoneID = 1740874;
-          opts.extClickID = clickID;
-          opts.subID1 = sourceID;
-          opts.actions.onPermissionGranted = () => {};
-          opts.actions.onPermissionDenied = () => {};
-          opts.actions.onAlreadySubscribed = () => {};
-          opts.actions.onError = () => {};
-      };
-      document.head.appendChild(s);
-  })()
-</script>
 <style>
  /* Dots style */
 .carousel-indicators.custom-dots [data-bs-target] {
