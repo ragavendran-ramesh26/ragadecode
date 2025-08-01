@@ -1,5 +1,44 @@
 [
   {
+    "id": 236,
+    "documentId": "236",
+    "name": "Video Games - Rectangle",
+    "alternative_text": "affiliate",
+    "caption": "https://amzn.to/4ogBjyH",
+    "formats": {
+      "small": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/video-games-rectangle.png",
+        "hash": "video_games_-_rectangle",
+        "mime": "image/png",
+        "name": "small_Video Games - Rectangle",
+        "path": null,
+        "size": 0.09,
+        "width": 500,
+        "height": 282,
+        "sizeInBytes": 94371
+      },
+      "thumbnail": {
+        "ext": "",
+        "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/video-games-rectangle.png",
+        "hash": "video_games_-_rectangle",
+        "mime": "image/png",
+        "name": "thumbnail_Video Games - Rectangle",
+        "path": null,
+        "size": 0.03,
+        "width": 245,
+        "height": 138,
+        "sizeInBytes": 31457
+      }
+    },
+    "mime_type": "image/png",
+    "size": 0.09,
+    "url": "https://ragadecode-media.s3.ap-south-1.amazonaws.com/media/video-games-rectangle.png",
+    "provider": "aws-s3",
+    "created_at": "2025-08-01T17:50:11.705472+05:30",
+    "published_at": "2025-08-01T17:50:11.427365+05:30"
+  },
+  {
     "id": 176,
     "documentId": "176",
     "name": "home-invertors - Rectangle",
