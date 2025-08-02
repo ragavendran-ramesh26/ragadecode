@@ -12,6 +12,7 @@ const PRIORITY = {
   ARTICLES: 0.8,
   TAGS: 0.6,
   LOCATIONS: 0.5,
+  AUTHORS: 0.7,
   LEGAL: 0.3
 };
 
@@ -166,6 +167,25 @@ async function generateSitemap() {
 
       addUrl(`${BASE_URL}/locations/${countrySlug}/${stateSlug}/${citySlug}`, 0.3, formatDate(cityUpdatedAt));
     }
+
+    // 8. Author pages (NEW)
+    console.log("Fetching authors...");
+    const authorsData = await fetch("https://api.ragadecode.com/api/authors");
+    const authors = authorsData.data || [];
+
+    for (const author of authors) {
+      const attr = author.attributes || author;
+      const slug = attr.slug;
+      if (!slug) continue;
+      
+      // Only add individual author pages, not the /authors/ directory
+      addUrl(
+        `${BASE_URL}/authors/${slug}`,
+        PRIORITY.AUTHORS,
+        formatDate(attr.updated_at || attr.updatedAt)
+      );
+    }
+ 
 
     // Finalize sitemap
     xml += `</urlset>\n`;
