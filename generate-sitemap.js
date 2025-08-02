@@ -105,7 +105,7 @@ async function generateSitemap() {
 
     // 5. Static pages
     console.log("Fetching static pages...");
-    const staticData = await fetch("https://genuine-compassion-eb21be0109.strapiapp.com/api/static-pages?pagination[pageSize]=20");
+    const staticData = await fetch("https://api.ragadecode.com/api/static-pages");
     const pages = staticData.data || [];
 
     for (const page of pages) {
